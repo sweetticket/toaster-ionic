@@ -9,6 +9,21 @@ Comments.helpers({
   },
 });
 
+Meteor.methods({
+  "Comments.new": function (comment) {
+    Comments.insert(_.extend(comment, {
+      userId: this.userId,
+      createdAt: new Date()
+    }), function() {
+      console.log("comment is inserted");
+      Meteor.call("addNotification", {
+        userId: comment.userId,
+        postId: comment.postId
+      });
+    });
+  }
+});
+
 Comments.attachSchema(new SimpleSchema({
   body: {
     type: String,
