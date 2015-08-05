@@ -1,0 +1,70 @@
+<template name="postsShow">
+
+  {{#contentFor "headerButtonLeft"}}
+    {{>ionNavBackButton class="button-positive" text=false}}
+  {{/contentFor}}
+
+  {{#contentFor "headerButtonRight"}}
+    <button class="button button-clear pull-right button-positive" data-action="share-product" data-product-id="{{post._id}}">
+      {{> ionIcon icon='ios-upload-outline'}}
+    </button>
+  {{/contentFor}}
+
+  {{#contentFor "headerTitle"}}
+    <h1 class="title">토스트</h1>
+  {{/contentFor}}
+
+  {{#ionView}}
+    {{#ionContent}}
+
+      <div class="product-detail">
+
+        {{#with post}}
+
+          {{#ionItem iconLeft=true iconRight=true class="item-text-wrap"}}
+            <!-- {{> _voteButton}} -->
+            
+            <p>
+              {{body}}
+            </p>
+            <!-- {{#with author}}
+              <p>
+                <small>via <a href="{{pathFor 'users.show'}}" class="dark">{{profile.name}}</a></small>
+              </p>
+            {{/with}} -->
+            
+          {{/ionItem}}
+
+          <div class="padding product-detail-upvotes">
+            <span class="date-posted">
+              {{fromNow}}
+            </span>
+            <!-- <h5>Upvotes <small>{{numLikes}}</small></h5> -->
+            <!-- {{#each voters}}
+              <a href="{{pathFor 'users.show'}}">
+                {{> avatar user=this size="small" shape="circle"}}
+              </a>
+            {{/each}} -->
+          </div>
+        {{/with}}
+
+        <div class="padding product-detail-comments">
+          <h5>댓글</h5>
+          {{#with post}}
+            <button class="button button-positive button-small button-circle button-new-comment" data-action="new-comment">
+              {{>ionIcon icon="plus"}}
+            </button>
+          {{/with}}
+        </div>
+
+        <div class="list">
+          {{#each comments}}
+            {{> _comment}}
+          {{/each}}
+        </div>
+
+      </div>
+
+    {{/ionContent}}
+  {{/ionView}}
+</template>
