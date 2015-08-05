@@ -22,7 +22,7 @@ Template.postsShow.helpers({
   },
 
   comments: function () {
-    return Comments.find({postId: Router.current().params._id}, {sort: {createdAt: -1}});
+    return Comments.find({postId: Router.current().params._id}, {sort: {createdAt: 1}});
   },
 });
 
