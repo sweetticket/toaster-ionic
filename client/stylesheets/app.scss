@@ -154,6 +154,7 @@
 
 .numlikes-container {
   position: absolute;
+  margin-left: 1px;
   top: 40%;
   text-align: center;
   width: 100%;
@@ -162,7 +163,6 @@
 
 .product-detail .post-item .numlikes-container {
   top: 25%;
-  margin-left: 1px;
 }
 
 .product-detail .post-item .downvote-button {
