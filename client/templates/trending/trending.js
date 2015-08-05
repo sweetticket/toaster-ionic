@@ -1,6 +1,7 @@
 Template.trending.created = function () {
   this.autorun(function () {
     this.subscription = Meteor.subscribe('posts');
+    this.subscription = Meteor.subscribe('comments');
   }.bind(this));
 };
 
@@ -20,7 +21,7 @@ Template.trending.rendered = function () {
 };
 
 Template.trending.helpers({
-  posts: function () {
+  posts: function() {
     return Posts.find({}, {sort: {numLikes: -1, createdAt: -1}});
   }
 });

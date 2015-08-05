@@ -1,6 +1,7 @@
 Template.recent.created = function () {
   this.autorun(function () {
     this.subscription = Meteor.subscribe('posts');
+    this.subscription = Meteor.subscribe('comments');
   }.bind(this));
 };
 
