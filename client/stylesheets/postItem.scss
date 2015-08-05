@@ -1,0 +1,20 @@
+.button.vote-button {
+    width: 30px;
+    max-width: 30px;
+    min-width: 30px;
+    padding: 20px 0 0 0;
+    position: absolute;
+    left: 16px;
+    font-size: 7px;
+    border: 0;
+    border-radius: 4px;
+    line-height: 10px;
+}
+
+.button.upvote-button {
+    top: 0;
+}
+
+.button.downvote-button {
+    top: 30px;
+}
