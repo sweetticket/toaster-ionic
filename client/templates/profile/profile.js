@@ -27,11 +27,15 @@ Template.profile.helpers({
   },
 
   postsByUser: function() {
-    return Posts.find();
+    return Posts.find({}, {sort: {
+      createdAt: -1
+    }});
   },
 
   commentsByUser: function() {
-    return Comments.find();
+    return Comments.find({}, {sort: {
+      createdAt: -1
+    }});
   },
 
   networkDomain: function() {

@@ -75,14 +75,18 @@ Meteor.publishComposite('userPostsComments', function() {
         find: function (user) {
           return Posts.find({
             userId: this.userId
-          });
+          }, {sort: {
+            createdAt: -1
+          }});
         }
       },
       {
         find: function (user) {
           return Comments.find({
             userId: this.userId
-          });
+          }, {sort: {
+            createdAt: -1
+          }});
         }
       },
       {
