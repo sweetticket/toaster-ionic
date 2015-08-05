@@ -5,18 +5,24 @@ Posts.before.insert(function (userId, doc) {
 });
 
 Posts.helpers({
-  datePosted: function () {
+  datePosted: function() {
     return moment(this.createdAt).format('M/D');
   },
-  fromNow: function () {
+  fromNow: function() {
     return moment(this.createdAt).fromNow();
   },
-  author: function () {
+  author: function() {
     return Meteor.users.findOne({_id: this.userId});
   },
-  // voters: function () {
-  //   return Meteor.users.find({_id: {$in: this.voterIds}});
-  // }
+  upvotes: function() {
+    return Meteor.users.find({_id: {$in: this.upvoterIds}}).count();
+  },
+  downvotes: function() {
+    return Meteor.users.find({_id: {$in: this.downvoterIds}}).count();
+  },
+  numberOfComments: function() {
+    return Comments.find({postId: this._id}).count();
+  }
 });
 
 // RegExp.escape = function(s) {
@@ -72,21 +78,26 @@ Posts.attachSchema(new SimpleSchema({
       }
     }
   },
-  // voterIds: {
-  //   type: [String],
-  //   optional: true,
-  //   defaultValue: []
-  // },
+  upvoterIds: {
+    type: [String],
+    optional: true,
+    defaultValue: []
+  },
+  downvoterIds: {
+    type: [String],
+    optional: true,
+    defaultValue: []
+  },
   numLikes: {
     type: Number,
     optional: true,
     defaultValue: 0
   },
-  numberOfComments: {
-    type: Number,
-    optional: true,
-    defaultValue: 0
-  },
+  // numberOfComments: {
+  //   type: Number,
+  //   optional: true,
+  //   defaultValue: 0
+  // },
   createdAt: {
     type: Date
   }
