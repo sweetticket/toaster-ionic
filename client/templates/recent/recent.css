@@ -1,0 +1,4 @@
+.bar-header .submit-new-post-btn.button-in-header {
+  /* FIXME: so hard to override the style.. */
+  right: 10px !important;
+}
