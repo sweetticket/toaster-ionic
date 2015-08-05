@@ -14,15 +14,14 @@
   {{#ionView}}
     {{#ionContent}}
       {{#with user}}
-        {{> _profileHeader}}
+        <!-- {{> _profileHeader}} -->
         <!-- {{color}} -->
 
         <div class="network-container">
-          <h5 class="padding">내 네트워크</h5>
-          {{networkDomain}}
+          <h5 class="padding">내 네트워크  <span class="network-domain">{{networkDomain}}</span></h5>
         </div>
 
-        <div class="posts-contaienr">
+        <div class="posts-container">
           <h5 class="padding">내 토스트</h5>
           {{#ionList}}
             {{#each postsByUser}}
