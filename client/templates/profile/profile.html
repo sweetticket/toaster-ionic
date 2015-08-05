@@ -15,11 +15,31 @@
     {{#ionContent}}
       {{#with user}}
         {{> _profileHeader}}
-        <!-- {{#ionList}}
-          {{#each votedPosts}}
-            {{> _postItem post=this path="posts.show"}}
-          {{/each}}
-        {{/ionList}} -->
+        <!-- {{color}} -->
+
+        <div class="network-container">
+          <h5 class="padding">내 네트워크</h5>
+          {{networkDomain}}
+        </div>
+
+        <div class="posts-contaienr">
+          <h5 class="padding">내 토스트</h5>
+          {{#ionList}}
+            {{#each postsByUser}}
+              {{> _postItem post=this path="posts.show"}}
+            {{/each}}
+          {{/ionList}}
+        </div>
+
+        <div class="comments-container">
+          <h5 class="padding">내 댓글</h5>
+          {{#ionList}}
+            {{#each commentsByUser}}
+              {{> _comment comment=this path="comments.show"}}
+            {{/each}}
+          {{/ionList}}
+        </div>
+
       {{else}}
         <div class="empty-view">
           {{> ionIcon icon="ios-person"}}

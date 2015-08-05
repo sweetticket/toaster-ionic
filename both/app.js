@@ -12,7 +12,10 @@ Meteor.startup(function() {
 
     Push.addListener("alert", function (noti) {
       console.log("alert", noti);
-    })
+    });
+
+    // Set MomentJS Korean
+    moment.locale('ko');
   }
 
   if (Meteor.isServer) {

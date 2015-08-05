@@ -1,6 +1,11 @@
 Template.profile.created = function () {
+  if (!Meteor.loggingIn() && !Meteor.user()) {
+    IonModal.open('signIn');
+    return;
+  }
+
   this.autorun(function () {
-    this.subscription = Meteor.subscribe('userInfo', Meteor.userId());
+    this.subscription = Meteor.subscribe("userPostsComments");
   }.bind(this));
 };
 
@@ -12,16 +17,27 @@ Template.profile.rendered = function () {
       IonLoading.hide();
     }
   }.bind(this));
-
-  if (!Meteor.loggingIn() && !Meteor.user()) {
-    IonModal.open('signIn');
-  }
 };
 
 Template.profile.helpers({
   user: function () {
     if (Meteor.userId()) {
       return Meteor.user();
+    }
+  },
+
+  postsByUser: function() {
+    return Posts.find();
+  },
+
+  commentsByUser: function() {
+    return Comments.find();
+  },
+
+  networkDomain: function() {
+    var network = Networks.findOne();
+    if (network) {
+      return network.domain;  
     }
   }
 });
