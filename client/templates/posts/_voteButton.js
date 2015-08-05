@@ -1,5 +1,5 @@
 Template._voteButton.events({
-  'click': function (event, template) {
+  'click .upvote-button': function (event, template) {
     event.preventDefault();
 
     if (!Meteor.user()) {
@@ -7,17 +7,37 @@ Template._voteButton.events({
       return;
     }
 
-    Meteor.call('Posts.vote', this._id);
+    Meteor.call('Posts.upvote', this._id, Meteor.userId());
+  },
+  'click .downvote-button': function (event, template) {
+    event.preventDefault();
+
+    if (!Meteor.user()) {
+      IonModal.open('signIn');
+      return;
+    }
+
+    Meteor.call('Posts.downvote', this._id, Meteor.userId());
   }
 });
 
 Template._voteButton.helpers({
-  hasVotedClass: function () {
+  hasUpvotedClass: function () {
     if (!Meteor.user()) {
       return;
     }
-    if(_(Meteor.user().profile.votedProductIds).contains(this._id)) {
+    var upvoters = this.upvoterIds;
+    if(upvoters.indexOf(Meteor.userId()) >= 0) {
       return 'has-voted';
     }
-  }
+  },
+  hasDownvotedClass: function () {
+    if (!Meteor.user()) {
+      return;
+    }
+    var downvoters = this.downvoterIds;
+    if(downvoters.indexOf(Meteor.userId()) >= 0) {
+      return 'has-voted';
+    }
+  },
 });

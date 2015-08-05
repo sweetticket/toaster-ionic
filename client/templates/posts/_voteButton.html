@@ -1,6 +1,9 @@
 <template name="_voteButton">
-  <button class="button button-stable vote-button {{hasVotedClass}}">
+  <button class="button button-stable vote-button upvote-button {{hasUpvotedClass}}">
     {{> ionIcon icon="arrow-up-c" }}
-    {{numberOfVotes}}
+  </button>
+  {{numberOfVotes}}
+  <button class="button button-stable vote-button downvote-button {{hasDownvotedClass}}">
+    {{> ionIcon icon="arrow-down-c" }}
   </button>
 </template>

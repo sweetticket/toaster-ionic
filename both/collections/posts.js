@@ -102,3 +102,4 @@ Posts.attachSchema(new SimpleSchema({
     type: Date
   }
 }));
+
