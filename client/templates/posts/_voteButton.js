@@ -27,6 +27,9 @@ Template._voteButton.helpers({
       return;
     }
     var upvoters = this.upvoterIds;
+    if (!upvoters) {
+      return;
+    }
     if(upvoters.indexOf(Meteor.userId()) >= 0) {
       return 'has-voted';
     }
@@ -36,6 +39,9 @@ Template._voteButton.helpers({
       return;
     }
     var downvoters = this.downvoterIds;
+    if (!downvoters) {
+      return;
+    }
     if(downvoters.indexOf(Meteor.userId()) >= 0) {
       return 'has-voted';
     }
