@@ -11,6 +11,10 @@
   margin: 0;
 }
 
+.inline-new-comment-wrapper .inline-new-comment-inner {
+  border-top: 1px solid #03a9f4;
+}
+
 .inline-new-comment-wrapper .inline-new-comment-inner .inline-comment-submit {
   width: 20%;
   padding: 0;
