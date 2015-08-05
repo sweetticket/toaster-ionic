@@ -56,6 +56,7 @@ Template.signUp.events({
 
   "click .signin-link": function (e, template) {
     e.preventDefault();
+    IonModal.close("signUp");
     IonModal.open("signIn");
   },
 });
