@@ -58,18 +58,18 @@
   color: $in-header;
 }
 
-.button.vote-button {
+.vote-buttons {
   width: 30px;
   max-width: 30px;
   min-width: 30px;
-  padding: 20px 0 0 0;
+  padding: 0;
   position: absolute;
-  top: 16px;
-  left: 16px;
+  right: 16px;
   font-size: 12px;
-  border: 0;
-  border-radius: $border-radius-base;
-  line-height: 20px;
+  border-width: 0;
+  border-radius: none;
+  color: #777;
+  background-color: transparent;
 
   &.has-voted {
     .icon {
@@ -79,7 +79,7 @@
 
   .icon {
     height: 20px;
-    top: 4px;
+    // top: 4px;
 
     &:before {
       font-size: 20px;
@@ -88,14 +88,26 @@
   }
 }
 
+.upvote-button .icon {
+  top: -60%;
+}
+
+.downvote-button .icon {
+  top: 80%;
+}
+
+.numlikes-container {
+  margin-left: 13px;
+}
+
 .comments-count {
   font-size: 12px;
   width: 36px;
   text-align: right;
   position: absolute;
-  top: 50%;
+  bottom: 0px;
   margin-top: -10px;
-  right: 16px;
+  left: 70px;
   color: #999999;
 
   .icon {
