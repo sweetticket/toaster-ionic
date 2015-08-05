@@ -25,10 +25,11 @@ Meteor.startup(function() {
   }
 
   if (Meteor.isServer) {
-    Push.allow({
-        send: function(userId, notification) {
-            return true; // Allow all users to send
-        }
-    });
+    Push.debug=true;
+    // Push.allow({
+    //     send: function(userId, notification) {
+    //         return true; // Allow all users to send
+    //     }
+    // });
   }
 })
