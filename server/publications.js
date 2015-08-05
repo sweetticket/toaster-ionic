@@ -2,6 +2,10 @@ Meteor.publish('posts', function() {
   return Posts.find();
 });
 
+Meteor.publish('comments', function() {
+  return Comments.find();
+});
+
 // Meteor.publish('productsSearch', function(query) {
 //   check(query, String);
 
