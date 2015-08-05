@@ -18,6 +18,10 @@ Meteor.startup(function() {
       console.log("message received PUSH!!!");
       console.log(notification);
     });
+
+    Push.addListener("alert", function (noti) {
+      console.log("alert", noti);
+    })
   }
 
   if (Meteor.isServer) {
