@@ -1,6 +1,6 @@
 <template name="newComment">
   {{#ionModal customTemplate=true}}
-    {{#autoForm collection="Comments" id="comments-new-form" type="insert"}}
+    {{#autoForm collection="Comments" id="comments-new-form" type="insert" userId=userId postId=postId}}
       <div class="bar bar-header bar-stable">
         <button data-dismiss="modal" type="button" class="button button-clear">취소</button>
         <h2 class="title">댓글쓰기</h2>

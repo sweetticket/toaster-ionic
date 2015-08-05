@@ -12,7 +12,7 @@ var _toggleEnableSignUp = function() {
 
 Template.signUp.events({
   "keyup input": function (e, template) {
-    _toggleEnableSignUp();
+    // _toggleEnableSignUp();
   },
 
   "click .signup-btn": function (e, template) {

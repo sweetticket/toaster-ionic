@@ -17,5 +17,5 @@ Meteor.methods({
     console.log("adding a network");
 
     return Networks.insert(network);
-  }  
+  }
 });
