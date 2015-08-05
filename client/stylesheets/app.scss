@@ -140,7 +140,7 @@
 .downvote-button {
   position: absolute;
   right: 0px;
-  top: 40%;
+  top: 70%;
   width: 100%;
   height: 20px;
 
@@ -154,11 +154,19 @@
 
 .numlikes-container {
   position: absolute;
-  top: 25%;
-  margin-left: 1px;
+  top: 40%;
   text-align: center;
   width: 100%;
   font-size: 18px;
+}
+
+.product-detail .post-item .numlikes-container {
+  top: 25%;
+  margin-left: 1px;
+}
+
+.product-detail .post-item .downvote-button {
+  top: 40%;
 }
 
 .post-item-bottom {
