@@ -1,6 +1,8 @@
 Template.postsShow.created = function () {
   this.autorun(function () {
     this.subscription = Meteor.subscribe('post', Router.current().params._id);
+    this.subscription = Meteor.subscribe('comments');
+    this.subscription = Meteor.subscribe('otherUserInfo');
   }.bind(this));
 };
 
@@ -21,7 +23,7 @@ Template.postsShow.helpers({
 
   comments: function () {
     return Comments.find({postId: Router.current().params._id}, {sort: {createdAt: -1}});
-  }
+  },
 });
 
 Template.postsShow.events({

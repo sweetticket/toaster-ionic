@@ -3,18 +3,20 @@
     {{#ionItem path=../path iconLeft=true iconRight=true}}
       <div class="item-text-wrap">
         {{> _voteButton}}
-        <!-- <h2>{{name}}</h2> -->
+        <div class="author-avatar" style="background-color: {{author.color}}">
+          <i class="author-icon {{author.icon}}"></i>
+        </div>
         <p>
           {{body}}
         </p>
         <div class="post-item-bottom">
+          <span class="comments-count">
+            댓글 {{numberOfComments}}개
+            <!-- {{> ionIcon icon="ios-chatbubble" }} -->
+          </span>
           <span class="post-date">
             {{fromNow}}
-            {{> ionIcon icon="ios-clock" }}
-          </span>
-          <span class="comments-count">
-            {{numberOfComments}}
-            {{> ionIcon icon="ios-chatbubble" }}
+            <!-- {{> ionIcon icon="ios-clock" }} -->
           </span>
         </div>
       </div>

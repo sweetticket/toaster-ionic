@@ -8,7 +8,7 @@
 
 
 .bar.bar-stable {
-  border-color: #0286c2;
+  // border-color: #0286c2;
   background-color: #03a9f4;
   background-image: linear-gradient(0deg, #0286c2, #0286c2 50%, transparent 50%);
   color: #fff;
@@ -58,6 +58,20 @@
   color: $in-header;
 }
 
+.author-avatar {
+  width: 35px;
+  height: 35px;
+  border-radius: 25px;
+  text-align: center;
+  position: relative;
+}
+
+.author-avatar i {
+  color: #fff;
+  font-size: 22px;
+  line-height: 35px;
+}
+
 .item {
   border-color: #ddd;
   background-color: #fff;
@@ -74,7 +88,10 @@
 }
 
 .item p {
-  width: 90%;
+  width: 70%;
+  position: absolute;
+  top: 16px;
+  left: 70px;
 }
 
 .vote-buttons {
@@ -147,10 +164,13 @@
   left: 16px;
   margin-top: -10px;
   color: #999999;
+  width: 100%;
 }
 
 .post-date {
-  padding-right: 10px;
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
 
   .icon {
     font-size: 15px;
@@ -164,8 +184,16 @@
   }
 }
 
+.post-date.comment-post-date {
+  font-size: 12px;
+}
+
 .comments-count {
-  width: 36px;
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  left: -16px;
+  bottom: 0px;
 
   .icon {
     font-size: 17px;

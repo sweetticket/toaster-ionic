@@ -6,6 +6,10 @@ Meteor.publish('comments', function() {
   return Comments.find();
 });
 
+// Meteor.publish('postComments', function(_id) {
+//   return Comments.find({postId: _id});
+// });
+
 // Meteor.publish('productsSearch', function(query) {
 //   check(query, String);
 
@@ -39,7 +43,13 @@ Meteor.publishComposite('post', function(_id) {
         children: [
           {
             find: function(comment) {
-              return Meteor.users.find({_id: comment.userId});
+              return Meteor.users.find({_id: comment.userId}, {fields: {
+                '_id': true,
+                'emails': true,
+                'networkId': true,
+                'color': true,
+                'icon': true,
+              }});
             }
           }
         ]
@@ -64,6 +74,7 @@ Meteor.publish('userInfo', function() {
 });
 
 Meteor.publish('otherUserInfo', function() {
+  console.log(this);
   if (this.userId) {
     var user = Meteor.users.findOne({_id: this.userId}); 
     var currentNetworkId = user.networkId;

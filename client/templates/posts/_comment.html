@@ -2,11 +2,15 @@
   <div class="item item-text-wrap comment-item">
     {{#with author}}
       <a href="{{pathFor 'users.show'}}" class="comment-item-author">
-        {{> avatar user=this size="small" shape="circle"}}
+        <div class="author-avatar" style="background-color: {{color}}">
+          <i class="author-icon {{icon}}"></i>
+        </div>
         <!-- {{profile.name}} -->
-        {{fromNow}}
       </a>
     {{/with}}
+    <span class="post-date comment-post-date">
+      {{fromNow}}
+    </span>
     <p>
       {{body}}
     </p>

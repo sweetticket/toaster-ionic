@@ -27,18 +27,24 @@
             <p>
               {{body}}
             </p>
-            <!-- {{#with author}}
-              <p>
-                <small>via <a href="{{pathFor 'users.show'}}" class="dark">{{profile.name}}</a></small>
-              </p>
-            {{/with}} -->
+            <div class="author-avatar" style="background-color: {{author.color}}">
+              <i class="author-icon {{author.icon}}"></i>
+            </div>
             
           {{/ionItem}}
 
           <div class="padding product-detail-upvotes">
-            <span class="date-posted">
-              {{fromNow}}
-            </span>
+            <div class="post-item-bottom">
+              <span class="comments-count">
+                댓글 {{numberOfComments}}개
+                <!-- {{> ionIcon icon="ios-chatbubble" }} -->
+              </span>
+              <span class="post-date">
+                {{fromNow}}
+                <!-- {{> ionIcon icon="ios-clock" }} -->
+              </span>
+            </div>
+            
             <!-- <h5>Upvotes <small>{{numLikes}}</small></h5> -->
             <!-- {{#each voters}}
               <a href="{{pathFor 'users.show'}}">
