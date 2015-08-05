@@ -1,6 +1,6 @@
 Template.profile.created = function () {
   this.autorun(function () {
-    this.subscription = Meteor.subscribe('user', Meteor.userId());
+    this.subscription = Meteor.subscribe('userInfo', Meteor.userId());
   }.bind(this));
 };
 

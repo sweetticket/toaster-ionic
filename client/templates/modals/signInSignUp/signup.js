@@ -12,14 +12,15 @@ var _toggleEnableSignUp = function() {
 
 Template.signUp.events({
   "keyup input": function (e, template) {
-    _toggleEnableSignUp();
+    // _toggleEnableSignUp();
   },
 
   "click .signup-btn": function (e, template) {
-    e.preventDefault();
     var email = $('#email').val();
     var password = $('#password').val();
     var password2 = $('#password2').val();
+
+    console.log("password", password2);
 
     if (!Utils.validateEmail(email)) {
       console.log("email invalid");
@@ -34,24 +35,25 @@ Template.signUp.events({
       return false;
     }
 
+    console.log("am I reached?");
+
     Accounts.createUser({
       email: email,
       password: password
     }, function (err) {
+
       if (err) {
         console.log("createUser failed", err);
 
-        // var user = Meteor.users.findOne({ "emails.address" : email });
-        // if (user) {
-        //   $('.show').removeClass('show');
-        //   $('.already-registered').addClass('show');
-        // }
-
+        var user = Meteor.users.findOne({ "emails.address" : email });
+        if (user) {
+          $('.show').removeClass('show');
+          $('.already-registered').addClass('show');
+        }
         return false;
       }
-      console.log("signup success", email);
-      IonModal.close();
     });
+    IonModal.close();
   },
 
   "click .signin-link": function (e, template) {

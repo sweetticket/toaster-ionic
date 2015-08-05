@@ -26,9 +26,11 @@ Template.postsShow.helpers({
 
 Template.postsShow.events({
   'click [data-action=new-comment]': function (event, template) {
-    debugger
     if (Meteor.user()) {
-      IonModal.open('newComment', {postId: this._id});
+      IonModal.open('newComment', {
+        postId: this._id,
+        userId: Meteor.userId()
+      });
     } else {
       IonModal.open('signIn');
     }

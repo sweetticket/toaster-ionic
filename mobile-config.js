@@ -1,8 +1,9 @@
 App.info({
-  name: 'MeteorHunt',
-  description: 'Submit and vote on products made with Meteor',
-  author: 'Nick Wientge',
-  website: 'http://exygen.io',
+  id: 'com.honeyjam.toaster',
+  name: 'Toaster',
+  description: 'Anonymous Group of Inside Network',
+  author: 'Honeyjam Studio',
+  website: 'http://toasterapp.co.kr',
   version: '0.0.1'
 });
 
