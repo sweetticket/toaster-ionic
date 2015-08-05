@@ -41,4 +41,5 @@ App.launchScreens({
 });
 
 App.setPreference('StatusBarOverlaysWebView', true);
-App.setPreference('StatusBarStyle', 'default');
+App.setPreference('StatusBarStyle', 'lightcontent');
+

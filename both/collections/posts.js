@@ -61,7 +61,8 @@ Posts.attachSchema(new SimpleSchema({
     type: String,
     autoform: {
       'label-type': 'placeholder',
-      placeholder: '같은 네트워크에 있는 사람들과 익명으로 대화할 수 있어요'
+      placeholder: '같은 네트워크에 있는 사람들과 익명으로 대화할 수 있어요',
+      rows: 10
     },
     max: 200
   },

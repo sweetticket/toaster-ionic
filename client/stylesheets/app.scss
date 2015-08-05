@@ -92,6 +92,7 @@
   margin-left: 54px;
   margin-top: -35px;
   padding-bottom: 20px;
+  font-size: 16px;
 }
 
 .vote-buttons {
@@ -194,6 +195,10 @@
 
 .product-detail .post-item {
   min-height: 150px;
+}
+
+.product-detail .post-item p {
+  font-size: 18px;
 }
 
 .comments-count {
@@ -334,4 +339,20 @@ a.comment-item-author {
 .network-domain {
   float: right;
   color: $positive;
+}
+
+textarea {
+  height: 100%;
+  border-width: 0;
+  resize: none;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  padding: 15px 10px;
+  -webkit-appearance: none;
+  font-size: 18px;
+  line-height: 2em;
 }
