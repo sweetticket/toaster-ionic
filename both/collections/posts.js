@@ -153,9 +153,10 @@ Meteor.methods({
   },
 
   'Posts.upvote': function (postId, userId) {
-  var post = Posts.findOne({
-      _id: postId
-    });
+
+    var post = Posts.findOne({
+        _id: postId
+      });
 
     if (!post) {
       console.log("post doesnt exist");
@@ -167,9 +168,12 @@ Meteor.methods({
     //   return false;
     // }
 
-    var didIUpvote = post.upvoterIds.indexOf(userId);
+    var upvoters = post.upvoterIds;
+    var downvoters = post.downvoterIds;
 
-    var didIDownvote = post.downvoterIds.indexOf(userId);
+    var didIUpvote = upvoters.indexOf(userId);
+
+    var didIDownvote = downvoters.indexOf(userId);
 
     var numLikes = post.numLikes;
 
@@ -177,22 +181,36 @@ Meteor.methods({
     // the upvoters list.
     if (didIUpvote >= 0) {
 
-      post.upvoterIds.splice(didIUpvote, 1);
+      upvoters.splice(didIUpvote, 1);
+
+      Posts.update({ _id: post._id}, {
+        "$set": { upvoterIds: upvoters }
+      });
 
       Meteor.call("Posts.setNumLikes", postId, numLikes-1);
 
-    //
     } else if (didIDownvote >= 0) {
 
-      post.downvoterIds.splice(didIDownvote, 1);
+      downvoters.splice(didIDownvote, 1);
+      upvoters.push(userId);
 
-      post.upvoterIds.push(userId);
+      Posts.update({ _id: post._id}, {
+        "$set": { downvoterIds: downvoters }
+      });
+
+      Posts.update({ _id: post._id}, {
+        "$set": { upvoterIds: upvoters }
+      });
 
 
       Meteor.call("Posts.setNumLikes", postId, numLikes+2);
     } else {
-      
-      post.upvoterIds.push(userId);
+
+      upvoters.push(userId);
+
+      Posts.update({ _id: post._id}, {
+        "$set": { upvoterIds: upvoters }
+      });
 
       Meteor.call("Posts.setNumLikes", postId, numLikes+1);
     }
@@ -213,30 +231,48 @@ Meteor.methods({
     //   return false;
     // }
 
-    var didIUpvote = post.upvoterIds.indexOf(userId);
+    var upvoters = post.upvoterIds;
+    var downvoters = post.downvoterIds;
 
-    var didIDownvote = post.downvoterIds.indexOf(userId);
+    var didIUpvote = upvoters.indexOf(userId);
+
+    var didIDownvote = downvoters.indexOf(userId);
 
     var numLikes = post.numLikes;
 
     if (didIDownvote >= 0) {
 
-      post.downvoterIds.splice(didIDownvote, 1);
+      downvoters.splice(didIDownvote, 1);
+
+      Posts.update({ _id: post._id}, {
+        "$set": { downvoterIds: downvoters }
+      });
 
       Meteor.call("Posts.setNumLikes", postId, numLikes+1);
 
     
     } else if (didIUpvote >= 0) {
+
+      upvoters.splice(didIUpvote, 1);
+      downvoters.push(userId);
       
-      post.upvoterIds.splice(didIUpvote, 1);
+      Posts.update({ _id: post._id}, {
+        "$set": { upvoterIds: upvoters }
+      });
 
-      post.downvoterIds.push(userId);
-
+      Posts.update({ _id: post._id}, {
+        "$set": { downvoterIds: downvoters }
+      });
 
       Meteor.call("Posts.setNumLikes", postId, numLikes-2);
+
     } else {
 
-      post.downvoterIds.push(userId);
+      downvoters.push(userId);
+
+      Posts.update({ _id: post._id}, {
+        "$set": { downvoterIds: downvoters }
+      });
 
       Meteor.call("Posts.setNumLikes", postId, numLikes-1);
     }

@@ -1,15 +1,23 @@
 <template name="_postItem">
   {{#with post}}
     {{#ionItem path=../path iconLeft=true iconRight=true}}
-      {{> _voteButton}}
-      <!-- <h2>{{name}}</h2> -->
-      <p>
-        {{body}}
-      </p>
-      <span class="comments-count">
-        {{numberOfComments}}
-        {{> ionIcon icon="ios-chatbubble" }}
-      </span>
+      <div class="item-text-wrap">
+        {{> _voteButton}}
+        <!-- <h2>{{name}}</h2> -->
+        <p>
+          {{body}}
+        </p>
+        <div class="post-item-bottom">
+          <span class="post-date">
+            {{fromNow}}
+            {{> ionIcon icon="ios-clock" }}
+          </span>
+          <span class="comments-count">
+            {{numberOfComments}}
+            {{> ionIcon icon="ios-chatbubble" }}
+          </span>
+        </div>
+      </div>
     {{/ionItem}}
   {{/with}}
 </template>
