@@ -64,14 +64,14 @@ Meteor.publishComposite('userPostsComments', function() {
       {
         find: function (user) {
           return Posts.find({
-            userId: user._id
+            userId: this.userId
           });
         }
       },
       {
         find: function (user) {
           return Comments.find({
-            userId: user._id
+            userId: this.userId
           });
         }
       },
