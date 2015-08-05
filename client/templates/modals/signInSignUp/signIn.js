@@ -1,8 +1,8 @@
 Template.signIn.events({
   "click .signup-link": function (e, template) {
     e.preventDefault();
-    IonModal.open("signUp");
     IonModal.close("signIn");
+    IonModal.open("signUp");
   },
 
   "click .signin-btn": function (e, template) {
@@ -14,11 +14,11 @@ Template.signIn.events({
         console.log("login failed");
         var user = Meteor.users.findOne({ "emails.address" : email });
         if (user) {
-          // $('.show').removeClass('show');
-          // $('.incorrect-pw').addClass('show');
+          $('.show').removeClass('show');
+          $('.incorrect-pw').addClass('show');
         } else {
-          // $('.show').removeClass('show');
-          // $('.not-registered').addClass('show');
+          $('.show').removeClass('show');
+          $('.not-registered').addClass('show');
         }
         //fixme do something
       } else {
