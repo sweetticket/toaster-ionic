@@ -15,11 +15,31 @@
     {{#ionContent}}
       {{#with user}}
         {{> _profileHeader}}
-        <!-- {{#ionList}}
-          {{#each votedPosts}}
+
+
+        {{color}}
+
+        내가 속한 네트워크
+
+        {{networkDomain}}
+
+        <h2 class="title">내 토스트</h2>
+
+        {{#ionList}}
+          {{#each postsByUser}}
             {{> _postItem post=this path="posts.show"}}
           {{/each}}
+        {{/ionList}}
+
+        <h2 class="title">내 댓글</h2>
+
+<!--    FIXME: not implemented yet. Publications are ready
+        {{#ionList}}
+          {{#each commentsbyUser}}
+            {{> _commentItem comment=this path="comments.show"}}
+          {{/each}}
         {{/ionList}} -->
+
       {{else}}
         <div class="empty-view">
           {{> ionIcon icon="ios-person"}}

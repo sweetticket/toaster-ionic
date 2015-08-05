@@ -48,6 +48,44 @@ Meteor.publishComposite('post', function(_id) {
   };
 });
 
+// publish all posts and comments written by the user
+Meteor.publishComposite('userPostsComments', function() {
+  return {
+    find: function() {
+      return Meteor.users.find({_id: this.userId}, {fields: {
+        '_id': true,
+        'emails': true,
+        'networkId': true,
+        'color': true,
+        'icon': true,
+      }});
+    },
+    children: [
+      {
+        find: function (user) {
+          return Posts.find({
+            userId: user._id
+          });
+        }
+      },
+      {
+        find: function (user) {
+          return Comments.find({
+            userId: user._id
+          });
+        }
+      },
+      {
+        find: function (user) {
+          return Networks.find({
+            _id: user.networkId
+          });
+        }
+      }
+    ]
+  };
+});
+
 // FIXME: these are not subscribed yet.
 Meteor.publish('userInfo', function() {
   if (this.userId) {
