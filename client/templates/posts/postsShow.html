@@ -22,38 +22,27 @@
         {{#with post}}
 
           {{#ionItem iconLeft=true iconRight=true class="item-text-wrap"}}
-            {{> _voteButton}}
-            
-            <p>
-              {{body}}
-            </p>
-            <div class="author-avatar" style="background-color: {{author.color}}">
-              <i class="author-icon {{author.icon}}"></i>
-            </div>
+            <div class="post-item">
+              {{> _voteButton}}
+              <div class="author-avatar" style="background-color: {{author.color}}">
+                <i class="author-icon {{author.icon}}"></i>
+              </div>
+              <p>
+                {{body}}
+              </p>
 
-            <div class="post-item-bottom">
-              <span class="comments-count">
-                댓글 {{numberOfComments}}개
-                <!-- {{> ionIcon icon="ios-chatbubble" }} -->
-              </span>
-              <span class="post-date">
-                {{fromNow}}
-                <!-- {{> ionIcon icon="ios-clock" }} -->
-              </span>
+              <div class="post-item-bottom">
+                <span class="comments-count">
+                  댓글 {{numberOfComments}}개
+                  <!-- {{> ionIcon icon="ios-chatbubble" }} -->
+                </span>
+                <span class="post-date">
+                  {{fromNow}}
+                  <!-- {{> ionIcon icon="ios-clock" }} -->
+                </span>
+              </div>
             </div>
-            
           {{/ionItem}}
-
-          <div class="padding product-detail-upvotes">
-            
-
-            <!-- <h5>Upvotes <small>{{numLikes}}</small></h5> -->
-            <!-- {{#each voters}}
-              <a href="{{pathFor 'users.show'}}">
-                {{> avatar user=this size="small" shape="circle"}}
-              </a>
-            {{/each}} -->
-          </div>
         {{/with}}
 
         <div class="padding product-detail-comments">
@@ -65,7 +54,7 @@
           {{/with}}
         </div>
 
-        <div class="list">
+        <div class="list comments-list">
           {{#each comments}}
             {{> _comment}}
           {{/each}}
