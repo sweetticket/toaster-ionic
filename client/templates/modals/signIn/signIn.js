@@ -1,7 +1,8 @@
 Template.signIn.events({
   "click .signup-link": function (e, template) {
     e.preventDefault();
-    Router.go('/signup');
+    IonModal.open("signUp");
+    IonModal.close("signIn");
   },
 
   "click .signin-btn": function (e, template) {
@@ -21,7 +22,6 @@ Template.signIn.events({
         }
         //fixme do something
       } else {
-        // Router.go("/");
         IonModal.close();
       }
     });
