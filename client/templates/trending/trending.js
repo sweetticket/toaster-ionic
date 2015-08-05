@@ -5,13 +5,18 @@ Template.trending.created = function () {
 };
 
 Template.trending.rendered = function () {
-  this.autorun(function () {
-    if (!this.subscription.ready()) {
-      IonLoading.show();
-    } else {
-      IonLoading.hide();
-    }
-  }.bind(this));
+  if (!Meteor.loggingIn() && !Meteor.user()) {
+    IonModal.open('signUp');
+  }
+
+  // FIXME: infinite loading on the phone for some reason?
+  // this.autorun(function () {
+  //   if (!this.subscription.ready()) {
+  //     IonLoading.show();
+  //   } else {
+  //     IonLoading.hide();
+  //   }
+  // }.bind(this));
 };
 
 Template.trending.helpers({
