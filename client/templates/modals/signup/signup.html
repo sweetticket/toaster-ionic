@@ -1,10 +1,41 @@
 <template name="signUp">
   {{#ionModal title=""}}
-    <div class="signup-container">
-      <div class="row">
-        <!-- <h1 class="signin-title">toaster</h1> -->
+ 
+    <div class="list">
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">학교 또는 회사 이메일</span>
+        <input type="text" placeholder="kim@snu.ac.kr">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">비밀번호</span>
+        <input type="password" placeholder="비밀번호">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">비밀번호 확인</span>
+        <input type="password" placeholder="비밀번호 확인">
+      </label>
 
-<!--         <span class="already-registered error-msg">
+      <div class="bottom-row padding">
+        <button class="button button-block button-positive signup-btn">
+          회원가입
+        </button>
+        벌써 회원이세요? <a href="#" class="sign-in-link">로그인</a>
+      </div>
+      
+
+      
+    </div>
+
+  {{/ionModal}}
+</template>
+
+
+
+<!--    <div class="signup-container">
+      <div class="row">
+        
+
+        <span class="already-registered error-msg">
           벌써 등록된 이메일이에요!
         </span>
         <span class="pw-mismatch error-msg">
@@ -13,7 +44,7 @@
         <span class="invalid-email error-msg">
           이메일이 틀려요!
         </span>
-   -->  {{#ionItem}}
+    {{#ionItem}}
           <form>
             <input type="email" class="form-control" id="new-email" placeholder="학교 또는 회사 이메일">
             <input type="password" class="form-control" id="new-password" placeholder="비밀번호">
@@ -25,6 +56,4 @@
           </form>
         {{/ionItem}}
       </div>
-    </div>
-  {{/ionModal}}
-</template>
+    </div> -->
