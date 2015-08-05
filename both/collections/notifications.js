@@ -23,9 +23,6 @@ if (Meteor.isServer) {
             title: 'Hello',
             text: 'world',
             badge: 1,
-            payload: {
-              "name": "d"
-            },
             query: {userId: userId}
           });
           console.log("sent push noti")

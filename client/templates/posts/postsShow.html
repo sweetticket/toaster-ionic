@@ -45,23 +45,18 @@
           {{/ionItem}}
         {{/with}}
 
-        <div class="padding product-detail-comments">
-          <h5>댓글</h5>
-          {{#with post}}
-            <button class="button button-positive button-small button-circle button-new-comment" data-action="new-comment">
-              {{>ionIcon icon="plus"}}
-            </button>
-          {{/with}}
-        </div>
-
         <div class="list comments-list">
           {{#each comments}}
             {{> _comment}}
           {{/each}}
         </div>
+        <div class="inline-new-comment-wrapper list">
+          {{#with post}}
+            {{> _inlineNewComment}}
+          {{/with}}
+        </div>
 
       </div>
-
     {{/ionContent}}
   {{/ionView}}
 </template>
