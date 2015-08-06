@@ -1,3 +1,7 @@
+Template.appLayout.created = function () {
+  appLayoutSession = new ReactiveDict("appLayoutSession");
+}
+
 Template.appLayout.rendered = function () {
   Session.set('currentTab', 'trending');
 };
@@ -21,5 +25,11 @@ Template.appLayout.events({
         return true;
       }
     });
+  }
+});
+
+Template.appLayout.helpers({
+  "shouldHideTab": function (e, template) {
+    return appLayoutSession.get("shouldHideTabs");
   }
 });

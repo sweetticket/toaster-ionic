@@ -1,10 +1,11 @@
-.product-detail .inline-new-comment-wrapper {
+/*.product-detail .inline-new-comment-wrapper {
   position: fixed;
   bottom: 0;
   right: 0;
   left: 0;
   z-index: 10;
 }
+*/
 
 .inline-new-comment-wrapper .item-input-wrapper {
   width: 80%;
