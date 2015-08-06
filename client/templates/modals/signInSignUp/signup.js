@@ -1,9 +1,3 @@
-Template.signUp.created = function () {
-  this.autorun(function () {
-    this.subscription = Meteor.subscribe('userEmails');
-  }.bind(this));
-};
-
 
 var _toggleEnableSignUp = function() {
   var email = $.trim($('#new-email').val());
@@ -52,8 +46,7 @@ Template.signUp.events({
       if (err) {
         console.log("createUser failed", err);
 
-        var user = Meteor.users.findOne({ "emails.address" : email });
-        if (user) {
+        if (err.reason === "Email already exists.") {
           $('.show').removeClass('show');
           $('.already-registered').addClass('show');
         }

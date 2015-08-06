@@ -1,10 +1,3 @@
-Template.signIn.created = function () {
-  this.autorun(function () {
-    this.subscription = Meteor.subscribe('userEmails');
-  }.bind(this));
-};
-
-
 Template.signIn.events({
   "click .signup-link": function (e, template) {
     e.preventDefault();
@@ -20,12 +13,13 @@ Template.signIn.events({
     var password = $('#password').val();
     Meteor.loginWithPassword(email, password, function (err) {
       if (err) {
-        console.log("login failed");
+        console.log(err);
+
         var user = Meteor.users.findOne({ "emails.address" : email });
-        if (user) {
+        if (err.reason === "Incorrect password") {
           $('.show').removeClass('show');
           $('.incorrect-pw').addClass('show');
-        } else {
+        } else if (err.reason === "User not found") {
           $('.show').removeClass('show');
           $('.not-registered').addClass('show');
         }

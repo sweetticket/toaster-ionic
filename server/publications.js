@@ -115,8 +115,3 @@ Meteor.publish('otherUserInfo', function() {
     this.ready();
   }
 });
-
-
-Meteor.publish('userEmails', function() {
-  return Meteor.users.find({}, {fields: {'emails.address': 1}});
-});
