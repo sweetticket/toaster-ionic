@@ -7,15 +7,20 @@ Comments.helpers({
 });
 
 Meteor.methods({
-  "Comments.new": function (comment) {
-    Comments.insert(_.extend(comment, {
+  "Comments.new": function (info) {
+    var authorId = info.authorId;
+    Comments.insert({
+      postId: info.postId,
+      body: info.body,
       userId: this.userId,
       createdAt: new Date()
-    }), function() {
+    }, function () {
       console.log("comment is inserted");
       Meteor.call("addNotification", {
-        userId: comment.userId,
-        postId: comment.postId
+        // send this noti to the author of original post
+        userId: authorId,
+        postId: info.postId,
+        body: "댓글: " + info.body
       });
     });
   }
