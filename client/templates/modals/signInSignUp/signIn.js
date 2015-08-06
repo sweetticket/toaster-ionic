@@ -1,8 +1,7 @@
 Template.signIn.events({
   "click .signup-link": function (e, template) {
     e.preventDefault();
-    IonModal.close("signIn");
-    IonModal.open("signUp");
+    Router.go("/signUp");
   },
 
   "click .signin-btn.enabled": function (e, template) {
@@ -27,7 +26,6 @@ Template.signIn.events({
       } else {
         Session.set('currentTab', 'trending');
         Router.go('/');
-        IonModal.close();
       }
     });
   },

@@ -1,22 +1,10 @@
 Template._voteButton.events({
   'click .upvote-button': function (event, template) {
     event.preventDefault();
-
-    if (!Meteor.user()) {
-      IonModal.open('signIn');
-      return;
-    }
-
     Meteor.call('Posts.upvote', this._id, Meteor.userId());
   },
   'click .downvote-button': function (event, template) {
     event.preventDefault();
-
-    if (!Meteor.user()) {
-      IonModal.open('signIn');
-      return;
-    }
-
     Meteor.call('Posts.downvote', this._id, Meteor.userId());
   }
 });
