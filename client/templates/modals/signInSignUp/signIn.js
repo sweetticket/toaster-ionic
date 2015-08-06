@@ -4,10 +4,7 @@ Template.signIn.events({
     Router.go("/signUp");
   },
 
-  "click .signin-btn.enabled": function (e, template) {
-    console.log("signin butn clicked");
-
-    // e.preventDefault();
+  "click .signin-btn": function (e, template) {
     var email = $('#email').val().trim();
     var password = $('#password').val();
     Meteor.loginWithPassword(email, password, function (err) {

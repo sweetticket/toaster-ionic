@@ -16,7 +16,7 @@ Template.signUp.events({
     // _toggleEnableSignUp();
   },
 
-  "click .signup-btn.enabled": function (e, template) {
+  "click .signup-btn": function (e, template) {
     var email = $('#email').val();
     var password = $('#password').val();
     var password2 = $('#password2').val();

@@ -1,0 +1,17 @@
+<template name="notVerified">
+  {{#contentFor "headerTitle"}}
+    <h1 class="title">인증필요</h1>
+  {{/contentFor}}
+
+  {{#ionView}}
+    {{#ionContent}}
+      <div class="not-verified-container">
+        <p>인증 메일이 발송되었습니다.</p>
+      </div>
+
+      <a href="#" class="something">
+        인증메일 다시 보내주세요!
+      </a>
+    {{/ionContent}}
+  {{/ionView}}
+</template>

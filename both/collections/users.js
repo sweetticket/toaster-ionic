@@ -8,6 +8,21 @@
 //   }
 // });
 
+//this function gets called when the user
+//clicks the verification link
+if (Meteor.isClient) {
+  Accounts.onEmailVerificationLink(function (token, done) {
+    Accounts.verifyEmail(token, function (err) {
+      if (err) {
+        console.log("account verification failed");
+        return;
+      }
+      //FIXME: maybe open a Welcome modal?
+      console.log("now you are verified!");
+      done();
+    })
+  });
+}
 
 Meteor.startup(function() {
 

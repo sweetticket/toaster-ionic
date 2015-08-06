@@ -13,6 +13,7 @@ Meteor.methods({
       postId: info.postId,
       body: info.body,
       userId: this.userId,
+      networkId: this.user().networkId,
       createdAt: new Date()
     }, function () {
       console.log("comment is inserted");

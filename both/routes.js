@@ -30,3 +30,7 @@ Router.route('/signIn', {
 Router.route('/signUp', {
   name: 'signUp'
 });
+
+Router.route('/notVerified', {
+  name: 'notVerified'
+});
