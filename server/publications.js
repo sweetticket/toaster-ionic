@@ -1,15 +1,26 @@
 Meteor.publish('posts', function() {
-  return Posts.find();
+  var user = Meteor.users.findOne({_id: this.userId});
+  return Posts.find({
+    networkId: user.networkId
+  });
 });
 
 Meteor.publish('comments', function() {
-  return Comments.find();
+  var user = Meteor.users.findOne({_id: this.userId});
+  var user = Meteor.users.findOne({_id: this.userId});
+  return Comments.find({
+    networkId: user.networkId
+  });
 });
 
 Meteor.publishComposite('post', function(_id) {
+  var user = Meteor.users.findOne({_id: this.userId});
   return {
     find: function() {
-      return Posts.find({_id: _id});
+      return Posts.find({
+        _id: _id,
+        networkId: user.networkId
+      });
     },
     children: [
       {
