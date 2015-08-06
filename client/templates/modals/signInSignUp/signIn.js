@@ -25,6 +25,8 @@ Template.signIn.events({
         }
         //fixme do something
       } else {
+        Session.set('currentTab', 'trending');
+        Router.go('/');
         IonModal.close();
       }
     });

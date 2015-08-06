@@ -21,7 +21,7 @@ Template.signUp.events({
     var password = $('#password').val();
     var password2 = $('#password2').val();
 
-    console.log("password", password2);
+    // console.log("password", password2);
 
     if (!Utils.validateEmail(email)) {
       console.log("email invalid");
@@ -36,7 +36,7 @@ Template.signUp.events({
       return false;
     }
 
-    console.log("am I reached?");
+    // console.log("am I reached?");
 
     Accounts.createUser({
       email: email,
@@ -52,6 +52,9 @@ Template.signUp.events({
         }
         return false;
       } else {
+        // FIXME: CHANGE LATER TO 'NOT VERIFIED'
+        Session.set('currentTab', 'trending');
+        Router.go('/');
         IonModal.close();
       }
     });

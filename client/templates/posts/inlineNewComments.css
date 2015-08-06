@@ -10,6 +10,7 @@
 .bar.bar-light.inline-comment-footer {
   background-color: white;
   border-top: 1px solid #03a9f4 !important;
+  height: 49px;
 }
 
 .inline-comment-footer .inline-comment-body {
@@ -25,4 +26,13 @@
   margin: 0;
   /*z-index: 1000;*/
   /*color: ;*/
+}
+
+.inline-comment-footer .inline-comment-body {
+  width: 80%;
+  float: left;
+  padding: 0 10px;
+  margin: 3px 0 0 5px;
+  background-color: #eee;
+  border-radius: 5px;
 }
