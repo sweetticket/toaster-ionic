@@ -85,7 +85,6 @@ Meteor.publish('notifications', function() {
   if (this.userId) {
     return Notifications.find({userId: this.userId});
   } else {
-    console.log("notification publication not ready")
     this.ready();
   }
 });

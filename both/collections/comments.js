@@ -9,11 +9,13 @@ Comments.helpers({
 Meteor.methods({
   "Comments.new": function (info) {
     var authorId = info.authorId;
+    var user = Meteor.users.findOne({_id: this.userId});
+    console.log("networkId", user.networkId);
     Comments.insert({
       postId: info.postId,
       body: info.body,
       userId: this.userId,
-      networkId: this.user().networkId,
+      networkId: user.networkId,
       createdAt: new Date()
     }, function () {
       console.log("comment is inserted");
@@ -26,37 +28,3 @@ Meteor.methods({
     });
   }
 });
-
-Comments.attachSchema(new SimpleSchema({
-  body: {
-    type: String,
-    autoform: {
-      rows: 6,
-      'label-type': 'placeholder',
-      placeholder: '댓글을 작성하세요'
-    }
-  },
-  userId: {
-    type: String,
-    autoValue: function () {
-      if (this.isInsert) {
-        return Meteor.userId();
-      } else {
-        this.unset();
-      }
-    }
-  },
-  postId: {
-    type: String
-  },
-  createdAt: {
-    type: Date,
-    autoValue: function () {
-      if (this.isInsert) {
-        return new Date();
-      } else {
-        this.unset();
-      }
-    }
-  }
-}));

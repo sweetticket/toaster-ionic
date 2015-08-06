@@ -91,11 +91,20 @@ Posts.attachSchema(new SimpleSchema({
     optional: true,
     defaultValue: 0
   },
-  // numberOfComments: {
-  //   type: Number,
-  //   optional: true,
-  //   defaultValue: 0
-  // },
+  networkId: {
+    type: String,
+    optional: false,
+    autoValue: function () {
+      if (this.isSet) {
+        return;
+      }
+      if (this.isInsert) {
+        return Meteor.user().networkId;
+      } else {
+        this.unset();
+      }
+    }
+  },
   createdAt: {
     type: Date
   }
