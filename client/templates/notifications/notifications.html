@@ -5,10 +5,16 @@
 
   {{#ionView}}
     {{#ionContent}}
-      <div class="empty-view">
-        {{> ionIcon icon="ios-bell"}}
-        아직 특별히 알림이 없어요 :(
-      </div>
+      {{#if notifications}}
+        {{#ionList class="notification-list"}}
+          {{> _notificationItem}}
+        {{/ionList}}
+      {{else}}
+        <div class="empty-view">
+          {{> ionIcon icon="ios-bell"}}
+          아직 특별히 알림이 없어요 :(
+        </div>
+      {{/if}}
     {{/ionContent}}
   {{/ionView}}
 </template>

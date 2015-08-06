@@ -2,12 +2,9 @@
 
 Meteor.startup(function() {
   if (Meteor.isClient) {
-    console.log("configure Push client side");
-
-    console.log("listener bound to Push");
-    Push.addListener('message', function (notification) {
-      console.log("message received PUSH!!!");
-      console.log(notification);
+    Push.addListener("message", function (notification) {
+      console.log("Push notification received", notification);
+      Push.setBadge(Notifications.find().count()+1);
     });
 
     Push.addListener("alert", function (noti) {
@@ -26,4 +23,4 @@ Meteor.startup(function() {
     //     }
     // });
   }
-})
+});

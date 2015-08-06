@@ -6,20 +6,6 @@ Meteor.publish('comments', function() {
   return Comments.find();
 });
 
-// Meteor.publish('postComments', function(_id) {
-//   return Comments.find({postId: _id});
-// });
-
-// Meteor.publish('productsSearch', function(query) {
-//   check(query, String);
-
-//   if (_.isEmpty(query)) {
-//     return this.ready();
-//   }
-
-//   return Products.search(query);
-// });
-
 Meteor.publishComposite('post', function(_id) {
   return {
     find: function() {
@@ -31,11 +17,6 @@ Meteor.publishComposite('post', function(_id) {
           return Meteor.users.find({_id: post.userId});
         }
       },
-      // {
-      //   find: function(post) {
-      //     return Meteor.users.find({_id: post.voterIds});
-      //   }
-      // },
       {
         find: function(post) {
           return Comments.find({postId: post._id});
@@ -100,6 +81,14 @@ Meteor.publishComposite('userPostsComments', function() {
   };
 });
 
+Meteor.publish('notifications', function() {
+  if (this.userId) {
+    return Notifications.find({_id: this.userId});
+  } else {
+    this.ready();
+  }
+});
+
 // FIXME: these are not subscribed yet.
 Meteor.publish('userInfo', function() {
   if (this.userId) {
@@ -126,18 +115,3 @@ Meteor.publish('otherUserInfo', function() {
     this.ready();
   }
 });
-
-// Meteor.publishComposite('user', function(_id) {
-//   return {
-//     find: function() {
-//       return Meteor.users.find({_id: _id});
-//     },
-//     // children: [
-//     //   {
-//     //     find: function(user) {
-//     //       return Posts.find({_id: {$in: user.profile.votedProductIds}});
-//     //     }
-//     //   }
-//     // ]
-//   };
-// });

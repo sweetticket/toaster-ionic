@@ -8,7 +8,8 @@ AutoForm.hooks({
       console.log("gonna call addNotification");
       Meteor.call("addNotification", {
         userId: template.data.userId,
-        postId: template.data.postId
+        postId: template.data.postId,
+        body: "댓글이 달렸어요!"
       });
       IonModal.close();
     }
