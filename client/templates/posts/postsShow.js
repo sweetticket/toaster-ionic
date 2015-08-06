@@ -4,6 +4,7 @@ Template.postsShow.created = function () {
     this.subscription = Meteor.subscribe('comments');
     this.subscription = Meteor.subscribe('otherUserInfo');
   }.bind(this));
+  appLayoutSession.set("shouldHideTabs", true);
 };
 
 Template.postsShow.rendered = function () {
@@ -15,6 +16,10 @@ Template.postsShow.rendered = function () {
     }
   }.bind(this));
 };
+
+Template.postsShow.onDestroyed(function() {
+  appLayoutSession.set("shouldHideTabs", false);
+});
 
 Template.postsShow.helpers({
   post: function () {

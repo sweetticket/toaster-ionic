@@ -1,6 +1,23 @@
-Template.appLayout.rendered = function () {
+Template.appLayout.onCreated(function() {
+  appLayoutSession = new ReactiveDict("appLayoutSession");
+
+  this.autorun(function() {
+    this.subscription = Meteor.subscribe("notifications");
+  }.bind(this));
+});
+
+Template.appLayout.onRendered(function() {
   Session.set('currentTab', 'trending');
-};
+  
+  //FIXME: maybe we don't need to show the loading status.
+  // this.autorun(function () {
+  //   if (!this.subscription.ready()) {
+  //     IonLoading.show();
+  //   } else {
+  //     IonLoading.hide();
+  //   }
+  // }.bind(this));
+});
 
 Template.appLayout.events({
   'click [data-action=share-product]': function (event, template) {
@@ -21,5 +38,11 @@ Template.appLayout.events({
         return true;
       }
     });
+  }
+});
+
+Template.appLayout.helpers({
+  "shouldHideTab": function (e, template) {
+    return appLayoutSession.get("shouldHideTabs");
   }
 });

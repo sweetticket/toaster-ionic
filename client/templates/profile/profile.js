@@ -1,9 +1,4 @@
 Template.profile.created = function () {
-  if (!Meteor.loggingIn() && !Meteor.user()) {
-    IonModal.open('signIn');
-    return;
-  }
-
   this.autorun(function () {
     this.subscription = Meteor.subscribe("userPostsComments");
   }.bind(this));

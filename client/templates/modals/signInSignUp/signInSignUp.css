@@ -1,3 +1,7 @@
 .error-msg {
   display: none;
 }
+
+.hide-close-btn .button[data-dismiss] {
+  display: none;
+}

@@ -5,25 +5,22 @@ if (Meteor.isServer) {
   Meteor.methods({
     addNotification: function (notification) {
       console.log("addNotification");
-
       var userId = notification.userId;
-
       var notification = _.extend(notification, {
         isRead: false,
         createdAt: new Date()
       });
 
-      console.log(notification);
-
       Notifications.insert(notification, function (err, notificationId) {
-        if (!err) {
-          console.log("sending push noti")
+        if (err) {
+          console.log("NOTIFICATION INSERT ERR", err);
+        } else {
           Push.send({
-            from: 'push',
-            title: 'Hello',
-            text: 'world',
-            badge: 1,
-            query: {userId: userId}
+            from: Meteor.userId,
+            title: '토스트에',
+            text: 'Comment:'+notification.body,
+            // query: {userId: userId},
+            query: {}
           });
           console.log("sent push noti")
         }
@@ -33,7 +30,6 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-
   readAllNotifications: function (userId) {
     Notifications.update({
       userId: userId

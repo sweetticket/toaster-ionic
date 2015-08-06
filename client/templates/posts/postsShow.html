@@ -18,9 +18,7 @@
     {{#ionContent}}
 
       <div class="product-detail">
-
         {{#with post}}
-
           {{#ionItem iconLeft=true iconRight=true class="item-text-wrap"}}
             <div class="post-item">
               {{> _voteButton}}
@@ -37,7 +35,7 @@
                   <!-- {{> ionIcon icon="ios-chatbubble" }} -->
                 </span>
                 <span class="post-date">
-                  {{fromNow}}
+                  {{fromNow createdAt}}
                   <!-- {{> ionIcon icon="ios-clock" }} -->
                 </span>
               </div>
@@ -50,14 +48,18 @@
             {{> _comment}}
           {{/each}}
         </div>
-
-        <div class="inline-new-comment-wrapper list">
-          {{#with post}}
-            {{> _inlineNewComment}}
-          {{/with}}
-        </div>
-
       </div>
     {{/ionContent}}
   {{/ionView}}
+
+  <div class="bar bar-footer bar-light inline-comment-footer" data-keyboard-attach>
+    <!-- <form class="item-input-wrapper"> -->
+    {{#with post}}
+      {{> _inlineNewComment}}
+    {{/with}}
+    <!-- </form> -->
+  </div>
+
+
+
 </template>
