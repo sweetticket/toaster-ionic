@@ -9,9 +9,11 @@ Template.recent.created = function () {
 Template.recent.rendered = function () {
   this.autorun(function () {
     if (!this.subscription.ready()) {
+      this.$('.posts-container').hide();
       IonLoading.show();
     } else {
       IonLoading.hide();
+      this.$('.posts-container').fadeIn();
     }
   }.bind(this));
 };

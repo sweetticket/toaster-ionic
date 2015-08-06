@@ -1,1 +1,1 @@
-meteor run ios-device --mobile-server toaster.meteor.com
+meteor run ios-device --mobile-server http://toaster.meteor.com
