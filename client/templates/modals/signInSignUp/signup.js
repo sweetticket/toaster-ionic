@@ -55,15 +55,13 @@ Template.signUp.events({
         // FIXME: CHANGE LATER TO 'NOT VERIFIED'
         Session.set('currentTab', 'trending');
         Router.go('/');
-        IonModal.close();
       }
     });
   },
 
   "click .signin-link": function (e, template) {
     e.preventDefault();
-    IonModal.close("signUp");
-    IonModal.open("signIn");
+    Router.go('/signIn');
   },
 
   "keyup .signup-modal input": function (e, template) {

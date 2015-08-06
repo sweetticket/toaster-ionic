@@ -4,7 +4,7 @@ Template.postsShow.created = function () {
     this.subscription = Meteor.subscribe('comments');
     this.subscription = Meteor.subscribe('otherUserInfo');
   }.bind(this));
-  appLayoutSession.set("shouldHideTabs", true);
+  Session.set("shouldHideTabs", true);
 };
 
 Template.postsShow.rendered = function () {
@@ -18,7 +18,7 @@ Template.postsShow.rendered = function () {
 };
 
 Template.postsShow.onDestroyed(function() {
-  appLayoutSession.set("shouldHideTabs", false);
+  Session.set("shouldHideTabs", false);
 });
 
 Template.postsShow.helpers({
@@ -38,8 +38,6 @@ Template.postsShow.events({
         postId: this._id,
         userId: Meteor.userId()
       });
-    } else {
-      IonModal.open('signIn');
     }
   }
 });

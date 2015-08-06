@@ -21,3 +21,12 @@ Router.route('/notifications', {
 Router.route('/profile', {
   name: 'profile'
 });
+
+// These can be treated as modals as well
+Router.route('/signIn', {
+  name: 'signIn'
+});
+
+Router.route('/signUp', {
+  name: 'signUp'
+});

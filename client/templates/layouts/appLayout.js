@@ -1,5 +1,6 @@
 Template.appLayout.onCreated(function() {
-  appLayoutSession = new ReactiveDict("appLayoutSession");
+  console.log("created")
+  // appLayoutSession = new ReactiveDict("appLayoutSession");
 
   this.autorun(function() {
     console.log("subscribing to notification")
@@ -44,6 +45,6 @@ Template.appLayout.events({
 
 Template.appLayout.helpers({
   "shouldHideTab": function (e, template) {
-    return appLayoutSession.get("shouldHideTabs");
+    return Session.get("shouldHideTabs");
   }
 });
