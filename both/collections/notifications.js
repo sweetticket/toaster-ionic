@@ -50,7 +50,8 @@ if (Meteor.isClient) {
         Push.addListener("message", function (notification) {
           console.log("Push notification received");
           Push.setBadge(Notifications.find({
-            toUserId: Meteor.userId()
+            toUserId: Meteor.userId(),
+            isRead: false
           }).count()+1);
         });
       }
