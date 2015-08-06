@@ -16,10 +16,11 @@ if (Meteor.isServer) {
           console.log("NOTIFICATION INSERT ERR", err);
         } else {
           Push.send({
-            from: 'push',
+            from: Meteor.userId,
             title: '토스트에',
             text: 'Comment:'+notification.body,
-            query: {userId: userId}
+            // query: {userId: userId},
+            query: {}
           });
           console.log("sent push noti")
         }
@@ -29,7 +30,6 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-
   readAllNotifications: function (userId) {
     Notifications.update({
       userId: userId

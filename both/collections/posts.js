@@ -8,9 +8,6 @@ Posts.helpers({
   datePosted: function() {
     return moment(this.createdAt).format('M/D');
   },
-  fromNow: function() {
-    return moment(this.createdAt).fromNow();
-  },
   author: function() {
     return Meteor.users.findOne({_id: this.userId});
   },

@@ -4,9 +4,6 @@ Comments.helpers({
   author: function () {
     return Meteor.users.findOne({_id: this.userId});
   },
-  fromNow: function () {
-    return moment(this.createdAt).fromNow();
-  },
 });
 
 Meteor.methods({

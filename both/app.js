@@ -3,7 +3,7 @@
 Meteor.startup(function() {
   if (Meteor.isClient) {
     Push.addListener("message", function (notification) {
-      console.log("Push notification received", notification);
+      console.log("Push notification received");
       Push.setBadge(Notifications.find().count()+1);
     });
 
@@ -17,10 +17,5 @@ Meteor.startup(function() {
 
   if (Meteor.isServer) {
     Push.debug=true;
-    // Push.allow({
-    //     send: function(userId, notification) {
-    //         return true; // Allow all users to send
-    //     }
-    // });
   }
 });

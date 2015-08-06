@@ -7,7 +7,9 @@
     {{#ionContent}}
       {{#if notifications}}
         {{#ionList class="notification-list"}}
-          {{> _notificationItem}}
+          {{#each notifications}}
+            {{> _notificationItem}}
+          {{/each}}
         {{/ionList}}
       {{else}}
         <div class="empty-view">
