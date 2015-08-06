@@ -7,17 +7,19 @@
 }
 */
 
-.inline-new-comment-wrapper .item-input-wrapper {
+.inline-comment-footer {
+  background-color: white;
+  border-top: 1px solid #03a9f4 !important;
+}
+
+.inline-comment-footer .inline-comment-body {
   width: 80%;
   float: left;
+  padding: 0 10px ;
   margin: 0;
 }
 
-.inline-new-comment-wrapper .inline-new-comment-inner {
-  border-top: 1px solid #03a9f4;
-}
-
-.inline-new-comment-wrapper .inline-new-comment-inner .inline-comment-submit {
+.inline-comment-footer .inline-comment-submit {
   width: 20%;
   padding: 0;
   margin: 0;
