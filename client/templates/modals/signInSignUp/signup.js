@@ -1,3 +1,10 @@
+Template.signUp.created = function () {
+  this.autorun(function () {
+    this.subscription = Meteor.subscribe('userEmails');
+  }.bind(this));
+};
+
+
 var _toggleEnableSignUp = function() {
   var email = $.trim($('#new-email').val());
   var password = $.trim($('#new-password').val());
@@ -15,7 +22,7 @@ Template.signUp.events({
     // _toggleEnableSignUp();
   },
 
-  "click .signup-btn": function (e, template) {
+  "click .signup-btn.enabled": function (e, template) {
     var email = $('#email').val();
     var password = $('#password').val();
     var password2 = $('#password2').val();
@@ -51,14 +58,26 @@ Template.signUp.events({
           $('.already-registered').addClass('show');
         }
         return false;
+      } else {
+        IonModal.close();
       }
     });
-    IonModal.close();
   },
 
   "click .signin-link": function (e, template) {
     e.preventDefault();
     IonModal.close("signUp");
     IonModal.open("signIn");
+  },
+
+  "keyup .signup-modal input": function (e, template) {
+    var email = $('#email').val().trim();
+    var password = $('#password').val();
+    var password2 = $('#password2').val();
+    if (email.length > 0 && password.length > 0 && password2.length > 0) {
+      $('.signup-btn').addClass('enabled');
+    } else {
+      $('.signup-btn.enabled').removeClass('enabled');
+    }
   },
 });

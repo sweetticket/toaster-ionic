@@ -127,6 +127,10 @@ Meteor.publish('otherUserInfo', function() {
   }
 });
 
+Meteor.publish('userEmails', function() {
+  return Meteor.users.find({}, {fields: {'emails.address': 1}});
+})
+
 // Meteor.publishComposite('user', function(_id) {
 //   return {
 //     find: function() {
