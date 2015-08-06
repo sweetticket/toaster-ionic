@@ -3,48 +3,57 @@ Notifications = new Mongo.Collection("notifications");
 //server code for notification
 if (Meteor.isServer) {
   Meteor.methods({
-    addNotification: function (notification) {
-      console.log("addNotification");
-      var userId = notification.userId;
-      var notification = _.extend(notification, {
+    addNotification: function (noti) {
+      if (fromUserId === toUserId) {
+        console.log("NOTI: from === to. Abort!");
+        return false;
+      }
+
+      Notifications.insert(_extend(noti, {
         isRead: false,
         createdAt: new Date()
-      });
-      var fromId = this.userId;
-
-      Notifications.insert(notification, function (err, notificationId) {
+      }, function (err, notificationId) {
         if (err) {
           console.log("NOTIFICATION INSERT ERR", err);
         } else {
-          console.log("send push noti")
           Push.send({
-            from: fromId,
-            title: '댓글 알림',
-            text: ('Comment:'+notification.body),
-            // query: {userId: userId},
-            query: {}
+            from: noti.fromUserId,
+            title: '토스트',
+            text: noti.body,
+            query: {userId: noti.toUserId}
+            // query: {}
           });
         }
-      });
+      }))
     }
   });
 }
 
 Meteor.methods({
-  readAllNotifications: function (userId) {
+  readAllNotifications: function() {
+    var userId = this.userId;
     Notifications.update({
-      userId: userId
+      toUserId: userId
     }, { "$set": {
       isRead: true
     }});
-  },
-
-  readNotification: function (notificationId) {
-    Notifications.update({
-      _id: notificationId
-    }, { "$set": {
-      isRead: true
-    }});
+    console.log("all notifications are read!");
   }
-
 });
+
+if (Meteor.isClient) {
+  Meteor.startup(function() {
+    Tracker.autorun(function() {
+      var userId = Meteor.userId();
+      if (userId) {
+        console.log("PUSH: add listener. Should be called only once");
+        Push.addListener("message", function (notification) {
+          console.log("Push notification received");
+          Push.setBadge(Notifications.find({
+            toUserId: Meteor.userId()
+          }).count()+1);
+        });
+      }
+    })
+  });
+}

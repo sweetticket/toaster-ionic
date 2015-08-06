@@ -4,15 +4,9 @@
 //   }.bind(this));
 // };
 
-// Template.notifications.rendered = function () {
-//   this.autorun(function () {
-//     if (!this.subscription.ready()) {
-//       IonLoading.show();
-//     } else {
-//       IonLoading.hide();
-//     }
-//   }.bind(this));
-// };
+Template.notifications.rendered = function () {
+  Meteor.call("readAllNotifications")
+};
 
 Template.notifications.helpers({
   isNotificationEmpty: function() {

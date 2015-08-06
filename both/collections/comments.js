@@ -18,12 +18,14 @@ Meteor.methods({
       networkId: user.networkId,
       createdAt: new Date()
     }, function () {
-      console.log("comment is inserted");
+
+      // send this noti to the author of original post
+      // if I am not the OP
       Meteor.call("addNotification", {
-        // send this noti to the author of original post
-        userId: authorId,
+        fromUserId: user._id,
+        toUserId: authorId,
         postId: info.postId,
-        body: "댓글: " + info.body
+        body: "댓글이 달렸어요: " + info.body
       });
     });
   }

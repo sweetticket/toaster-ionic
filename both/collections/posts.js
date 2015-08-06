@@ -220,6 +220,13 @@ Meteor.methods({
       });
 
       Meteor.call("Posts.setNumLikes", postId, numLikes+1);
+
+      Meteor.call("addNotification", {
+        fromUserId: Meteor.userId(),
+        toUserId: authorId,
+        postId: postId,
+        body: "토스트가 공감을 받았어요 :)"
+      });
     }
   },
 
@@ -240,12 +247,10 @@ Meteor.methods({
 
     var upvoters = post.upvoterIds;
     var downvoters = post.downvoterIds;
-
     var didIUpvote = upvoters.indexOf(userId);
-
     var didIDownvote = downvoters.indexOf(userId);
-
     var numLikes = post.numLikes;
+    var authorId = post.userId;
 
     if (didIDownvote >= 0) {
 
@@ -282,7 +287,13 @@ Meteor.methods({
       });
 
       Meteor.call("Posts.setNumLikes", postId, numLikes-1);
+
+      Meteor.call("addNotification", {
+        fromUserId: Meteor.userId(),
+        toUserId: authorId,
+        postId: postId,
+        body: "토스트가 비공감을 받았어요 :("
+      });
     }
   }
 });
-
