@@ -15,11 +15,9 @@
 // };
 
 Template.notifications.helpers({
-  // user: function () {
-  //   if (Meteor.userId()) {
-  //     return Meteor.user();
-  //   }
-  // },
+  isNotificationEmpty: function() {
+    return (Notifications.find({}).count() === 0);
+  },
 
   notifications: function() {
     return Notifications.find({}, {sort: {

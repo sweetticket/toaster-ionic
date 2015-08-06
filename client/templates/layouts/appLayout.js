@@ -2,6 +2,7 @@ Template.appLayout.onCreated(function() {
   appLayoutSession = new ReactiveDict("appLayoutSession");
 
   this.autorun(function() {
+    console.log("subscribing to notification")
     this.subscription = Meteor.subscribe("notifications");
   }.bind(this));
 });
