@@ -6,6 +6,9 @@ Template._inlineNewComment.events({
     Meteor.call("Comments.new", {
       postId: postId,
       body: body
+    }, function() {
+      // scroll to bottom when the new comment is created
+      window.scrollTo(0, document.body.scrollHeight);
     });
   }
-})
+});
