@@ -45,3 +45,9 @@ ProfileController = AppController.extend({
     requireLogin.call(this);
   }
 });
+
+SignInController = AppController.extend({
+});
+
+SignUpController = AppController.extend({
+});
