@@ -54,9 +54,14 @@
     {{/ionContent}}
   {{/ionView}}
 
-  {{#ionFooterBar class="inline-comment-footer"}}
+  <div class="bar bar-footer bar-light inline-comment-footer" data-keyboard-attach>
+    <!-- <form class="item-input-wrapper"> -->
     {{#with post}}
       {{> _inlineNewComment}}
     {{/with}}
-  {{/ionFooterBar}}
+    <!-- </form> -->
+  </div>
+
+
+
 </template>
