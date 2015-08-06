@@ -5,20 +5,21 @@ Template.signIn.events({
     IonModal.open("signUp");
   },
 
-  "click .signin-btn": function (e, template) {
-    console.log("singin butn clicked");
+  "click .signin-btn.enabled": function (e, template) {
+    console.log("signin butn clicked");
 
     // e.preventDefault();
     var email = $('#email').val().trim();
     var password = $('#password').val();
     Meteor.loginWithPassword(email, password, function (err) {
       if (err) {
-        console.log("login failed");
+        console.log(err);
+
         var user = Meteor.users.findOne({ "emails.address" : email });
-        if (user) {
+        if (err.reason === "Incorrect password") {
           $('.show').removeClass('show');
           $('.incorrect-pw').addClass('show');
-        } else {
+        } else if (err.reason === "User not found") {
           $('.show').removeClass('show');
           $('.not-registered').addClass('show');
         }
@@ -27,5 +28,16 @@ Template.signIn.events({
         IonModal.close();
       }
     });
-  }
+  },
+
+  "keyup .signup-modal input": function (e, template) {
+    var email = $('#email').val().trim();
+    var password = $('#password').val();
+    if (email.length > 0 && password.length > 0) {
+      $('.signin-btn').addClass('enabled');
+    } else {
+      $('.signin-btn.enabled').removeClass('enabled');
+    }
+  },
+
 });

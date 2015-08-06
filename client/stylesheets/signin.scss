@@ -1,0 +1,64 @@
+// Custom
+@import 'app-variables';
+
+.signup-list .item-input input {
+  padding: 10px;
+  font-size: 17px;
+  height: 100%;
+  line-height: 40px;
+  color: #555;
+}
+
+.signup-list .item-input {
+  padding: 0;
+  min-height: 40px;
+}
+
+.signup-list.list {
+  margin-top: 20px;
+}
+
+.password-item-input {
+  margin-top: 20px;
+}
+
+.signup-modal.modal {
+  background-color: #eee;
+}
+
+.signup-btn, .signin-btn {
+	margin-top: 20px;
+  border-color: #0286c2;
+}
+
+.go-to-signup, .go-to-signin {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 17px;
+  color: #555;
+}
+
+.go-to-signup a, .go-to-signin a {
+  text-decoration: none;
+  color: $positive;
+  font-weight: bold;
+}
+
+.signup-modal .bottom-row {
+	margin-top: 10px;
+}
+
+.signup-modal .error-msg {
+	text-align: center;
+	padding-bottom: 5px;
+	font-size: 17px;
+	color: #F64747;
+}
+
+.signup-modal .button.button-positive {
+  opacity: 0.6;
+}
+
+.signup-modal .button.button-positive.enabled {
+  opacity: 1;
+}
