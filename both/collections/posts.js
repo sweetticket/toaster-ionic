@@ -61,7 +61,7 @@ Posts.attachSchema(new SimpleSchema({
       placeholder: '같은 네트워크에 있는 사람들과 익명으로 대화할 수 있어요',
       rows: 10
     },
-    max: 200
+    max: 140
   },
   userId: {
     type: String,

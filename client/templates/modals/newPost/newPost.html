@@ -4,11 +4,16 @@
       <div class="bar bar-header bar-stable">
         <button data-dismiss="modal" type="button" class="button button-clear">취소</button>
         <h2 class="title">토스트 하기</h2>
-        <button type="submit" class="button button-positive button-clear">완료</button>
+        <button type="submit" class="button button-positive button-clear submit-post-btn">완료</button>
       </div>
-      <div class="content has-header overflow-scroll">
+      <div class="content has-header overflow-scroll new-post-form">
         {{> afQuickField name="body"}}
       </div>
     {{/autoForm}}
+
+    <div class="bar bar-footer bar-light new-post-footer" data-keyboard-attach>
+      <span class="char-counter">140</span>
+    </div>
+
   {{/ionModal}}
 </template>
