@@ -1,3 +1,4 @@
+
 Template.profile.created = function () {
   this.autorun(function () {
     this.subscribe("userPostsComments");
@@ -36,13 +37,25 @@ Template.profile.helpers({
   },
 
   commentsByUser: function() {
-    return Comments.find({userId: Meteor.userId()}, {sort: {
+    var postIds = _.uniq(Comments.find({userId: Meteor.userId()}, {sort: {
       createdAt: -1
-    }});
+    }}, {fields: {
+      postId: 1
+    }}).fetch().map(function(x) {
+     return x.postId;
+     }), true);
+
+    var distictPostIds = [];
+
+    $.each(postIds, function(i, el){
+      if($.inArray(el, distictPostIds) === -1) distictPostIds.push(el);
+    });
+    return distictPostIds;
+     
   },
 
   postFromComment: function() {
-    return Posts.findOne({_id: this.postId});
+    return Posts.findOne({_id: String(this)})
   },
 
   networkDomain: function() {
