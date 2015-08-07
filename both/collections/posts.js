@@ -19,7 +19,7 @@ Posts.helpers({
   },
   numberOfComments: function() {
     return Comments.find({postId: this._id}).count();
-  }
+  },
 });
 
 // RegExp.escape = function(s) {
