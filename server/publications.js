@@ -94,7 +94,10 @@ Meteor.publishComposite('userPostsComments', function() {
 
 Meteor.publish('notifications', function() {
   if (this.userId) {
-    return Notifications.find({userId: this.userId});
+    return Notifications.find({
+      toUserId: this.userId,
+      isRead: false
+    });
   } else {
     this.ready();
   }

@@ -1,6 +1,12 @@
 {
   "apn": {
     "passphrase": "",  
+    "key": "prod_key.pem",
+    "cert": "prod_cert.pem",
+    "gateway": "gateway.push.apple.com"
+  },
+  "apn-dev": {
+    "passphrase": "",  
     "key": "dev_key.pem",
     "cert": "dev_cert.pem",
     "gateway": "gateway.sandbox.push.apple.com"

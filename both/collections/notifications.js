@@ -4,15 +4,19 @@ Notifications = new Mongo.Collection("notifications");
 if (Meteor.isServer) {
   Meteor.methods({
     addNotification: function (noti) {
-      if (fromUserId === toUserId) {
-        console.log("NOTI: from === to. Abort!");
-        return false;
-      }
 
-      Notifications.insert(_extend(noti, {
+      // HOWON: FIXME:
+      // Temporarily disabled for testing purposes
+      // if (noti.fromUserId === noti.toUserId) {
+      //   console.log("NOTI: from === to. Abort!");
+      //   return false;
+      // }
+
+      Notifications.insert(_.extend(noti, {
         isRead: false,
         createdAt: new Date()
       }, function (err, notificationId) {
+        console.log("noti added", notificationId);
         if (err) {
           console.log("NOTIFICATION INSERT ERR", err);
         } else {
@@ -25,28 +29,27 @@ if (Meteor.isServer) {
           });
         }
       }))
+    },
+
+    readAllNotifications: function() {
+      var userId = this.userId;
+      Notifications.update({
+        toUserId: userId
+      }, {$set: {
+        isRead: true
+      }}, {
+        multi: true
+      });
+      console.log("all notifications are read!");
     }
   });
 }
-
-Meteor.methods({
-  readAllNotifications: function() {
-    var userId = this.userId;
-    Notifications.update({
-      toUserId: userId
-    }, { "$set": {
-      isRead: true
-    }});
-    console.log("all notifications are read!");
-  }
-});
 
 if (Meteor.isClient) {
   Meteor.startup(function() {
     Tracker.autorun(function() {
       var userId = Meteor.userId();
       if (userId) {
-        console.log("PUSH: add listener. Should be called only once");
         Push.addListener("message", function (notification) {
           console.log("Push notification received");
           Push.setBadge(Notifications.find({

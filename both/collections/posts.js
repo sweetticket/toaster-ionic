@@ -161,9 +161,7 @@ Meteor.methods({
 
   'Posts.upvote': function (postId, userId) {
 
-    var post = Posts.findOne({
-        _id: postId
-      });
+    var post = Posts.findOne({_id: postId});
 
     if (!post) {
       console.log("post doesnt exist");
@@ -183,6 +181,7 @@ Meteor.methods({
     var didIDownvote = downvoters.indexOf(userId);
 
     var numLikes = post.numLikes;
+    var authorId = post.userId;
 
     // if I was already in upvoters' list, remove me from 
     // the upvoters list.
@@ -194,6 +193,8 @@ Meteor.methods({
         "$set": { upvoterIds: upvoters }
       });
 
+      //cancelling my previous upvote
+      //do not push a notification
       Meteor.call("Posts.setNumLikes", postId, numLikes-1);
 
     } else if (didIDownvote >= 0) {
@@ -209,8 +210,14 @@ Meteor.methods({
         "$set": { upvoterIds: upvoters }
       });
 
-
       Meteor.call("Posts.setNumLikes", postId, numLikes+2);
+
+      Meteor.call("addNotification", {
+        fromUserId: Meteor.userId(),
+        toUserId: authorId,
+        postId: postId,
+        body: "토스트가 공감을 받았어요 :)"
+      });
     } else {
 
       upvoters.push(userId);
@@ -260,9 +267,10 @@ Meteor.methods({
         "$set": { downvoterIds: downvoters }
       });
 
-      Meteor.call("Posts.setNumLikes", postId, numLikes+1);
+      //cancelling my previous downvote: do not push
+      //a notification
+      Meteor.call("Posts.setNumLikes", postId, numLikes+1);    
 
-    
     } else if (didIUpvote >= 0) {
 
       upvoters.splice(didIUpvote, 1);
@@ -277,6 +285,13 @@ Meteor.methods({
       });
 
       Meteor.call("Posts.setNumLikes", postId, numLikes-2);
+
+      Meteor.call("addNotification", {
+        fromUserId: Meteor.userId(),
+        toUserId: authorId,
+        postId: postId,
+        body: "토스트가 비공감을 받았어요 :("
+      });
 
     } else {
 

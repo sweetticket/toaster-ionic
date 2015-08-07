@@ -1,6 +1,6 @@
-Template.notifications.rendered = function () {
+Template.notifications.onDestroyed(function() {
   Meteor.call("readAllNotifications")
-};
+});
 
 Template.notifications.helpers({
   isNotificationEmpty: function() {

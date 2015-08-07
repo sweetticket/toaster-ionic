@@ -3,17 +3,17 @@
 Meteor.startup(function() {
   if (Meteor.isClient) {
 
-    // Push.addListener("message", function (notification) {
-    //   console.log("Push notification received");
-    //   Push.setBadge(Notifications.find().count()+1);
-    // });
+    Push.addListener("error", function (err) {
+      console.log("Push notification Error", err);
+      // Push.setBadge(Notifications.find().count()+1);
+    });
 
     // Set MomentJS Korean
     moment.locale('ko');
   }
 
   if (Meteor.isServer) {
-    // Push.debug=true;
+    Push.debug=true;
   }
 
   if (Meteor.isCordova) {
