@@ -5,8 +5,10 @@ Template.recent.created = function () {
     this.subscribe('comments');
 
     if (!this.subscriptionsReady()) {
+      this.$('.posts-container').hide();
       Utils.showLoading();
     } else {
+      this.$('.posts-container').hide();
       Utils.hideLoading();
     }
   }.bind(this));

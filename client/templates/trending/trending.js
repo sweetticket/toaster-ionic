@@ -5,8 +5,10 @@ Template.trending.created = function () {
     this.subscribe('comments');
 
     if (!this.subscriptionsReady()) {
+      this.$('.posts-container').hide();
       Utils.showLoading();
     } else {
+      this.$('.posts-container').fadeIn();
       Utils.hideLoading();
     }
   }.bind(this));
