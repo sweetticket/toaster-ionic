@@ -11,5 +11,5 @@
     "cert": "dev_cert.pem",
     "gateway": "gateway.sandbox.push.apple.com"
   },
-  "production": false
+  "production": true
 }
