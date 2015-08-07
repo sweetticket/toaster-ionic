@@ -59,7 +59,9 @@ Template.signUp.events({
         return false;
       } else {
         // FIXME: CHANGE LATER TO 'NOT VERIFIED'
-        Session.set('currentTab', 'trending');
+        // Session.set('currentTab', 'recent');
+        $('.tabs a.active').removeClass('active');
+        $('.tabs a:first-child').addClass('active');
         Router.go('/');
       }
     });

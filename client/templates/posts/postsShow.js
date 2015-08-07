@@ -31,13 +31,13 @@ Template.postsShow.helpers({
   },
 });
 
-Template.postsShow.events({
-  'click [data-action=new-comment]': function (event, template) {
-    if (Meteor.user()) {
-      IonModal.open('newComment', {
-        postId: this._id,
-        userId: Meteor.userId()
-      });
-    }
-  }
-});
+// Template.postsShow.events({
+//   'click [data-action=new-comment]': function (event, template) {
+//     if (Meteor.user()) {
+//       IonModal.open('newComment', {
+//         postId: this._id,
+//         userId: Meteor.userId()
+//       });
+//     }
+//   }
+// });
