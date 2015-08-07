@@ -83,6 +83,7 @@ Meteor.startup(function() {
           // FIXME: I get an err if blacklist domain is used.
           // show the user an error message in the signup area
           console.log("failed to join network", err);
+          return err;
         }
       }
 

@@ -37,7 +37,6 @@ Template.signUp.events({
     }
 
     console.log("am I reached?");
-    debugger
 
     Accounts.createUser({
       email: email,
@@ -54,6 +53,10 @@ Template.signUp.events({
         if (err.reason === "Email already exists.") {
           $('.show').removeClass('show');
           $('.already-registered').addClass('show');
+        } else if (err.reason === "BLACKLIST_DOMAIN") {
+          $('.show').removeClass('show');
+          $('.blacklist-domain-err').text(err.body);
+          $('.blacklist-domain-err').addClas('show');
         }
         return false;
       } else {
