@@ -5,6 +5,7 @@
 	margin-left: -20px;
 	margin-top: -20px;
 	z-index: 10000;
+	display: none;
 }
 
 .my-loading-container img {
