@@ -8,6 +8,7 @@
 //   }
 // });
 
+
 //this function gets called when the user
 //clicks the verification link
 if (Meteor.isClient) {
@@ -25,6 +26,17 @@ if (Meteor.isClient) {
 }
 
 Meteor.startup(function() {
+
+  if (Meteor.isClient) {
+    document.addEventListener('deviceready', function() {
+      handleOpenURL = function handleOpenURL(url) {
+        var url = url.replace("toaster.meteor.com/#/", "meteor.local/"); 
+        Meteor.defer(function() {
+            window.location.href = url; 
+          });
+       }
+    });
+  }
 
   if (Meteor.isServer) {
     Accounts.emailTemplates.from = 'Toaster <toastersignup@gmail.com>';
