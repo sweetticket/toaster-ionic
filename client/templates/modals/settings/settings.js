@@ -6,3 +6,10 @@ Template.settings.events({
     });
   }
 });
+
+// Template.settings.helpers({
+//   "email": function() {
+//     debugger
+//     return Meteor.user().emails.address;
+//   }
+// });
