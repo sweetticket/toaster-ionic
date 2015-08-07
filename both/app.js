@@ -15,4 +15,9 @@ Meteor.startup(function() {
   if (Meteor.isServer) {
     // Push.debug=true;
   }
+
+  if (Meteor.isCordova) {
+    console.log("cordova phone");
+    IonKeyboard.hideKeyboardAccessoryBar();
+  }
 });
