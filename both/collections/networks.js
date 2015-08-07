@@ -25,7 +25,7 @@ var _checkDomain = function (domain) {
 
 Meteor.methods({
   addNetwork: function (domain) {
-    if (_.contains(BLACKLISTED_EMAILS, domain) {
+    if (_.contains(BLACKLISTED_EMAILS, domain)) {
       throw new Error(domain + "은 사용하실 수 없어요!");
     }
 
