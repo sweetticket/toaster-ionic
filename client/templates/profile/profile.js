@@ -10,6 +10,10 @@ Template.profile.created = function () {
   }.bind(this));
 };
 
+Template.profile.rendered = function () {
+  Session.set("profileFilter", "myToasts");
+};
+
 Template.profile.helpers({
   user: function () {
     if (Meteor.userId()) {
@@ -38,5 +42,27 @@ Template.profile.helpers({
     if (network) {
       return network.domain;  
     }
+  },
+
+  showToasts: function() {
+    return Session.get("profileFilter") === "myToasts";
+  },
+
+  showComments: function() {
+    return Session.get("profileFilter") === "myComments";
+  }
+});
+
+Template.profile.events({
+  "click .filter.filter-toasts": function (e, template) {
+    Session.set("profileFilter", "myToasts");
+    $('.filter.active').removeClass('active');
+    $('.filter-toasts').addClass('active');
+  },
+
+  "click .filter.filter-comments": function (e, template) {
+    Session.set("profileFilter", "myComments");
+    $('.filter.active').removeClass('active');
+    $('.filter-comments').addClass('active');
   }
 });

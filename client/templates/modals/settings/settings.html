@@ -2,13 +2,14 @@
   {{#ionModal title="설정"}}
     <div class="list settings-list">
 
+      <div class="item network-container">
+        <span class="network">내 네트워크 <span class="network-domain">@{{networkDomain}}</span></span>
+      </div>
+
       <div class="item item-divider">
         <span class="divider-text">어카운트</span>
       </div>
-      <!-- <div class="item item-icon-left">
-        <span class="settings-label">이메일</span>
-        <span class="settings-email">{{email}}</span>
-      </div> -->
+      
       <a class="item item-icon-left item-icon-right" href="#" data-action="sign-out">
         {{> ionIcon icon="ios-locked"}}
         <span class="item-text">로그아웃</span>

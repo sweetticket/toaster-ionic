@@ -7,9 +7,11 @@ Template.settings.events({
   }
 });
 
-// Template.settings.helpers({
-//   "email": function() {
-//     debugger
-//     return Meteor.user().emails.address;
-//   }
-// });
+Template.settings.helpers({
+  networkDomain: function() {
+    var network = Networks.findOne();
+    if (network) {
+      return network.domain;  
+    }
+  },
+});

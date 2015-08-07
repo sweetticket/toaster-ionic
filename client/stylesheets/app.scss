@@ -353,11 +353,6 @@
   }
 }
 
-.network-domain {
-  float: right;
-  color: $positive;
-}
-
 
 /* newPost */
 
@@ -418,47 +413,3 @@ textarea {
   font-size: 22px;
 }
 
-/* settings */
-
-.settings-list {
-  min-height: 100%;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 100%;
-  background-color: #f3f7f7;
-}
-
-.settings-list .item {
-  min-height: 40px;
-  font-size: 14px;
-}
-
-.settings-list .item-divider {
-  min-height: 55px;
-  background-color: transparent;
-}
-
-.settings-list .item .icon {
-  font-size: 1.5em;
-  color: #aaa;
-}
-
-.item-icon-right .item-text {
-  margin-left: 40px;
-}
-
-.settings-list .item .ion-ios-arrow-right {
-  font-weight: bold;
-  color: #aaa;
-}
-
-.settings-list .item-divider .divider-text {
-  color: $positive;
-  font-weight: bold;
-  position: absolute;
-  bottom: 5px;
-  left: 10px;
-  font-size: 17px;
-}
