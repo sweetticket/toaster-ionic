@@ -1,12 +1,20 @@
 <template name="_comment">
   <div class="item item-text-wrap comment-item">
     {{#with author}}
-      <a href="{{pathFor 'users.show'}}" class="comment-item-author">
+    <!-- 
+      HOWON:
+      DO WE WANT PATH TO USERS.SHOW? Later, let's enable
+      the feature to message other users anonymously.
+      For now, users should communicate with one another just
+      in comments
+     -->
+      <!-- <a href="{{pathFor 'users.show'}}" class="comment-item-author"> -->
+      <span class="comment-item-author">
         <div class="author-avatar" style="background-color: {{color}}">
           <i class="author-icon {{icon}}"></i>
         </div>
-        <!-- {{profile.name}} -->
-      </a>
+      </span>
+      <!-- </a> -->
     {{/with}}
     <div class="post-item-bottom">
       <span class="post-date">
