@@ -1,13 +1,16 @@
 var ranking = function(post) {
+
+  /* Score = P / (T+2)^G
+  P = points of an item (can subtract 1 to negate submitters vote if you want)
+  T = time since submission (in hours)
+  G = Gravity, ie. 1.8
+  */
   var now = moment();
 
-  //FIXME: REPLACE WITH DAYS BEFORE RELEASE (?). DOESNT SEEM TO WORK VERY WELL WITH
-  //POSTS THAT ARE CLOSE IN TIME (ie. within the same day --> appear in order of
-    // oldest to newest (opposite of "recent")))
-  var numHours = now.diff(post.createdAt, 'hours');
-  // console.log("ranking for ["+post.body+"]: " + post.numLikes * (1.0 / Math.pow(numDays+1,2.0)));
-  return post.numLikes * (1.0 / Math.pow(numHours+1,2.0));
-
+  var T = now.diff(post.createdAt, 'hours');
+  var P = post.numLikes;
+  var G = 1.8;
+  return P / Math.pow(T+2, G);
   }
 
 var compareRankings = function(a,b) {
