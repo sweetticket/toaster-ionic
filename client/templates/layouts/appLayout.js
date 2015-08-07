@@ -20,8 +20,10 @@ Template.appLayout.onRendered(function() {
   //     IonLoading.hide();
   //   }
   // }.bind(this));
-
-  $('.tabs a:first-child').addClass('active');
+  
+  if (Router.current().route.getName() === 'recent') {
+    $('.tabs a:first-child').addClass('active');
+  }
 });
 
 Template.appLayout.events({
@@ -46,7 +48,9 @@ Template.appLayout.events({
   },
 
   'click .tabs a': function (event, template) {
-    if (!($(event.target).hasCLass('active'))) {
+    var isActive = ($(event.target).is('a') && $(event.target).hasClass('active'))
+                    || ($(event.target).is('i') && $(event.target).parent().hasClass('active'));
+    if (!isActive) {
       $('.tabs a.active').removeClass('active');
     }
   }

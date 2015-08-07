@@ -9,6 +9,7 @@ Template.trending.created = function () {
 };
 
 Template.trending.onRendered(function() {
+  
   this.autorun(function () {
     var allReady = _.every(this.subscriptions, function (subscription) {
       return subscription.ready();
