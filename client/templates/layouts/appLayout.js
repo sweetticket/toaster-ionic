@@ -46,7 +46,9 @@ Template.appLayout.events({
   },
 
   'click .tabs a': function (event, template) {
-    $('.tabs a.active').removeClass('active');
+    if (!($(event.target).hasCLass('active'))) {
+      $('.tabs a.active').removeClass('active');
+    }
   }
 });
 
