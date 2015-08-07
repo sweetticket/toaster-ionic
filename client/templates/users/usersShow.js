@@ -1,6 +1,6 @@
 Template.usersShow.created = function () {
   this.autorun(function () {
-    this.subscription = Meteor.subscribe('user', Router.current().params._id);
+    this.subscription = this.subscribe('user', Router.current().params._id);
   }.bind(this));
 };
 

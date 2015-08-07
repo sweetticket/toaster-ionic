@@ -1,6 +1,6 @@
 Template.profile.created = function () {
   this.autorun(function () {
-    this.subscription = Meteor.subscribe("userPostsComments");
+    this.subscription = this.subscribe("userPostsComments");
   }.bind(this));
 };
 

@@ -1,9 +1,9 @@
 Template.recent.created = function () {
   this.autorun(function () {
     this.subscriptions = [
-      Meteor.subscribe('otherUserInfo'),
-      Meteor.subscribe('posts'),
-      Meteor.subscribe('comments')
+      this.subscribe('otherUserInfo'),
+      this.subscribe('posts'),
+      this.subscribe('comments')
     ];
   }.bind(this));
 };

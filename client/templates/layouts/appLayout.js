@@ -2,25 +2,11 @@ Template.appLayout.onCreated(function() {
   // appLayoutSession = new ReactiveDict("appLayoutSession");
 
   this.autorun(function() {
-    console.log("subscribing to notification")
-    this.subscription = Meteor.subscribe("notifications");
+    this.subscription = this.subscribe("notifications");
   }.bind(this));
 });
 
 Template.appLayout.onRendered(function() {
-
-  //FIXME: NOT SURE IF THIS DOES ANYTHING..
-  // Session.set('currentTab', 'recent');
-  
-  //FIXME: maybe we don't need to show the loading status.
-  // this.autorun(function () {
-  //   if (!this.subscription.ready()) {
-  //     IonLoading.show();
-  //   } else {
-  //     IonLoading.hide();
-  //   }
-  // }.bind(this));
-  
   if (Router.current().route.getName() === 'recent') {
     $('.tabs a:first-child').addClass('active');
   }

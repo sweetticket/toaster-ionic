@@ -1,15 +1,21 @@
 Template.postsShow.created = function () {
   this.autorun(function () {
-    this.subscription = Meteor.subscribe('post', Router.current().params._id);
-    this.subscription = Meteor.subscribe('comments');
-    this.subscription = Meteor.subscribe('otherUserInfo');
+    this.subscriptions = [
+      this.subscribe('post', Router.current().params._id),
+      this.subscribe('comments'),
+      this.subscribe('otherUserInfo')
+    ];
   }.bind(this));
   Session.set("shouldHideTabs", true);
 };
 
 Template.postsShow.rendered = function () {
   this.autorun(function () {
-    if (!this.subscription.ready()) {
+    var allReady = _.every(this.subscriptions, function (subscription) {
+      return subscription.ready();
+    });
+
+    if (!allReady) {
       IonLoading.show();
     } else {
       IonLoading.hide();

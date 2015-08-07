@@ -1,9 +1,3 @@
-// Template.notifications.created = function () {
-//   this.autorun(function () {
-//     this.subscription = Meteor.subscribe("notifications");
-//   }.bind(this));
-// };
-
 Template.notifications.rendered = function () {
   Meteor.call("readAllNotifications")
 };
