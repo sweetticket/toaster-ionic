@@ -39,5 +39,4 @@ Template.signIn.events({
       $('.signin-btn.enabled').removeClass('enabled');
     }
   },
-
 });
