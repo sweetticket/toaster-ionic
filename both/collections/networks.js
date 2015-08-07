@@ -10,7 +10,7 @@ Networks = new Mongo.Collection("networks");
 // see if domain is one of the blacklisted domains
 
 var BLACKLISTED_EMAILS = [
-  "gmail.com",
+  // "gmail.com",
   "naver.com",
   "hotmail.com",
   "daum.net",

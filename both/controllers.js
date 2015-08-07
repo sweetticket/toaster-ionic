@@ -3,8 +3,8 @@ var isLoggedIn = function() {
     Router.go('signIn');
   } else {
     //FIXME: EMAIL VERIFICATION TURNED OFF
-    // isVerified.call(this);
-    this.next();
+    isVerified.call(this);
+    // this.next();
   }
 }
 

@@ -1,14 +1,3 @@
-// Meteor.users.before.insert(function (userId, doc) {
-//   doc.profile.votedProductIds = [];
-// });
-
-// Meteor.users.helpers({
-//   votedProducts: function () {
-//     return Products.find({_id: {$in: this.profile.votedProductIds}});
-//   }
-// });
-
-
 //this function gets called when the user
 //clicks the verification link
 if (Meteor.isClient) {
@@ -20,27 +9,28 @@ if (Meteor.isClient) {
       }
       //FIXME: maybe open a Welcome modal?
       console.log("now you are verified!");
-      done();
-    })
+      _.defer(function() {
+        done();
+      });
+
+      // If the user is on a phone, open the app
+      console.log("setting is verified true");
+      Session.set("isVerified", true);
+      window.location = "toaster://";
+    });
   });
 }
 
-Meteor.startup(function() {
-  if (Meteor.isClient) {
-    document.addEventListener('deviceready', function() {
-      console.log("device is ready!");
-      handleOpenURL = function handleOpenURL (url) {
-        console.log("handleOpenURL", url);
-        var url = url.replace("toaster://", "http://meteor.local/");
-        Meteor.defer(function() {
-          console.log("redirecting to my app location!");
-          window.location.href = url; 
-        });
-       }
-    });
+Meteor.methods({
+  "sendVerifyingEmail": function (userId, email) {
+    Accounts.sendVerificationEmail(userId, email);
+    console.log("email sent");
   }
+});
 
+Meteor.startup(function() {
   if (Meteor.isServer) {
+
     Accounts.emailTemplates.from = 'Toaster <toastersignup@gmail.com>';
     Accounts.emailTemplates.siteName = 'Toaster';
 
@@ -49,21 +39,18 @@ Meteor.startup(function() {
       return 'Confirm Your Email Address';
     };
 
-    // Accounts.urls.verifyEmail = function (token){
-    //   return Meteor.absoluteUrl("verify-email/" + token);
-    // };
-
-    // Accounts.emailTemplates.configureRoute(null, '/verify');
-
     // A Function that takes a user object and a url, and returns the body text for the email.
     // Note: if you need to return HTML instead, use Accounts.emailTemplates.verifyEmail.html
     Accounts.emailTemplates.verifyEmail.text = function (user, url) {
       // var newUrl = url
       // FIXME: I want him to go to /verify
-
-      return 'click on the following link to verify your email address: ' +
-      url +"\n testing!" + "toaster://";
+      console.log(url);
+      return '이메일 인증: ' + url;
     };
+
+    // Accounts.emailTemplates.verifyEmail.html = function (user, url) {
+
+    // }
 
     Accounts.onCreateUser(function (options, user) {
       var userId = user._id;
