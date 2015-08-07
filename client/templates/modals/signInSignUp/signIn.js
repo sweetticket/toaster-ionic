@@ -27,7 +27,7 @@ Template.signIn.events({
     });
   },
 
-  "keyup .signup-modal input": function (e, template) {
+  "keyup .signup-container input": function (e, template) {
     var email = $('#email').val().trim();
     var password = $('#password').val();
     if (email.length > 0 && password.length > 0) {

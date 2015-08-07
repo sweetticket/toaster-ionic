@@ -64,7 +64,7 @@ Template.signUp.events({
     Router.go('/signIn');
   },
 
-  "keyup .signup-modal input": function (e, template) {
+  "keyup .signup-container input": function (e, template) {
     var email = $('#email').val().trim();
     var password = $('#password').val();
     var password2 = $('#password2').val();

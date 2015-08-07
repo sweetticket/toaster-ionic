@@ -46,21 +46,31 @@
   font-weight: bold;
 }
 
-.signup-modal .bottom-row {
+.signup-container .bottom-row {
 	margin-top: 10px;
 }
 
-.signup-modal .error-msg {
+.signup-container .error-msg {
 	text-align: center;
 	padding-bottom: 5px;
 	font-size: 17px;
 	color: #F64747;
 }
 
-.signup-modal .button.button-positive {
+.signup-container .button.button-positive {
   opacity: 0.6;
 }
 
-.signup-modal .button.button-positive.enabled {
+.signup-container .button.button-positive.enabled {
   opacity: 1;
+}
+
+.not-verified-container {
+  padding: 30px 15px;
+  text-align: center;
+  font-size: 17px;
+}
+
+.not-verified-container button {
+  margin-top: 20px;
 }
