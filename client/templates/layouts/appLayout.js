@@ -13,19 +13,63 @@ Template.appLayout.onRendered(function() {
 });
 
 Template.appLayout.events({
-  'click [data-action=share-product]': function (event, template) {
+  'click [data-action=share-post]': function (event, template) {
     IonActionSheet.show({
       titleText: 'Share Post',
       buttons: [
+        { text: '<i class="icon ion-social-facebook"></i> Post' },
         { text: '<i class="icon ion-social-twitter"></i> Tweet' },
+        { text: '<i class="icon ion-social-pinterest"></i> Pin' },
         { text: '<i class="icon ion-ios-email"></i> Email' },
       ],
       cancelText: 'Cancel',
       buttonClicked: function(index) {
         if (index === 0) {
-          console.log('Tweet!');
+          //TODO
+          console.log('Post!');
         }
         if (index === 1) {
+          //TODO
+          console.log('Tweet!');
+        }
+        if (index === 2) {
+          //TODO
+          console.log('Pin!');
+        }
+        if (index === 3) {
+          //TODO
+          console.log('Email!');
+        }
+        return true;
+      }
+    });
+  },
+
+  'click [data-action=share-app]': function (event, template) {
+    IonActionSheet.show({
+      titleText: 'Share Toaster',
+      buttons: [
+        { text: '<i class="icon ion-social-facebook"></i> Post' },
+        { text: '<i class="icon ion-social-twitter"></i> Tweet' },
+        { text: '<i class="icon ion-social-pinterest"></i> Pin' },
+        { text: '<i class="icon ion-ios-email"></i> Email' },
+      ],
+      cancelText: 'Cancel',
+      buttonClicked: function(index) {
+        if (index === 0) {
+          //TODO
+          console.log('Post!');
+        }
+        if (index === 1) {
+          //TODO
+          console.log('Tweet!');
+        }
+        if (index === 2) {
+          //TODO
+          console.log('Pin!');
+        }
+        if (index === 3) {
+          //TODO
           console.log('Email!');
         }
         return true;
