@@ -58,6 +58,7 @@ Template.appLayout.events({
 
 Template.appLayout.helpers({
   "shouldHideTab": function (e, template) {
-    return Session.get("shouldHideTabs");
+    var shouldHideTabs = Session.get("shouldHideTabs") || !Meteor.user();
+    return shouldHideTabs;
   }
 });
