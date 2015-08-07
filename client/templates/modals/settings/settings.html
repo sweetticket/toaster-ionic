@@ -1,20 +1,57 @@
 <template name="settings">
-  {{#ionModal title="Settings"}}
-    <div class="list">
+  {{#ionModal title="설정"}}
+    <div class="list settings-list">
+
       <div class="item item-divider">
-        Account
+        <span class="divider-text">어카운트</span>
       </div>
+      <!-- <div class="item item-icon-left">
+        <span class="settings-label">이메일</span>
+        <span class="settings-email">{{email}}</span>
+      </div> -->
       <a class="item item-icon-left item-icon-right" href="#" data-action="sign-out">
         {{> ionIcon icon="ios-locked"}}
-        Sign Out
+        <span class="item-text">로그아웃</span>
         {{> ionIcon icon="ios-arrow-right"}}
       </a>
+      
       <div class="item item-divider">
-        About
+        <span class="divider-text">토스터가 좋아요</span>
       </div>
-      <a class="item item-icon-left item-icon-right" href="https://github.com/meteoric/meteorhunt" target="_blank">
-        {{> ionIcon icon="social-github"}}
-        View on Github
+      <a class="item item-icon-left item-icon-right settings-share" href="#">
+        {{> ionIcon icon="ios-upload-outline"}}
+        <span class="item-text">친구들에게 알리기</span>
+        {{> ionIcon icon="ios-arrow-right"}}
+      </a>
+      <a class="item item-icon-left item-icon-right settings-rate" href="#">
+        {{> ionIcon icon="ios-star"}}
+        <span class="item-text">별점 매기기</span>
+        {{> ionIcon icon="ios-arrow-right"}}
+      </a>
+      <a class="item item-icon-left item-icon-right settings-facebook" href="http://facebook.com">
+        {{> ionIcon icon="social-facebook"}}
+        <span class="item-text">좋아요 하기</span>
+        {{> ionIcon icon="ios-arrow-right"}}
+      </a>
+      <a class="item item-icon-left item-icon-right settings-twitter" href="http://twitter.com">
+        {{> ionIcon icon="social-twitter"}}
+        <span class="item-text">팔로우 하기</span>
+        {{> ionIcon icon="ios-arrow-right"}}
+      </a>
+
+      <div class="item item-divider">
+        <span class="divider-text">앱 정보</span>
+      </div>
+      <a class="item item-icon-right settings-about" href="http://twitter.com">
+        토스터 앱 소계
+        {{> ionIcon icon="ios-arrow-right"}}
+      </a>
+      <a class="item item-icon-right settings-terms" href="http://twitter.com">
+        Terms of Service
+        {{> ionIcon icon="ios-arrow-right"}}
+      </a>
+      <a class="item item-icon-right settings-privacy" href="http://twitter.com">
+        Privacy Policy
         {{> ionIcon icon="ios-arrow-right"}}
       </a>
     </div>
