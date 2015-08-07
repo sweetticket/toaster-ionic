@@ -2,12 +2,12 @@
 	position: absolute;
 	left: 50%;
 	top: 50%;
-	margin-left: -20px;
-	margin-top: -20px;
+	margin-left: -13px;
+	margin-top: -13px;
 	z-index: 10000;
 	display: none;
 }
 
 .my-loading-container img {
-	width: 40px;
+	width: 26px;
 }
