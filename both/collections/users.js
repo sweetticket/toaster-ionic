@@ -26,14 +26,16 @@ if (Meteor.isClient) {
 }
 
 Meteor.startup(function() {
-
   if (Meteor.isClient) {
     document.addEventListener('deviceready', function() {
-      handleOpenURL = function handleOpenURL(url) {
-        var url = url.replace("localhost:3000/#/", "meteor.local/"); 
+      console.log("device is ready!");
+      handleOpenURL = function handleOpenURL (url) {
+        console.log("handleOpenURL", url);
+        var url = url.replace("toaster://", "http://meteor.local/");
         Meteor.defer(function() {
-            window.location.href = url; 
-          });
+          console.log("redirecting to my app location!");
+          window.location.href = url; 
+        });
        }
     });
   }
@@ -59,7 +61,8 @@ Meteor.startup(function() {
       // var newUrl = url
       // FIXME: I want him to go to /verify
 
-      return 'click on the following link to verify your email address: ' + url;
+      return 'click on the following link to verify your email address: ' +
+      url +"\n testing!" + "toaster://";
     };
 
     Accounts.onCreateUser(function (options, user) {

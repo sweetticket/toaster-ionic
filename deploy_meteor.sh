@@ -1,0 +1,1 @@
+meteor deploy toaster2.meteor.com
