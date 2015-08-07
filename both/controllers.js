@@ -2,7 +2,9 @@ var isLoggedIn = function() {
   if (!Meteor.loggingIn() && !Meteor.user()) {
     Router.go('signIn');
   } else {
-    isVerified.call(this);
+    //FIXME: EMAIL VERIFICATION TURNED OFF
+    // isVerified.call(this);
+    this.next();
   }
 }
 

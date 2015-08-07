@@ -76,12 +76,11 @@ Meteor.startup(function() {
       if (network) {
         user.networkId = network._id;
       } else {
-        // FIXME: what if err?
         try {
           var networkId = Meteor.call("addNetwork", domain);
           user.networkId = networkId;
         } catch (err) {
-          console.log("failed to join network", err);  
+          throw new Meteor.Error(500, err.reason, err.details);
         }
       }
 

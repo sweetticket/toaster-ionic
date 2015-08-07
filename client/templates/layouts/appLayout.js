@@ -1,5 +1,4 @@
 Template.appLayout.onCreated(function() {
-  console.log("created")
   // appLayoutSession = new ReactiveDict("appLayoutSession");
 
   this.autorun(function() {

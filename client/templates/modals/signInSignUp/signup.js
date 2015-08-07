@@ -36,12 +36,14 @@ Template.signUp.events({
       return false;
     }
 
-    // console.log("am I reached?");
+    console.log("am I reached?");
 
     Accounts.createUser({
       email: email,
       password: password
     }, function (err) {
+
+      console.log("SIGNUP: ACCOUNT CREATED");
 
       if (err) {
         console.log("createUser failed", err);
@@ -49,6 +51,10 @@ Template.signUp.events({
         if (err.reason === "Email already exists.") {
           $('.show').removeClass('show');
           $('.already-registered').addClass('show');
+        } else if (err.reason === "BLACKLIST_DOMAIN") {
+          $('.show').removeClass('show');
+          $('.blacklist-domain-err').text(err.details);
+          $('.blacklist-domain-err').addClass('show');
         }
         return false;
       } else {

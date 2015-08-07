@@ -5,9 +5,13 @@ Template.signIn.events({
   },
 
   "click .signin-btn": function (e, template) {
+    console.log("signin butn clicked");
+
     var email = $('#email').val().trim();
     var password = $('#password').val();
     Meteor.loginWithPassword(email, password, function (err) {
+      console.log("LOGIN CALLBACK");
+
       if (err) {
         console.log(err);
 
@@ -19,7 +23,6 @@ Template.signIn.events({
           $('.show').removeClass('show');
           $('.not-registered').addClass('show');
         }
-        //fixme do something
       } else {
         Session.set('currentTab', 'trending');
         Router.go('/');
@@ -36,5 +39,4 @@ Template.signIn.events({
       $('.signin-btn.enabled').removeClass('enabled');
     }
   },
-
 });
