@@ -1,9 +1,9 @@
 Router.route('/', {
-  name: 'trending'
+  name: 'recent'
 });
 
-Router.route('/recent', {
-  name: 'recent'
+Router.route('/trending', {
+  name: 'trending'
 });
 
 Router.route('/posts/:_id', {

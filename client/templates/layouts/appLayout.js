@@ -8,7 +8,9 @@ Template.appLayout.onCreated(function() {
 });
 
 Template.appLayout.onRendered(function() {
-  Session.set('currentTab', 'trending');
+
+  //FIXME: NOT SURE IF THIS DOES ANYTHING..
+  // Session.set('currentTab', 'recent');
   
   //FIXME: maybe we don't need to show the loading status.
   // this.autorun(function () {
@@ -18,6 +20,8 @@ Template.appLayout.onRendered(function() {
   //     IonLoading.hide();
   //   }
   // }.bind(this));
+
+  $('.tabs a:first-child').addClass('active');
 });
 
 Template.appLayout.events({
@@ -39,6 +43,10 @@ Template.appLayout.events({
         return true;
       }
     });
+  },
+
+  'click .tabs a': function (event, template) {
+    $('.tabs a.active').removeClass('active');
   }
 });
 
