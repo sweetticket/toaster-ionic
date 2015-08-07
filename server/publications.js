@@ -116,7 +116,6 @@ Meteor.publish('userInfo', function() {
 });
 
 Meteor.publish('otherUserInfo', function() {
-  console.log(this);
   if (this.userId) {
     var user = Meteor.users.findOne({_id: this.userId}); 
     var currentNetworkId = user.networkId;
