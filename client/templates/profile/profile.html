@@ -34,7 +34,7 @@
           <h5 class="padding">내 댓글</h5>
           {{#ionList}}
             {{#each commentsByUser}}
-              {{> _comment}}
+              {{> _postItem post=postFromComment path="posts.show"}}
             {{/each}}
           {{/ionList}}
         </div>

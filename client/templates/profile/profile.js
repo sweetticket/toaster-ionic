@@ -33,6 +33,10 @@ Template.profile.helpers({
     }});
   },
 
+  postFromComment: function() {
+    return Posts.findOne({_id: this.postId});
+  },
+
   networkDomain: function() {
     var network = Networks.findOne();
     if (network) {
