@@ -43,9 +43,7 @@ Template.signUp.events({
       password: password
     }, function (err) {
 
-      console.log("yay acct created?");
-
-      debugger
+      console.log("SIGNUP: ACCOUNT CREATED");
 
       if (err) {
         console.log("createUser failed", err);
@@ -55,8 +53,8 @@ Template.signUp.events({
           $('.already-registered').addClass('show');
         } else if (err.reason === "BLACKLIST_DOMAIN") {
           $('.show').removeClass('show');
-          $('.blacklist-domain-err').text(err.body);
-          $('.blacklist-domain-err').addClas('show');
+          $('.blacklist-domain-err').text(err.details);
+          $('.blacklist-domain-err').addClass('show');
         }
         return false;
       } else {

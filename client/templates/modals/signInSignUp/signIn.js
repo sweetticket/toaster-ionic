@@ -5,11 +5,13 @@ Template.signIn.events({
   },
 
   "click .signin-btn": function (e, template) {
+    console.log("signin butn clicked");
+
     var email = $('#email').val().trim();
     var password = $('#password').val();
-    console.log("login with password");
-    debugger
     Meteor.loginWithPassword(email, password, function (err) {
+      console.log("LOGIN CALLBACK");
+
       if (err) {
         console.log(err);
 
@@ -21,7 +23,6 @@ Template.signIn.events({
           $('.show').removeClass('show');
           $('.not-registered').addClass('show');
         }
-        //fixme do something
       } else {
         Session.set('currentTab', 'trending');
         Router.go('/');

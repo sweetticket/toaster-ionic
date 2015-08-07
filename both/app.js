@@ -13,6 +13,6 @@ Meteor.startup(function() {
   }
 
   if (Meteor.isServer) {
-    Push.debug=true;
+    // Push.debug=true;
   }
 });

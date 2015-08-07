@@ -80,10 +80,7 @@ Meteor.startup(function() {
           var networkId = Meteor.call("addNetwork", domain);
           user.networkId = networkId;
         } catch (err) {
-          // FIXME: I get an err if blacklist domain is used.
-          // show the user an error message in the signup area
-          console.log("failed to join network", err);
-          return err;
+          throw new Meteor.Error(500, err.reason, err.details);
         }
       }
 

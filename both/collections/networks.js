@@ -15,8 +15,7 @@ var BLACKLISTED_EMAILS = [
   "hotmail.com",
   "daum.net",
   "hanmail.net",
-  "nate.com",
-  ""
+  "nate.com"
 ]
 
 var _checkDomain = function (domain) {
@@ -28,7 +27,7 @@ Meteor.methods({
     if (_.contains(BLACKLISTED_EMAILS, domain)) {
       throw {
         reason: "BLACKLIST_DOMAIN",
-        body: domain + "은 사용하실 수 없어요!"
+        details: domain + "은 사용하실 수 없어요!"
       };
     }
 
