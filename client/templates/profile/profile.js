@@ -1,15 +1,11 @@
 Template.profile.created = function () {
   this.autorun(function () {
-    this.subscription = this.subscribe("userPostsComments");
-  }.bind(this));
-};
+    this.subscribe("userPostsComments");
 
-Template.profile.rendered = function () {
-  this.autorun(function () {
-    if (!this.subscription.ready()) {
-      IonLoading.show();
+    if (!this.subscriptionsReady()) {
+      Utils.showLoading();
     } else {
-      IonLoading.hide();
+      Utils.hideLoading();
     }
   }.bind(this));
 };

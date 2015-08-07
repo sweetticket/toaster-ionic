@@ -2,7 +2,7 @@ Template.appLayout.onCreated(function() {
   // appLayoutSession = new ReactiveDict("appLayoutSession");
 
   this.autorun(function() {
-    this.subscription = this.subscribe("notifications");
+    this.subscribe("notifications");
   }.bind(this));
 });
 

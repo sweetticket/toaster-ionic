@@ -1,15 +1,11 @@
 Template.usersShow.created = function () {
   this.autorun(function () {
-    this.subscription = this.subscribe('user', Router.current().params._id);
-  }.bind(this));
-};
+    this.subscribe('user', Router.current().params._id);
 
-Template.usersShow.rendered = function () {
-  this.autorun(function () {
-    if (!this.subscription.ready()) {
-      IonLoading.show();
+    if (!this.subscriptionsReady()) {
+      Utils.showLoading();
     } else {
-      IonLoading.hide();
+      Utils.hideLoading();
     }
   }.bind(this));
 };
