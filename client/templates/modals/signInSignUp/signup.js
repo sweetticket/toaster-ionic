@@ -36,12 +36,17 @@ Template.signUp.events({
       return false;
     }
 
-    // console.log("am I reached?");
+    console.log("am I reached?");
+    debugger
 
     Accounts.createUser({
       email: email,
       password: password
     }, function (err) {
+
+      console.log("yay acct created?");
+
+      debugger
 
       if (err) {
         console.log("createUser failed", err);

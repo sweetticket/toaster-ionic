@@ -76,12 +76,13 @@ Meteor.startup(function() {
       if (network) {
         user.networkId = network._id;
       } else {
-        // FIXME: what if err?
         try {
           var networkId = Meteor.call("addNetwork", domain);
           user.networkId = networkId;
         } catch (err) {
-          console.log("failed to join network", err);  
+          // FIXME: I get an err if blacklist domain is used.
+          // show the user an error message in the signup area
+          console.log("failed to join network", err);
         }
       }
 
