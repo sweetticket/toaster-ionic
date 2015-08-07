@@ -1,17 +1,24 @@
 Template.recent.created = function () {
   this.autorun(function () {
-    this.subscription = Meteor.subscribe('posts');
-    this.subscription = Meteor.subscribe('comments');
-    this.subscription = Meteor.subscribe('otherUserInfo');
+    this.subscriptions = [
+      Meteor.subscribe('otherUserInfo'),
+      Meteor.subscribe('posts'),
+      Meteor.subscribe('comments')
+    ];
   }.bind(this));
 };
 
 Template.recent.rendered = function () {
   this.autorun(function () {
-    if (!this.subscription.ready()) {
+    var allReady = _.every(this.subscriptions, function (subscription) {
+      return subscription.ready();
+    });
+
+    if (!allReady) {
       this.$('.posts-container').hide();
       IonLoading.show();
     } else {
+      console.log("recent all ready");
       IonLoading.hide();
       this.$('.posts-container').fadeIn();
     }
