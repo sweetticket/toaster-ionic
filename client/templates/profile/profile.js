@@ -1,6 +1,12 @@
 Template.profile.created = function () {
   this.autorun(function () {
     this.subscribe("userPostsComments");
+    //FIXME: don't subscribe to all posts and comments.. need to filter
+    this.subscribe('posts');
+    //FIXME: need this for displaying the number of comments in list view
+    this.subscribe('comments');
+    //FIXME: need this for displaying avatars in list view
+    this.subscribe('otherUserInfo');
 
     if (!this.subscriptionsReady()) {
       Utils.showLoading();
@@ -10,6 +16,10 @@ Template.profile.created = function () {
   }.bind(this));
 };
 
+Template.profile.rendered = function () {
+  Session.set("profileFilter", "myToasts");
+};
+
 Template.profile.helpers({
   user: function () {
     if (Meteor.userId()) {
@@ -17,14 +27,16 @@ Template.profile.helpers({
     }
   },
 
+  //FIXME: had to add 'userId' to the .find options
+  // in the helpers below because of subscription issue
   postsByUser: function() {
-    return Posts.find({}, {sort: {
+    return Posts.find({userId: Meteor.userId()}, {sort: {
       createdAt: -1
     }});
   },
 
   commentsByUser: function() {
-    return Comments.find({}, {sort: {
+    return Comments.find({userId: Meteor.userId()}, {sort: {
       createdAt: -1
     }});
   },
@@ -38,5 +50,27 @@ Template.profile.helpers({
     if (network) {
       return network.domain;  
     }
+  },
+
+  showToasts: function() {
+    return Session.get("profileFilter") === "myToasts";
+  },
+
+  showComments: function() {
+    return Session.get("profileFilter") === "myComments";
+  }
+});
+
+Template.profile.events({
+  "click .filter.filter-toasts": function (e, template) {
+    Session.set("profileFilter", "myToasts");
+    $('.filter.active').removeClass('active');
+    $('.filter-toasts').addClass('active');
+  },
+
+  "click .filter.filter-comments": function (e, template) {
+    Session.set("profileFilter", "myComments");
+    $('.filter.active').removeClass('active');
+    $('.filter-comments').addClass('active');
   }
 });

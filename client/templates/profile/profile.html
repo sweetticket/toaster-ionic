@@ -13,38 +13,45 @@
 
   {{#ionView}}
     {{#ionContent}}
+      <div class="profile-container">
       {{#with user}}
-        <!-- {{> _profileHeader}} -->
-        <!-- {{color}} -->
+          <!-- <div class="network-container">
+            <h5 class="padding">내 네트워크 <span class="network-domain">@{{networkDomain}}</span></h5>
+          </div> -->
 
-        <div class="network-container">
-          <h5 class="padding">내 네트워크  <span class="network-domain">{{networkDomain}}</span></h5>
-        </div>
+          <div class="profile-filters">
+            <h5 class="padding filter filter-toasts active">내 토스트</h5>
+            <h5 class="padding filter filter-comments">내가 답한 토스트</h5>
+          </div>
 
-        <div class="posts-container">
-          <h5 class="padding">내 토스트</h5>
-          {{#ionList}}
-            {{#each postsByUser}}
-              {{> _postItem post=this path="posts.show"}}
-            {{/each}}
-          {{/ionList}}
-        </div>
+          {{#if showToasts}}
+            <div class="posts-container"><!-- 
+              <h5 class="padding my-toasts">내 토스트</h5> -->
+              {{#ionList}}
+                {{#each postsByUser}}
+                  {{> _postItem post=this path="posts.show"}}
+                {{/each}}
+              {{/ionList}}
+            </div>
+          {{/if}}
+          {{#if showComments}}
+            <div class="comments-container">
+              <!-- <h5 class="padding">내가 답한 토스트</h5> -->
+              {{#ionList}}
+                {{#each commentsByUser}}
+                  {{> _postItem post=postFromComment path="posts.show"}}
+                {{/each}}
+              {{/ionList}}
+            </div>
+          {{/if}}
 
-        <div class="comments-container">
-          <h5 class="padding">내가 답한 토스트</h5>
-          {{#ionList}}
-            {{#each commentsByUser}}
-              {{> _postItem post=postFromComment path="posts.show"}}
-            {{/each}}
-          {{/ionList}}
-        </div>
-
-      {{else}}
-        <div class="empty-view">
-          {{> ionIcon icon="ios-person"}}
-          No profile yet!
-        </div>
+        {{else}}
+          <div class="empty-view">
+            {{> ionIcon icon="ios-person"}}
+            No profile yet!
+          </div>
       {{/with}}
+      </div>
     {{/ionContent}}
   {{/ionView}}
 </template>

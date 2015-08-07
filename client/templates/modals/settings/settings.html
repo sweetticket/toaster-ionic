@@ -2,13 +2,14 @@
   {{#ionModal title="설정"}}
     <div class="list settings-list">
 
+      <div class="item network-container">
+        <span class="network">내 네트워크 <span class="network-domain">@{{networkDomain}}</span></span>
+      </div>
+
       <div class="item item-divider">
         <span class="divider-text">어카운트</span>
       </div>
-      <!-- <div class="item item-icon-left">
-        <span class="settings-label">이메일</span>
-        <span class="settings-email">{{email}}</span>
-      </div> -->
+      
       <a class="item item-icon-left item-icon-right" href="#" data-action="sign-out">
         {{> ionIcon icon="ios-locked"}}
         <span class="item-text">로그아웃</span>
@@ -18,7 +19,7 @@
       <div class="item item-divider">
         <span class="divider-text">토스터가 좋아요</span>
       </div>
-      <a class="item item-icon-left item-icon-right settings-share" href="#">
+      <a class="item item-icon-left item-icon-right settings-share" data-action="share-app" href="#">
         {{> ionIcon icon="ios-upload-outline"}}
         <span class="item-text">친구들에게 알리기</span>
         {{> ionIcon icon="ios-arrow-right"}}
@@ -42,15 +43,16 @@
       <div class="item item-divider">
         <span class="divider-text">앱 정보</span>
       </div>
-      <a class="item item-icon-right settings-about" href="http://twitter.com">
+
+      <a class="item item-icon-right settings-about" href="/settings/about">
         토스터 앱 소계
         {{> ionIcon icon="ios-arrow-right"}}
       </a>
-      <a class="item item-icon-right settings-terms" href="http://twitter.com">
+      <a class="item item-icon-right settings-terms" href="/settings/terms">
         Terms of Service
         {{> ionIcon icon="ios-arrow-right"}}
       </a>
-      <a class="item item-icon-right settings-privacy" href="http://twitter.com">
+      <a class="item item-icon-right settings-privacy" href="/settings/privacy">
         Privacy Policy
         {{> ionIcon icon="ios-arrow-right"}}
       </a>
