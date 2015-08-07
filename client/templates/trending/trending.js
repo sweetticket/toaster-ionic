@@ -1,28 +1,16 @@
 Template.trending.created = function () {
   this.autorun(function () {
-    this.subscriptions = [
-      this.subscribe('otherUserInfo'),
-      this.subscribe('posts'),
-      this.subscribe('comments')
-    ];
-  }.bind(this));
-};
+    this.subscribe('otherUserInfo');
+    this.subscribe('posts');
+    this.subscribe('comments');
 
-Template.trending.onRendered(function() {
-  
-  this.autorun(function () {
-    var allReady = _.every(this.subscriptions, function (subscription) {
-      return subscription.ready();
-    });
-    if (!allReady) {
-      this.$('.posts-container').hide();
-      IonLoading.show();
+    if (!this.subscriptionsReady()) {
+      Utils.showLoading();
     } else {
-      IonLoading.hide();
-      this.$('.posts-container').fadeIn();
+      Utils.hideLoading();
     }
   }.bind(this));
-});
+};
 
 Template.trending.helpers({
   posts: function() {

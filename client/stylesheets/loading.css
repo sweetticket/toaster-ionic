@@ -1,0 +1,12 @@
+.my-loading-container {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin-left: -20px;
+	margin-top: -20px;
+	z-index: 10000;
+}
+
+.my-loading-container img {
+	width: 40px;
+}

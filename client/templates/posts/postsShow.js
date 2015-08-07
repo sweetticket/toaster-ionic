@@ -1,26 +1,16 @@
 Template.postsShow.created = function () {
   this.autorun(function () {
-    this.subscriptions = [
-      this.subscribe('post', Router.current().params._id),
-      this.subscribe('comments'),
-      this.subscribe('otherUserInfo')
-    ];
-  }.bind(this));
-  Session.set("shouldHideTabs", true);
-};
+    this.subscribe('post', Router.current().params._id);
+    this.subscribe('comments');
+    this.subscribe('otherUserInfo');
 
-Template.postsShow.rendered = function () {
-  this.autorun(function () {
-    var allReady = _.every(this.subscriptions, function (subscription) {
-      return subscription.ready();
-    });
-
-    if (!allReady) {
-      IonLoading.show();
+    if (!this.subscriptionsReady()) {
+      Utils.showLoading();
     } else {
-      IonLoading.hide();
+      Utils.hideLoading();
     }
   }.bind(this));
+  Session.set("shouldHideTabs", true);
 };
 
 Template.postsShow.onDestroyed(function() {
