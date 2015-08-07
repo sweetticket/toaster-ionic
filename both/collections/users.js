@@ -30,7 +30,7 @@ Meteor.startup(function() {
   if (Meteor.isClient) {
     document.addEventListener('deviceready', function() {
       handleOpenURL = function handleOpenURL(url) {
-        var url = url.replace("toaster.meteor.com/#/", "meteor.local/"); 
+        var url = url.replace("localhost:3000/#/", "meteor.local/"); 
         Meteor.defer(function() {
             window.location.href = url; 
           });
