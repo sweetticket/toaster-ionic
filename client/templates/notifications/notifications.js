@@ -13,3 +13,9 @@ Template.notifications.helpers({
     }});
   }
 });
+
+Template._notifications.helpers({
+  "postPreview": function() {
+    return Posts.findOne({_id: this.postId}).body;
+  }
+});
