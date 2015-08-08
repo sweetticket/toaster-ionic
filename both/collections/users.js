@@ -89,4 +89,11 @@ Meteor.startup(function() {
       return user;
     });
   }
+
+  Accounts.onLogin(function (user) {
+    console.log("Setting userId for Push setting");
+    Push.appCollection.update({
+      token: PUSH_TOKEN
+    }, {$set: { userId: user.user._id }});
+  });
 });

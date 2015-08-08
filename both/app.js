@@ -9,18 +9,17 @@ Meteor.startup(function() {
     });
 
     Push.addListener('token', function (token) {
-      alert(JSON.stringify(token));
-      console.log(token);
       console.log("HOWON ADDING TOKEN");
+      PUSH_TOKEN = token;
       Meteor.call('raix:push-update', {
         appName: "Toaster",
         token: token,
-        userId: ""
+        userId: Meteor.userId() || ""
       });
     });
 
     Push.addListener('message', function (msg) {
-      console.log("msg received push:", msg);
+      console.log("msg received push:", JSON.stringify(msg));
     });
 
     // Set number of posts tokeno fetch at once
@@ -31,11 +30,11 @@ Meteor.startup(function() {
   }
 
   if (Meteor.isServer) {
+    PUSH_TOKEN = null;
     Push.debug = true;
   }
 
   if (Meteor.isCordova) {
-    console.log("cordova phone");
     IonKeyboard.hideKeyboardAccessoryBar();
   }
 });
