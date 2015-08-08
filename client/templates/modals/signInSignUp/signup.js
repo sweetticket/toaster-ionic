@@ -21,8 +21,6 @@ Template.signUp.events({
     var password = $('#password').val();
     var password2 = $('#password2').val();
 
-    // console.log("password", password2);
-
     if (!Utils.validateEmail(email)) {
       console.log("email invalid");
       $('.show').removeClass('show');
@@ -35,8 +33,6 @@ Template.signUp.events({
       console.log("passwords mismatch");
       return false;
     }
-
-    console.log("am I reached?");
 
     Accounts.createUser({
       email: email,

@@ -35,12 +35,21 @@ Template.notVerified.events({
     Meteor.call("sendVerifyingEmail", Meteor.userId(), email)
     Accounts.sendVerificationEmail(userId, email);
   },
+
   "click .signin-link": function (e, template) {
-    
-    //FIXME: WHY DOES IT TRANSITION SO WEIRDLY
     e.preventDefault();
-    Router.go('/signIn');
+    Meteor.logout();
+    Router.go('signIn');
   },
+});
+
+Template.notVerified.helpers({
+  email: function() {
+    if (!Meteor.user()) {
+      return "";
+    }
+    return Meteor.user().emails[0].address;
+  }
 });
 
 Template.notVerified.onDestroyed(function() {
