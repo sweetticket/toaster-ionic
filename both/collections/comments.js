@@ -28,7 +28,8 @@ Meteor.methods({
         //CHANGED THIS FOR NOW
         // body: "댓글이 달렸어요: \"" + info.body + "\"",
         body: "이 토스트가 댓글이 달렸어요",
-        icon: "ios-chatbubble"
+        icon: "ios-chatbubble",
+        type: "comment"
       });
     });
   }

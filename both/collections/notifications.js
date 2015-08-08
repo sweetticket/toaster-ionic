@@ -22,11 +22,14 @@ if (Meteor.isServer) {
 
       if (exists) {
 
-        //FIXME: MAYBE ADD A 'COUNT' FIELD
-        //(NUMBER OF SAME-TYPE NOTIFS FOR THE SAME POST,
-        // OR NUMBER OF NOTIFS UNREAD(?) THAT ARE SAME-TYPE AND SAME POST
-        countUnread += exists.countUnread;
-        Notifications.remove(exists._id);
+        if (exists.fromUserId !== noti.fromUserId ||
+            (exists.fromUserId === noti.fromUserId &&
+            (noti.type !== exists.type || noti.type === "comment"))) {
+
+              countUnread += exists.countUnread;
+            }
+
+          Notifications.remove(exists._id);
       }
 
 
