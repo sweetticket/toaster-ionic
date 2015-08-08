@@ -22,7 +22,6 @@ Meteor.publish('trendingPosts', function (limit) {
   });
 });
 
-
 Meteor.publish('comments', function() {
   var user = Meteor.users.findOne({_id: this.userId});
   var user = Meteor.users.findOne({_id: this.userId});

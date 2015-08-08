@@ -1,6 +1,6 @@
 Template.notifications.onCreated(function() {
   this.autorun(function () {
-    this.subscribe('posts');
+    this.subscribe('recentPosts');
   }.bind(this));
 });
 

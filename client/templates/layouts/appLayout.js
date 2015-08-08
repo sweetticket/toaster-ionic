@@ -11,13 +11,8 @@ Template.appLayout.onRendered(function() {
     $('.tabs a:first-child').addClass('active');
   }
 
-  // this.autorun(function() {
-  //   if (Notifications.findOne({isRead: false})){
-  //     $('.new-notifs').addClass('show');
-  //   } else {
-  //     $('.new-notifs').removeClass('show');
-  //   }
-  // });
+  FastClick.attach(document.body);
+  
 });
 
 Template.appLayout.events({

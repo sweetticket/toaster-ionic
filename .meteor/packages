@@ -26,3 +26,5 @@ accounts-ui
 raix:push
 fortawesome:fontawesome
 reactive-dict
+fastclick
+raix:handlebar-helpers

@@ -3,7 +3,7 @@ Template.profile.created = function () {
   this.autorun(function () {
     this.subscribe("userPostsComments");
     //FIXME: don't subscribe to all posts and comments.. need to filter
-    this.subscribe('posts');
+    this.subscribe('recentPosts');
     //FIXME: need this for displaying the number of comments in list view
     this.subscribe('comments');
     //FIXME: need this for displaying avatars in list view
