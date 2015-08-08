@@ -72,16 +72,20 @@ if (Meteor.isServer) {
 
 if (Meteor.isClient) {
   Meteor.startup(function() {
+    //subscribe to notification counts
+    //and update it reactively
+    var unreadBadgeCount = 0;
+    Tracker.autorun(function() {
+      Meteor.subscribe("countPublication");
+      unreadBadgeCount = Counts.get('unreadNotiCount');
+    });
+    
     Tracker.autorun(function() {
       var userId = Meteor.userId();
       if (userId) {
         Push.addListener("message", function (notification) {
           console.log("Push notification received");
-          var unreadCount = Notifications.find({
-                              toUserId: Meteor.userId(),
-                              isRead: false
-                            }).count();
-          Push.setBadge(unreadCount+1);
+          Push.setBadge(unreadBadgeCount+1);
         });
       }
     })

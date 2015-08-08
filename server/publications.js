@@ -145,3 +145,10 @@ Meteor.publish('otherUserInfo', function() {
     this.ready();
   }
 });
+
+Meteor.publish('countPublication', function() {
+  Counts.publish(this, 'unreadNotiCount', Notifications.find({
+    toUserId: this.userId,
+    isRead: false
+  }));
+});

@@ -92,8 +92,11 @@ Meteor.startup(function() {
 
   Accounts.onLogin(function (user) {
     console.log("Setting userId for Push setting");
-    Push.appCollection.update({
-      token: PUSH_TOKEN
-    }, {$set: { userId: user.user._id }});
+    // if Mobile, set token
+    if (Push.appCollection) {
+      Push.appCollection.update({
+        token: PUSH_TOKEN
+      }, {$set: { userId: user.user._id }});
+    }
   });
 });
