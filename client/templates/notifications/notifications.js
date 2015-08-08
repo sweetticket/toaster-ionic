@@ -1,5 +1,11 @@
+Template.notifications.onCreated(function() {
+  this.autorun(function () {
+    this.subscribe('posts');
+  }.bind(this));
+});
+
 Template.notifications.onDestroyed(function() {
-  Meteor.call("readAllNotifications")
+  Meteor.call("readAllNotifications");
 });
 
 Template.notifications.helpers({
@@ -14,9 +20,14 @@ Template.notifications.helpers({
   }
 });
 
-  // "apn": {
-  //   "passphrase": "13201320",  
-  //   "key": "prod_key.pem",
-  //   "cert": "prod_cert.pem",
-  //   "gateway": "gateway.push.apple.com"
-  // },
+Template._notificationItem.helpers({
+  "isReadClass": function() {
+    if (!this.isRead) {
+      return "is-new";
+    }
+    return "";
+  },
+  "postFromNoti": function() {
+    return Posts.findOne({_id: this.postId});
+  }
+});

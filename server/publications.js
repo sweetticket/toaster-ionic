@@ -96,7 +96,7 @@ Meteor.publish('notifications', function() {
   if (this.userId) {
     return Notifications.find({
       toUserId: this.userId,
-      isRead: false
+      // isRead: false
     });
   } else {
     this.ready();
