@@ -1,10 +1,43 @@
+@import 'app-variables';
+
+.notification-list {
+	padding-left: 10px;
+	border-left-width: 0;
+}
+
 .notification-item {
 	min-height: 50px;
-	font-size: 17px;
+	font-size: 14px;
+	border-left-width: 0;
+	padding-left: 0;
+}
+
+.notification-item .body {
+	font-weight: bold;
+	color: $positive;
+	opacity: 0.6;
 }
 
 .notification-item .created-at {
-	font-size: 14px;
-	color: #aaa;
-	padding-top: 10px;
+	font-size: 12px;
+	color: #999999;
+	padding-top: 5px;
+	padding-left: 5px;
+	margin-bottom: -5px;
+}
+
+.notification-item.item-icon-right .icon {
+  font-size: 20px;
+  color: #999999;
+}
+
+.notification-item .post-preview {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	width: 70%;
+	padding-left: 5px;
+	font-size: 17px;
+	padding-top: 5px;
+	color: #666;
 }

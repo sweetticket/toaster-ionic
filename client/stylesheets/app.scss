@@ -95,7 +95,7 @@
   width: 65%;
   margin-left: 54px;
   margin-top: -35px;
-  padding-bottom: 20px;
+  padding-bottom: 30px;
   font-size: 16px;
 }
 
@@ -181,9 +181,8 @@
   font-size: 12px;
   text-align: right;
   position: absolute;
-  bottom: 0px;
-  left: 10px;
-  margin-top: -10px;
+  bottom: 5px;
+  left: 0px;
   color: #999999;
   width: 100%;
 }
@@ -192,6 +191,7 @@
   position: absolute;
   left: 0px;
   bottom: 0px;
+  font-size: 12px;
 
   .icon {
     font-size: 15px;
@@ -319,8 +319,19 @@
   }
 }
 
+.posts-container {
+  padding-left: 10px;
+}
+
+.posts-container .item {
+  border-bottom: #ddd 1px solid;
+  padding-left: 0;
+}
+
 .comment-item, .post-list-item.item {
-  border-width: 0;
+  border-left-width: 0;
+  border-top-width: 0;
+  border-right-width: 0;
   margin-top: 5px;
 }
 
@@ -328,12 +339,12 @@
   min-height: 80px;
   border-top: 0;
   padding-top: 41px;
-  padding-left: 10px;
+  padding-left: 0px;
   padding-right: 10px;
 }
 
 .comments-list {
-  padding: 0;
+  padding-left: 10px;
 }
 
 .comment-item-author {
@@ -341,7 +352,7 @@
   text-decoration: none;
   position: absolute;
   top: 10px;
-  left: 10px;
+  left: 0px;
   height: 30px;
   line-height: 30px;
   font-weight: bold;

@@ -1,3 +1,9 @@
+Template.notifications.onCreated(function() {
+  this.autorun(function () {
+    this.subscribe('posts');
+  }.bind(this));
+});
+
 Template.notifications.onDestroyed(function() {
   Meteor.call("readAllNotifications")
 });
@@ -14,7 +20,7 @@ Template.notifications.helpers({
   }
 });
 
-Template._notifications.helpers({
+Template._notificationItem.helpers({
   "postPreview": function() {
     return Posts.findOne({_id: this.postId}).body;
   }
