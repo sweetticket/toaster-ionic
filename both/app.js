@@ -9,8 +9,6 @@ Meteor.startup(function() {
     });
 
     Push.addListener('token', function (token) {
-      alert(JSON.stringify(token));
-      console.log(token);
       console.log("HOWON ADDING TOKEN");
       PUSH_TOKEN = token;
       Meteor.call('raix:push-update', {
@@ -21,7 +19,7 @@ Meteor.startup(function() {
     });
 
     Push.addListener('message', function (msg) {
-      console.log("msg received push:", msg);
+      console.log("msg received push:", JSON.stringify(msg));
     });
 
     // Set number of posts tokeno fetch at once
