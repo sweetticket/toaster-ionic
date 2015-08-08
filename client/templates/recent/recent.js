@@ -1,4 +1,8 @@
 Template.recent.created = function () {
+  // flag to show the loading wheel only in the beginning.
+  // don't show a loading wheel for subsequent fetch calls
+  this.initialLoaded = false;
+
   this.loaded = new ReactiveVar(0);
   this.numPostsFetched = new ReactiveVar(NUM_POSTS_IN_BATCH);
 
@@ -6,8 +10,8 @@ Template.recent.created = function () {
     var limit = this.numPostsFetched.get();
     var postsSub = this.subscribe('recentPosts', limit);
     if (postsSub.ready()) {
-      console.log("received recent posts");
       this.loaded.set(limit);
+      this.initialLoaded = true;
     }
 
     this.subscribe('otherUserInfo');
@@ -20,12 +24,12 @@ Template.recent.onRendered(function() {
   var instance = this;
 
   this.autorun(function () {
-    if (!this.subscriptionsReady()) {
-      // this.$('.posts-container').hide();
-      // Utils.showLoading();
+    if (!this.subscriptionsReady() && !this.initialLoaded) {
+      this.$('.posts-container').hide();
+      Utils.showLoading();
     } else {
-      // this.$('.posts-container').fadeIn();
-      // Utils.hideLoading();
+      this.$('.posts-container').fadeIn();
+      Utils.hideLoading();
     }
   }.bind(this));
 
@@ -38,7 +42,8 @@ Template.recent.onRendered(function() {
   $(document).on("scroll touchmove", (function (e) {
     var distanceY = $('.overflow-scroll').scrollTop();
     var $target = $('.post-end-mark');
-    var threshold = distanceY+$(document).height();
+    var epsilon = 200;
+    var threshold = distanceY+$(document).height()+epsilon;
     if ($target.offset().top < threshold) {
       fetchMorePosts();
     }
@@ -48,13 +53,9 @@ Template.recent.onRendered(function() {
 
 Template.recent.helpers({
   posts: function () {
-    console.log("posts helper");
     return Posts.find({}, {
       sort: {createdAt: -1},
       limit: Template.instance().loaded.get()
     });
   }
-  // posts: function () {
-  //   return Posts.find({}, {sort: {createdAt: -1}});
-  // }
 });
