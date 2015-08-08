@@ -28,9 +28,11 @@ Template.recent.onRendered(function() {
     if (!this.postsSub.ready() && !this.initialLoaded) {
       this.$('.posts-container').hide();
       Utils.showLoading();
+      Session.set("ready", false);
     } else {
       this.$('.posts-container').fadeIn();
       Utils.hideLoading();
+      Session.set("ready", true);
     }
   }.bind(this));
 

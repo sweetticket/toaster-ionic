@@ -3,6 +3,7 @@ Template.appLayout.onCreated(function() {
 
   this.autorun(function() {
     this.subscribe("notifications");
+    this.subscribe('userNetwork');
   }.bind(this));
 });
 
@@ -12,7 +13,28 @@ Template.appLayout.onRendered(function() {
   }
 
   FastClick.attach(document.body);
-  
+  Session.set("justSignedIn", false);
+
+});
+
+Template.appLayout.onRendered(function() {
+
+  this.autorun(function() {
+  var ready = Session.get("ready");
+  var justSignedIn = Session.get("justSignedIn");
+  debugger
+
+    if ((Meteor.userId() && ready) || (justSignedIn && ready)){
+      $('.resume-network').addClass('show');
+        setTimeout(function () {
+          Session.set("justSignedIn", false);
+          $('.resume-network').fadeOut("slow", function() {
+              $(this).removeClass("show");
+          });
+        }, 2000);
+      }
+  });
+
 });
 
 Template.appLayout.events({
@@ -99,5 +121,15 @@ Template.appLayout.helpers({
       return "show";
     }
     return "";
-  }
+  },
+  // "resumedUser": function(e, template) {
+
+  // },
+  "networkDomain": function(e, template) {
+    var network = Networks.findOne();
+    if (network) {
+      return network.domain;  
+    }
+  },
 });
+

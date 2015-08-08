@@ -15,7 +15,7 @@ Template.settings.events({
 });
 
 Template.settings.helpers({
-  networkDomain: function() {
+  "networkDomain": function() {
     var network = Networks.findOne();
     if (network) {
       return network.domain;  
