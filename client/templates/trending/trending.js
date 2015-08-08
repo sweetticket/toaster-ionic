@@ -1,35 +1,24 @@
-var ranking = function(post) {
-
-  /* Score = P / (T+2)^G
-  P = points of an item (can subtract 1 to negate submitters vote if you want)
-  T = time since submission (in hours)
-  G = Gravity, ie. 1.8
-  */
-  var now = moment();
-
-  var T = now.diff(post.createdAt, 'hours');
-  var P = post.numLikes;
-  var G = 1.8;
-  return P / Math.pow(T+2, G);
-  }
-
-var compareRankings = function(a,b) {
-  if (ranking(a) > ranking(b))
-    return -1;
-  if (ranking(a) < ranking(b))
-    return 1;
-  return 0;
-}
-
 Template.trending.created = function () {
+  this.loaded = new ReactiveVar(0);
+  this.numPostsFetched = new ReactiveVar(NUM_POSTS_IN_BATCH);
+
   this.autorun(function () {
+    var limit = this.numPostsFetched.get();
+    var postsSub = this.subscribe('trendingPosts', limit);
+    if (postsSub.ready()) {
+      console.log("received "+limit+"trending posts");
+      this.loaded.set(limit);
+    }
+
     this.subscribe('otherUserInfo');
-    this.subscribe('posts');
     this.subscribe('comments');
   }.bind(this));
 };
 
 Template.trending.onRendered(function() {
+  var instance = this;
+  var limit = this.numPostsFetched.get();
+
   this.autorun(function () {
     if (!this.subscriptionsReady()) {
       this.$('.posts-container').hide();
@@ -39,12 +28,28 @@ Template.trending.onRendered(function() {
       Utils.hideLoading();
     }
   }.bind(this));
+
+  // scroll
+  $(window).on("scroll touchmove touchend", (function (e) {
+    console.log($(window).scrollTop());
+    var $target = $('.post-end-mark');
+    if (!$target) { return false; }
+
+    var threshold = $(window).scrollTop()+$(window).height();
+    if ($target.offset().top < threshold) {
+      console.log("load more");
+      limit += NUM_POSTS_IN_BATCH;
+      instance.numPostsFetched.set(limit);
+    }
+  }));
 });
 
 Template.trending.helpers({
   posts: function() {
-    var postsArr = Posts.find({}).fetch();
-    postsArr.sort(compareRankings);
+    console.log("posts helper called");
+    var postsArr = Posts.find({},
+      {limit: Template.instance().loaded.get()}).fetch();
+    postsArr.sort(Utils.compareRank);
     return postsArr;
   }
 });

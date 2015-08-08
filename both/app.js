@@ -20,6 +20,9 @@ Meteor.startup(function() {
     //   console.log("stored token");
     // });
 
+    // Set number of posts to fetch at once
+    NUM_POSTS_IN_BATCH = 8;
+
     // Set MomentJS Korean
     moment.locale('ko');
   }

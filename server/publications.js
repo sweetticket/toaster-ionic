@@ -3,12 +3,27 @@ Meteor.publish('userNetwork', function() {
   return Networks.find({_id: user.networkId});
 });
 
-Meteor.publish('posts', function() {
+Meteor.publish('recentPosts', function (limit) {
+  // Meteor._sleepForMs(2000);
   var user = Meteor.users.findOne({_id: this.userId});
-  return Posts.find({
-    networkId: user.networkId
+  return Posts.find({networkId: user.networkId}, {
+    sort: {createdAt: -1},
+    limit: limit
   });
 });
+
+Meteor.publish('trendingPosts', function (limit) {
+  // Meteor._sleepForMs(2000);
+  var user = Meteor.users.findOne({_id: this.userId});
+  return Posts.find({networkId: user.networkId}, {
+    limit: limit
+  });
+  // return Posts.find({networkId: user.networkId},
+  //   sort: {createdAt: -1},
+  //   limit: limit
+  // );
+});
+
 
 Meteor.publish('comments', function() {
   var user = Meteor.users.findOne({_id: this.userId});
