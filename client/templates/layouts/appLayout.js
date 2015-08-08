@@ -12,7 +12,16 @@ Template.appLayout.onRendered(function() {
   }
 
   FastClick.attach(document.body);
-  
+
+  if (Meteor.isCordova) {
+    document.addEventListener('resume', function () {
+      $('.resume-network').addClass('show');
+      setTimeout(function () {
+        $('.resume-network').removeClass('show');
+      }, 800);
+    }, false);
+  }
+
 });
 
 Template.appLayout.events({
