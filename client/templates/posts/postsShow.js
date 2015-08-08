@@ -5,11 +5,11 @@ Template.postsShow.created = function () {
     this.subscribe('otherUserInfo');
 
     if (!this.subscriptionsReady()) {
-      $(".product-detail").hide();
+      // $(".product-detail").hide();
       Utils.showLoading();
     } else {
       Utils.hideLoading();
-      $(".product-detail").fadeIn("fast");
+      // $(".product-detail").fadeIn("fast");
     }
   }.bind(this));
   Session.set("shouldHideTabs", true);
