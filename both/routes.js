@@ -35,6 +35,10 @@ Router.route('/notVerified', {
   name: 'notVerified'
 });
 
+Router.route('/settings', {
+  name: 'settings'
+});
+
 Router.route('/settings/about', {
   name: 'about'
 });
@@ -46,3 +50,6 @@ Router.route('/settings/terms', {
 Router.route('/settings/privacy', {
   name: 'privacy'
 });
+
+
+

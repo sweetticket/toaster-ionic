@@ -1,7 +1,13 @@
+
+Template.settings.created = function() {
+  this.autorun(function () {
+    this.subscribe('userNetwork');
+  }.bind(this));
+};
+
 Template.settings.events({
   'click [data-action=sign-out]': function (event, template) {
     Meteor.logout(function () {
-      IonModal.close();
       Router.go('/');
     });
   }

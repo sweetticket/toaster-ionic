@@ -1,5 +1,15 @@
 <template name="settings">
-  {{#ionModal title="설정"}}
+  {{#contentFor "headerButtonLeft"}}
+    {{>ionNavBackButton class="button-positive" text=false}}
+  {{/contentFor}}
+
+  {{#contentFor "headerTitle"}}
+    <h1 class="title">설정</h1>
+  {{/contentFor}}
+
+  {{#ionView}}
+    {{#ionContent}}
+
     <div class="list settings-list">
 
       <div class="item network-container">
@@ -45,7 +55,7 @@
       </div>
 
       <a class="item item-icon-right settings-about" href="/settings/about">
-        토스터 앱 소계
+        토스터 앱 소개
         {{> ionIcon icon="ios-arrow-right"}}
       </a>
       <a class="item item-icon-right settings-terms" href="/settings/terms">
@@ -57,5 +67,7 @@
         {{> ionIcon icon="ios-arrow-right"}}
       </a>
     </div>
-  {{/ionModal}}
+
+    {{/ionContent}}
+  {{/ionView}}
 </template>

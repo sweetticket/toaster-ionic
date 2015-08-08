@@ -1,3 +1,8 @@
+Meteor.publish('userNetwork', function() {
+  var user = Meteor.users.findOne({_id: this.userId});
+  return Networks.find({_id: user.networkId});
+});
+
 Meteor.publish('posts', function() {
   var user = Meteor.users.findOne({_id: this.userId});
   return Posts.find({

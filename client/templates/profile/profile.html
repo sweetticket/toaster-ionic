@@ -1,9 +1,9 @@
 <template name="profile">
   {{#if currentUser}}
     {{#contentFor "headerButtonRight"}}
-      <button class="button button-clear pull-right button-positive" data-ion-modal="settings">
+      <a class="button button-clear pull-right button-positive" href="/settings">
         {{> ionIcon icon='ios-gear-outline'}}
-      </button>
+      </a>
     {{/contentFor}}
   {{/if}}
 

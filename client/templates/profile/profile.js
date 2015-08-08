@@ -58,13 +58,6 @@ Template.profile.helpers({
     return Posts.findOne({_id: String(this)})
   },
 
-  networkDomain: function() {
-    var network = Networks.findOne();
-    if (network) {
-      return network.domain;  
-    }
-  },
-
   showToasts: function() {
     return Session.get("profileFilter") === "myToasts";
   },

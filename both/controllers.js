@@ -70,3 +70,15 @@ SignUpController = AppController.extend({
 
 NotVerifiedController = AppController.extend({
 });
+
+SettingsController = AppController.extend({
+});
+
+AboutController = AppController.extend({
+});
+
+TermsController = AppController.extend({
+});
+
+PrivacyController = AppController.extend({
+});
