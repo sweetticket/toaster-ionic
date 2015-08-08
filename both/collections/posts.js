@@ -217,7 +217,8 @@ Meteor.methods({
         toUserId: authorId,
         postId: postId,
         body: "토스트가 공감을 받았어요 :)",
-        icon: "thumbsup"
+        icon: "thumbsup",
+        type: "upvote"
       });
     } else {
 
@@ -234,7 +235,8 @@ Meteor.methods({
         toUserId: authorId,
         postId: postId,
         body: "토스트가 공감을 받았어요 :)",
-        icon: "thumbsup"
+        icon: "thumbsup",
+        type: "upvote"
       });
     }
   },
@@ -293,7 +295,8 @@ Meteor.methods({
         toUserId: authorId,
         postId: postId,
         body: "토스트가 비공감을 받았어요 :(",
-        icon: "thumbsdown"
+        icon: "thumbsdown",
+        type: "downvote"
       });
 
     } else {
@@ -311,7 +314,8 @@ Meteor.methods({
         toUserId: authorId,
         postId: postId,
         body: "토스트가 비공감을 받았어요 :(",
-        icon: "thumbsdown"
+        icon: "thumbsdown",
+        type: "downvote"
       });
     }
   }
