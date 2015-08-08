@@ -17,6 +17,10 @@
 	color: $positive;
 	opacity: 0.6;
 	padding-left: 30px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	width: 80%;
 }
 
 .notification-item .created-at {

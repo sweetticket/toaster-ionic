@@ -25,7 +25,7 @@ Meteor.methods({
         fromUserId: user._id,
         toUserId: authorId,
         postId: info.postId,
-        body: "댓글이 달렸어요: " + info.body,
+        body: "댓글이 달렸어요: \"" + info.body + "\"",
         icon: "ios-chatbubble"
       });
     });
