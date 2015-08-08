@@ -25,9 +25,7 @@ Meteor.methods({
         fromUserId: user._id,
         toUserId: authorId,
         postId: info.postId,
-        //CHANGED THIS FOR NOW
-        // body: "댓글이 달렸어요: \"" + info.body + "\"",
-        body: "이 토스트가 댓글이 달렸어요",
+        body: "토스트에 댓글이 달렸어요",
         icon: "ios-chatbubble",
         type: "comment"
       });
