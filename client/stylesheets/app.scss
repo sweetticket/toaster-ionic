@@ -18,6 +18,20 @@
   color: #fff;
 }
 
+.new-notifs {
+  position: absolute;
+  bottom: 25px;
+  right: 34%;
+  z-index: 10;
+  color: $positive;
+  font-size: 12px;
+  display: none;
+}
+
+.new-notifs.show {
+  display: block;
+}
+
 .button.button-positive {
   border-color: #ff464f;
   background-color: #ff464f;

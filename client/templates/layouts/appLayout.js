@@ -10,6 +10,14 @@ Template.appLayout.onRendered(function() {
   if (Router.current().route.getName() === 'recent') {
     $('.tabs a:first-child').addClass('active');
   }
+
+  // this.autorun(function() {
+  //   if (Notifications.findOne({isRead: false})){
+  //     $('.new-notifs').addClass('show');
+  //   } else {
+  //     $('.new-notifs').removeClass('show');
+  //   }
+  // });
 });
 
 Template.appLayout.events({
@@ -81,7 +89,7 @@ Template.appLayout.events({
     var isActive = ($(event.target).is('a') && $(event.target).hasClass('active'))
                     || ($(event.target).is('i') && $(event.target).parent().hasClass('active'));
     if (!isActive) {
-      $('.tabs a.active').removeClass('active');
+      $('.tabs a.active').removeClass('active'); 
     }
   }
 });
@@ -90,5 +98,11 @@ Template.appLayout.helpers({
   "shouldHideTab": function (e, template) {
     var shouldHideTabs = Session.get("shouldHideTabs") || !Meteor.user();
     return shouldHideTabs;
+  },
+  "newExist": function (e, template) {
+    if (Notifications.findOne({isRead: false})) {
+      return "show";
+    }
+    return "";
   }
 });
