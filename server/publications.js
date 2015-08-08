@@ -13,15 +13,13 @@ Meteor.publish('recentPosts', function (limit) {
 });
 
 Meteor.publish('trendingPosts', function (limit) {
-  // Meteor._sleepForMs(2000);
+  // For trending posts, we take the most 200 recents posts
+  // and sort them in the order of our ranking metric
   var user = Meteor.users.findOne({_id: this.userId});
   return Posts.find({networkId: user.networkId}, {
-    limit: limit
+    sort: {createdAt: -1},
+    limit: 200
   });
-  // return Posts.find({networkId: user.networkId},
-  //   sort: {createdAt: -1},
-  //   limit: limit
-  // );
 });
 
 

@@ -8,8 +8,8 @@ Template.recent.created = function () {
 
   this.autorun(function () {
     var limit = this.numPostsFetched.get();
-    var postsSub = this.subscribe('recentPosts', limit);
-    if (postsSub.ready()) {
+    this.postsSub = this.subscribe('recentPosts', limit);
+    if (this.postsSub.ready()) {
       this.loaded.set(limit);
       this.initialLoaded = true;
     }
@@ -24,7 +24,8 @@ Template.recent.onRendered(function() {
   var instance = this;
 
   this.autorun(function () {
-    if (!this.subscriptionsReady() && !this.initialLoaded) {
+    // if (!this.subscriptionsReady() && !this.initialLoaded) {
+    if (!this.postsSub.ready() && !this.initialLoaded) {
       this.$('.posts-container').hide();
       Utils.showLoading();
     } else {
@@ -48,7 +49,6 @@ Template.recent.onRendered(function() {
       fetchMorePosts();
     }
   }));
-
 });
 
 Template.recent.helpers({
