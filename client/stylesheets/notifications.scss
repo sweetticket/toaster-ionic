@@ -26,7 +26,7 @@
 .notification-item .created-at {
 	font-size: 12px;
 	color: #999999;
-	padding-top: 5px;
+	padding-top: 15px;
 	padding-left: 5px;
 	margin-bottom: -5px;
 }
@@ -42,7 +42,7 @@
   height: auto;
   position: absolute;
   top: 13px;
-  margin-left: -12px;
+  margin-left: -15px;
   color: #bbb;
 }
 
@@ -55,8 +55,16 @@
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	width: 70%;
-	padding-left: 5px;
+  padding-left: 27px;
 	font-size: 17px;
 	padding-top: 5px;
 	color: #666;
+}
+
+.notification-item .count-unread {
+	color: $positive;
+	font-size: 12px;
+	position: absolute;
+	right: 45px;
+	bottom: 35px;
 }
