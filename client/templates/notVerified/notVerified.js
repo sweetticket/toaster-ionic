@@ -6,7 +6,9 @@ var _redirectToHome = function() {
   if (Session.get("isVerified")) {
     Session.set("isVerified", undefined);
     console.log("Go to recent");
-    Router.go("recent");
+    $('.tabs a.active').removeClass('active');
+    $('.tabs a:first-child').addClass('active');
+    Router.go("/");
   }
 }
 
@@ -20,7 +22,9 @@ Template.notVerified.onCreated(function() {
   this.autorun(function() {
     if (Session.get("isVerified")) {
       console.log("verified so good");
-      Router.go("recent");
+      $('.tabs a.active').removeClass('active');
+      $('.tabs a:first-child').addClass('active');
+      Router.go("/");
     }
   });
 });
@@ -30,7 +34,13 @@ Template.notVerified.events({
     var email = Meteor.user().emails[0].address;
     Meteor.call("sendVerifyingEmail", Meteor.userId(), email)
     Accounts.sendVerificationEmail(userId, email);
-  }
+  },
+  "click .signin-link": function (e, template) {
+    
+    //FIXME: WHY DOES IT TRANSITION SO WEIRDLY
+    e.preventDefault();
+    Router.go('/signIn');
+  },
 });
 
 Template.notVerified.onDestroyed(function() {

@@ -66,9 +66,15 @@
 }
 
 .not-verified-container {
-  padding: 30px 15px;
+  padding: 60px 15px;
   text-align: center;
   font-size: 17px;
+  background-color: #f3f7f7;
+  height: 100vh;
+}
+
+.not-verified-container .message {
+  padding-bottom: 10px;
 }
 
 .not-verified-container button {
