@@ -5,7 +5,7 @@ Template.notifications.onCreated(function() {
 });
 
 Template.notifications.onDestroyed(function() {
-  Meteor.call("readAllNotifications")
+  Meteor.call("readAllNotifications");
 });
 
 Template.notifications.helpers({
@@ -23,5 +23,11 @@ Template.notifications.helpers({
 Template._notificationItem.helpers({
   "postPreview": function() {
     return Posts.findOne({_id: this.postId}).body;
+  },
+  "isReadClass": function() {
+    if (!this.isRead) {
+      return "is-new";
+    }
+    return "";
   }
 });

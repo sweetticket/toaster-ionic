@@ -16,6 +16,7 @@
 	font-weight: bold;
 	color: $positive;
 	opacity: 0.6;
+	padding-left: 30px;
 }
 
 .notification-item .created-at {
@@ -26,9 +27,23 @@
 	margin-bottom: -5px;
 }
 
-.notification-item.item-icon-right .icon {
-  font-size: 20px;
-  color: #999999;
+.notification-item .icon {
+  font-size: 22px;
+  color: #aaa;
+}
+
+
+.item-icon-left .icon.ion-record {
+  font-size: 14px;
+  height: auto;
+  position: absolute;
+  top: 13px;
+  margin-left: -12px;
+  color: #bbb;
+}
+
+.notification-item .icon.ion-record.is-new {
+	color: $positive;
 }
 
 .notification-item .post-preview {
