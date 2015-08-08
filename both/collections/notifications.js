@@ -46,8 +46,8 @@ if (Meteor.isServer) {
             from: noti.fromUserId,
             title: '토스트',
             text: noti.body,
-            // query: {userId: noti.toUserId}
-            query: {}
+            query: {userId: noti.toUserId}
+            // query: {}
           }
           console.log(pushNoti);
           Push.send(pushNoti);

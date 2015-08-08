@@ -11,11 +11,13 @@ Meteor.startup(function() {
     Push.addListener('token', function (token) {
       console.log("HOWON ADDING TOKEN");
       PUSH_TOKEN = token;
-      Meteor.call('raix:push-update', {
-        appName: "Toaster",
-        token: token,
-        userId: ""
-      });
+      if (Push.appCollection.find().count() === 0) {
+        Meteor.call('raix:push-update', {
+          appName: "Toaster",
+          token: token,
+          userId: Meteor.userId() || ""
+        });
+      }
     });
 
     Push.addListener('message', function (msg) {
@@ -35,7 +37,6 @@ Meteor.startup(function() {
   }
 
   if (Meteor.isCordova) {
-    console.log("cordova phone");
     IonKeyboard.hideKeyboardAccessoryBar();
   }
 });
