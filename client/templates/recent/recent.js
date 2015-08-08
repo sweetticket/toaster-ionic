@@ -42,15 +42,13 @@ Template.recent.onRendered(function() {
   // scroll
   $(document).on("scroll touchmove", (function (e) {
     var $target = $('.post-end-mark');
-    if (!$target.length) {
-      return false;
-    }
-
-    var distanceY = $('.overflow-scroll').scrollTop();
-    var epsilon = 200;
-    var threshold = distanceY+$(document).height()+epsilon;
-    if ($target.offset().top < threshold) {
-      fetchMorePosts();
+    if ($target.length > 0) {
+      var distanceY = $('.overflow-scroll').scrollTop();
+      var epsilon = 200;
+      var threshold = distanceY+$(document).height()+epsilon;
+      if ($target.offset().top < threshold) {
+        fetchMorePosts();
+      }
     }
   }));
 });

@@ -12,6 +12,7 @@ Meteor.startup(function() {
       alert(JSON.stringify(token));
       console.log(token);
       console.log("HOWON ADDING TOKEN");
+      PUSH_TOKEN = token;
       Meteor.call('raix:push-update', {
         appName: "Toaster",
         token: token,
@@ -31,6 +32,7 @@ Meteor.startup(function() {
   }
 
   if (Meteor.isServer) {
+    PUSH_TOKEN = null;
     Push.debug = true;
   }
 
