@@ -32,26 +32,27 @@ if (Meteor.isServer) {
           Notifications.remove(exists._id);
       }
 
-
+      console.log("before adding noti:", noti);
       Notifications.insert(_.extend(noti, {
         isRead: false,
         countUnread: countUnread,
         createdAt: new Date()
-      }, function (err, notificationId) {
+      }), function (err, notificationId) {
         console.log("noti added", notificationId);
         if (err) {
           console.log("NOTIFICATION INSERT ERR", err);
         } else {
-          debugger
-          Push.send({
+          var pushNoti = {
             from: noti.fromUserId,
             title: '토스트',
             text: noti.body,
-            query: {userId: noti.toUserId}
-            // query: {}
-          });
+            // query: {userId: noti.toUserId}
+            query: {}
+          }
+          console.log(pushNoti);
+          Push.send(pushNoti);
         }
-      }))
+      });
     },
 
     readAllNotifications: function() {

@@ -42,7 +42,7 @@ Template.recent.onRendered(function() {
   // scroll
   $(document).on("scroll touchmove", (function (e) {
     var $target = $('.post-end-mark');
-    if (!$target) {
+    if (!$target.length) {
       return false;
     }
 

@@ -1,0 +1,1 @@
+meteor run android-device --mobile-server toaster2.meteor.com
