@@ -13,6 +13,7 @@ Template._inlineNewComment.events({
       }, function() {
         // scroll to bottom when the new comment is created
         window.scrollTo(0, document.body.scrollHeight);
+        $(template.find(".inline-comment-body")).blur();
       });
     }
   }
