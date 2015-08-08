@@ -7,6 +7,32 @@
 @import '../../.meteor/local/build/programs/server/assets/packages/meteoric_ionicons-sass/_ionicons';
 
 
+.resume-network {
+  width: 80%;
+  height: 100px;
+  position: absolute;
+  top: 120px;
+  left: 10%;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  font-size: 18px;
+  z-index: 40;
+  padding-top: 20px;
+  border-radius: 10px;
+  opacity: 0;
+}
+
+.resume-network.show {
+  opacity: 1;
+}
+
+.resume-domain {
+  font-weight: bold;
+  color: $positive-light;
+  font-size: 20px;
+}
+
 .bar.bar-stable {
   // border-color: #0286c2;
   background-color: #ff464f;

@@ -3,6 +3,7 @@ Template.appLayout.onCreated(function() {
 
   this.autorun(function() {
     this.subscribe("notifications");
+    this.subscribe('userNetwork');
   }.bind(this));
 });
 
@@ -15,11 +16,13 @@ Template.appLayout.onRendered(function() {
 
   if (Meteor.isCordova) {
     document.addEventListener('resume', function () {
-      $('.resume-network').addClass('show');
-      setTimeout(function () {
-        $('.resume-network').removeClass('show');
-      }, 800);
-    }, false);
+      if (Meteor.user()){
+        $('.resume-network').addClass('show');
+          setTimeout(function () {
+            $('.resume-network').removeClass('show');
+          }, 2000);
+        }
+      }, false);
   }
 
 });
@@ -108,5 +111,12 @@ Template.appLayout.helpers({
       return "show";
     }
     return "";
-  }
+  },
+  "networkDomain": function() {
+    var network = Networks.findOne();
+    if (network) {
+      return network.domain;  
+    }
+  },
 });
+
