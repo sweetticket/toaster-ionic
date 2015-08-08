@@ -29,5 +29,11 @@ Template._notificationItem.helpers({
   },
   "postFromNoti": function() {
     return Posts.findOne({_id: this.postId});
+  },
+  "getCoundUnread": function() {
+    if (this.countUnread < 1) {
+      return "";
+    }
+    return this.countUnread;
   }
 });

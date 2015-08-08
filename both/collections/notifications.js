@@ -12,8 +12,27 @@ if (Meteor.isServer) {
       //   return false;
       // }
 
+      var exists = Notifications.findOne({
+                      toUserId: noti.toUserId,
+                      postId: noti.postId,
+                      body: noti.body
+                    });
+
+      var countUnread = 1;
+
+      if (exists) {
+
+        //FIXME: MAYBE ADD A 'COUNT' FIELD
+        //(NUMBER OF SAME-TYPE NOTIFS FOR THE SAME POST,
+        // OR NUMBER OF NOTIFS UNREAD(?) THAT ARE SAME-TYPE AND SAME POST
+        countUnread += exists.countUnread;
+        Notifications.remove(exists._id);
+      }
+
+
       Notifications.insert(_.extend(noti, {
         isRead: false,
+        countUnread: countUnread,
         createdAt: new Date()
       }, function (err, notificationId) {
         console.log("noti added", notificationId);
@@ -36,7 +55,8 @@ if (Meteor.isServer) {
       Notifications.update({
         toUserId: userId
       }, {$set: {
-        isRead: true
+        isRead: true,
+        countUnread: 0,
       }}, {
         multi: true
       });
