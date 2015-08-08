@@ -21,13 +21,13 @@ Template.notifications.helpers({
 });
 
 Template._notificationItem.helpers({
-  "postPreview": function() {
-    return Posts.findOne({_id: this.postId}).body;
-  },
   "isReadClass": function() {
     if (!this.isRead) {
       return "is-new";
     }
     return "";
+  },
+  "postFromNoti": function() {
+    return Posts.findOne({_id: this.postId});
   }
 });
