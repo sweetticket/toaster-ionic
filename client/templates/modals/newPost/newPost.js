@@ -1,3 +1,12 @@
+Template.newPost.rendered = function() {
+  // $('.new-post-form textarea').focus();
+  // if (Meteor.isCordova) {
+  //   //for android
+  //   cordova.plugins.Keyboard.show();
+  // }
+
+};
+
 AutoForm.hooks({
   'products-new-form': {
     onSuccess: function (operation, result, template) {

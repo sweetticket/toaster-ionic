@@ -8,6 +8,7 @@ Template.settings.created = function() {
 Template.settings.events({
   'click [data-action=sign-out]': function (event, template) {
     Meteor.logout(function () {
+      window.scrollTo(0, 0);
       Router.go('/');
     });
   }

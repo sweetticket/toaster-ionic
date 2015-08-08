@@ -1,10 +1,26 @@
+Template.signIn.rendered = function() {
+  
+  // this.autorun(function () {
+  //   $('#email').focus();
+  //   var $input = this.find('#email')
+
+  //     if($input){
+  //         i$nput.focus()
+  //     }
+  // });
+  window.scrollTo(0, 0);
+};
+
 Template.signIn.events({
   "click .signup-link": function (e, template) {
     e.preventDefault();
     Router.go("/signUp");
   },
 
-  "click .signin-btn": function (e, template) {
+  "click .signin-btn.enabled": function (e, template) {
+    window.scrollTo(0, 0);
+    $('input').blur();
+
     var email = $('#email').val().trim();
     var password = $('#password').val();
     Meteor.loginWithPassword(email, password, function (err) {

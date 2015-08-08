@@ -24,8 +24,12 @@
 
 .signup-container {
   background-color: #f3f7f7;
-  height: 100vh;
-  padding-top: 80px;
+  height: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding-top: 40px;
 }
 
 .signup-btn, .signin-btn {

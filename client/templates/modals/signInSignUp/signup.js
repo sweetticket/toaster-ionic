@@ -1,3 +1,7 @@
+Template.signUp.rendered = function() {
+  $('#email').focus(); //FIXME: DOESNT WORK ON PHONE
+  window.scrollTo(0, 0);
+};
 
 var _toggleEnableSignUp = function() {
   var email = $.trim($('#new-email').val());
@@ -16,7 +20,10 @@ Template.signUp.events({
     // _toggleEnableSignUp();
   },
 
-  "click .signup-btn": function (e, template) {
+  "click .signup-btn.enabled": function (e, template) {
+    window.scrollTo(0, 0);
+    $('input').blur();
+
     var email = $('#email').val();
     var password = $('#password').val();
     var password2 = $('#password2').val();

@@ -1,5 +1,5 @@
 <template name="newPost">
-  {{#ionModal customTemplate=true focusFirstInput=true}}
+  {{#ionModal customTemplate=true}}
     {{# autoForm collection="Posts" id="products-new-form" type="insert"}}
       <div class="bar bar-header bar-stable">
         <button data-dismiss="modal" type="button" class="button button-clear">취소</button>
@@ -7,7 +7,7 @@
         <button type="submit" class="button button-positive button-clear submit-post-btn">완료</button>
       </div>
       <div class="content has-header overflow-scroll new-post-form">
-        {{> afQuickField name="body"}}
+        {{> afQuickField name="body" autofocus="1"}}
       </div>
     {{/autoForm}}
 
