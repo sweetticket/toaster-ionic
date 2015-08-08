@@ -39,6 +39,7 @@ if (Meteor.isServer) {
         if (err) {
           console.log("NOTIFICATION INSERT ERR", err);
         } else {
+          debugger
           Push.send({
             from: noti.fromUserId,
             title: '토스트',
