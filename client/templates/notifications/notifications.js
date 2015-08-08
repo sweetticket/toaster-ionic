@@ -14,9 +14,10 @@ Template.notifications.helpers({
   },
 
   notifications: function() {
-    return Notifications.find({}, {sort: {
-      createdAt: -1
-    }});
+    return Notifications.find({}, {
+      sort: {createdAt: -1},
+      limit: 50
+    });
   }
 });
 

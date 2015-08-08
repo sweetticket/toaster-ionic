@@ -41,8 +41,12 @@ Template.recent.onRendered(function() {
 
   // scroll
   $(document).on("scroll touchmove", (function (e) {
-    var distanceY = $('.overflow-scroll').scrollTop();
     var $target = $('.post-end-mark');
+    if (!$target) {
+      return false;
+    }
+
+    var distanceY = $('.overflow-scroll').scrollTop();
     var epsilon = 200;
     var threshold = distanceY+$(document).height()+epsilon;
     if ($target.offset().top < threshold) {
