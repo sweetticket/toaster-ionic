@@ -5,13 +5,21 @@ Template.postsShow.created = function () {
     this.subscribe('otherUserInfo');
 
     if (!this.subscriptionsReady()) {
+      // $(".product-detail").hide();
       Utils.showLoading();
     } else {
       Utils.hideLoading();
+      // $(".product-detail").fadeIn("fast");
     }
   }.bind(this));
   Session.set("shouldHideTabs", true);
 };
+
+// Template.postsShow.onRendered(function() {
+//   this.autorun(function() {
+
+//   }.bind(this));
+// })
 
 Template.postsShow.onDestroyed(function() {
   Session.set("shouldHideTabs", false);
