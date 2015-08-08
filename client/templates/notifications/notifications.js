@@ -13,3 +13,10 @@ Template.notifications.helpers({
     }});
   }
 });
+
+  // "apn": {
+  //   "passphrase": "13201320",  
+  //   "key": "prod_key.pem",
+  //   "cert": "prod_cert.pem",
+  //   "gateway": "gateway.push.apple.com"
+  // },

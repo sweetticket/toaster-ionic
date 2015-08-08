@@ -3,15 +3,21 @@ Template.postsShow.created = function () {
     this.subscribe('post', Router.current().params._id);
     this.subscribe('comments');
     this.subscribe('otherUserInfo');
-
-    if (!this.subscriptionsReady()) {
-      Utils.showLoading();
-    } else {
-      Utils.hideLoading();
-    }
   }.bind(this));
   Session.set("shouldHideTabs", true);
 };
+
+Template.postsShow.onRendered(function() {
+  this.autorun(function() {
+    if (!this.subscriptionsReady()) {
+      $(template.find(".product-detail")).hide();
+      Utils.showLoading();
+    } else {
+      Utils.hideLoading();
+      $(template.find(".product-detail")).fadeIn("fast");
+    }
+  }.bind(this));
+})
 
 Template.postsShow.onDestroyed(function() {
   Session.set("shouldHideTabs", false);
