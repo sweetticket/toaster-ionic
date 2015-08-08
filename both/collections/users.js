@@ -95,4 +95,5 @@ Meteor.startup(function() {
     Push.appCollection.update({
       token: PUSH_TOKEN
     }, {$set: { userId: user.user._id }});
+  });
 });
