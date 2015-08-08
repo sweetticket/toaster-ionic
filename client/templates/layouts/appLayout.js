@@ -13,17 +13,27 @@ Template.appLayout.onRendered(function() {
   }
 
   FastClick.attach(document.body);
+  Session.set("justSignedIn", false);
 
-  if (Meteor.isCordova) {
-    document.addEventListener('resume', function () {
-      if (Meteor.user()){
-        $('.resume-network').addClass('show');
-          setTimeout(function () {
-            $('.resume-network').removeClass('show');
-          }, 2000);
-        }
-      }, false);
-  }
+});
+
+Template.appLayout.onRendered(function() {
+
+  this.autorun(function() {
+  var ready = Session.get("ready");
+  var justSignedIn = Session.get("justSignedIn");
+  debugger
+
+    if ((Meteor.userId() && ready) || (justSignedIn && ready)){
+      $('.resume-network').addClass('show');
+        setTimeout(function () {
+          Session.set("justSignedIn", false);
+          $('.resume-network').fadeOut("slow", function() {
+              $(this).removeClass("show");
+          });
+        }, 2000);
+      }
+  });
 
 });
 
@@ -112,7 +122,10 @@ Template.appLayout.helpers({
     }
     return "";
   },
-  "networkDomain": function() {
+  // "resumedUser": function(e, template) {
+
+  // },
+  "networkDomain": function(e, template) {
     var network = Networks.findOne();
     if (network) {
       return network.domain;  

@@ -20,11 +20,11 @@
   z-index: 40;
   padding-top: 20px;
   border-radius: 10px;
-  opacity: 0;
+  display: none;
 }
 
 .resume-network.show {
-  opacity: 1;
+  display: block;
 }
 
 .resume-domain {
