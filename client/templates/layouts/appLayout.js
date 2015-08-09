@@ -3,7 +3,7 @@ Template.appLayout.onCreated(function() {
 
   this.autorun(function() {
     this.subscribe("notifications");
-    this.subscribe('userNetwork');
+    this.subscribe("userNetwork");
   }.bind(this));
 });
 
@@ -13,27 +13,38 @@ Template.appLayout.onRendered(function() {
   }
 
   FastClick.attach(document.body);
-  Session.set("justSignedIn", false);
 
-});
+  // this.autorun(function() {
+  //   var ready = Session.get("ready");
+  //   // var currentUserId = Session.get("currentUserId");
+  //   var network = Networks.findOne();
+  //   if (Meteor.user() && ready && network){
+  //     $('.resume-network').addClass('show');
+  //       setTimeout(function () {
+  //         $('.resume-network').fadeOut("slow", function() {
+  //             $(this).removeClass("show");
+  //         });
+  //       }, 2000);
+  //     }
+  // });
 
-Template.appLayout.onRendered(function() {
 
-  this.autorun(function() {
-  var ready = Session.get("ready");
-  var justSignedIn = Session.get("justSignedIn");
-  debugger
-
-    if ((Meteor.userId() && ready) || (justSignedIn && ready)){
-      $('.resume-network').addClass('show');
-        setTimeout(function () {
-          Session.set("justSignedIn", false);
-          $('.resume-network').fadeOut("slow", function() {
-              $(this).removeClass("show");
-          });
-        }, 2000);
-      }
-  });
+    //FIXME: THIS IS ONLY CALLED ONCE T-T
+    this.autorun(function() {
+      debugger
+      var ready = Session.get("ready");
+      var network = Networks.findOne();
+      var currentUserId = Session.get("currentUserId");
+        if (Meteor.user() && network && ready){
+          $('.resume-network').addClass('show');
+          $('.resume-domain').text('@' + network.domain);
+            setTimeout(function () {
+              $('.resume-network').fadeOut("slow", function() {
+                  $(this).removeClass("show");
+              });
+            }, 2000);
+          }
+        });
 
 });
 

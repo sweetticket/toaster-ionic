@@ -16,6 +16,7 @@ Template.recent.created = function () {
 
     this.subscribe('otherUserInfo');
     this.subscribe('comments');
+    this.subscribe('userNetwork');
   }.bind(this));
 };
 
