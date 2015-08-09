@@ -23,7 +23,7 @@ reactive-var
 accounts-password
 email
 accounts-ui
-raix:push@2.6.12
+raix:push@2.6.11
 fortawesome:fontawesome
 reactive-dict
 fastclick

@@ -90,13 +90,13 @@ Meteor.startup(function() {
     });
   }
 
-  // Accounts.onLogin(function (user) {
-  //   console.log("Setting userId for Push setting");
-  //   // if Mobile, set token
-  //   if (Push.appCollection) {
-  //     Push.appCollection.update({
-  //       token: PUSH_TOKEN
-  //     }, {$set: { userId: user.user._id }});
-  //   }
-  // });
+  Accounts.onLogin(function (user) {
+    console.log("Setting userId for Push setting");
+    // if Mobile, set token
+    if (Push.appCollection) {
+      Push.appCollection.update({
+        token: PUSH_TOKEN
+      }, {$set: { userId: user.user._id }});
+    }
+  });
 });
