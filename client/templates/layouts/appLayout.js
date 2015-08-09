@@ -36,22 +36,22 @@ Template.appLayout.onRendered(function() {
       var currentUserId = Session.get("currentUserId");
       var firstOpened = Session.get("firstOpened");
         if (Meteor.user() && network && ready && firstOpened){
-          $('.resume-network').addClass('show');
-          // $('.resume-domain').text('@' + network.domain);
+          if ($('.resume-network').length === 0){
 
-          var popup = "<div class='resume-network'>"
-                    + "<p>You are signed into</p>"
-                    + "<p class='resume-domain'>@" + network.domain +"</p>"
-                    + "</div>";
+            var popup = "<div class='resume-network'>"
+                      + "<p>You are signed into</p>"
+                      + "<p class='resume-domain'>@" + network.domain +"</p>"
+                      + "</div>";
 
-          $('body').append(popup);
+            $('body').append(popup);
 
-            setTimeout(function () {
-              $('.resume-network').fadeOut("slow", function() {
-                  Session.set("firstOpened", false);
-                  $(this).remove();
-              });
-            }, 2000);
+              setTimeout(function () {
+                $('.resume-network').fadeOut("slow", function() {
+                    Session.set("firstOpened", false);
+                    $(this).remove();
+                });
+              }, 2000);
+            }
           }
         });
 

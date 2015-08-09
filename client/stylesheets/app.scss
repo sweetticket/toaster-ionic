@@ -7,6 +7,10 @@
 @import '../../.meteor/local/build/programs/server/assets/packages/meteoric_ionicons-sass/_ionicons';
 
 
+.content.overflow-scroll {
+  bottom: 0px !important;
+}
+
 .resume-network {
   width: 80%;
   height: 100px;
