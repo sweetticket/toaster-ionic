@@ -64,7 +64,7 @@ Template.appLayout.events({
       buttons: [
         { text: '<i class="icon ion-social-facebook"></i> Post' },
         { text: '<i class="icon ion-social-twitter"></i> Tweet' },
-        { text: '<i class="icon ion-social-pinterest"></i> Pin' },
+        // { text: '<i class="icon ion-social-pinterest"></i> Pin' },
         { text: '<i class="icon ion-ios-email"></i> Email' },
       ],
       cancelText: 'Cancel',
@@ -78,11 +78,7 @@ Template.appLayout.events({
           console.log('Tweet!');
         }
         if (index === 2) {
-          //TODO
-          console.log('Pin!');
-        }
-        if (index === 3) {
-          //TODO
+          
           console.log('Email!');
         }
         return true;
@@ -96,25 +92,25 @@ Template.appLayout.events({
       buttons: [
         { text: '<i class="icon ion-social-facebook"></i> Post' },
         { text: '<i class="icon ion-social-twitter"></i> Tweet' },
-        { text: '<i class="icon ion-social-pinterest"></i> Pin' },
         { text: '<i class="icon ion-ios-email"></i> Email' },
       ],
       cancelText: 'Cancel',
       buttonClicked: function(index) {
         if (index === 0) {
-          //TODO
+          //CHANGE THIS URL LATER
+          var url = "https://www.facebook.com/sharer/sharer.php?u=toasterapp.meteor.com/getToaster&title=Toaster";
+          window.open(event.target.href, '_blank');
           console.log('Post!');
         }
         if (index === 1) {
-          //TODO
+          //CHANGE THIS URL LATER
+          var url = "http://twitter.com/home?status=Join+Toaster!+toasterapp.meteor.com/getToaster";
+          window.open(event.target.href, '_blank');
           console.log('Tweet!');
         }
         if (index === 2) {
-          //TODO
-          console.log('Pin!');
-        }
-        if (index === 3) {
-          //TODO
+          var url = "mailto:?subject=Join Toaster!&amp;body=Join Toaster! Go to toasterapp.meteor.com/getToaster and download the app!"
+          window.open(event.target.href, '_blank');
           console.log('Email!');
         }
         return true;
@@ -128,7 +124,7 @@ Template.appLayout.events({
     if (!isActive) {
       $('.tabs a.active').removeClass('active'); 
     }
-  }
+  },
 });
 
 Template.appLayout.helpers({

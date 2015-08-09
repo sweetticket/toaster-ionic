@@ -82,3 +82,6 @@ TermsController = AppController.extend({
 
 PrivacyController = AppController.extend({
 });
+
+GetToasterController = AppController.extend({
+});

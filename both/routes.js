@@ -51,5 +51,7 @@ Router.route('/settings/privacy', {
   name: 'privacy'
 });
 
-
+Router.route('/getToaster', {
+  name: 'getToaster'
+});
 
