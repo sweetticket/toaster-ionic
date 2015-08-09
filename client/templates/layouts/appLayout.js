@@ -99,18 +99,18 @@ Template.appLayout.events({
         if (index === 0) {
           //CHANGE THIS URL LATER
           var url = "https://www.facebook.com/sharer/sharer.php?u=toasterapp.meteor.com/getToaster&title=Toaster";
-          window.open(event.target.href, '_blank');
+          window.open(url, '_blank', 'location=yes');
           console.log('Post!');
         }
         if (index === 1) {
           //CHANGE THIS URL LATER
           var url = "http://twitter.com/home?status=Join+Toaster!+toasterapp.meteor.com/getToaster";
-          window.open(event.target.href, '_blank');
+          window.open(url, '_blank', 'location=yes');
           console.log('Tweet!');
         }
         if (index === 2) {
           var url = "mailto:?subject=Join Toaster!&amp;body=Join Toaster! Go to toasterapp.meteor.com/getToaster and download the app!"
-          window.open(event.target.href, '_blank');
+          window.open(url, '_blank', 'location=yes');
           console.log('Email!');
         }
         return true;
