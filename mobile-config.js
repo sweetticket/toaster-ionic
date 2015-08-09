@@ -46,3 +46,6 @@ App.setPreference('StatusBarStyle', 'lightcontent');
 App.configurePlugin('nl.x-services.plugins.launchmyapp', {
   URL_SCHEME: 'toaster'
 });
+
+App.accessRule('http://*');
+App.accessRule('mailto:*');
