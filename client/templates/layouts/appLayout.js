@@ -12,6 +12,8 @@ Template.appLayout.onRendered(function() {
     $('.tabs a:first-child').addClass('active');
   }
 
+  Session.set("firstOpened", true);
+
   FastClick.attach(document.body);
 
   // this.autorun(function() {
@@ -28,19 +30,26 @@ Template.appLayout.onRendered(function() {
   //     }
   // });
 
-
-    //FIXME: THIS IS ONLY CALLED ONCE T-T
     this.autorun(function() {
-      debugger
       var ready = Session.get("ready");
       var network = Networks.findOne();
       var currentUserId = Session.get("currentUserId");
-        if (Meteor.user() && network && ready){
+      var firstOpened = Session.get("firstOpened");
+        if (Meteor.user() && network && ready && firstOpened){
           $('.resume-network').addClass('show');
-          $('.resume-domain').text('@' + network.domain);
+          // $('.resume-domain').text('@' + network.domain);
+
+          var popup = "<div class='resume-network'>"
+                    + "<p>You are signed into</p>"
+                    + "<p class='resume-domain'>@" + network.domain +"</p>"
+                    + "</div>";
+
+          $('body').append(popup);
+
             setTimeout(function () {
               $('.resume-network').fadeOut("slow", function() {
-                  $(this).removeClass("show");
+                  Session.set("firstOpened", false);
+                  $(this).remove();
               });
             }, 2000);
           }

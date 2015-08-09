@@ -38,6 +38,7 @@ Template.signIn.events({
         //fixme do something
       } else {
         Session.set("currentUserId", Meteor.userId());
+        Session.set("firstOpened", true);
         // Session.set('currentTab', 'recent');
         $('.tabs a.active').removeClass('active');
         $('.tabs a:first-child').addClass('active');
