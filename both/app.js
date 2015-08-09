@@ -1,6 +1,6 @@
 // startup stuff
 
-Meteor.startup(function() {
+// Meteor.startup(function() {
   if (Meteor.isClient) {
     console.log("new version");
 
@@ -9,13 +9,14 @@ Meteor.startup(function() {
     });
 
     Push.addListener('token', function (token) {
-      console.log("HOWON ADDING TOKEN");
-      PUSH_TOKEN = token;
-      Meteor.call('raix:push-update', {
-        appName: "Toaster",
-        token: token,
-        userId: Meteor.userId() || ""
-      });
+      console.log("howon:", JSON.stringify(token));
+      // console.log("HOWON ADDING TOKEN");
+      // PUSH_TOKEN = token;
+      // Meteor.call('raix:push-update', {
+      //   appName: "Toaster",
+      //   token: token,
+      //   userId: Meteor.userId() || ""
+      // });
     });
 
     Push.addListener('message', function (msg) {
@@ -30,11 +31,11 @@ Meteor.startup(function() {
   }
 
   if (Meteor.isServer) {
-    PUSH_TOKEN = null;
+    // PUSH_TOKEN = null;
     Push.debug = true;
   }
 
   if (Meteor.isCordova) {
     IonKeyboard.hideKeyboardAccessoryBar();
   }
-});
+// });
