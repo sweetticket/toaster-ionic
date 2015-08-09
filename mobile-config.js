@@ -42,6 +42,7 @@ App.launchScreens({
 
 App.setPreference('StatusBarOverlaysWebView', true);
 App.setPreference('StatusBarStyle', 'lightcontent');
+App.setPreference('StatusBarOverlaysWebView', 'true');
 
 App.configurePlugin('nl.x-services.plugins.launchmyapp', {
   URL_SCHEME: 'toaster'
