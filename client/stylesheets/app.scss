@@ -48,6 +48,11 @@
   color: #fff;
 }
 
+button.button.button-clear.pull-left.button-positive.header-rep {
+    margin-left: 5px;
+    font-size: 17px;
+}
+
 .new-notifs {
   position: absolute;
   bottom: 25px;
@@ -120,6 +125,26 @@
   line-height: 35px;
 }
 
+.rep {
+  font-size: 10px;
+  color: #ff464f;
+  text-align: center;
+  width: 35px;
+  height: 35px;
+  margin-top: 5px;
+  text-align: center;
+  font-weight: bold;
+  opacity: 0.7;
+  border: $positive 1px solid;
+  border-radius: 20px;
+
+}
+
+.rep .author-rep {
+  font-size: 12px;
+  line-height: 32px;
+}
+
 .item {
   border-color: #ddd;
   background-color: #fff;
@@ -129,7 +154,7 @@
   display: block;
   margin: -1px;
   padding: 10px 10px 10px 10px;
-  min-height: 100px;
+  min-height: 120px;
   border-width: 1px;
   border-style: solid;
   font-size: 16px;
@@ -138,7 +163,7 @@
 .item p {
   width: 65%;
   margin-left: 54px;
-  margin-top: -35px;
+  margin-top: -80px;
   padding-bottom: 30px;
   font-size: 16px;
 }
@@ -178,7 +203,7 @@
   padding-left: 15px;
   padding-right: 38px;
   width: 100%;
-  height: 50px;
+  height: 50%;
   z-index: 10;
 
   &.has-voted {
@@ -194,7 +219,7 @@
   padding-right: 38px;
   top: 50%;
   width: 100%;
-  height: 40px;
+  height: 50%;
   z-index: 10;
 
   &.has-voted {
@@ -206,11 +231,11 @@
 }
 
 i.icon.ion-ios-arrow-up {
-  top: 10px;
+  top: 10%;;
 }
 
 i.icon.ion-ios-arrow-down {
-    top: 20px;
+    top: 43%;
 }
 
 .numlikes-container {
@@ -225,14 +250,6 @@ i.icon.ion-ios-arrow-down {
 
 .product-detail {
   padding-bottom: 44px; /* comment writing form height */
-}
-
-.product-detail .post-item .numlikes-container {
-  top: 25%;
-}
-
-.product-detail .post-item .downvote-button {
-  top: 40%;
 }
 
 .post-item-bottom {
@@ -404,6 +421,10 @@ i.icon.ion-ios-arrow-down {
 
 .comments-list {
   padding-left: 10px;
+}
+
+.comment-item.item p {
+  margin-top: -30px;
 }
 
 .comment-item-author {

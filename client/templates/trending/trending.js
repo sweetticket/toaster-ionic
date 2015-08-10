@@ -30,5 +30,8 @@ Template.trending.helpers({
     var postsArr = Posts.find({}).fetch();
     postsArr.sort(Utils.compareRank);
     return postsArr;
+  },
+  userRep: function() {
+    return Meteor.user().rep;
   }
 });

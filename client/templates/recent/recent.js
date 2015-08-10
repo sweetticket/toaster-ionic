@@ -62,5 +62,8 @@ Template.recent.helpers({
       sort: {createdAt: -1},
       limit: Template.instance().loaded.get()
     });
+  },
+  userRep: function() {
+    return Meteor.user().rep;
   }
 });
