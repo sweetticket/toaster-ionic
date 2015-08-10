@@ -458,7 +458,7 @@ textarea {
   left: 0;
   right: 0;
   width: 100%;
-  padding: 15px 10px;
+  padding: 25px 10px;
   -webkit-appearance: none;
   font-size: 18px;
   line-height: 2em;
@@ -502,5 +502,14 @@ textarea {
   right: 10px;
   bottom: 10px;
   font-size: 22px;
+}
+
+.bar.bar-header.bar-stable.modal-header {
+  height: 60px;
+  padding-top: 20px;
+}
+
+.bar.bar-header.bar-stable.modal-header h2 {
+  margin-top: 15px;
 }
 
