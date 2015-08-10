@@ -39,6 +39,19 @@ Meteor.startup(function() {
     console.log("im cordova");
     StatusBar.styleLightContent();
     StatusBar.backgroundColorByHexString("#ff464f");
-    IonKeyboard.hideKeyboardAccessoryBar();
+
+    // cordova.plugins.Keyboard.shrinkView(true);
+    // cordova.plugins.Keyboard.disableScrollingInShrinkView(true);
+    // IonKeyboard.hideKeyboardAccessoryBar();
+
+    // cordova.plugins.Keyboard.hideKeyboardAccessoryBar();
+
+    cordova.plugins.Keyboard.onshow = function () {
+      console.log("keyboard opens");
+    }
+
+    cordova.plugins.Keyboard.onhide = function () {
+      console.log("keyboad module workds");
+    }
   }
 });
