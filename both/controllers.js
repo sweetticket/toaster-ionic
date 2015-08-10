@@ -1,6 +1,6 @@
 var isLoggedIn = function() {
   if (!Meteor.loggingIn() && !Meteor.user()) {
-    Router.go('signIn');
+    Router.go('signUp');
   } else {
     //FIXME: EMAIL VERIFICATION TURNED OFF
     isVerified.call(this);

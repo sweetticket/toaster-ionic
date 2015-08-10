@@ -174,11 +174,11 @@
 
 .upvote-button {
   position: absolute;
-  top: 10%;
+  top: 0;
   padding-left: 15px;
   padding-right: 38px;
   width: 100%;
-  height: 30px;
+  height: 50px;
   z-index: 10;
 
   &.has-voted {
@@ -192,9 +192,9 @@
   position: absolute;
   padding-left: 15px;
   padding-right: 38px;
-  top: 70%;
+  top: 50%;
   width: 100%;
-  height: 30px;
+  height: 40px;
   z-index: 10;
 
   &.has-voted {
@@ -203,6 +203,14 @@
       color: #777;
     }
   }
+}
+
+i.icon.ion-ios-arrow-up {
+  top: 10px;
+}
+
+i.icon.ion-ios-arrow-down {
+    top: 20px;
 }
 
 .numlikes-container {
@@ -371,6 +379,7 @@
 
 .posts-container {
   padding-left: 10px;
+  padding-bottom: 49px;
 }
 
 .posts-container .item {
