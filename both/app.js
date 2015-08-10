@@ -37,6 +37,7 @@ Meteor.startup(function() {
 
   if (Meteor.isCordova) {
     console.log("im cordova");
+    StatusBar.styleLightContent();
     StatusBar.backgroundColorByHexString("#ff464f");
     IonKeyboard.hideKeyboardAccessoryBar();
   }
