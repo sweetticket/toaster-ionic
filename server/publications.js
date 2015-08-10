@@ -59,6 +59,7 @@ Meteor.publishComposite('post', function(_id) {
                 'networkId': true,
                 'color': true,
                 'icon': true,
+                'rep': true,
               }});
             }
           }
@@ -78,6 +79,7 @@ Meteor.publishComposite('userPostsComments', function() {
         'networkId': true,
         'color': true,
         'icon': true,
+        'rep': true,
       }});
     },
     children: [
@@ -130,6 +132,7 @@ Meteor.publish('userInfo', function() {
       'networkId': true,
       'color': true,
       'icon': true,
+      'rep': true,
     }});
   } else {
     this.ready();
@@ -141,7 +144,7 @@ Meteor.publish('otherUserInfo', function() {
     var user = Meteor.users.findOne({_id: this.userId}); 
     var currentNetworkId = user.networkId;
     return Meteor.users.find({networkId: currentNetworkId},
-      {fields: {'_id': 1, 'networkId': 1, 'color': 1, 'icon': 1}});
+      {fields: {'_id': 1, 'networkId': 1, 'color': 1, 'icon': 1, 'rep': 1}});
   } else {
     this.ready();
   }

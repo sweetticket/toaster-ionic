@@ -19,6 +19,11 @@ Meteor.methods({
       createdAt: new Date()
     }, function () {
 
+      var author = Meteor.users.findOne({_id: authorId});
+      var inc = Math.floor(Math.random() * (7 - 2)) + 2; // random int between 2 and 6
+      Meteor.call("Users.setRep", authorId, author.rep+inc);
+      Meteor.call("Users.setRep", this.userId, user.rep+inc);
+
       // send this noti to the author of original post
       // if I am not the OP
       Meteor.call("addNotification", {

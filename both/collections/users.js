@@ -25,7 +25,14 @@ Meteor.methods({
   "sendVerifyingEmail": function (userId, email) {
     Accounts.sendVerificationEmail(userId, email);
     console.log("email sent");
+  },
+
+  "Users.setRep": function (userId, newRep) {
+    Meteor.users.update({ _id: userId}, {
+      "$set": { rep: newRep }
+    });
   }
+
 });
 
 Meteor.startup(function() {
@@ -69,6 +76,7 @@ Meteor.startup(function() {
 
       user.color = Utils.getRandomColor();
       user.icon = Utils.getRandomIcon();
+      user.rep = 0;
 
       if (network) {
         user.networkId = network._id;
