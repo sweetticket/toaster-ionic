@@ -1,6 +1,8 @@
 Template.signUp.rendered = function() {
-  $('#email').focus(); //FIXME: DOESNT WORK ON PHONE
   window.scrollTo(0, 0);
+  Meteor.setTimeout(function () {                                                                                    // 77
+    this.$('#email').focus();                                                                                   // 78
+  }.bind(this), 1000);
 };
 
 var _toggleEnableSignUp = function() {

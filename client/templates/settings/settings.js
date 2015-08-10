@@ -10,7 +10,7 @@ Template.settings.events({
     Meteor.logout(function () {
       // Session.set("ready", false);
       Session.set("currentUserId", undefined);
-      window.scrollTo(0, 0);
+      // window.scrollTo(0, 0);
       Router.go('/');
     });
   }

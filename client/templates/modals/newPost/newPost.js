@@ -14,6 +14,17 @@ Template.newPost.onRendered(function() {
   //   $( '.new-post-form textarea' ).focus()
   // }, 2000 );
 
+  Meteor.setTimeout(function () {                                                                                    // 77
+    $(template.find("textarea")).focus();                                                                                   // 78
+  }.bind(this), 1000);
+
+  // this.autorun(function () {
+  //   var $input = $(template.find("textarea"))
+  //   if ($input) {
+  //     $input.focus();
+  //   }
+  // }.bind(this));
+
 });
 
 AutoForm.hooks({

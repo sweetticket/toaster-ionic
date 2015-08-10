@@ -47,6 +47,7 @@ Template.postsShow.helpers({
 
 Template.postsShow.events({
   'click .inline-comment-footer': function (event, template) {
+    // event.preventDefault();
     $('.inline-comment-body').focus();
   }
 });

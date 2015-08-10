@@ -9,6 +9,11 @@ Template.signIn.rendered = function() {
   //     }
   // });
   window.scrollTo(0, 0);
+
+  Meteor.setTimeout(function () {                                                                                    // 77
+    this.$('#email').focus();                                                                                   // 78
+  }.bind(this), 1000);
+
 };
 
 Template.signIn.events({
@@ -18,7 +23,7 @@ Template.signIn.events({
   },
 
   "click .signin-btn.enabled": function (e, template) {
-    window.scrollTo(0, 0);
+    
     $('input').blur();
 
     var email = $('#email').val().trim();
