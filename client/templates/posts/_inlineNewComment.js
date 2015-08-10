@@ -1,5 +1,11 @@
 Template._inlineNewComment.events({
+  // "focus .inline-comment-body": function (e, template) {
+  //   console.log("focusing");
+  //   window.scrollTo(0,document.body.scrollHeight);
+  // },
+
   "click .inline-comment-submit": function (e, template) {
+    e.preventDefault();
     var postId = this._id;
     var authorId = this.userId;
     var body = $(template.find(".inline-comment-body")).val().trim();
@@ -12,8 +18,17 @@ Template._inlineNewComment.events({
         authorId: authorId
       }, function() {
         // scroll to bottom when the new comment is created
-        window.scrollTo(0, document.body.scrollHeight);
+        
         $(template.find(".inline-comment-body")).blur();
+        // $('.content').stop();
+
+        // $lastcomment = $(".comments-list .item:last-child");
+        // var scrollamt = $lastcomment.offset().top + $lastcomment.height();
+        
+        //   $('.content').animate({
+        //       scrollTop: scrollamt
+        //   }, 1000); 
+
       });
     }
   }

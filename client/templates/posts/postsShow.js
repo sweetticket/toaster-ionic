@@ -1,3 +1,5 @@
+
+
 Template.postsShow.created = function () {
   this.autorun(function () {
     this.postSub = this.subscribe('post', Router.current().params._id);
@@ -47,7 +49,15 @@ Template.postsShow.helpers({
 
 Template.postsShow.events({
   'click .inline-comment-footer': function (event, template) {
-    // event.preventDefault();
-    $('.inline-comment-body').focus();
-  }
+    event.preventDefault();
+
+      $('.inline-comment-body').focus();
+      // debugger
+      $lastcomment = $(".comments-list .item:last-child");
+      var scrollamt = $lastcomment.offset().top + $lastcomment.height();
+      
+        $('.content').stop().animate({
+            scrollTop: '+=' + scrollamt
+        }, 1000); 
+      }
 });

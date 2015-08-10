@@ -2,6 +2,11 @@
 
 Meteor.startup(function() {
 
+  // if (Meteor.isCordova) {
+  //   ionic.keyboard.disable()
+  //   cordova.plugins.Keyboard.disableScroll(true);
+  // }
+
   if (Meteor.isClient) {
     console.log("new version");
 
