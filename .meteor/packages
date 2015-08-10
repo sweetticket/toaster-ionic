@@ -16,7 +16,6 @@ mrt:underscore-string-latest
 dburles:collection-helpers
 meteoric:ionic-sass
 meteoric:ionicons-sass
-meteoric:ionic
 meteoric:autoform-ionic
 reactive-var
 accounts-password
@@ -29,3 +28,4 @@ fastclick
 raix:handlebar-helpers
 tmeasday:publish-counts
 practicalmeteor:wkwebview
+meteoric:ionic:forked:howon
