@@ -32,6 +32,9 @@ Template.trending.helpers({
     return postsArr;
   },
   userRep: function() {
-    return Meteor.user().rep;
+    if (Meteor.user()){
+      return Meteor.user().rep;
+    }
+    return;
   }
 });

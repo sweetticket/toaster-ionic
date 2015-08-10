@@ -64,6 +64,9 @@ Template.recent.helpers({
     });
   },
   userRep: function() {
-    return Meteor.user().rep;
+    if (Meteor.user()) {
+      return Meteor.user().rep;
+    }
+    return;
   }
 });
