@@ -36,6 +36,8 @@ Meteor.startup(function() {
   }
 
   if (Meteor.isCordova) {
+    console.log("im cordova");
+    StatusBar.backgroundColorByHexString("#ff464f");
     IonKeyboard.hideKeyboardAccessoryBar();
   }
 });
