@@ -1,11 +1,20 @@
-Template.newPost.rendered = function() {
-  // $('.new-post-form textarea').focus();
+Template.newPost.onRendered(function() {
+  // this.find('textarea').focus();
   // if (Meteor.isCordova) {
   //   //for android
   //   cordova.plugins.Keyboard.show();
   // }
 
-};
+  // Meteor.setTimeout( function () {
+  //   $( '.new-post-form textarea' ).focus()
+  // }, 2000 );
+
+  // setTimeout( function () {
+  //   console.log("focued!");
+  //   $( '.new-post-form textarea' ).focus()
+  // }, 2000 );
+
+});
 
 AutoForm.hooks({
   'products-new-form': {
