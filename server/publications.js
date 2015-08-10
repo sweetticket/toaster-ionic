@@ -1,6 +1,7 @@
 Meteor.publish('userNetwork', function() {
   var user = Meteor.users.findOne({_id: this.userId});
-  return Networks.find({_id: user.networkId});
+  var networkId = (user) ? user.networkId : "";
+  return Networks.find({_id: networkId});
 });
 
 Meteor.publish('recentPosts', function (limit) {
