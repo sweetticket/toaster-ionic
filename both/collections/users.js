@@ -21,12 +21,16 @@ if (Meteor.isClient) {
   });
 }
 
-Meteor.methods({
-  "sendVerifyingEmail": function (userId, email) {
-    Accounts.sendVerificationEmail(userId, email);
-    console.log("email sent");
-  },
+if (Meteor.isServer) {
+  Meteor.methods({ 
+    "sendVerifyingEmail": function (userId, email) {
+      Accounts.sendVerificationEmail(userId, email);
+      console.log("email sent");
+    }
+  });
+}
 
+Meteor.methods({
   "Users.setRep": function (userId, newRep) {
     Meteor.users.update({ _id: userId}, {
       "$set": { rep: newRep }
