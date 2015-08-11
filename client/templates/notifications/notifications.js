@@ -9,9 +9,11 @@ Template.notifications.onDestroyed(function() {
 });
 
 Template.notifications.onRendered(function() {
-  if (this.subscriptionsReady()) {
-    Utils.hideLoading();
-  }
+  this.autorun(function() {
+    if (this.subscriptionsReady()) {
+      Utils.hideLoading();
+    }
+  });
 });
 
 Template.notifications.helpers({
