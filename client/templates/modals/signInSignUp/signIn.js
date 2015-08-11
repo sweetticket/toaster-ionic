@@ -1,18 +1,6 @@
 Template.signIn.rendered = function() {
   
-  // this.autorun(function () {
-  //   $('#email').focus();
-  //   var $input = this.find('#email')
-
-  //     if($input){
-  //         i$nput.focus()
-  //     }
-  // });
   window.scrollTo(0, 0);
-
-  Meteor.setTimeout(function () {                                                                                    // 77
-    this.$('#email').focus();                                                                                   // 78
-  }.bind(this), 1000);
 
 };
 
@@ -44,7 +32,6 @@ Template.signIn.events({
       } else {
         Session.set("currentUserId", Meteor.userId());
         Session.set("firstOpened", true);
-        // Session.set('currentTab', 'recent');
         $('.tabs a.active').removeClass('active');
         $('.tabs a:first-child').addClass('active');
         Router.go('/');

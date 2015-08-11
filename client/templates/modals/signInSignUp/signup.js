@@ -1,26 +1,23 @@
 Template.signUp.rendered = function() {
   window.scrollTo(0, 0);
-  Meteor.setTimeout(function () {                                                                                    // 77
-    this.$('#email').focus();                                                                                   // 78
-  }.bind(this), 1000);
+  
 };
 
 var _toggleEnableSignUp = function() {
   var email = $.trim($('#new-email').val());
   var password = $.trim($('#new-password').val());
   var password2 = $.trim($('#new-password2').val());
-
-  // if (email !== "" && password !== "" && password2 !== "") {
-  //   $('.signup-btn').removeClass('disabled');
-  // } else {
-  //   $('.signup-btn').addClass('disabled');
-  // }
 };
 
 Template.signUp.events({
   "keyup input": function (e, template) {
     // _toggleEnableSignUp();
   },
+
+  // "click input": function (e, template) {
+  //   e.preventDefault();
+  //   $(e.target).focus();
+  // },
 
   "click .signup-btn.enabled": function (e, template) {
     window.scrollTo(0, 0);
