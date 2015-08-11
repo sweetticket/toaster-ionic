@@ -1,4 +1,8 @@
-
+function notInView(element){
+    var offset = element.offset().top - $(window).scrollTop();
+    
+    return offset > window.innerHeight;
+};
 
 Template.postsShow.created = function () {
   this.autorun(function () {
@@ -50,14 +54,31 @@ Template.postsShow.helpers({
 Template.postsShow.events({
   'click .inline-comment-footer': function (event, template) {
     event.preventDefault();
+    // $('.inline-comment-body').focus();
+    // console.log("focusing in postsShow");
+    // setTimeout (function() {
+    //   var commentslist =  document.getElementById('comments-list');
+    //   commentslist.scrollIntoView(false); 
+    // }, 2000);
 
       $('.inline-comment-body').focus();
-      // debugger
       $lastcomment = $(".comments-list .item:last-child");
-      var scrollamt = $lastcomment.offset().top + $lastcomment.height();
-      
+
+      if (notInView($lastcomment)) {
+        var scrollamt = $lastcomment.offset().top + $lastcomment.height();
+
         $('.content').stop().animate({
             scrollTop: '+=' + scrollamt
         }, 1000); 
+      } else {
+        // setTimeout(function(){
+        //   window.scrollTo(0,0);
+        // }, 1000);
+        console.log('not in view!');
+        _.defer(function() {
+          window.scrollTo(0, 0);
+        });
       }
+          
+  }
 });

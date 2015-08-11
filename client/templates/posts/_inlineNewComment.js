@@ -1,7 +1,6 @@
 Template._inlineNewComment.events({
-  // "focus .inline-comment-body": function (e, template) {
-  //   console.log("focusing");
-  //   window.scrollTo(0,document.body.scrollHeight);
+  // "blur .inline-comment-body": function (e, template) {
+  //   $('.product-detail-content').removeClass('no-scroll');
   // },
 
   "click .inline-comment-submit": function (e, template) {

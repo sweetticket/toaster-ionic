@@ -6,6 +6,10 @@
   z-index: 10;
 }
 */
+.inline-comment-footer {
+  position: fixed;
+  bottom: 0;
+}
 
 .bar.bar-light.inline-comment-footer {
   background-color: white;
