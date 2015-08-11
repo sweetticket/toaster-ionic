@@ -8,6 +8,12 @@ Template.notifications.onDestroyed(function() {
   Meteor.call("readAllNotifications");
 });
 
+Template.notifications.onRendered(function() {
+  if (this.subscriptionsReady()) {
+    Utils.hideLoading();
+  }
+});
+
 Template.notifications.helpers({
   isNotificationEmpty: function() {
     return (Notifications.find({}).count() === 0);
