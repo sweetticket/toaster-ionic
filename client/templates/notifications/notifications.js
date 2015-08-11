@@ -1,6 +1,7 @@
 Template.notifications.onCreated(function() {
+  var numNotificationLimit = 300;
   this.autorun(function () {
-    this.subscribe('recentPosts');
+    this.subscribe('notiPosts');
   }.bind(this));
 });
 
@@ -13,7 +14,7 @@ Template.notifications.onRendered(function() {
     if (this.subscriptionsReady()) {
       Utils.hideLoading();
     }
-  });
+  }.bind(this));
 });
 
 Template.notifications.helpers({
