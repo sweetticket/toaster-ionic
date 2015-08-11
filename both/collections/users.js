@@ -1,3 +1,15 @@
+// user is redirect to home after he's verified his email
+handleOpenURL = function (url) {
+  console.log("handleOpenURL called!!");
+  setTimeout(function() {
+    console.log("received url:", url);
+    if (url.indexOf("toaster://verified") >= 0) {
+      console.log("verified. Now redirecting!!");
+      Router.go('/');
+    }
+  }, 0)
+}
+
 //this function gets called when the user
 //clicks the verification link
 if (Meteor.isClient) {
@@ -10,13 +22,13 @@ if (Meteor.isClient) {
       //FIXME: maybe open a Welcome modal?
       console.log("now you are verified!");
       _.defer(function() {
+        // console.log("Setting is verified true");
+        // Session.set("shouldRedirect", true);
         done();
       });
 
       // If the user is on a phone, open the app
-      console.log("setting is verified true");
-      Session.set("isVerified", true);
-      window.location = "toaster://";
+      window.location = "toaster://verified";
     });
   });
 }
