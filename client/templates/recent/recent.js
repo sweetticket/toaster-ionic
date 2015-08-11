@@ -1,21 +1,27 @@
+RecentPostsSub = new SubsManager();
+RecentCommentsSub = new SubsManager();
+
 Template.recent.created = function () {
   // flag to show the loading wheel only in the beginning.
   // don't show a loading wheel for subsequent fetch calls
   this.initialLoaded = false;
 
   this.loaded = new ReactiveVar(0);
+  // this.ready = new ReactiveVar();
   this.numPostsFetched = new ReactiveVar(NUM_POSTS_IN_BATCH);
 
   this.autorun(function () {
     var limit = this.numPostsFetched.get();
-    this.postsSub = this.subscribe('recentPosts', limit);
-    if (this.postsSub.ready()) {
+    this.postsSub = RecentPostsSub.subscribe('recentPosts', limit);
+    this.commentsSub = RecentCommentsSub.subscribe('comments');
+
+    if (this.postsSub.ready() && this.commentsSub.ready()) {
       this.loaded.set(limit);
       this.initialLoaded = true;
     }
-
+    
     this.subscribe('otherUserInfo');
-    this.subscribe('comments');
+    // this.subscribe('comments');
     this.subscribe('userNetwork');
   }.bind(this));
 };
@@ -25,8 +31,11 @@ Template.recent.onRendered(function() {
   var instance = this;
 
   this.autorun(function () {
-    // if (!this.subscriptionsReady() && !this.initialLoaded) {
-    if (!this.postsSub.ready() && !this.initialLoaded) {
+    var allReady = _.every([this.postsSub, this.commentsSub], function (sub) {
+      return sub.ready();
+    });
+
+    if (!allReady && !this.initialLoaded) {
       this.$('.posts-container').hide();
       Utils.showLoading();
       Session.set("ready", false);

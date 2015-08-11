@@ -1,3 +1,6 @@
+TrendingPostsSub = new SubsManager();
+TrendingCommentsSub = new SubsManager();
+
 Template.trending.created = function () {
   // Howon's note: we don't do dynamic loading for trending feed for now,
   // because we are only dealing with 200 threads.
@@ -6,16 +9,22 @@ Template.trending.created = function () {
   // Not sure how to do it at this point.
 
   this.autorun(function () {
-    this.postsSub = this.subscribe('trendingPosts');
+    this.postsSub = TrendingPostsSub.subscribe("trendingPosts");
+    this.commentsSub = TrendingCommentsSub.subscribe("comments");
+
+    // this.postsSub = this.subscribe('trendingPosts');
     this.subscribe('otherUserInfo');
-    this.subscribe('comments');
+    // this.subscribe('comments');
   }.bind(this));
 };
 
-Template.trending.onRendered(function() {
+Template.trending.onRendered(function() {  
   this.autorun(function () {
-    // if (!this.subscriptionsReady() && !this.initialLoaded) {
-    if (!this.postsSub.ready()) {  
+    var allReady = _.every([this.postsSub, this.commentsSub], function (sub) {
+      return sub.ready();
+    });
+
+    if (!allReady) {  
       this.$('.posts-container').hide();
       Utils.showLoading();
     } else {
