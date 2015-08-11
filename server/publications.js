@@ -4,6 +4,16 @@ Meteor.publish('userNetwork', function() {
   return Networks.find({_id: networkId});
 });
 
+//FIXME: we need infinite scrolling for notifications too
+Meteor.publish('notiPosts', function (limit) {
+  // Meteor._sleepForMs(2000);
+  var user = Meteor.users.findOne({_id: this.userId});
+  return Posts.find({networkId: user.networkId}, {
+    sort: {createdAt: -1}
+  });
+});
+
+
 Meteor.publish('recentPosts', function (limit) {
   // Meteor._sleepForMs(2000);
   var user = Meteor.users.findOne({_id: this.userId});

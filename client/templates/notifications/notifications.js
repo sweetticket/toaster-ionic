@@ -1,11 +1,20 @@
 Template.notifications.onCreated(function() {
+  var numNotificationLimit = 300;
   this.autorun(function () {
-    this.subscribe('recentPosts');
+    this.subscribe('notiPosts');
   }.bind(this));
 });
 
 Template.notifications.onDestroyed(function() {
   Meteor.call("readAllNotifications");
+});
+
+Template.notifications.onRendered(function() {
+  this.autorun(function() {
+    if (this.subscriptionsReady()) {
+      Utils.hideLoading();
+    }
+  }.bind(this));
 });
 
 Template.notifications.helpers({

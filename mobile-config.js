@@ -45,7 +45,7 @@ App.setPreference('StatusBarStyle', 'lightcontent');
 App.setPreference('StatusBarOverlaysWebView', 'true');
 
 App.configurePlugin('nl.x-services.plugins.launchmyapp', {
-  URL_SCHEME: 'toaster'
+  URL_SCHEME: 'toaster://verified'
 });
 
 App.accessRule('http://*');
