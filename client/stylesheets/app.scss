@@ -449,7 +449,7 @@ i.icon.ion-ios-arrow-down {
 
 
 textarea {
-  height: 100%;
+  height: 200px;
   border-width: 0;
   resize: none;
   position: absolute;
@@ -487,10 +487,14 @@ textarea {
 */
 
 .bar.bar-light.new-post-footer {
+  // background-color: white;
+  // border-top-color: white !important;
+  // height: 49px;
+  // width: 100%;
+
   background-color: white;
-  border-top-color: white !important;
+  border-top: 1px solid #ff646f !important;
   height: 49px;
-  width: 100%;
 }
 
 .new-post-footer .char-counter {
@@ -513,3 +517,9 @@ textarea {
   margin-top: 15px;
 }
 
+.submit-post-btn {
+  position: absolute;
+  top: 20px !important;
+  right: 5px;
+  bottom: 5px;
+}
