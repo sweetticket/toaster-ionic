@@ -33,7 +33,7 @@ Meteor.startup(function() {
     NUM_POSTS_IN_BATCH = 8;
 
     // Set MomentJS Korean
-    // moment.locale('ko');
+    moment.locale('en');
   }
 
   if (Meteor.isServer) {
