@@ -36,16 +36,20 @@ Template.trending.onRendered(function() {
       Utils.hideLoading();
     }
 
+  }.bind(this));
+
+  this.autorun(function() {
     if (isAtTop) {
       Session.set("newPost", undefined);
       $('.new-post-alert').velocity({top: '-100%'});
     }
 
-    if (!isAtTop && Session.newPost()) {
+    if (!isAtTop && Session.get("newPost")) {
+    // if (Session.get("newPost")) {
+      // debugger
       $('.new-post-alert').velocity({top: '0'});
     }
-
-  }.bind(this));
+  });
 });
 
 Template.trending.helpers({

@@ -4,7 +4,6 @@ Template.newPost.onRendered(function() {
 AutoForm.hooks({
   'products-new-form': {
     onSuccess: function (operation, result, template) {
-      debugger
       console.log("post on success");
       IonModal.close();
       IonKeyboard.close();
