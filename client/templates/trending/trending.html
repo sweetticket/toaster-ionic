@@ -18,6 +18,7 @@
 
   {{#ionView}}
     {{#ionContent}}
+    <div class="new-post-alert">New Posts!</div>
       {{#ionList class="posts-container"}}
         {{#each posts}}
           {{> _postItem post=this path="posts.show"}}
