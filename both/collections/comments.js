@@ -34,7 +34,7 @@ Meteor.methods({
         fromUserId: user._id,
         toUserId: authorId,
         postId: info.postId,
-        body: "토스트에 댓글이 달렸어요",
+        body: "Someone commented on your toast!",
         icon: "ios-chatbubble",
         type: "comment"
       });

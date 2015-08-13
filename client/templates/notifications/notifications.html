@@ -1,6 +1,6 @@
 <template name="notifications">
   {{#contentFor "headerTitle"}}
-    <h1 class="title">알림</h1>
+    <h1 class="title">Notification</h1>
   {{/contentFor}}
 
   {{#ionView}}
@@ -8,7 +8,7 @@
       {{#if isNotificationEmpty}}
         <div class="empty-view">
           {{> ionIcon icon="ios-bell"}}
-          아직 특별히 알림이 없어요 :(
+          There are notifications yet :(
         </div>
       {{else}}
         {{#ionList class="notification-list"}}

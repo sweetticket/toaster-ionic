@@ -1,19 +1,19 @@
 <template name="notVerified">
 
   {{#contentFor "headerTitle"}}
-    <h1 class="title">인증필요</h1>
+    <h1 class="title">Verification</h1>
   {{/contentFor}}
 
   {{#ionView}}
     {{#ionContent}}
       <div class="not-verified-container">
-        <div><span class="email-field">{{email}}</span> 로</div>
-        <p class="message">인증 메일이 발송되었습니다.</p>
+        <p class="message">We sent you a verification email to</p>
+        <div><span class="email-field">{{email}}</span></div>
         <button class="button button-block button-positive send-verification-again">
-        인증메일 다시 보내주세요!</button>
+        Send me an email again!</button>
 
         <!-- <a class="test-link" href="myapp://">다른 이메일로 로그인</a> -->
-        <p class="go-to-signin">다른 이메일로 <a href="#" class="signin-link">로그인</a></p>
+        <p class="go-to-signin"><a href="#" class="signin-link">Log in</a> with a different email</p>
       </div>
     {{/ionContent}}
   {{/ionView}}

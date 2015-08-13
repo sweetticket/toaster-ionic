@@ -59,7 +59,7 @@ Meteor.startup(function() {
 
     // A Function that takes a user object and returns a String for the subject line of the email.
     Accounts.emailTemplates.verifyEmail.subject = function(user) {
-      return '토스터 회원 인증 이메일입니다!';
+      return 'Welcome to Toaster!';
     };
 
     // A Function that takes a user object and a url, and returns the body text for the email.

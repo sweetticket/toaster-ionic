@@ -60,7 +60,7 @@ Posts.attachSchema(new SimpleSchema({
     type: String,
     autoform: {
       'label-type': 'placeholder',
-      placeholder: '같은 네트워크에 있는 사람들과 익명으로 대화할 수 있어요',
+      placeholder: 'You are anonymous...',
       rows: 10
     },
     max: 140
@@ -226,7 +226,7 @@ Meteor.methods({
         fromUserId: Meteor.userId(),
         toUserId: authorId,
         postId: postId,
-        body: "토스트가 공감을 받았어요 :)",
+        body: "You got an upvote :)",
         icon: "thumbsup",
         type: "upvote"
       });
@@ -246,7 +246,7 @@ Meteor.methods({
         fromUserId: Meteor.userId(),
         toUserId: authorId,
         postId: postId,
-        body: "토스트가 공감을 받았어요 :)",
+        body: "You got an upvote :)",
         icon: "thumbsup",
         type: "upvote"
       });
@@ -308,7 +308,7 @@ Meteor.methods({
         fromUserId: Meteor.userId(),
         toUserId: authorId,
         postId: postId,
-        body: "토스트가 비공감을 받았어요 :(",
+        body: "You got a downvote :(",
         icon: "thumbsdown",
         type: "downvote"
       });
@@ -330,7 +330,7 @@ Meteor.methods({
         fromUserId: Meteor.userId(),
         toUserId: authorId,
         postId: postId,
-        body: "토스트가 비공감을 받았어요 :(",
+        body: "You got a downvote :(",
         icon: "thumbsdown",
         type: "downvote"
       });
