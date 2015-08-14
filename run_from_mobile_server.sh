@@ -1,0 +1,1 @@
+meteor run ios-device --mobile-server http://104.131.158.80

@@ -16,6 +16,10 @@ Template.signIn.events({
 
     var email = $('#email').val().trim();
     var password = $('#password').val();
+    console.log("login with password");
+    console.log("connected:", Meteor.status().connected);
+    console.log("status:", Meteor.status().status);
+    console.log("reason:", Meteor.status().reason);
     Meteor.loginWithPassword(email, password, function (err) {
       if (err) {
         console.log(err);
