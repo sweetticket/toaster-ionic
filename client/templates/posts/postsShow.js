@@ -61,24 +61,24 @@ Template.postsShow.events({
     //   commentslist.scrollIntoView(false); 
     // }, 2000);
 
-      $('.inline-comment-body').focus();
-      $lastcomment = $(".comments-list .item:last-child");
+      // $('.inline-comment-body').focus();
+      // $lastcomment = $(".comments-list .item:last-child");
 
-      if (notInView($lastcomment)) {
-        var scrollamt = $lastcomment.offset().top + $lastcomment.height();
+      // if (notInView($lastcomment)) {
+      //   var scrollamt = $lastcomment.offset().top + $lastcomment.height();
 
-        $('.content').stop().animate({
-            scrollTop: '+=' + scrollamt
-        }, 1000); 
-      } else {
-        // setTimeout(function(){
-        //   window.scrollTo(0,0);
-        // }, 1000);
-        console.log('not in view!');
-        _.defer(function() {
-          window.scrollTo(0, 0);
-        });
-      }
+      //   $('.content').stop().animate({
+      //       scrollTop: '+=' + scrollamt
+      //   }, 1000); 
+      // } else {
+      //   // setTimeout(function(){
+      //   //   window.scrollTo(0,0);
+      //   // }, 1000);
+      //   console.log('not in view!');
+      //   _.defer(function() {
+      //     window.scrollTo(0, 0);
+      //   });
+      // }
           
   }
 });
