@@ -3,7 +3,7 @@ App.info({
   name: 'Toaster',
   description: 'Anonymous Group of Inside Network',
   author: 'HoneyJam Studios',
-  website: 'http://toasterapp.co.kr',
+  // website: 'http://toasterapp.co.kr',
   version: '0.0.1'
 });
 

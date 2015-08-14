@@ -54,6 +54,25 @@ Template.postsShow.helpers({
 Template.postsShow.events({
   'click .inline-comment-footer': function (event, template) {
     event.preventDefault();
+
+    // var contentHeight = $('.content').height();
+
+    // $('.content').velocity("scroll", {
+    //   offset: contentHeight,
+    //   duration: 400
+    // });
+
+    // console.log("velocity scroll down");
+
+    // window.scrollTo(0,10000);
+
+    // console.log("window scroll down");
+
+    // $('.content').scrollTop(10000);
+
+    // console.log("content scrolltop");
+
+
     // $('.inline-comment-body').focus();
     // console.log("focusing in postsShow");
     // setTimeout (function() {

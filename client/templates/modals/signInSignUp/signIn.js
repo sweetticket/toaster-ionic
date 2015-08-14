@@ -20,6 +20,7 @@ Template.signIn.events({
     console.log("connected:", Meteor.status().connected);
     console.log("status:", Meteor.status().status);
     console.log("reason:", Meteor.status().reason);
+    Meteor.reconnect();
     Meteor.loginWithPassword(email, password, function (err) {
       if (err) {
         console.log(err);

@@ -8,8 +8,6 @@ Meteor.startup(function() {
   // }
 
   if (Meteor.isClient) {
-    console.log("new version");
-
     Push.addListener("error", function (err) {
       console.log("Push notification Error", err);
     });
