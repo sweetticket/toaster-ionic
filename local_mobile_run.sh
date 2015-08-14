@@ -1,1 +1,1 @@
-meteor run ios-device --mobile-server localhost:3000
+meteor run ios-device --mobile-server 10.0.0.25:3000
