@@ -14,17 +14,6 @@ Meteor.startup(function() {
       console.log("Push notification Error", err);
     });
 
-    Push.addListener('token', function (token) {
-      console.log("howon:", JSON.stringify(token));
-      PUSH_TOKEN = token;
-      Meteor.call('raix:push-update', {
-        appName: "Toaster",
-        token: token,
-        userId: Meteor.userId() || ""
-      });
-      console.log("pushed raix")
-    });
-
     Push.addListener('message', function (msg) {
       console.log("msg received push:", JSON.stringify(msg));
     });
@@ -45,19 +34,5 @@ Meteor.startup(function() {
     console.log("im cordova");
     StatusBar.styleLightContent();
     StatusBar.backgroundColorByHexString("#ff464f");
-
-    // cordova.plugins.Keyboard.shrinkView(true);
-    // cordova.plugins.Keyboard.disableScrollingInShrinkView(true);
-    // IonKeyboard.hideKeyboardAccessoryBar();
-
-    // cordova.plugins.Keyboard.hideKeyboardAccessoryBar();
-
-    cordova.plugins.Keyboard.onshow = function () {
-      console.log("keyboard opens");
-    }
-
-    cordova.plugins.Keyboard.onhide = function () {
-      console.log("keyboad module workds");
-    }
   }
 });
