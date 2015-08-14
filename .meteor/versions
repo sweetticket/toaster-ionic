@@ -86,6 +86,7 @@ ui@1.0.6
 underscore@1.0.3
 underscorestring:underscore.string@3.0.3_1
 url@1.0.4
+velocityjs:velocityjs@1.2.1
 webapp@1.2.0
 webapp-hashing@1.0.3
 zimme:iron-router-active@1.0.4
