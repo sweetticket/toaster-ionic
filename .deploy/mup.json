@@ -34,7 +34,7 @@
   // },
 
   "env": {
-    "ROOT_URL": "http://104.131.158.80",
+    "ROOT_URL": "http://localhost",
     "PORT": 3000,
     "UPSTART_UID" : "meteoruser",
     "METEOR_ENV": "production"
