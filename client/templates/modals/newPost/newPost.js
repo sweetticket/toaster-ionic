@@ -8,6 +8,7 @@ AutoForm.hooks({
       IonModal.close();
       IonKeyboard.close();
       Router.go('posts.show', {_id: result});
+      Session.set("newPost", result);
     }
   }
 });

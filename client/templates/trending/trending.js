@@ -1,6 +1,10 @@
 TrendingPostsSub = new SubsManager();
 TrendingCommentsSub = new SubsManager();
 
+var isAtTop = function() {
+  return $('.content').scrollTop() === 0;
+};
+
 Template.trending.created = function () {
   // Howon's note: we don't do dynamic loading for trending feed for now,
   // because we are only dealing with 200 threads.
@@ -31,7 +35,21 @@ Template.trending.onRendered(function() {
       this.$('.posts-container').fadeIn();
       Utils.hideLoading();
     }
+
   }.bind(this));
+
+  this.autorun(function() {
+    if (isAtTop) {
+      Session.set("newPost", undefined);
+      $('.new-post-alert').velocity({top: '-100%'});
+    }
+
+    if (!isAtTop && Session.get("newPost")) {
+    // if (Session.get("newPost")) {
+      // debugger
+      $('.new-post-alert').velocity({top: '0'});
+    }
+  });
 });
 
 Template.trending.helpers({

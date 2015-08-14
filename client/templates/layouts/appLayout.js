@@ -58,6 +58,12 @@ Template.appLayout.onRendered(function() {
 });
 
 Template.appLayout.events({
+  'click .bar.bar-header': function (event, template) {
+    
+    event.stopPropagation();
+    $('.content').animate({ scrollTop: 0 }, 300);
+  },
+
   'click [data-action=share-post]': function (event, template) {
     IonActionSheet.show({
       titleText: 'Share Post',

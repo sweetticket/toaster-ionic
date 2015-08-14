@@ -529,4 +529,15 @@ textarea {
   bottom: 5px;
 }
 
+/* new post alert */
+.new-post-alert {
+  position: absolute;
+  top: -100%;
+  width: 100%;
+  background-color: $positive;
+  opacity: 0.7;
+  color: #fff;
+  height: 50px;
+  text-align: center;
+}
 
