@@ -1,3 +1,6 @@
 [submodule "packages/WKWebView"]
 	path = packages/WKWebView
 	url = git@github.com:woniesong92/WKWebView.git
+[submodule "packages/meteor-ionic"]
+	path = packages/meteor-ionic
+	url = git@github.com:woniesong92/meteor-ionic.git
