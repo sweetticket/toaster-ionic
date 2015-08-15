@@ -81,14 +81,14 @@ Template.postsShow.events({
     // }, 2000);
 
       // $('.inline-comment-body').focus();
-      // $lastcomment = $(".comments-list .item:last-child");
+      $lastcomment = $(".comments-list .item:last-child");
 
       // if (notInView($lastcomment)) {
-      //   var scrollamt = $lastcomment.offset().top + $lastcomment.height();
+        var scrollamt = $lastcomment.offset().top + $lastcomment.height();
 
-      //   $('.content').stop().animate({
-      //       scrollTop: '+=' + scrollamt
-      //   }, 1000); 
+        $('.content').stop().animate({
+            scrollTop: '+=' + scrollamt
+        }, 400);
       // } else {
       //   // setTimeout(function(){
       //   //   window.scrollTo(0,0);
