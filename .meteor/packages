@@ -20,7 +20,6 @@ meteoric:autoform-ionic
 reactive-var
 accounts-password
 email
-accounts-ui
 raix:push@2.6.11
 fortawesome:fontawesome
 reactive-dict
@@ -31,3 +30,4 @@ meteorhacks:subs-manager
 meteoric:ionic:forked:howon
 velocityjs:velocityjs
 howon:forked:practicalmeteor:wkwebview
+crosswalk
