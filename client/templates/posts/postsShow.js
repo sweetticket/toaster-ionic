@@ -49,6 +49,10 @@ Template.postsShow.helpers({
   comments: function () {
     return Comments.find({postId: Router.current().params._id}, {sort: {createdAt: 1}});
   },
+
+  isPlural: function () {
+    return Comments.find({postId: this._id}).count() !== 1;
+  },
 });
 
 Template.postsShow.events({
