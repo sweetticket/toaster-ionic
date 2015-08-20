@@ -1,3 +1,14 @@
+var _onScroll = function() {
+    var distanceY = window.pageYOffset || $(window).scrollTop();
+    var $header = $('header');
+
+    if (distanceY > Utils.HEADER_CHANGE_THRESHOLD) {
+      
+    } else {
+      
+    }
+  }
+
 Template.appLayout.onCreated(function() {
   // appLayoutSession = new ReactiveDict("appLayoutSession");
 
