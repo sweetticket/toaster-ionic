@@ -59,49 +59,15 @@ Template.postsShow.events({
   'click .inline-comment-footer': function (event, template) {
     event.preventDefault();
 
-    // var contentHeight = $('.content').height();
-
-    // $('.content').velocity("scroll", {
-    //   offset: contentHeight,
-    //   duration: 400
-    // });
-
-    // console.log("velocity scroll down");
-
-    // window.scrollTo(0,10000);
-
-    // console.log("window scroll down");
-
-    // $('.content').scrollTop(10000);
-
-    // console.log("content scrolltop");
-
-
-    // $('.inline-comment-body').focus();
-    // console.log("focusing in postsShow");
-    // setTimeout (function() {
-    //   var commentslist =  document.getElementById('comments-list');
-    //   commentslist.scrollIntoView(false); 
-    // }, 2000);
-
-      // $('.inline-comment-body').focus();
       $lastcomment = $(".comments-list .item:last-child");
 
-      // if (notInView($lastcomment)) {
+      if ($lastcomment.length > 0) {
         var scrollamt = $lastcomment.offset().top + $lastcomment.height();
 
         $('.content').stop().animate({
             scrollTop: '+=' + scrollamt
         }, 400);
-      // } else {
-      //   // setTimeout(function(){
-      //   //   window.scrollTo(0,0);
-      //   // }, 1000);
-      //   console.log('not in view!');
-      //   _.defer(function() {
-      //     window.scrollTo(0, 0);
-      //   });
-      // }
+      }
           
   }
 });
