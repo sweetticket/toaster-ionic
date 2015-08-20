@@ -1,6 +1,8 @@
 Template._comment.helpers({
   isOP: function() {
-    return this.nameTag === "OP";
+    if (this.nameTag === "OP") {
+      return "op";
+    }
   },
   isMine: function() {
     return this.userId === Meteor.userId();

@@ -22,8 +22,8 @@
         {{fromNow createdAt}}
         <!-- {{> ionIcon icon="ios-clock" }} -->
       </span>
-       <span class="comment-nametag {{isOP}}">
-        by {{nameTag}}{{#if isMine}} (me){{/if}}
+       <span class="comment-nametag">
+        by <span class="{{isOP}}">{{nameTag}}</span>{{#if isMine}} (me){{/if}}
       </span>
     </div>
     <p>
