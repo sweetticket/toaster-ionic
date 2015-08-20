@@ -15,6 +15,7 @@ if (Meteor.isServer) {
       var exists = Notifications.findOne({
                       toUserId: noti.toUserId,
                       postId: noti.postId,
+                      commentId: noti.commentId,
                       body: noti.body
                     });
 

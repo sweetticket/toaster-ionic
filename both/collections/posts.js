@@ -226,6 +226,7 @@ Meteor.methods({
         fromUserId: Meteor.userId(),
         toUserId: authorId,
         postId: postId,
+        commentId: null,
         body: "You got an upvote :)",
         icon: "thumbsup",
         type: "upvote"
@@ -246,6 +247,7 @@ Meteor.methods({
         fromUserId: Meteor.userId(),
         toUserId: authorId,
         postId: postId,
+        commentId: null,
         body: "You got an upvote :)",
         icon: "thumbsup",
         type: "upvote"
@@ -267,6 +269,9 @@ Meteor.methods({
     //   console.log("Can't downvote your own post");
     //   return false;
     // }
+
+    var voter = Meteor.users.findOne({_id: userId});
+    var author = Meteor.users.findOne({_id: post.userId});
 
     var upvoters = post.upvoterIds;
     var downvoters = post.downvoterIds;
@@ -308,6 +313,7 @@ Meteor.methods({
         fromUserId: Meteor.userId(),
         toUserId: authorId,
         postId: postId,
+        commentId: null,
         body: "You got a downvote :(",
         icon: "thumbsdown",
         type: "downvote"
@@ -330,6 +336,7 @@ Meteor.methods({
         fromUserId: Meteor.userId(),
         toUserId: authorId,
         postId: postId,
+        commentId: null,
         body: "You got a downvote :(",
         icon: "thumbsdown",
         type: "downvote"

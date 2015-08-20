@@ -54,6 +54,8 @@ Meteor.methods({
         fromUserId: user._id,
         toUserId: authorId,
         postId: info.postId,
+        // commentId: info._id,
+        commentId: null, // making this null for now
         body: "Someone commented on your toast!",
         icon: "ios-chatbubble",
         type: "comment"
@@ -153,6 +155,7 @@ Meteor.methods({
         fromUserId: Meteor.userId(),
         toUserId: authorId,
         postId: comment.postId,
+        commentId: comment._id,
         body: "Your comment got an upvote :)",
         icon: "thumbsup",
         type: "upvote"
@@ -195,12 +198,16 @@ Meteor.methods({
     //   return false;
     // }
 
+    var voter = Meteor.users.findOne({_id: userId});
+    var author = Meteor.users.findOne({_id: comment.userId});
+
     var upvoters = comment.upvoterIds;
     var downvoters = comment.downvoterIds;
     var didIUpvote = upvoters.indexOf(userId);
     var didIDownvote = downvoters.indexOf(userId);
     var numLikes = comment.numLikes;
     var authorId = comment.userId;
+
 
     if (didIDownvote >= 0) {
 
@@ -235,6 +242,7 @@ Meteor.methods({
         fromUserId: Meteor.userId(),
         toUserId: authorId,
         postId: comment.postId,
+        commentId: comment._id,
         body: "Your comment got a downvote :(",
         icon: "thumbsdown",
         type: "downvote"
@@ -257,6 +265,7 @@ Meteor.methods({
         fromUserId: Meteor.userId(),
         toUserId: authorId,
         postId: comment.postId,
+        commentId: comment._id,
         body: "Your comment got a downvote :(",
         icon: "thumbsdown",
         type: "downvote"

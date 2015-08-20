@@ -37,7 +37,10 @@ Template._notificationItem.helpers({
     }
     return "";
   },
-  "postFromNoti": function() {
+  "itemFromNoti": function() {
+    if (this.commentId !== null) {
+      return Comments.findOne({_id: this.commentId});
+    }
     return Posts.findOne({_id: this.postId});
   },
   "getCoundUnread": function() {
