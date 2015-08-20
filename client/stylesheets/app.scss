@@ -267,7 +267,7 @@ i.icon.ion-ios-arrow-down {
 
 .post-date {
   position: absolute;
-  left: 0px;
+  left: 10px;
   bottom: 0px;
   font-size: 12px;
 
@@ -398,28 +398,34 @@ i.icon.ion-ios-arrow-down {
 }
 
 .posts-container {
-  padding-left: 10px;
+  // padding-left: 10px;
   padding-bottom: 49px;
 }
 
 .posts-container .item {
   border-bottom: #ddd 1px solid;
-  padding-left: 0;
+  padding-left: 10px;
+  margin-bottom: 5px;
+  -webkit-box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  -moz-box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
 }
 
 .comment-item, .post-list-item.item {
   border-left-width: 0;
-  border-top-width: 0;
+  // border-top-width: 0;
   border-right-width: 0;
-  margin-top: 5px;
+  // margin-top: 5px;
 }
 
 .comment-item {
   min-height: 80px;
   border-top: 0;
+  border-top-width: 0;
   padding-top: 41px;
   padding-left: 0px;
   padding-right: 10px;
+  margin-top: 5px;
 }
 
 .comments-list {
