@@ -1,11 +1,16 @@
 var _onScroll = function() {
-    var distanceY = window.pageYOffset || $(window).scrollTop();
-    var $header = $('header');
+    var distanceY = $('.content').pageYOffset || $('.content').scrollTop();
+    var $header = $('.bar.bar-stable');
 
     if (distanceY > Utils.HEADER_CHANGE_THRESHOLD) {
-      
+      // $('.bar.bar-stable').velocity({top: '-100%'});
+      if (!$header.hasClass("collapsed")) {
+        $header.addClass("collapsed");  
+      }
     } else {
-      
+      if ($header.hasClass("collapsed")) {
+        $header.removeClass("collapsed");
+      }
     }
   }
 
@@ -26,6 +31,12 @@ Template.appLayout.onRendered(function() {
   Session.set("firstOpened", true);
 
   FastClick.attach(document.body);
+
+
+  //FIXME: doesn't work on mobile
+  $('.content').on("scroll touchmove touchend", function (e) {
+    _onScroll();
+  });
 
   // this.autorun(function() {
   //   var ready = Session.get("ready");
