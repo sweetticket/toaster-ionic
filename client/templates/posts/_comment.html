@@ -1,6 +1,6 @@
 <template name="_comment">
   <div class="item item-text-wrap comment-item">
-    {{#with author}}
+    <!-- {{#with author}} -->
     <!-- 
       HOWON:
       DO WE WANT PATH TO USERS.SHOW? Later, let's enable
@@ -15,11 +15,14 @@
         </div>
       </span> -->
       <!-- </a> -->
-    {{/with}}
+    <!-- {{/with}} -->
     <div class="post-item-bottom">
       <span class="post-date">
         {{fromNow createdAt}}
         <!-- {{> ionIcon icon="ios-clock" }} -->
+      </span>
+       <span class="comment-nametag {{isOP}}">
+        by {{nameTag}}{{#if isMine}} (me){{/if}}
       </span>
     </div>
     <p>

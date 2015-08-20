@@ -10,13 +10,24 @@ Meteor.methods({
   "Comments.new": function (info) {
     var authorId = info.authorId;
     var user = Meteor.users.findOne({_id: this.userId});
-    // console.log("userId", user._id);
-    // console.log("userRep", user.rep);
+    var nameTag = "";
+    var post = Posts.findOne({_id: info.postId});
+    var isOP = post.userId === this.userId;
+    var prevComment = Comments.findOne({userId: this.userId, postId: info.postId});
+    if (isOP) {
+      nameTag = "OP";
+    } else if (prevComment) {
+      nameTag = prevComment.nameTag;
+    } else {
+      nameTag = Utils.getRandomString(6);
+    }
+
     Comments.insert({
       postId: info.postId,
       body: info.body,
       userId: this.userId,
       networkId: user.networkId,
+      nameTag: nameTag,
       createdAt: new Date()
     }, function () {
 
