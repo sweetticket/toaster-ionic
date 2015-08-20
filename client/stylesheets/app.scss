@@ -200,6 +200,10 @@ button.button.button-clear.pull-left.button-positive.header-rep {
   }
 }
 
+.comment-item .vote-buttons {
+  top: 19%;
+}
+
 .upvote-button {
   position: absolute;
   top: 0;
@@ -233,6 +237,10 @@ button.button.button-clear.pull-left.button-positive.header-rep {
   }
 }
 
+.comment-item .downvote-button {
+  top: 60%;
+}
+
 i.icon.ion-ios-arrow-up {
   top: 10%;;
 }
@@ -249,6 +257,11 @@ i.icon.ion-ios-arrow-down {
   text-align: center;
   width: 100%;
   font-size: 18px;
+}
+
+.comment-item .numlikes-container {
+  top: 30%;
+  left: 10px;
 }
 
 .product-detail {
