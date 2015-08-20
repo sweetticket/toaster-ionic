@@ -267,7 +267,7 @@ i.icon.ion-ios-arrow-down {
 
 .post-date {
   position: absolute;
-  left: 10px;
+  left: 0px;
   bottom: 0px;
   font-size: 12px;
 
@@ -281,6 +281,10 @@ i.icon.ion-ios-arrow-down {
       display: inline;
     }
   }
+}
+
+.post-list-item .post-date {
+  left: 10px;
 }
 
 .post-date.comment-post-date {
@@ -426,6 +430,10 @@ i.icon.ion-ios-arrow-down {
   padding-left: 0px;
   padding-right: 10px;
   margin-top: 5px;
+}
+
+.comment-item .post-date {
+  left: 0px;
 }
 
 .comments-list {
