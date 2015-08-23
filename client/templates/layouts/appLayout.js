@@ -1,5 +1,8 @@
 var _onScroll = function() {
     var distanceY = $('.content').pageYOffset || $('.content').scrollTop();
+    // console.log("distanceY", distanceY);
+    // console.log("pageYOffset", $('.content').pageYOffset);
+    // console.log("")
     var $header = $('.bar.bar-stable');
 
     if (distanceY > Utils.HEADER_CHANGE_THRESHOLD) {
@@ -34,9 +37,10 @@ Template.appLayout.onRendered(function() {
 
 
   //FIXME: doesn't work on mobile
-  $('.content').on("scroll touchmove touchend", function (e) {
-    _onScroll();
-  });
+  // $('.content').on("scroll touchmove touchend", function (e) {
+  //   // console.log("scrolling!");
+  //   _onScroll();
+  // });
 
   // this.autorun(function() {
   //   var ready = Session.get("ready");

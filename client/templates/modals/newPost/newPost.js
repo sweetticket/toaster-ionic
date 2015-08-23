@@ -9,6 +9,7 @@ AutoForm.hooks({
       IonKeyboard.close();
       Router.go('posts.show', {_id: result});
       Session.set("newPost", result);
+      console.log("newPost id: " + Session.get("newPost"));
     }
   }
 });
