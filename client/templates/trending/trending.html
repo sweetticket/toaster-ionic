@@ -6,6 +6,8 @@
     </button> -->
   {{/contentFor}}
 
+  <div class="new-post-alert"><span>New Posts!</span></div>
+
   {{#contentFor "headerButtonRight"}}
     <button class="submit-new-post-btn button button-clear pull-right button-in-header" data-ion-modal="newPost">
       {{> ionIcon icon='ios-plus-empty'}}
@@ -18,7 +20,6 @@
 
   {{#ionView}}
     {{#ionContent}}
-    <div class="new-post-alert">New Posts!</div>
       {{#ionList class="posts-container"}}
         {{#each posts}}
           {{> _postItem post=this path="posts.show"}}

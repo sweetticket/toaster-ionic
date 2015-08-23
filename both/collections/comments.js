@@ -25,7 +25,7 @@ Meteor.methods({
     } else if (prevComment) {
       nameTag = prevComment.nameTag;
     } else {
-      nameTag = Utils.getRandomString(6);
+      nameTag = Utils.getNameTag();
     }
 
     Comments.insert({

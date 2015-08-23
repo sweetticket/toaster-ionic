@@ -1,3 +1,7 @@
+var isAtTop = function() {
+  return $('.content').scrollTop() === 0;
+};
+
 RecentPostsSub = new SubsManager();
 RecentCommentsSub = new SubsManager();
 
@@ -29,6 +33,9 @@ Template.recent.created = function () {
 Template.recent.onRendered(function() {
   var limit = this.numPostsFetched.get();
   var instance = this;
+
+  var numPosts = Posts.find().count();
+  console.log("initial numPosts: " + numPosts);
 
   this.autorun(function () {
     var allReady = _.every([this.postsSub, this.commentsSub], function (sub) {
@@ -63,6 +70,15 @@ Template.recent.onRendered(function() {
       }
     }
   }));
+
+  this.autorun(function() {
+    if (numPosts !== Posts.find().count() && !isAtTop) {
+      debugger
+      numPosts = Posts.find().count();
+      $('.new-post-alert').addClass('show');
+    }
+  });
+
 });
 
 Template.recent.helpers({
