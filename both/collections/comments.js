@@ -12,14 +12,41 @@ Comments.helpers({
   },
 });
 
+// Howon: attempt to make code more modular. Not sure if this is the right way
+// you define local function blocks in Meteor
+var _notifyCommentAuthors = function (postId, postAuthorId) {
+  var comments = Comments.find({postId: postId}).fetch();
+  var authorIds = _.uniq(_.pluck(comments, 'userId'));
+
+  // OP's id shouldn't be included here even if he commented on his own post
+  var postAuthorIdIdx = authorIds.indexOf(postAuthorId);
+  if (postAuthorIdIdx > -1) {
+    authorIds.splice(postAuthorIdIdx, 1);
+  }
+
+  // notify comment authors
+  _.each(authorIds, function (authorId) {
+    Meteor.call("addNotification", {
+      fromUserId: user._id,
+      toUserId: authorId,
+      postId: postId,
+      commentId: null,
+      body: "Someone also commented on the toast!",
+      icon: "ios-chatbubble",
+      type: "comment"
+    });
+  });
+}
+
 Meteor.methods({
   "Comments.new": function (info) {
     var authorId = info.authorId;
     var user = Meteor.users.findOne({_id: this.userId});
     var nameTag = "";
-    var post = Posts.findOne({_id: info.postId});
+    var postId = info.postId;
+    var post = Posts.findOne({_id: postId});
     var isOP = post.userId === this.userId;
-    var prevComment = Comments.findOne({userId: this.userId, postId: info.postId});
+    var prevComment = Comments.findOne({userId: this.userId, postId: postId});
     if (isOP) {
       nameTag = "OP";
     } else if (prevComment) {
@@ -29,7 +56,7 @@ Meteor.methods({
     }
 
     Comments.insert({
-      postId: info.postId,
+      postId: postId,
       body: info.body,
       userId: this.userId,
       networkId: user.networkId,
@@ -47,6 +74,9 @@ Meteor.methods({
       // console.log("incCommenter", incCommenter);
       Meteor.call("Users.setRep", authorId, author.rep+incAuthor);
       Meteor.call("Users.setRep", user._id, user.rep+incCommenter);
+
+      // Notify people who also commented on this post
+      _notifyCommentAuthors(postId, post.userId);
 
       // send this noti to the author of original post
       // if I am not the OP
