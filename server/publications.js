@@ -13,6 +13,14 @@ Meteor.publish('notiPosts', function (limit) {
   });
 });
 
+Meteor.publish('notiComments', function (limit) {
+  // Meteor._sleepForMs(2000);
+  var user = Meteor.users.findOne({_id: this.userId});
+  return Comments.find({networkId: user.networkId, userId: this.userId}, {
+    sort: {createdAt: -1}
+  });
+});
+
 
 Meteor.publish('recentPosts', function (limit) {
   // Meteor._sleepForMs(2000);

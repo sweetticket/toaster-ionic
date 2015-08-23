@@ -206,6 +206,7 @@ Meteor.methods({
         fromUserId: Meteor.userId(),
         toUserId: authorId,
         postId: comment.postId,
+        commentId: comment._id,
         body: "Your comment got an upvote :)",
         icon: "thumbsup",
         type: "upvote"

@@ -2,6 +2,7 @@ Template.notifications.onCreated(function() {
   var numNotificationLimit = 300;
   this.autorun(function () {
     this.subscribe('notiPosts');
+    this.subscribe('notiComments');
   }.bind(this));
 });
 
