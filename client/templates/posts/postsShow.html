@@ -4,11 +4,15 @@
     {{>ionNavBackButton class="button-positive" text=false}}
   {{/contentFor}}
 
-  <!-- {{#contentFor "headerButtonRight"}}
-    <button class="button button-clear pull-right button-positive" data-action="share-post" data-post-id="{{post._id}}">
-      {{> ionIcon icon='ios-upload-outline'}}
-    </button>
-  {{/contentFor}} -->
+  {{#contentFor "headerButtonRight"}}
+    {{#with post}}
+      {{#if isMyPost}}
+        <button class="button button-clear pull-right button-positive delete-post" data-post-id="{{post._id}}">
+          {{> ionIcon icon='trash-a'}}
+        </button>
+      {{/if}}
+    {{/with}}
+  {{/contentFor}}
 
   {{#contentFor "headerTitle"}}
     <h1 class="title">Toast</h1>

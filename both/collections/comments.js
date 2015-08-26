@@ -93,9 +93,12 @@ Meteor.methods({
     });
   },
 
-  'Comments.delete': function (commentsId) {
+  'Comments.delete': function (commentId) {
     Comments.remove({
-      _id: commentsId
+      _id: commentId
+    });
+    Notifications.remove({
+      commentId: commentId
     });
   },
 

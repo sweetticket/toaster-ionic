@@ -117,6 +117,19 @@ Template.appLayout.events({
       }
     });
   },
+  'click .delete-post': function (event, template) {
+    event.preventDefault();
+    // debugger
+    Meteor.call("Posts.delete", this._id, function(err) {
+      if (err){
+        console.log(err);
+        return;
+      }
+
+      //Should have feedback modal ("Your post has been deleted")
+      Router.go('/');
+    });
+  },
 
   'click [data-action=share-app]': function (event, template) {
     IonActionSheet.show({

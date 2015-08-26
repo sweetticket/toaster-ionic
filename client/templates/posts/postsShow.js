@@ -42,17 +42,22 @@ Template.postsShow.onDestroyed(function() {
 });
 
 Template.postsShow.helpers({
-  post: function () {
+  post: function() {
     return Posts.findOne({_id: Router.current().params._id});
   },
 
-  comments: function () {
+  comments: function() {
     return Comments.find({postId: Router.current().params._id}, {sort: {createdAt: 1}});
   },
 
-  isPlural: function () {
+  isPlural: function() {
     return Comments.find({postId: this._id}).count() !== 1;
   },
+
+  isMyPost: function() {
+    return this.userId === Meteor.userId();
+  },
+
 });
 
 Template.postsShow.events({
@@ -67,7 +72,6 @@ Template.postsShow.events({
         $('.content').stop().animate({
             scrollTop: '+=' + scrollamt
         }, 400);
-      }
-          
-  }
+      }     
+  },
 });
