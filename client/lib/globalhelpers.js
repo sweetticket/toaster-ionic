@@ -12,7 +12,7 @@ if (Meteor.isClient) {
         relativeTime : {
             future: "in %s",
             past:   "%s",
-            s:  "Just now",
+            s:  "Now",
             m:  "1m",
             mm: "%dm",
             h:  "1h",
