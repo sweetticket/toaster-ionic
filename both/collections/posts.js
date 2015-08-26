@@ -132,6 +132,9 @@ Meteor.methods({
     Posts.remove({
       _id: postId
     });
+    Comments.remove({
+      postId: postId
+    });
   },
 
   'Posts.decreaseNumLikes': function (postId) {
