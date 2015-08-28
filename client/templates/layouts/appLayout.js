@@ -64,7 +64,7 @@ Template.appLayout.onRendered(function() {
         if (Meteor.user() && network && ready && firstOpened){
           if ($('.resume-network').length === 0){
 
-            var popup = "<div class='resume-network'>"
+            var popup = "<div class='popup resume-network'>"
                       + "<p>You are signed into</p>"
                       + "<p class='resume-domain'>@" + network.domain +"</p>"
                       + "</div>";
@@ -127,7 +127,29 @@ Template.appLayout.events({
       }
 
       //Should have feedback modal ("Your post has been deleted")
-      Router.go('/');
+      // Router.go('/');
+      $('[data-nav-container]').addClass('nav-view-direction-back');
+      $('[data-navbar-container]').addClass('nav-bar-direction-back');
+      // backUrl = template.getBackUrl()
+      // if (backUrl) {
+      //   Router.go(backUrl);
+      // } else {
+      //   window.history.back();
+      // }
+      history.back();
+
+      var popup = "<div class='popup delete-success'>"
+                      + "<p>Your post has been deleted!</p>"
+                      + "</div>";
+
+      $('body').append(popup);
+
+      setTimeout(function () {
+        $('.delete-success').fadeOut("slow", function() {
+            $(this).remove();
+        });
+      }, 2000);
+
     });
   },
 
