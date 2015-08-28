@@ -1,1 +1,1 @@
-meteor run ios-device --mobile-server 192.168.1.104:3000
+meteor run ios-device --mobile-server 10.145.19.187:3000

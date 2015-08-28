@@ -5,3 +5,4 @@ settings.production.json
 .sass
 sass_options.json
 bundle.tar.gz
+local_mobile_run.sh
