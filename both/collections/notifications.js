@@ -5,9 +5,10 @@ if (Meteor.isServer) {
   Meteor.methods({
     addNotification: function (noti) {
       // don't add notification if I am acting on my own post
-      if (noti.fromUserId === noti.toUserId) {
-        return false;
-      }
+      // FIXME: temporarily disabled checking if this is my post
+      // if (noti.fromUserId === noti.toUserId) {
+      //   return false;
+      // }
 
       // If there's a notification for the same post, let's replace the
       // old notification with a new one
@@ -22,7 +23,6 @@ if (Meteor.isServer) {
         if (exists.fromUserId !== noti.fromUserId ||
             (exists.fromUserId === noti.fromUserId &&
             (noti.type !== exists.type || noti.type === "comment"))) {
-
               countUnread += exists.countUnread;
             }
           Notifications.remove(exists._id);

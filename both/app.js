@@ -19,17 +19,15 @@ Meteor.startup(function() {
     // Set number of posts tokeno fetch at once
     NUM_POSTS_IN_BATCH = 8;
 
-    // Set MomentJS Korean
+    // Set MomentJS English or Korean
     moment.locale('en');
   }
 
   if (Meteor.isServer) {
-    PUSH_TOKEN = null;
-    Push.debug = true;
+    // Push.debug = true;
   }
 
   if (Meteor.isCordova) {
-    console.log("im cordova");
     StatusBar.styleLightContent();
     StatusBar.backgroundColorByHexString("#ff464f");
   }
