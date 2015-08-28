@@ -14,7 +14,7 @@ Comments.helpers({
 
 // Howon: attempt to make code more modular. Not sure if this is the right way
 // you define local function blocks in Meteor
-var _notifyCommentAuthors = function (postId, postAuthorId) {
+var _notifyCommentAuthors = function (postId, postAuthorId, user) {
   var comments = Comments.find({postId: postId}).fetch();
   var authorIds = _.uniq(_.pluck(comments, 'userId'));
 
@@ -76,7 +76,7 @@ Meteor.methods({
       Meteor.call("Users.setRep", user._id, user.rep+incCommenter);
 
       // Notify people who also commented on this post
-      _notifyCommentAuthors(postId, post.userId);
+      _notifyCommentAuthors(postId, post.userId, user);
 
       // send this noti to the author of original post
       // if I am not the OP
