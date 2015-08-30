@@ -27,4 +27,8 @@ if (Meteor.isClient) {
     });
     return moment(this.createdAt).fromNow(true);
   });
+
+  Template.registerHelper("isNotAndroid", function() {
+    return Utils.getMobileOperatingSystem() !== 'Android';
+  });
 }

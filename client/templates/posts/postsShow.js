@@ -58,10 +58,6 @@ Template.postsShow.helpers({
     return this.userId === Meteor.userId();
   },
 
-  isIOS: function() {
-    return Utils.getMobileOperatingSystem() === 'iOS';
-  }
-
 });
 
 Template.postsShow.events({

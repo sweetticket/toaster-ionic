@@ -23,4 +23,5 @@ Template.settings.helpers({
       return network.domain;  
     }
   },
+
 });
