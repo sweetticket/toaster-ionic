@@ -189,6 +189,10 @@ Template.appLayout.events({
       $('.tabs a.active').removeClass('active'); 
     }
   },
+
+  // 'click .submit-new-post-btn': function (event, template) {
+  //   document.title += "New Post";
+  // }
 });
 
 Template.appLayout.helpers({

@@ -1,5 +1,6 @@
 Template.newPost.onRendered(function() {
   $('textarea').focus();
+  Router.go(window.location.pathname+"#newPost")
 });
 
 AutoForm.hooks({
@@ -8,6 +9,8 @@ AutoForm.hooks({
       console.log("post on success");
       IonModal.close();
       IonKeyboard.close();
+      var originalPath = window.location.pathname.split("#")[0];
+      Router.go(originalPath);
       Router.go('posts.show', {_id: result});
       Session.set("newPost", result);
       console.log("newPost id: " + Session.get("newPost"));
@@ -29,5 +32,11 @@ Template.newPost.events({
 
     $('.char-counter').text(140 - input.length);
   },
+
+  "click .new-post-cancel-btn": function (e, template) {
+    IonModal.close();
+    var originalPath = window.location.pathname.split("#")[0];
+    Router.go(originalPath);
+  }
 
 });
