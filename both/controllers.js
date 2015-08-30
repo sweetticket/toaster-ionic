@@ -44,6 +44,9 @@ PostsShowController = AppController.extend({
   }
 });
 
+NewPostController = AppController.extend({
+})
+
 UsersShowController = AppController.extend({
   onBeforeAction: function() {
     isLoggedIn.call(this);

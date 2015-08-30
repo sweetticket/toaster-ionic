@@ -8,6 +8,11 @@ Template._postItem.events({
   click: function (e, template) {
     console.log("I am clicked");
     var postId = template.data.post._id;
-    window.location = "/posts/"+postId;
+
+    // HOWON: invoke xcode function
+
+    // window.location = "app://"+"posts/postId";
+
+    Router.go("/posts/"+postId)
   }
 });

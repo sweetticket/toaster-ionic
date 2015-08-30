@@ -1,0 +1,45 @@
+Template.postsNew.onRendered(function() {
+});
+
+AutoForm.hooks({
+  'products-new-form': {
+    onSuccess: function (operation, result, template) {
+
+      debugger
+
+      // console.log("post on success");
+      // IonModal.close();
+      // IonKeyboard.close();
+      Router.go('posts.show', {_id: result});
+      Session.set("postsNew", result);
+      // console.log("postsNew id: " + Session.get("postsNew"));
+    },
+
+    onSubmit: function() {
+      debugger
+    }
+  }
+});
+
+Template.postsNew.events({
+  // "focus .new-post-form textarea": function (e, template) {
+  //   $('[data-keyboard-attach]').css({bottom: keyboardHeight});
+  // },
+  "keyup .new-post-form textarea": function (e, template) {
+    var input = $('.new-post-form textarea').val();
+    if (input.trim() !== "") {
+      $('.submit-post-btn').addClass("show");
+    } else {
+      $('.submit-post-btn.show').removeClass("show");
+    }
+
+    $('.char-counter').text(140 - input.length);
+  },
+
+});
+
+Template.postsNew.submitForm = function() {
+  debugger
+  // $('.submit-post-btn').click();
+  $('#products-new-form').submit();
+}
