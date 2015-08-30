@@ -1,7 +1,9 @@
 <template name="postsShow">
 
   {{#contentFor "headerButtonLeft"}}
-    {{>ionNavBackButton class="button-positive" text=false}}
+    {{#if isIOS}}
+      {{>ionNavBackButton class="button-positive" text=false}}
+    {{/if}}
   {{/contentFor}}
 
   {{#contentFor "headerButtonRight"}}
