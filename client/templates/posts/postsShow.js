@@ -70,8 +70,40 @@ Template.postsShow.events({
         var scrollamt = $lastcomment.offset().top + $lastcomment.height();
 
         $('.content').stop().animate({
-            scrollTop: '+=' + scrollamt
+          scrollTop: '+=' + scrollamt
         }, 400);
       }     
   },
 });
+
+Template.postsShow.MoveUpCommentInput = function (keyboardHeight) {
+  $('[data-keyboard-attach]').each(function (index, el) {
+    setTimeout(function() {
+      $(el).css({
+        bottom: keyboardHeight
+      })      
+    }, 20)
+
+    $('.content').css('padding-bottom', keyboardHeight);
+    
+    $lastcomment = $(".comments-list .item:last-child");
+    if ($lastcomment.length > 0) {
+      var scrollamt = $lastcomment.offset().top + $lastcomment.height();
+      $('.content').velocity("scroll", {
+        offset: scrollamt
+      });
+    }
+  });
+}
+
+
+Template.postsShow.MoveDownCommentInput = function() {
+  $('[data-keyboard-attach]').each(function (index, el) {
+    $(el).velocity({
+      bottom: 0
+    }, {
+      duration: 100
+    });
+    $('.content').css('padding-bottom', 0);
+  });
+}
