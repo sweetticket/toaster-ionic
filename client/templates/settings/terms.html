@@ -1,6 +1,8 @@
 <template name="terms">
   {{#contentFor "headerButtonLeft"}}
-    {{>ionNavBackButton class="button-positive" text=false}}
+    {{#if isNotAndroid}}
+      {{>ionNavBackButton class="button-positive" text=false}}
+    {{/if}}
   {{/contentFor}}
 
   {{#contentFor "headerTitle"}}
