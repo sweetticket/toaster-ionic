@@ -1,4 +1,5 @@
 Template.newPost.onRendered(function() {
+  $('textarea').focus();
 });
 
 AutoForm.hooks({
