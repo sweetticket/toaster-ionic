@@ -23,9 +23,7 @@ Template.trending.created = function () {
 };
 
 Template.trending.onRendered(function() {  
-
   var numPosts = Posts.find().count();
-  console.log("initial numPosts: " + numPosts);
 
   this.autorun(function () {
     var allReady = _.every([this.postsSub, this.commentsSub], function (sub) {
@@ -44,20 +42,19 @@ Template.trending.onRendered(function() {
 
   this.autorun(function() {
     // if (isAtTop) {
-    //   Session.set("newPost", undefined);
+    //   Session.set("postsNew", undefined);
     //   // $('.new-post-alert').velocity({top: '-100%'});
     //   $('.new-post-alert.show').removeClass('show');
     // }
 
-    // if (!isAtTop && Session.get("newPost")) {
-    // // if (Session.get("newPost")) {
+    // if (!isAtTop && Session.get("postsNew")) {
+    // // if (Session.get("postsNew")) {
     //   // debugger
     //   // $('.new-post-alert').velocity({top: '0'});
     //   $('.new-post-alert').addClass('show');
     // }
 
     if (numPosts !== Posts.find().count() && !isAtTop) {
-      debugger
       numPosts = Posts.find().count();
       $('.new-post-alert').addClass('show');
     }

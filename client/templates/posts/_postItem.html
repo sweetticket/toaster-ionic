@@ -1,6 +1,11 @@
 <template name="_postItem">
   {{#with post}}
-    {{#ionItem path=../path iconLeft=true iconRight=true class="item-text-wrap post-list-item"}}
+    <!-- {{#ionItem path=../path iconLeft=true iconRight=true class="item-text-wrap post-list-item"}} -->
+
+    <!-- HOWON FIXME: temporarily disabling path because we are doing window.location for iOS to notice the redirection -->
+    <!-- yes it works. -->
+    {{#ionItem class="item-text-wrap post-list-item"}}
+
       {{> _voteButton}}
       <!-- <div class="author-avatar" style="background-color: {{author.color}}">
         <i class="author-icon {{author.icon}}"></i>
