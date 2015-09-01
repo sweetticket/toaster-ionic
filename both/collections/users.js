@@ -34,13 +34,18 @@ if (Meteor.isClient) {
 
   Accounts.onLogin(function() {
     var userId = Meteor.userId();
+    
 
     // for Android
-    // JENNY ADD CODE HERE
+    if (Utils.isNativeApp && Utils.getMobileOperatingSystem === 'Android') {
+      alert(Meteor.userId());
+    }
 
     // for iOS
-    console.log("register in iOS:", userId);
-    window.location.href = "toaster://"+userId;
+    if (Utils.isNativeApp && Utils.getMobileOperatingSystem === 'iOS') {
+      console.log("register in iOS:", userId);
+      window.location.href = "toaster://"+userId;
+    }
   })
 }
 

@@ -36,6 +36,12 @@ Template.signIn.events({
         //fixme do something
       } else {
         Session.set("currentUserId", Meteor.userId());
+
+        // for Android
+        if (Utils.isNativeApp && Utils.getMobileOperatingSystem === 'Android') {
+          alert(Meteor.userId());
+        }
+        
         Session.set("firstOpened", true);
         $('.tabs a.active').removeClass('active');
         $('.tabs a:first-child').addClass('active');
