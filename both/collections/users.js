@@ -31,6 +31,17 @@ if (Meteor.isClient) {
       window.location = "toaster://verified";
     });
   });
+
+  Accounts.onLogin(function() {
+    var userId = Meteor.userId();
+
+    // for Android
+    // JENNY ADD CODE HERE
+
+    // for iOS
+    console.log("register in iOS:", userId);
+    window.location.href = "toaster://"+userId;
+  })
 }
 
 if (Meteor.isServer) {
