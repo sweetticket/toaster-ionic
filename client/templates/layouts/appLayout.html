@@ -1,7 +1,7 @@
 <template name="appLayout">
 
   {{#ionBody}}
-    {{> ionNavBar}}
+    <!-- {{> ionNavBar}} -->
 
     {{#ionNavView}}
       {{> yield}}
@@ -14,7 +14,7 @@
         <p class="resume-domain"></p>
       </div> -->
 
-    {{#unless shouldHideTab}}
+    <!-- {{#unless shouldHideTab}}
       {{#if isAndroid}}
         {{#ionTabs style="android"}}
           {{> ionTab title="Recent" path="recent" icon="android-time"}}
@@ -31,7 +31,7 @@
           {{> ionTab title="profile" path="profile" iconOff="ios-person-outline" iconOn="ios-person" class="tab-item-positive"}}
         {{/ionTabs}}
       {{/if}}
-    {{/unless}}
+    {{/unless}}-->
   {{/ionBody}}
 
 </template>
