@@ -135,7 +135,7 @@ Meteor.methods({
             upvoterIds: [],
             downvoterIds: [],
             numLikes: 0,
-            networkId: Networks.findOne()._id,
+            networkId: Meteor.user().networkId,
             createdAt: new Date(),
           });
 
