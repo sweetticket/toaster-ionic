@@ -38,14 +38,18 @@ Template.signIn.events({
         Session.set("currentUserId", Meteor.userId());
 
         // for Android
-        if (Utils.isNativeApp && Utils.getMobileOperatingSystem === 'Android') {
-          alert(Meteor.userId());
-        }
-        
+        // if (Utils.isNativeApp && Utils.getMobileOperatingSystem === 'Android') {
+        //   alert(Meteor.userId());
+        // }
+
         Session.set("firstOpened", true);
         $('.tabs a.active').removeClass('active');
         $('.tabs a:first-child').addClass('active');
-        Router.go('/');
+        if (Utils.isNativeApp() && Utils.getMobileOperatingSystem() === 'Android') {
+            alert('signed-in');
+        } else {
+          Router.go('/');
+        }
       }
     });
   },

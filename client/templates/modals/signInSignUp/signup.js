@@ -1,5 +1,8 @@
 Template.signUp.rendered = function() {
   window.scrollTo(0, 0);
+  if (Utils.isNativeApp() && Utils.getMobileOperatingSystem() === 'Android') {
+      alert('signup');
+    }
   
 };
 
@@ -64,7 +67,13 @@ Template.signUp.events({
         // Session.set('currentTab', 'recent');
         $('.tabs a.active').removeClass('active');
         $('.tabs a:first-child').addClass('active');
-        Router.go('/');
+
+        if (Utils.isNativeApp() && Utils.getMobileOperatingSystem() === 'Android') {
+            alert('signed-in');
+        } else {
+          Router.go('/');
+        }
+        
       }
     });
   },
