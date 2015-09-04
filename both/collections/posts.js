@@ -128,14 +128,13 @@ Meteor.methods({
   // },
 
   'Posts.new': function (body) {
-
     return Posts.insert({
             body: body,
             userId: Meteor.userId(),
             upvoterIds: [],
             downvoterIds: [],
             numLikes: 0,
-            networkId: Networks.findOne()._id,
+            networkId: Meteor.user().networkId,
             createdAt: new Date(),
           });
 

@@ -73,7 +73,6 @@ Template.recent.onRendered(function() {
 
   this.autorun(function() {
     if (numPosts !== Posts.find().count() && !isAtTop) {
-      debugger
       numPosts = Posts.find().count();
       $('.new-post-alert').addClass('show');
     }
