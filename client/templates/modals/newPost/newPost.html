@@ -1,8 +1,9 @@
 <template name="newPost">
-  {{#ionModal customTemplate=true}}
+  {{#ionView}}
+    {{#ionContent class="new-post-content"}}
     {{# autoForm collection="Posts" id="products-new-form" type="insert"}}
       <div class="bar bar-header bar-stable modal-header">
-        <button data-dismiss="modal" type="button" class="button button-clear new-post-cancel-btn">Cancel</button>
+        <button type="button" class="button button-clear new-post-cancel-btn">Cancel</button>
         <h2 class="title">Toast</h2>
         <button type="submit" class="button button-positive button-clear submit-post-btn">Submit</button>
       </div>
@@ -15,5 +16,6 @@
       <span class="char-counter">140</span>
     </div>
 
-  {{/ionModal}}
+  {{/ionContent}}
+  {{/ionView}}
 </template>

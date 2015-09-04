@@ -6,6 +6,10 @@ Router.route('/trending', {
   name: 'trending'
 });
 
+Router.route('/newPost', {
+  name: 'newPost'
+})
+
 Router.route('/posts/:_id', {
   name: 'posts.show'
 });

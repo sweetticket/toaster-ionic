@@ -1,6 +1,5 @@
 Template.newPost.onRendered(function() {
   $('textarea').focus();
-  Router.go(window.location.pathname+"#newPost")
 });
 
 AutoForm.hooks({
