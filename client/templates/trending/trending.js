@@ -19,6 +19,7 @@ Template.trending.created = function () {
     // this.postsSub = this.subscribe('trendingPosts');
     this.subscribe('otherUserInfo');
     // this.subscribe('comments');
+    this.subscribe('userNetwork');
   }.bind(this));
 };
 

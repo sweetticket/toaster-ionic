@@ -127,6 +127,20 @@ Meteor.methods({
   //   Meteor.users.update({_id: this.userId}, {$addToSet: {'profile.votedProductIds': _id}});
   // },
 
+  'Posts.new': function (body) {
+
+    return Posts.insert({
+            body: body,
+            userId: Meteor.userId(),
+            upvoterIds: [],
+            downvoterIds: [],
+            numLikes: 0,
+            networkId: Networks.findOne()._id,
+            createdAt: new Date(),
+          });
+
+  },
+
   //DELETE COMMENTS, UPVOTERS, AND DOWNVOTERS
   'Posts.delete': function (postId) {
     Posts.remove({
