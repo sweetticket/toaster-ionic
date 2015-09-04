@@ -10,7 +10,11 @@ Template.postsShow.created = function () {
     this.commentSub = this.subscribe('comments');
     this.userSub = this.subscribe('otherUserInfo');
   }.bind(this));
+
   Session.set("shouldHideTabs", true);
+
+  //tell iOS wrapper that we should move to a different ViewController
+  window.location = "toasterapp://postsShow";
 };
 
 Template.postsShow.onRendered(function() {
