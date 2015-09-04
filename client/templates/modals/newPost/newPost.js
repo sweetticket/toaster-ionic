@@ -8,11 +8,10 @@ AutoForm.hooks({
       console.log("post on success");
       IonModal.close();
       IonKeyboard.close();
-      var originalPath = window.location.pathname.split("#")[0];
-      Router.go(originalPath);
       Router.go('posts.show', {_id: result});
       Session.set("newPost", result);
       console.log("newPost id: " + Session.get("newPost"));
+
     }
   }
 });

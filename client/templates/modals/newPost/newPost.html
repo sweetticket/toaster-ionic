@@ -1,12 +1,12 @@
 <template name="newPost">
   {{#ionView}}
     {{#ionContent class="new-post-content"}}
-    {{# autoForm collection="Posts" id="products-new-form" type="insert"}}
-      <div class="bar bar-header bar-stable modal-header">
+    {{# autoForm collection="Posts" name="new_post_form" id="products-new-form" type="insert"}}
+     <!--  <div class="bar bar-header bar-stable modal-header">
         <button type="button" class="button button-clear new-post-cancel-btn">Cancel</button>
         <h2 class="title">Toast</h2>
         <button type="submit" class="button button-positive button-clear submit-post-btn">Submit</button>
-      </div>
+      </div> -->
       <div class="content has-header overflow-scroll new-post-form">
         {{> afQuickField name="body" autofocus=''}}
       </div>
