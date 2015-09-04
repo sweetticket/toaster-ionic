@@ -21,7 +21,6 @@ reactive-var
 accounts-password
 email
 accounts-ui
-raix:push@2.6.11
 fortawesome:fontawesome
 reactive-dict
 fastclick
@@ -30,4 +29,3 @@ tmeasday:publish-counts
 meteorhacks:subs-manager
 meteoric:ionic:forked:howon
 velocityjs:velocityjs
-howon:forked:practicalmeteor:wkwebview

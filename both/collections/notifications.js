@@ -45,7 +45,7 @@ if (Meteor.isServer) {
             // query: {}
           }
           console.log(pushNoti);
-          Push.send(pushNoti);
+          // Push.send(pushNoti);
         }
       });
     },
@@ -78,10 +78,10 @@ if (Meteor.isClient) {
     Tracker.autorun(function() {
       var userId = Meteor.userId();
       if (userId) {
-        Push.addListener("message", function (notification) {
-          console.log("Push notification received");
-          Push.setBadge(unreadBadgeCount+1);
-        });
+        // Push.addListener("message", function (notification) {
+        //   console.log("Push notification received");
+        //   Push.setBadge(unreadBadgeCount+1);
+        // });
       }
     })
   });

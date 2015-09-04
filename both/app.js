@@ -8,13 +8,13 @@ Meteor.startup(function() {
   // }
 
   if (Meteor.isClient) {
-    Push.addListener("error", function (err) {
-      console.log("Push notification Error", err);
-    });
+    // Push.addListener("error", function (err) {
+    //   console.log("Push notification Error", err);
+    // });
 
-    Push.addListener('message', function (msg) {
-      console.log("msg received push:", JSON.stringify(msg));
-    });
+    // Push.addListener('message', function (msg) {
+    //   console.log("msg received push:", JSON.stringify(msg));
+    // });
 
     // Set number of posts tokeno fetch at once
     NUM_POSTS_IN_BATCH = 8;
