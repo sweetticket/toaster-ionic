@@ -41,6 +41,7 @@ RecentController = AppController.extend({
 PostsShowController = AppController.extend({
   onBeforeAction: function() {
     isLoggedIn.call(this);
+    // console.log(window.location);
   }
 });
 

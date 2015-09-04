@@ -11,6 +11,9 @@ Template.postsShow.created = function () {
     this.userSub = this.subscribe('otherUserInfo');
   }.bind(this));
   Session.set("shouldHideTabs", true);
+
+  // window.location = "toasterapp://posts/" + Router.current().params._id;
+  window.location = "toasterapp://postsShow";
 };
 
 Template.postsShow.onRendered(function() {
