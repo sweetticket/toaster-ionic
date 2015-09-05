@@ -37,8 +37,19 @@ Template.trending.onRendered(function() {
       this.$('.posts-container').hide();
       Utils.showLoading();
     } else {
+      // iOS: signal the end of Meteor loading
+      if (Utils.getMobileOperatingSystem() === 'iOS') {
+        setTimeout(function() {
+          // This 100ms delay is important.
+          // Even when the subscription is ready, we still need
+          // extra time for everything to be rendered
+          window.location = "toasterapp://loadingEnd";  
+        }, 100);
+      }
+      
       this.$('.posts-container').fadeIn();
       Utils.hideLoading();
+
     }
 
   }.bind(this));

@@ -12,7 +12,17 @@ Template.profile.created = function () {
     if (!this.subscriptionsReady()) {
       Utils.showLoading();
     } else {
+      if (Utils.getMobileOperatingSystem() === 'iOS') {
+        setTimeout(function() {
+          // This 100ms delay is important.
+          // Even when the subscription is ready, we still need
+          // extra time for everything to be rendered
+          window.location = "toasterapp://loadingEnd";  
+        }, 100);
+      }
+      
       Utils.hideLoading();
+
     }
   }.bind(this));
 };
