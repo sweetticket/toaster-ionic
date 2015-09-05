@@ -12,14 +12,7 @@ Template.profile.created = function () {
     if (!this.subscriptionsReady()) {
       Utils.showLoading();
     } else {
-      if (Utils.getMobileOperatingSystem() === 'iOS') {
-        setTimeout(function() {
-          // This 100ms delay is important.
-          // Even when the subscription is ready, we still need
-          // extra time for everything to be rendered
-          window.location = "toasterapp://loadingEnd";  
-        }, 100);
-      }
+      Utils.tellIOSLoadingEnded();
       
       Utils.hideLoading();
 
@@ -30,6 +23,10 @@ Template.profile.created = function () {
 Template.profile.rendered = function () {
   Session.set("profileFilter", "myToasts");
 };
+
+Template.profile.onDestroyed(function() {
+  Utils.tellIOSLoadingEnded();
+});
 
 Template.profile.helpers({
   user: function () {

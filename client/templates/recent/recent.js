@@ -28,6 +28,10 @@ Template.recent.created = function () {
   }.bind(this));
 };
 
+Template.recent.onDestroyed(function() {
+  Utils.tellIOSLoadingEnded();
+});
+
 Template.recent.onRendered(function() {
   var limit = this.numPostsFetched.get();
   var instance = this;
@@ -41,9 +45,7 @@ Template.recent.onRendered(function() {
 
     if (!allReady && !this.initialLoaded) {
       // iOS: signal the start of Meteor loading
-      if (Utils.getMobileOperatingSystem() === 'iOS') {
-        window.location = "toasterapp://loadingStart";
-      }
+      Utils.tellIOSLoadingStarted();
 
       this.$('.posts-container').hide();
       Utils.showLoading();
@@ -51,12 +53,7 @@ Template.recent.onRendered(function() {
     } else {
       // iOS: signal the end of Meteor loading
       if (Utils.getMobileOperatingSystem() === 'iOS') {
-        setTimeout(function() {
-          // This 100ms delay is important.
-          // Even when the subscription is ready, we still need
-          // extra time for everything to be rendered
-          window.location = "toasterapp://loadingEnd";  
-        }, 100);
+        Utils.tellIOSLoadingEnded();
       }
 
       this.$('.posts-container').fadeIn();

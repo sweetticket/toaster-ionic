@@ -8,22 +8,15 @@ Template.notifications.onCreated(function() {
 
 Template.notifications.onDestroyed(function() {
   Meteor.call("readAllNotifications");
+  Utils.tellIOSLoadingEnded();
 });
 
 Template.notifications.onRendered(function() {
   this.autorun(function() {
     if (this.subscriptionsReady()) {
-      if (Utils.getMobileOperatingSystem() === 'iOS') {
-        setTimeout(function() {
-          // This 100ms delay is important.
-          // Even when the subscription is ready, we still need
-          // extra time for everything to be rendered
-          window.location = "toasterapp://loadingEnd";  
-        }, 100);
-      }
+      Utils.tellIOSLoadingEnded();
       
       Utils.hideLoading();
-
     }
   }.bind(this));
 });

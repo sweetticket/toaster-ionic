@@ -7,7 +7,7 @@ var isAtTop = function() {
 
 Template.trending.created = function () {
   // Howon's note: we don't do dynamic loading for trending feed for now,
-  // because we are only dealing with 200 threads.
+  // because we are only dealing with 100 threads.
   // but we still should.. however, we need a set of sorted
   // threads in place to take a portion of threads at a time.
   // Not sure how to do it at this point.
@@ -22,6 +22,10 @@ Template.trending.created = function () {
     this.subscribe('userNetwork');
   }.bind(this));
 };
+
+Template.trending.onDestroyed(function() {
+  Utils.tellIOSLoadingEnded();
+});
 
 Template.trending.onRendered(function() {  
 
@@ -44,9 +48,9 @@ Template.trending.onRendered(function() {
           // Even when the subscription is ready, we still need
           // extra time for everything to be rendered
           window.location = "toasterapp://loadingEnd";  
-        }, 100);
+        }, 50);
       }
-      
+
       this.$('.posts-container').fadeIn();
       Utils.hideLoading();
 
