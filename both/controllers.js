@@ -1,5 +1,10 @@
 var isLoggedIn = function() {
   if (!Meteor.loggingIn() && !Meteor.user()) {
+    if (Meteor.isClient) {
+      if (Router.current().route._path === '/' && Utils.isNativeApp() && Utils.getMobileOperatingSystem() === 'Android') {
+        alert('start-signup');
+      }
+    }
     Router.go('signUp');
   } else {
     //FIXME: EMAIL VERIFICATION TURNED OFF

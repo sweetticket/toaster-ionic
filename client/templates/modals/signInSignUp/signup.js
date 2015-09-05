@@ -80,7 +80,11 @@ Template.signUp.events({
 
   "click .signin-link": function (e, template) {
     e.preventDefault();
-    Router.go('/signIn');
+    if (Utils.isNativeApp() && Utils.getMobileOperatingSystem() === 'Android') {
+        alert('toSignIn');
+    } else {
+      Router.go('/signIn');
+    }
   },
 
   "keyup .signup-container input": function (e, template) {
