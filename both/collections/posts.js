@@ -39,78 +39,78 @@ Posts.helpers({
 //   });
 // };
 
-Posts.attachSchema(new SimpleSchema({
-  // url: {
-  //   type: String,
-  //   autoform: {
-  //     'label-type': 'placeholder',
-  //     placeholder: 'Product URL'
-  //   },
-  //   max: 200
-  // },
-  // name: {
-  //   type: String,
-  //   autoform: {
-  //     'label-type': 'placeholder',
-  //     placeholder: 'Product Name'
-  //   },
-  //   max: 200
-  // },
-  body: {
-    type: String,
-    autoform: {
-      'label-type': 'placeholder',
-      placeholder: 'You are anonymous...',
-      rows: 10
-    },
-    max: 140
-  },
-  userId: {
-    type: String,
-    autoValue: function () {
-      if (this.isSet) {
-        return;
-      }
-      if (this.isInsert) {
-        return Meteor.userId();
-      } else {
-        this.unset();
-      }
-    }
-  },
-  upvoterIds: {
-    type: [String],
-    optional: true,
-    defaultValue: []
-  },
-  downvoterIds: {
-    type: [String],
-    optional: true,
-    defaultValue: []
-  },
-  numLikes: {
-    type: Number,
-    optional: true,
-    defaultValue: 0
-  },
-  networkId: {
-    type: String,
-    optional: false,
-    autoValue: function () {
-      if (this.isSet) {
-        return;
-      }
-      if (this.isInsert) {
-        return Meteor.user().networkId;
-      } else {
-        this.unset();
-      }
-    }
-  },
-  createdAt: {
-    type: Date
-  }
-}));
+// Posts.attachSchema(new SimpleSchema({
+//   // url: {
+//   //   type: String,
+//   //   autoform: {
+//   //     'label-type': 'placeholder',
+//   //     placeholder: 'Product URL'
+//   //   },
+//   //   max: 200
+//   // },
+//   // name: {
+//   //   type: String,
+//   //   autoform: {
+//   //     'label-type': 'placeholder',
+//   //     placeholder: 'Product Name'
+//   //   },
+//   //   max: 200
+//   // },
+//   body: {
+//     type: String,
+//     autoform: {
+//       'label-type': 'placeholder',
+//       placeholder: 'You are anonymous...',
+//       rows: 10
+//     },
+//     max: 140
+//   },
+//   userId: {
+//     type: String,
+//     autoValue: function () {
+//       if (this.isSet) {
+//         return;
+//       }
+//       if (this.isInsert) {
+//         return Meteor.userId();
+//       } else {
+//         this.unset();
+//       }
+//     }
+//   },
+//   upvoterIds: {
+//     type: [String],
+//     optional: true,
+//     defaultValue: []
+//   },
+//   downvoterIds: {
+//     type: [String],
+//     optional: true,
+//     defaultValue: []
+//   },
+//   numLikes: {
+//     type: Number,
+//     optional: true,
+//     defaultValue: 0
+//   },
+//   networkId: {
+//     type: String,
+//     optional: false,
+//     autoValue: function () {
+//       if (this.isSet) {
+//         return;
+//       }
+//       if (this.isInsert) {
+//         return Meteor.user().networkId;
+//       } else {
+//         this.unset();
+//       }
+//     }
+//   },
+//   createdAt: {
+//     type: Date
+//   }
+// }));
 
 
 Meteor.methods({
@@ -129,14 +129,14 @@ Meteor.methods({
 
   'Posts.new': function (body) {
     return Posts.insert({
-            body: body,
-            userId: Meteor.userId(),
-            upvoterIds: [],
-            downvoterIds: [],
-            numLikes: 0,
-            networkId: Meteor.user().networkId,
-            createdAt: new Date(),
-          });
+      body: body,
+      userId: Meteor.userId(),
+      upvoterIds: [],
+      downvoterIds: [],
+      numLikes: 0,
+      networkId: Meteor.user().networkId,
+      createdAt: new Date(),
+    });
 
   },
 
@@ -283,11 +283,6 @@ Meteor.methods({
       console.log("post doesnt exist");
       return false;
     }
-
-    // if (post.userId == userId) {
-    //   console.log("Can't downvote your own post");
-    //   return false;
-    // }
 
     var voter = Meteor.users.findOne({_id: userId});
     var author = Meteor.users.findOne({_id: post.userId});

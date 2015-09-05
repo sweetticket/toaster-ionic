@@ -17,7 +17,7 @@ Meteor.startup(function() {
     // });
 
     // Set number of posts tokeno fetch at once
-    NUM_POSTS_IN_BATCH = 8;
+    NUM_POSTS_IN_BATCH = 50;
 
     // Set MomentJS English or Korean
     moment.locale('en');

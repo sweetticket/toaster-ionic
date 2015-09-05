@@ -6,9 +6,9 @@ Template.newPost.submitNewPost = function() {
         console.log(err);
         return false;
       }
-      Router.go('/posts/' + result);
+
+      Router.go('/');
       Session.set("newPost", result);
-      console.log("newPost id: " + Session.get("newPost"));
     });
   }
 };
@@ -17,31 +17,17 @@ Template.newPost.onCreated(function() {
   this.autorun(function () {
     this.subscribe('userNetwork');
   }.bind(this));
+
+  if (Utils.getMobileOperatingSystem() === 'iOS') {
+    window.location = "toasterapp://newPost";
+  }
 });
 
 Template.newPost.onRendered(function() {
   $('textarea').focus();
 });
 
-// AutoForm.hooks({
-//   'products-new-form': {
-//     onSuccess: function (operation, result, template) {
-//       console.log("post on success");
-//       // IonModal.close();
-//       // IonKeyboard.close();
-//       Router.go('posts.show', {_id: result});
-//       Session.set("newPost", result);
-//       console.log("newPost id: " + Session.get("newPost"));
-
-//     }
-//   }
-// });
-
 Template.newPost.events({
-  // "focus .new-post-form textarea": function (e, template) {
-  //   $('[data-keyboard-attach]').css({bottom: keyboardHeight});
-  // },
-
   "keyup .new-post-form textarea": function (e, template) {
     var input = $('.new-post-form textarea').val();
     if (input.trim() !== "") {

@@ -66,6 +66,7 @@ Template.recent.onRendered(function() {
       var epsilon = 200;
       var threshold = distanceY+$(document).height()+epsilon;
       if ($target.offset().top < threshold) {
+        console.log("fetching more posts");
         fetchMorePosts();
       }
     }
