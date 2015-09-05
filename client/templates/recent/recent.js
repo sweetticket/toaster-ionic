@@ -11,7 +11,6 @@ Template.recent.created = function () {
   this.initialLoaded = false;
 
   this.loaded = new ReactiveVar(0);
-  // this.ready = new ReactiveVar();
   this.numPostsFetched = new ReactiveVar(NUM_POSTS_IN_BATCH);
 
   this.autorun(function () {
@@ -25,7 +24,6 @@ Template.recent.created = function () {
     }
     
     this.subscribe('otherUserInfo');
-    // this.subscribe('comments');
     this.subscribe('userNetwork');
   }.bind(this));
 };
@@ -35,7 +33,6 @@ Template.recent.onRendered(function() {
   var instance = this;
 
   var numPosts = Posts.find().count();
-  console.log("initial numPosts: " + numPosts);
 
   this.autorun(function () {
     var allReady = _.every([this.postsSub, this.commentsSub], function (sub) {
@@ -43,10 +40,25 @@ Template.recent.onRendered(function() {
     });
 
     if (!allReady && !this.initialLoaded) {
+      // iOS: signal the start of Meteor loading
+      if (Utils.getMobileOperatingSystem() === 'iOS') {
+        window.location = "toasterapp://loadingStart";
+      }
+
       this.$('.posts-container').hide();
       Utils.showLoading();
       Session.set("ready", false);
     } else {
+      // iOS: signal the end of Meteor loading
+      if (Utils.getMobileOperatingSystem() === 'iOS') {
+        setTimeout(function() {
+          // This 100ms delay is important.
+          // Even when the subscription is ready, we still need
+          // extra time for everything to be rendered
+          window.location = "toasterapp://loadingEnd";  
+        }, 100);
+      }
+
       this.$('.posts-container').fadeIn();
       Utils.hideLoading();
       Session.set("ready", true);
