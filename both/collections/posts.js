@@ -128,7 +128,6 @@ Meteor.methods({
   // },
 
   'Posts.new': function (body) {
-
     return Posts.insert({
             body: body,
             userId: Meteor.userId(),

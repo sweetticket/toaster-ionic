@@ -58,7 +58,6 @@ Template.trending.onRendered(function() {
     // }
 
     if (numPosts !== Posts.find().count() && !isAtTop) {
-      debugger
       numPosts = Posts.find().count();
       $('.new-post-alert').addClass('show');
     }

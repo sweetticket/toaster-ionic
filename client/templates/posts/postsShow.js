@@ -14,7 +14,9 @@ Template.postsShow.created = function () {
   Session.set("shouldHideTabs", true);
 
   //tell iOS wrapper that we should move to a different ViewController
-  if (Utils.isNativeApp && Utils.getMobileOperatingSystem === 'iOS') {
+  // console.log(Utils.isNativeApp(), Utils.getMobileOperatingSystem());
+  // if (Utils.isNativeApp() && Utils.getMobileOperatingSystem() === 'iOS') {
+  if (Utils.getMobileOperatingSystem() === 'iOS') {
     window.location = "toasterapp://postsShow";
   }
 };
