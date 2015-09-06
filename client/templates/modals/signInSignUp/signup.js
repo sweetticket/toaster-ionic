@@ -1,8 +1,8 @@
 Template.signUp.rendered = function() {
   window.scrollTo(0, 0);
-  if (Utils.isNativeApp() && Utils.getMobileOperatingSystem() === 'Android') {
-      alert('signup');
-    }
+  // if (Utils.isNativeApp() && Utils.getMobileOperatingSystem() === 'Android') {
+  //     alert('signup');
+  //   }
   
 };
 
