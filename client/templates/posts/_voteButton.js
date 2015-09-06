@@ -1,9 +1,11 @@
 Template._voteButton.events({
   'click .upvote-button': function (event, template) {
+    event.stopPropagation();
     event.preventDefault();
     Meteor.call('Posts.upvote', this._id, Meteor.userId());
   },
   'click .downvote-button': function (event, template) {
+    event.stopPropagation();
     event.preventDefault();
     Meteor.call('Posts.downvote', this._id, Meteor.userId());
   }
