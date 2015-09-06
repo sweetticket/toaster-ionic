@@ -33,20 +33,39 @@ AppController = RouteController.extend({
 TrendingController = AppController.extend({
   onBeforeAction: function() {
     isLoggedIn.call(this);
-  }
+  },
+
+  // onAfterAction: function() {
+  //   if (Utils.getMobileOperatingSystem() === 'iOS') {
+  //     window.location = "toasterapp://trending";
+  //   }
+  // }
 });
 
 RecentController = AppController.extend({
   onBeforeAction: function() {
     isLoggedIn.call(this);
     // isVerified.call(this);
-  }
+  },
+
+  // onAfterAction: function() {
+  //   if (Utils.getMobileOperatingSystem() === 'iOS') {
+  //     window.location = "toasterapp://recent";
+  //   }
+  // }
 });
 
 PostsShowController = AppController.extend({
   onBeforeAction: function() {
     isLoggedIn.call(this);
-  }
+  },
+
+
+  // onAfterAction: function() {
+  //   if (Utils.getMobileOperatingSystem() === 'iOS') {
+  //     window.location = "toasterapp://postsShow";
+  //   }
+  // }
 });
 
 UsersShowController = AppController.extend({
@@ -58,19 +77,41 @@ UsersShowController = AppController.extend({
 NotificationsController = AppController.extend({
   onBeforeAction: function() {
     isLoggedIn.call(this);
-  }
+  },
+
+  // onAfterAction: function() {
+  //   if (Utils.getMobileOperatingSystem() === 'iOS') {
+  //     window.location = "toasterapp://notifications";
+  //   }
+  // }
 });
 
 ProfileController = AppController.extend({
   onBeforeAction: function() {
     isLoggedIn.call(this);
-  }
+  },
+
+  // onAfterAction: function() {
+  //   if (Utils.getMobileOperatingSystem() === 'iOS') {
+  //     window.location = "toasterapp://profile";
+  //   }
+  // }
 });
 
 SignInController = AppController.extend({
+  onAfterAction: function() {
+    if (Utils.getMobileOperatingSystem() === 'iOS') {
+      window.location = "toasterapp://signIn";
+    }
+  }
 });
 
 SignUpController = AppController.extend({
+  onAfterAction: function() {
+    if (Utils.getMobileOperatingSystem() === 'iOS') {
+      window.location = "toasterapp://signUp";
+    }
+  }
 });
 
 NotVerifiedController = AppController.extend({

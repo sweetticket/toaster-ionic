@@ -1,9 +1,5 @@
 Template.signUp.rendered = function() {
   window.scrollTo(0, 0);
-  // if (Utils.isNativeApp() && Utils.getMobileOperatingSystem() === 'Android') {
-  //     alert('signup');
-  //   }
-  
 };
 
 var _toggleEnableSignUp = function() {
@@ -16,11 +12,6 @@ Template.signUp.events({
   "keyup input": function (e, template) {
     // _toggleEnableSignUp();
   },
-
-  // "click input": function (e, template) {
-  //   e.preventDefault();
-  //   $(e.target).focus();
-  // },
 
   "click .signup-btn.enabled": function (e, template) {
     window.scrollTo(0, 0);

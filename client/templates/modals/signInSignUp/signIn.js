@@ -6,11 +6,14 @@ Template.signIn.rendered = function() {
 
 Template.signIn.events({
   "click .signup-link": function (e, template) {
+    e.preventDefault();
+    
     if (Utils.isNativeApp() && Utils.getMobileOperatingSystem() === 'Android') {
-        alert('toSignUp');
-    } else {
-      Router.go('/signUp');
+      alert('toSignUp');
+      return;
     }
+
+    Router.go('signUp');
   },
 
   "click .signin-btn.enabled": function (e, template) {
