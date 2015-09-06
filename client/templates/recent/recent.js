@@ -54,6 +54,8 @@ Template.recent.onRendered(function() {
         Utils.tellIOSLoadingEnded();
       }
 
+      Utils.tellAndroidLoadingEnded();
+
       this.$('.posts-container').fadeIn();
 
       //HOWON: TEMPORARILY DSIABLING LOADING WHEEL

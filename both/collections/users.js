@@ -34,7 +34,7 @@ if (Meteor.isClient) {
 
   Accounts.onLogin(function() {
     var userId = Meteor.userId();
-    
+
     // for Android
     if (Utils.isNativeApp && Utils.getMobileOperatingSystem === 'Android') {
       alert(userId);

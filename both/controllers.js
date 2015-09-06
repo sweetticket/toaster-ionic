@@ -1,11 +1,17 @@
 var isLoggedIn = function() {
+  // console.log("JENYNYNYNY");
+  // console.log(Meteor.loggingIn());
+  // console.log(Meteor.user());
   if (!Meteor.loggingIn() && !Meteor.user()) {
     if (Meteor.isClient) {
-      if (Router.current().route._path === '/' && Utils.isNativeApp() && Utils.getMobileOperatingSystem() === 'Android') {
+      // if (Router.current().route._path === '/trending' && Utils.isNativeApp() && Utils.getMobileOperatingSystem() === 'Android') {
+      if (Utils.isNativeApp() && Utils.getMobileOperatingSystem() === 'Android') {
+
         alert('start-signup');
       }
+    } else {
+      Router.go('signUp');
     }
-    Router.go('signUp');
   } else {
     //FIXME: EMAIL VERIFICATION TURNED OFF
     // isVerified.call(this);

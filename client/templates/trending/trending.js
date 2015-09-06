@@ -54,6 +54,8 @@ Template.trending.onRendered(function() {
         }, 50);
       }
 
+      Utils.tellAndroidLoadingEnded();
+
       this.$('.posts-container').fadeIn();
 
       //HOWON: TEMPORARILY DSIABLING LOADING WHEEL
