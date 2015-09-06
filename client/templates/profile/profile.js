@@ -10,11 +10,11 @@ Template.profile.created = function () {
     this.subscribe('otherUserInfo');
 
     if (!this.subscriptionsReady()) {
-      Utils.showLoading();
+      // Utils.showLoading();
     } else {
       Utils.tellIOSLoadingEnded();
       
-      Utils.hideLoading();
+      // Utils.hideLoading();
 
     }
   }.bind(this));
@@ -23,10 +23,6 @@ Template.profile.created = function () {
 Template.profile.rendered = function () {
   Session.set("profileFilter", "myToasts");
 };
-
-Template.profile.onDestroyed(function() {
-  Utils.tellIOSLoadingEnded();
-});
 
 Template.profile.helpers({
   user: function () {
