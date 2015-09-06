@@ -31,4 +31,9 @@ if (Meteor.isClient) {
   Template.registerHelper("isNotAndroid", function() {
     return Utils.getMobileOperatingSystem() !== 'Android';
   });
+
+  Template.registerHelper("isAndroidNative", function() {
+    // console.log("isAndroidNative: " + Utils.isNativeApp() && Utils.getMobileOperatingSystem() === 'Android');
+    return Utils.isNativeApp() && Utils.getMobileOperatingSystem() === 'Android';
+  });
 }

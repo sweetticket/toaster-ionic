@@ -48,7 +48,7 @@ Template.signIn.events({
         Session.set("firstOpened", true);
         $('.tabs a.active').removeClass('active');
         $('.tabs a:first-child').addClass('active');
-        
+
         if (Utils.isNativeApp() && Utils.getMobileOperatingSystem() === 'Android') {
             alert('signed-in');
         } else {

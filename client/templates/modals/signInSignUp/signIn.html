@@ -22,8 +22,9 @@
           <button class="button button-block button-positive signin-btn">
             Log in
           </button>
-
-          <p class="go-to-signup">Don't have an account yet? <a href="#" class="signup-link">Sign up</a></p>
+          {{#unless isAndroidNative}}
+            <p class="go-to-signup">Don't have an account yet? <a href="#" class="signup-link">Sign up</a></p>
+          {{/unless}}
 
         </div>
       </div>

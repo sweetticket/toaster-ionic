@@ -33,7 +33,9 @@
           <button class="button button-block button-positive signup-btn">
             Sign up
           </button>
-          <p class="go-to-signin">Already have an account? <a href="#" class="signin-link">Log in</a></p>
+          {{#unless isAndroidNative}}
+            <p class="go-to-signin">Already have an account? <a href="#" class="signin-link">Log in</a></p>
+          {{/unless}}
         </div>
       </div>
     </div>
