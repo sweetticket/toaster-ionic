@@ -4,6 +4,7 @@ Template.signUp.rendered = function() {
   // if (Utils.isNativeApp() && Utils.getMobileOperatingSystem() === 'Android') {
   //     alert('signup');
   //   }
+  $('#new-email').focus();
   
 };
 
