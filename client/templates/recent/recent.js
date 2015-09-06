@@ -56,6 +56,8 @@ Template.recent.onRendered(function() {
         Utils.tellIOSLoadingEnded();
       }
 
+      Utils.tellAndroidLoadingEnded();
+
       this.$('.posts-container').fadeIn();
       Utils.hideLoading();
       Session.set("ready", true);

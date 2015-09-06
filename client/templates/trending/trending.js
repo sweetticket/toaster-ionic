@@ -51,6 +51,8 @@ Template.trending.onRendered(function() {
         }, 50);
       }
 
+      Utils.tellAndroidLoadingEnded();
+
       this.$('.posts-container').fadeIn();
       Utils.hideLoading();
 
