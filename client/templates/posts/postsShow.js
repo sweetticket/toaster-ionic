@@ -12,16 +12,18 @@ Template.postsShow.created = function () {
   }.bind(this));
 
   Session.set("shouldHideTabs", true);
-
-  //tell iOS wrapper that we should move to a different ViewController
-  // console.log(Utils.isNativeApp(), Utils.getMobileOperatingSystem());
-  // if (Utils.isNativeApp() && Utils.getMobileOperatingSystem() === 'iOS') {
-  if (Utils.getMobileOperatingSystem() === 'iOS') {
-    window.location = "toasterapp://postsShow";
-  }
 };
 
 Template.postsShow.onRendered(function() {
+  //tell iOS wrapper that we should move to a different ViewController
+
+  _.defer(function() {
+    console.log("post show rendered");
+    if (Utils.getMobileOperatingSystem() === 'iOS') {
+      window.location = "toasterapp://postsShow";
+    }    
+  })
+
   this.autorun(function() {
     if (!this.postSub.ready()) {
       $('.product-detail').hide();
@@ -37,17 +39,19 @@ Template.postsShow.onRendered(function() {
 
     if (!this.subscriptionsReady()) {
       // $(".product-detail").hide();
-      Utils.tellIOSLoadingStarted();
-      Utils.showLoading();
+      // Utils.tellIOSLoadingStarted();
+      // Utils.showLoading();
     } else {
-      Utils.tellIOSLoadingEnded();
-      Utils.hideLoading();
+      // Utils.tellIOSLoadingEnded();
+      // Utils.hideLoading();
       // $(".product-detail").fadeIn("fast");
     }
   }.bind(this));
 })
 
 Template.postsShow.onDestroyed(function() {
+  // console.log("onDestroyed");
+  // Utils.tellIOSLoadingEnded(0);
   Session.set("shouldHideTabs", false);
 });
 

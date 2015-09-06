@@ -39,7 +39,10 @@ Template.trending.onRendered(function() {
 
     if (!allReady) {  
       this.$('.posts-container').hide();
-      Utils.showLoading();
+
+
+      //HOWON: TEMPORARILY DSIABLING LOADING WHEEL
+      // Utils.showLoading();
     } else {
       // iOS: signal the end of Meteor loading
       if (Utils.getMobileOperatingSystem() === 'iOS') {
@@ -54,7 +57,9 @@ Template.trending.onRendered(function() {
       Utils.tellAndroidLoadingEnded();
 
       this.$('.posts-container').fadeIn();
-      Utils.hideLoading();
+
+      //HOWON: TEMPORARILY DSIABLING LOADING WHEEL
+      // Utils.hideLoading();
 
     }
 

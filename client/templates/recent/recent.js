@@ -28,10 +28,6 @@ Template.recent.created = function () {
   }.bind(this));
 };
 
-Template.recent.onDestroyed(function() {
-  Utils.tellIOSLoadingEnded();
-});
-
 Template.recent.onRendered(function() {
   var limit = this.numPostsFetched.get();
   var instance = this;
@@ -48,7 +44,9 @@ Template.recent.onRendered(function() {
       Utils.tellIOSLoadingStarted();
 
       this.$('.posts-container').hide();
-      Utils.showLoading();
+
+      //HOWON: TEMPORARILY DSIABLING LOADING WHEEL
+      // Utils.showLoading();
       Session.set("ready", false);
     } else {
       // iOS: signal the end of Meteor loading
@@ -59,7 +57,9 @@ Template.recent.onRendered(function() {
       Utils.tellAndroidLoadingEnded();
 
       this.$('.posts-container').fadeIn();
-      Utils.hideLoading();
+
+      //HOWON: TEMPORARILY DSIABLING LOADING WHEEL
+      // Utils.hideLoading();
       Session.set("ready", true);
     }
   }.bind(this));

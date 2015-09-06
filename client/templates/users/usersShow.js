@@ -3,9 +3,9 @@ Template.usersShow.created = function () {
     this.subscribe('user', Router.current().params._id);
 
     if (!this.subscriptionsReady()) {
-      Utils.showLoading();
+      // Utils.showLoading();
     } else {
-      Utils.hideLoading();
+      // Utils.hideLoading();
     }
   }.bind(this));
 };
