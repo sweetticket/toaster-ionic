@@ -9,7 +9,8 @@ Template._postItem.events({
     // debugger
     // console.log("isNativeApp", Utils.isNativeApp);
     // console.log("getMobileOperatingSystem", Utils.getMobileOperatingSystem);
-    
+
+    // event.preventPropagation();
     if (Utils.isNativeApp() && Utils.getMobileOperatingSystem() === 'Android') {
       // console.log("isNativeApp && android");
       event.preventDefault();

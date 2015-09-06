@@ -8,11 +8,14 @@ Template.notifications.onCreated(function() {
 
 Template.notifications.onDestroyed(function() {
   Meteor.call("readAllNotifications");
+  Utils.tellIOSLoadingEnded();
 });
 
 Template.notifications.onRendered(function() {
   this.autorun(function() {
     if (this.subscriptionsReady()) {
+      Utils.tellIOSLoadingEnded();
+      
       Utils.hideLoading();
     }
   }.bind(this));

@@ -37,7 +37,7 @@ Meteor.publish('trendingPosts', function (limit) {
   var user = Meteor.users.findOne({_id: this.userId});
   return Posts.find({networkId: user.networkId}, {
     sort: {createdAt: -1},
-    limit: 200
+    limit: 100
   });
 });
 

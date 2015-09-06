@@ -37,8 +37,10 @@ Template.postsShow.onRendered(function() {
 
     if (!this.subscriptionsReady()) {
       // $(".product-detail").hide();
+      Utils.tellIOSLoadingStarted();
       Utils.showLoading();
     } else {
+      Utils.tellIOSLoadingEnded();
       Utils.hideLoading();
       // $(".product-detail").fadeIn("fast");
     }

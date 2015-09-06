@@ -7,7 +7,7 @@ var isAtTop = function() {
 
 Template.trending.created = function () {
   // Howon's note: we don't do dynamic loading for trending feed for now,
-  // because we are only dealing with 200 threads.
+  // because we are only dealing with 100 threads.
   // but we still should.. however, we need a set of sorted
   // threads in place to take a portion of threads at a time.
   // Not sure how to do it at this point.
@@ -23,6 +23,10 @@ Template.trending.created = function () {
   }.bind(this));
 };
 
+Template.trending.onDestroyed(function() {
+  Utils.tellIOSLoadingEnded();
+});
+
 Template.trending.onRendered(function() {  
 
   var numPosts = Posts.find().count();
@@ -37,8 +41,19 @@ Template.trending.onRendered(function() {
       this.$('.posts-container').hide();
       Utils.showLoading();
     } else {
+      // iOS: signal the end of Meteor loading
+      if (Utils.getMobileOperatingSystem() === 'iOS') {
+        setTimeout(function() {
+          // This 100ms delay is important.
+          // Even when the subscription is ready, we still need
+          // extra time for everything to be rendered
+          window.location = "toasterapp://loadingEnd";  
+        }, 50);
+      }
+
       this.$('.posts-container').fadeIn();
       Utils.hideLoading();
+
     }
 
   }.bind(this));
