@@ -35,18 +35,14 @@ if (Meteor.isClient) {
   Accounts.onLogin(function() {
     var userId = Meteor.userId();
 
-
     // for Android
-    // if (Utils.isNativeApp && Utils.getMobileOperatingSystem === 'Android') {
-    //   // alert(Meteor.userId());
-    //   // console.log("IM LOGGED IN JENYNYNEYNYN");
-    //   alert('signed-in');
-    // }
+    if (Utils.isNativeApp && Utils.getMobileOperatingSystem === 'Android') {
+      alert(userId);
+    }
 
-    // for iOS
-    if (Utils.isNativeApp && Utils.getMobileOperatingSystem === 'iOS') {
+    if (Utils.getMobileOperatingSystem === 'iOS') {
       console.log("register in iOS:", userId);
-      window.location.href = "toaster://"+userId;
+      window.location = "toasterapp://loggedIn";
     }
   })
 }

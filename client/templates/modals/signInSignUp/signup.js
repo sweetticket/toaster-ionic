@@ -19,11 +19,6 @@ Template.signUp.events({
     // _toggleEnableSignUp();
   },
 
-  // "click input": function (e, template) {
-  //   e.preventDefault();
-  //   $(e.target).focus();
-  // },
-
   "click .signup-btn.enabled": function (e, template) {
     window.scrollTo(0, 0);
     $('input').blur();
