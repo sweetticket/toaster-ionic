@@ -65,8 +65,11 @@ Template.signUp.events({
         $('.tabs a.active').removeClass('active');
         $('.tabs a:first-child').addClass('active');
 
+        console.log("let iOS know we logged in");
+        Utils.tellIOSILoggedIn();
+
         if (Utils.isNativeApp() && Utils.getMobileOperatingSystem() === 'Android') {
-            alert('signed-in');
+          alert('signed-in');
         } else {
           Router.go('/');
         }

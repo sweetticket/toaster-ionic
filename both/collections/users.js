@@ -32,19 +32,19 @@ if (Meteor.isClient) {
     });
   });
 
-  Accounts.onLogin(function() {
-    var userId = Meteor.userId();
+  // Accounts.onLogin(function() {
+  //   var userId = Meteor.userId();
 
-    // for Android
-    if (Utils.isNativeApp && Utils.getMobileOperatingSystem === 'Android') {
-      alert(userId);
-    }
+  //   // for Android
+  //   if (Utils.isNativeApp && Utils.getMobileOperatingSystem === 'Android') {
+  //     alert(userId);
+  //   }
 
-    if (Utils.getMobileOperatingSystem === 'iOS') {
-      console.log("register in iOS:", userId);
-      window.location = "toasterapp://loggedIn";
-    }
-  })
+  //   if (Utils.getMobileOperatingSystem === 'iOS') {
+  //     console.log("register in iOS:", userId);
+  //     window.location = "toasterapp://loggedIn";
+  //   }
+  // })
 }
 
 if (Meteor.isServer) {

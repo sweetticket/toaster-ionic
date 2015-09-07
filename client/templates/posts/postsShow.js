@@ -15,11 +15,8 @@ Template.postsShow.created = function () {
 };
 
 Template.postsShow.onRendered(function() {
-
-  Utils.tellAndroidLoadingEnded();
   
   //tell iOS wrapper that we should move to a different ViewController
-
   _.defer(function() {
     console.log("post show rendered");
     if (Utils.getMobileOperatingSystem() === 'iOS') {
@@ -41,13 +38,16 @@ Template.postsShow.onRendered(function() {
     }
 
     if (!this.subscriptionsReady()) {
-      // $(".product-detail").hide();
+      console.log("postsShow not ready...")
+      $(".product-detail").hide();
       // Utils.tellIOSLoadingStarted();
       // Utils.showLoading();
     } else {
-      // Utils.tellIOSLoadingEnded();
+      console.log("postsShow ready!")
+      Utils.tellAndroidLoadingEnded();
+      Utils.tellIOSLoadingEnded();
       // Utils.hideLoading();
-      // $(".product-detail").fadeIn("fast");
+      $(".product-detail").fadeIn("fast");
     }
   }.bind(this));
 })
