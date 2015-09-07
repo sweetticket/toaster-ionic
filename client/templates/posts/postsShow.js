@@ -15,6 +15,9 @@ Template.postsShow.created = function () {
 };
 
 Template.postsShow.onRendered(function() {
+
+  Utils.tellAndroidLoadingEnded();
+  
   //tell iOS wrapper that we should move to a different ViewController
 
   _.defer(function() {
