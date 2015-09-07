@@ -33,6 +33,7 @@ Template.recent.onRendered(function() {
   this.autorun(function () {
     if (!this.postsSub.ready()) {
       // iOS: signal the start of Meteor loading
+      console.log("should tell ios loading started")
       Utils.tellIOSLoadingStarted();
 
       this.$('.posts-container').hide();
@@ -42,9 +43,8 @@ Template.recent.onRendered(function() {
       Session.set("ready", false);
     } else {
       // iOS: signal the end of Meteor loading
-      if (Utils.getMobileOperatingSystem() === 'iOS') {
-        Utils.tellIOSLoadingEnded();
-      }
+      console.log("should tell ios loading ended")
+      Utils.tellIOSLoadingEnded();
 
       Utils.tellAndroidLoadingEnded();
       this.$('.posts-container').fadeIn();

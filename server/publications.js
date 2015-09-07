@@ -172,15 +172,15 @@ Meteor.publishComposite('userPostsComments', function() {
       }});
     },
     children: [
-      {
-        find: function (user) {
-          return Posts.find({
-            userId: this.userId
-          }, {sort: {
-            createdAt: -1
-          }});
-        }
-      },
+      // {
+      //   find: function (user) {
+      //     return Posts.find({
+      //       userId: this.userId
+      //     }, {sort: {
+      //       createdAt: -1
+      //     }});
+      //   }
+      // },
       {
         find: function (user) {
           return Comments.find({
@@ -188,7 +188,19 @@ Meteor.publishComposite('userPostsComments', function() {
           }, {sort: {
             createdAt: -1
           }});
-        }
+        },
+        children: [
+          {
+            find: function (comment) {
+              return Posts.find({
+                _id: comment.postId
+              }, {sort: {
+                createdAt: -1
+                }}
+              )
+            }
+          }
+        ]
       },
       {
         find: function (user) {
@@ -200,6 +212,7 @@ Meteor.publishComposite('userPostsComments', function() {
     ]
   };
 });
+
 
 Meteor.publish('notifications', function() {
   if (!this.userId) {
