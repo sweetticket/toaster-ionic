@@ -66,7 +66,7 @@ Template.signUp.events({
         $('.tabs a:first-child').addClass('active');
 
         if (Utils.isNativeApp() && Utils.getMobileOperatingSystem() === 'Android') {
-            alert('signed-in');
+            alert('signed-in:'+ Meteor.userId());
         } else {
           Router.go('/');
         }
