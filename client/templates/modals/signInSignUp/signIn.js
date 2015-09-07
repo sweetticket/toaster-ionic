@@ -6,14 +6,11 @@ Template.signIn.rendered = function() {
 
 Template.signIn.events({
   "click .signup-link": function (e, template) {
-    e.preventDefault();
-    
     if (Utils.isNativeApp() && Utils.getMobileOperatingSystem() === 'Android') {
-      alert('toSignUp');
-      return;
+        alert('toSignUp');
+    } else {
+    Router.go('/signUp');
     }
-
-    Router.go('signUp');
   },
 
   "click .signin-btn.enabled": function (e, template) {
@@ -56,7 +53,8 @@ Template.signIn.events({
         Utils.tellIOSILoggedIn();
 
         if (Utils.isNativeApp() && Utils.getMobileOperatingSystem() === 'Android') {
-          alert('signed-in');
+            alert('signed-in:'+ Meteor.userId());
+
         } else {
           Router.go('/');
         }
