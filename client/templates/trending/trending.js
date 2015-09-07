@@ -28,9 +28,7 @@ Template.trending.onDestroyed(function() {
 });
 
 Template.trending.onRendered(function() {  
-
   var numPosts = Posts.find().count();
-  console.log("initial numPosts: " + numPosts);
 
   this.autorun(function () {
     var allReady = _.every([this.postsSub, this.commentsSub], function (sub) {

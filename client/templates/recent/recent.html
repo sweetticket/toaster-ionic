@@ -22,7 +22,12 @@
         {{#each posts}}
           {{> _postItem post=this path="posts.show"}}
         {{/each}}
-        <div class="post-end-mark"></div>
+        {{#if morePostsAvailable}}
+          <div class="post-end-mark">
+            Loading...
+            <!-- SHOW LOADING WHEEL AT THE BOTTOM OF THE PAGE -->
+          </div>
+        {{/if}}
       {{/ionList}}
     {{/ionContent}}
   {{/ionView}}

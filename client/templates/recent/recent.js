@@ -3,43 +3,38 @@ var isAtTop = function() {
 };
 
 RecentPostsSub = new SubsManager();
-RecentCommentsSub = new SubsManager();
+// RecentCommentsSub = new SubsManager();
 
 Template.recent.created = function () {
   // flag to show the loading wheel only in the beginning.
   // don't show a loading wheel for subsequent fetch calls
   this.initialLoaded = false;
-
   this.loaded = new ReactiveVar(0);
   this.numPostsFetched = new ReactiveVar(NUM_POSTS_IN_BATCH);
 
+  this.subscribe('otherUserInfo');
+  this.subscribe('userNetwork');
+
   this.autorun(function () {
     var limit = this.numPostsFetched.get();
-    this.postsSub = RecentPostsSub.subscribe('recentPosts', limit);
-    this.commentsSub = RecentCommentsSub.subscribe('comments');
 
-    if (this.postsSub.ready() && this.commentsSub.ready()) {
+    debugger
+
+    this.postsSub = RecentPostsSub.subscribe('recentPostsAndComments');
+
+    if (this.postsSub.ready()) {
       this.loaded.set(limit);
-      this.initialLoaded = true;
     }
-    
-    this.subscribe('otherUserInfo');
-    this.subscribe('userNetwork');
   }.bind(this));
 };
 
 Template.recent.onRendered(function() {
   var limit = this.numPostsFetched.get();
   var instance = this;
-
   var numPosts = Posts.find().count();
 
   this.autorun(function () {
-    var allReady = _.every([this.postsSub, this.commentsSub], function (sub) {
-      return sub.ready();
-    });
-
-    if (!allReady && !this.initialLoaded) {
+    if (!this.postsSub.ready()) {
       // iOS: signal the start of Meteor loading
       Utils.tellIOSLoadingStarted();
 
@@ -55,7 +50,6 @@ Template.recent.onRendered(function() {
       }
 
       Utils.tellAndroidLoadingEnded();
-
       this.$('.posts-container').fadeIn();
 
       //HOWON: TEMPORARILY DSIABLING LOADING WHEEL
@@ -67,29 +61,24 @@ Template.recent.onRendered(function() {
   var fetchMorePosts = _.throttle(function() {
     limit += NUM_POSTS_IN_BATCH;
     instance.numPostsFetched.set(limit);
-  }, 100);
+  }, 200, {
+    trailing: false
+  });
 
   // scroll
-  $(document).on("scroll touchmove", (function (e) {
+  $(".overflow-scroll").on("scroll touchmove", (function (e) {
     var $target = $('.post-end-mark');
     if ($target.length > 0) {
       var distanceY = $('.overflow-scroll').scrollTop();
-      var epsilon = 200;
-      var threshold = distanceY+$(document).height()+epsilon;
-      if ($target.offset().top < threshold) {
-        console.log("fetching more posts");
+
+      var gapFromTheBottom = 300;
+
+      var threshold = distanceY + $(document).height() + gapFromTheBottom;
+      if ($target.position().top < threshold) {
         fetchMorePosts();
       }
     }
   }));
-
-  this.autorun(function() {
-    if (numPosts !== Posts.find().count() && !isAtTop) {
-      numPosts = Posts.find().count();
-      $('.new-post-alert').addClass('show');
-    }
-  });
-
 });
 
 Template.recent.helpers({
@@ -99,10 +88,16 @@ Template.recent.helpers({
       limit: Template.instance().loaded.get()
     });
   },
+
   userRep: function() {
     if (Meteor.user()) {
       return Meteor.user().rep;
     }
     return;
+  },
+
+  morePostsAvailable: function() {
+    console.log("available: ", Posts.find().count(), "loaded:", Template.instance().loaded.get());
+    return Posts.find().count() > Template.instance().loaded.get();
   }
 });

@@ -1,4 +1,8 @@
 Meteor.publish('userNetwork', function() {
+  if (!this.userId) {
+    return [];
+  }
+
   var user = Meteor.users.findOne({_id: this.userId});
   var networkId = (user) ? user.networkId : "";
   return Networks.find({_id: networkId});
@@ -6,7 +10,10 @@ Meteor.publish('userNetwork', function() {
 
 //FIXME: we need infinite scrolling for notifications too
 Meteor.publish('notiPosts', function (limit) {
-  // Meteor._sleepForMs(2000);
+  if (!this.userId) {
+    return [];
+  }
+
   var user = Meteor.users.findOne({_id: this.userId});
   return Posts.find({networkId: user.networkId}, {
     sort: {createdAt: -1}
@@ -14,26 +21,24 @@ Meteor.publish('notiPosts', function (limit) {
 });
 
 Meteor.publish('notiComments', function (limit) {
-  // Meteor._sleepForMs(2000);
+  if (!this.userId) {
+    return [];
+  }
+
   var user = Meteor.users.findOne({_id: this.userId});
+
   return Comments.find({networkId: user.networkId, userId: this.userId}, {
     sort: {createdAt: -1}
-  });
-});
-
-
-Meteor.publish('recentPosts', function (limit) {
-  // Meteor._sleepForMs(2000);
-  var user = Meteor.users.findOne({_id: this.userId});
-  return Posts.find({networkId: user.networkId}, {
-    sort: {createdAt: -1},
-    limit: limit
   });
 });
 
 Meteor.publish('trendingPosts', function (limit) {
   // For trending posts, we take the most 200 recents posts
   // and sort them in the order of our ranking metric
+  if (!this.userId) {
+    return [];
+  }
+
   var user = Meteor.users.findOne({_id: this.userId});
   return Posts.find({networkId: user.networkId}, {
     sort: {createdAt: -1},
@@ -42,7 +47,10 @@ Meteor.publish('trendingPosts', function (limit) {
 });
 
 Meteor.publish('comments', function() {
-  var user = Meteor.users.findOne({_id: this.userId});
+  if (!this.userId) {
+    return [];
+  }
+
   var user = Meteor.users.findOne({_id: this.userId});
   return Comments.find({
     networkId: user.networkId
@@ -51,8 +59,13 @@ Meteor.publish('comments', function() {
 
 Meteor.publishComposite('post', function(_id) {
   var user = Meteor.users.findOne({_id: this.userId});
+
   return {
     find: function() {
+      if (!this.userId) {
+        return;
+      }
+
       return Posts.find({
         _id: _id,
         networkId: user.networkId
@@ -87,10 +100,40 @@ Meteor.publishComposite('post', function(_id) {
   };
 });
 
+Meteor.publishComposite('recentPostsAndComments', function () {
+  var user = Meteor.users.findOne({_id: this.userId});
+  return {
+    find: function() {
+      if (!this.userId) {
+        return;
+      }
+
+      return Posts.find({
+        userId: user._id,
+        networkId: user.networkId
+      }, {
+        sort: {createdAt: -1},
+        // limit: limit
+      });
+    },
+    children: [
+      {
+        find: function (post) {
+          return Comments.find({postId: post._id});
+        }
+      }
+    ]
+  }
+});
+
 // publish all posts and comments written by the user
 Meteor.publishComposite('userPostsComments', function() {
   return {
     find: function() {
+      if (!this.userId) {
+        return;
+      }
+
       return Meteor.users.find({_id: this.userId}, {fields: {
         '_id': true,
         'emails': true,
@@ -131,41 +174,43 @@ Meteor.publishComposite('userPostsComments', function() {
 });
 
 Meteor.publish('notifications', function() {
-  if (this.userId) {
-    return Notifications.find({
-      toUserId: this.userId,
-      // isRead: false
-    });
-  } else {
-    this.ready();
+  if (!this.userId) {
+    return [];
   }
+    
+  return Notifications.find({
+    toUserId: this.userId,
+    // isRead: false
+  });
 });
 
 // FIXME: these are not subscribed yet.
 Meteor.publish('userInfo', function() {
-  if (this.userId) {
-    return Meteor.users.find({_id: this.userId}, {fields: {
-      '_id': true,
-      'emails': true,
-      'networkId': true,
-      'color': true,
-      'icon': true,
-      'rep': true,
-    }});
-  } else {
-    this.ready();
+  if (!this.userId) {
+    return [];
   }
+
+  return Meteor.users.find({_id: this.userId}, {fields: {
+    '_id': true,
+    'emails': true,
+    'networkId': true,
+    'color': true,
+    'icon': true,
+    'rep': true,
+  }});
+  
 });
 
 Meteor.publish('otherUserInfo', function() {
-  if (this.userId) {
-    var user = Meteor.users.findOne({_id: this.userId}); 
-    var currentNetworkId = user.networkId;
-    return Meteor.users.find({networkId: currentNetworkId},
-      {fields: {'_id': 1, 'networkId': 1, 'color': 1, 'icon': 1, 'rep': 1}});
-  } else {
-    this.ready();
+  if (!this.userId) {
+    return [];
   }
+  
+  var user = Meteor.users.findOne({_id: this.userId}); 
+  var currentNetworkId = user.networkId;
+  return Meteor.users.find({networkId: currentNetworkId},
+    {fields: {'_id': 1, 'networkId': 1, 'color': 1, 'icon': 1, 'rep': 1}});
+
 });
 
 Meteor.publish('countPublication', function() {
