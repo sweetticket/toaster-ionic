@@ -37,15 +37,17 @@ if (Meteor.isServer) {
         if (err) {
           console.log("NOTIFICATION INSERT ERR", err);
         } else {
-          var pushNoti = {
-            from: noti.fromUserId,
-            title: 'Toast',
-            text: noti.body,
-            query: {userId: noti.toUserId}
-            // query: {}
-          }
-          console.log(pushNoti);
-          // Push.send(pushNoti);
+          
+          PushUtils.sendPusherNoti(noti.toUserId, 'Toaster', {
+            message: noti.body
+          }, null, function (err) {
+            if (err) {
+              console.log(err);
+              return;
+            }
+            
+            console.log("Push noti sent!");
+          }); 
         }
       });
     },
