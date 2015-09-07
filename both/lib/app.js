@@ -23,9 +23,6 @@ Meteor.startup(function() {
     moment.locale('en');
   }
 
-  if (Meteor.isServer) {
-    // Push.debug = true;
-  }
 
   if (Meteor.isCordova) {
     StatusBar.styleLightContent();
