@@ -17,9 +17,6 @@ Template.recent.created = function () {
 
   this.autorun(function () {
     var limit = this.numPostsFetched.get();
-
-    debugger
-
     this.postsSub = RecentPostsSub.subscribe('recentPostsAndComments');
 
     if (this.postsSub.ready()) {
@@ -71,7 +68,8 @@ Template.recent.onRendered(function() {
     if ($target.length > 0) {
       var distanceY = $('.overflow-scroll').scrollTop();
 
-      var gapFromTheBottom = 300;
+      // var gapFromTheBottom = 300;
+      var gapFromTheBottom = 0;
 
       var threshold = distanceY + $(document).height() + gapFromTheBottom;
       if ($target.position().top < threshold) {

@@ -32,19 +32,19 @@ Meteor.publish('notiComments', function (limit) {
   });
 });
 
-Meteor.publish('trendingPosts', function (limit) {
-  // For trending posts, we take the most 200 recents posts
-  // and sort them in the order of our ranking metric
-  if (!this.userId) {
-    return [];
-  }
+// Meteor.publish('trendingPosts', function (limit) {
+//   // For trending posts, we take the most 200 recents posts
+//   // and sort them in the order of our ranking metric
+//   if (!this.userId) {
+//     return [];
+//   }
 
-  var user = Meteor.users.findOne({_id: this.userId});
-  return Posts.find({networkId: user.networkId}, {
-    sort: {createdAt: -1},
-    limit: 100
-  });
-});
+//   var user = Meteor.users.findOne({_id: this.userId});
+//   return Posts.find({networkId: user.networkId}, {
+//     sort: {createdAt: -1},
+//     limit: 100
+//   });
+// });
 
 Meteor.publish('comments', function() {
   if (!this.userId) {
@@ -100,6 +100,8 @@ Meteor.publishComposite('post', function(_id) {
   };
 });
 
+
+
 Meteor.publishComposite('recentPostsAndComments', function () {
   var user = Meteor.users.findOne({_id: this.userId});
   return {
@@ -114,6 +116,32 @@ Meteor.publishComposite('recentPostsAndComments', function () {
       }, {
         sort: {createdAt: -1},
         // limit: limit
+      });
+    },
+    children: [
+      {
+        find: function (post) {
+          return Comments.find({postId: post._id});
+        }
+      }
+    ]
+  }
+});
+
+Meteor.publishComposite('trendingPostsAndComments', function () {
+  var user = Meteor.users.findOne({_id: this.userId});
+  return {
+    find: function() {
+      if (!this.userId) {
+        return;
+      }
+
+      return Posts.find({
+        userId: user._id,
+        networkId: user.networkId
+      }, {
+        sort: {createdAt: -1},
+        limit: 100
       });
     },
     children: [

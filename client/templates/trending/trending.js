@@ -12,77 +12,38 @@ Template.trending.created = function () {
   // threads in place to take a portion of threads at a time.
   // Not sure how to do it at this point.
 
-  this.autorun(function () {
-    this.postsSub = TrendingPostsSub.subscribe("trendingPosts");
-    this.commentsSub = TrendingCommentsSub.subscribe("comments");
+  this.subscribe('otherUserInfo');
+  this.subscribe('userNetwork');
 
-    // this.postsSub = this.subscribe('trendingPosts');
-    this.subscribe('otherUserInfo');
-    // this.subscribe('comments');
-    this.subscribe('userNetwork');
+  this.autorun(function () {
+    this.postsSub = TrendingPostsSub.subscribe("trendingPostsAndComments");
   }.bind(this));
 };
-
-Template.trending.onDestroyed(function() {
-  Utils.tellIOSLoadingEnded();
-});
 
 Template.trending.onRendered(function() {  
   var numPosts = Posts.find().count();
 
   this.autorun(function () {
-    var allReady = _.every([this.postsSub, this.commentsSub], function (sub) {
-      return sub.ready();
-    });
 
-    if (!allReady) {  
+    if (!this.postsSub.ready()) {  
       this.$('.posts-container').hide();
-
 
       //HOWON: TEMPORARILY DSIABLING LOADING WHEEL
       // Utils.showLoading();
     } else {
-      // iOS: signal the end of Meteor loading
-      if (Utils.getMobileOperatingSystem() === 'iOS') {
-        setTimeout(function() {
-          // This 100ms delay is important.
-          // Even when the subscription is ready, we still need
-          // extra time for everything to be rendered
-          window.location = "toasterapp://loadingEnd";  
-        }, 50);
-      }
+      //Tell ios that loading ended
+      Utils.tellIOSLoadingEnded();
 
+      //Tell Android that loading ended
       Utils.tellAndroidLoadingEnded();
 
       this.$('.posts-container').fadeIn();
 
       //HOWON: TEMPORARILY DSIABLING LOADING WHEEL
       // Utils.hideLoading();
-
     }
 
   }.bind(this));
-
-  this.autorun(function() {
-    // if (isAtTop) {
-    //   Session.set("newPost", undefined);
-    //   // $('.new-post-alert').velocity({top: '-100%'});
-    //   $('.new-post-alert.show').removeClass('show');
-    // }
-
-    // if (!isAtTop && Session.get("newPost")) {
-    // // if (Session.get("newPost")) {
-    //   // debugger
-    //   // $('.new-post-alert').velocity({top: '0'});
-    //   $('.new-post-alert').addClass('show');
-    // }
-
-    if (numPosts !== Posts.find().count() && !isAtTop) {
-      numPosts = Posts.find().count();
-      $('.new-post-alert').addClass('show');
-    }
-
-  });
 });
 
 Template.trending.helpers({
