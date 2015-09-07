@@ -1,7 +1,4 @@
 var isLoggedIn = function() {
-  // console.log("JENYNYNYNY");
-  // console.log(Meteor.loggingIn());
-  // console.log(Meteor.user());
   if (!Meteor.loggingIn() && !Meteor.user()) {
     if (Meteor.isClient) {
       // if (Router.current().route._path === '/trending' && Utils.isNativeApp() && Utils.getMobileOperatingSystem() === 'Android') {

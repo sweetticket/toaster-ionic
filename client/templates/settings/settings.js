@@ -16,6 +16,8 @@ Template.settings.events({
       Session.set("currentUserId", undefined);
       // window.scrollTo(0, 0);
 
+      Utils.tellIOSILoggedOut();
+
       if (Utils.isNativeApp() && Utils.getMobileOperatingSystem() === 'Android') {
       // console.log("isNativeApp && android");
         event.preventDefault();
