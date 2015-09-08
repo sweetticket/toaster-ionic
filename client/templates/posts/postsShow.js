@@ -38,12 +38,10 @@ Template.postsShow.onRendered(function() {
     }
 
     if (!this.subscriptionsReady()) {
-      console.log("postsShow not ready...")
       $(".product-detail").hide();
       // Utils.tellIOSLoadingStarted();
       // Utils.showLoading();
     } else {
-      console.log("postsShow ready!")
       Utils.tellAndroidLoadingEnded();
       Utils.tellIOSLoadingEnded();
       // Utils.hideLoading();
@@ -77,50 +75,25 @@ Template.postsShow.helpers({
 
 });
 
-Template.postsShow.events({
-  'click .inline-comment-footer': function (event, template) {
-    event.preventDefault();
-
-      $lastcomment = $(".comments-list .item:last-child");
-
-      if ($lastcomment.length > 0) {
-        var scrollamt = $lastcomment.offset().top + $lastcomment.height();
-
-        $('.content').stop().animate({
-          scrollTop: '+=' + scrollamt
-        }, 400);
-      }     
-  },
-});
-
 Template.postsShow.MoveUpCommentInput = function (keyboardHeight) {
-  $('[data-keyboard-attach]').each(function (index, el) {
-    setTimeout(function() {
-      $(el).css({
-        bottom: keyboardHeight
-      })      
-    }, 20)
-
-    $('.content').css('padding-bottom', keyboardHeight);
-    
-    $lastcomment = $(".comments-list .item:last-child");
-    if ($lastcomment.length > 0) {
-      var scrollamt = $lastcomment.offset().top + $lastcomment.height();
-      $('.content').velocity("scroll", {
-        offset: scrollamt
-      });
-    }
-  });
+  var $commentInput = $('.inline-comment-footer');
+  var paddingAmt = keyboardHeight;
+  $commentInput.css('padding-bottom', paddingAmt);
 }
 
+//FIXME: not working yet
+Template.postsShow.MoveDownToLastComment = function() {
+  console.log("move down to last comment");
+  $lastcomment = $(".comments-list .item:last-child");
+  if ($lastcomment.length > 0) {
+    var scrollamt = $lastcomment.offset().top + $lastcomment.height();
+    $('.content').velocity("scroll", {
+      offset: scrollamt + keyboardHeight
+    });
+  }
+}
 
 Template.postsShow.MoveDownCommentInput = function() {
-  $('[data-keyboard-attach]').each(function (index, el) {
-    $(el).velocity({
-      bottom: 0
-    }, {
-      duration: 100
-    });
-    $('.content').css('padding-bottom', 0);
-  });
+  var $commentInput = $('.inline-comment-footer');
+  $commentInput.css('padding-bottom', 0);
 }
