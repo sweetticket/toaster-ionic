@@ -27,9 +27,6 @@ Template.trending.onRendered(function() {
 
     if (!this.postsSub.ready()) {  
       this.$('.posts-container').hide();
-
-      //HOWON: TEMPORARILY DSIABLING LOADING WHEEL
-      // Utils.showLoading();
     } else {
       //Tell ios that loading ended
       Utils.tellIOSLoadingEnded();
@@ -38,9 +35,6 @@ Template.trending.onRendered(function() {
       Utils.tellAndroidLoadingEnded();
 
       this.$('.posts-container').fadeIn();
-
-      //HOWON: TEMPORARILY DSIABLING LOADING WHEEL
-      // Utils.hideLoading();
     }
 
   }.bind(this));
@@ -52,10 +46,10 @@ Template.trending.helpers({
     postsArr.sort(Utils.compareRank);
     return postsArr;
   },
-  userRep: function() {
-    if (Meteor.user()){
-      return Meteor.user().rep;
-    }
-    return;
-  }
+  // userRep: function() {
+  //   if (Meteor.user()){
+  //     return Meteor.user().rep;
+  //   }
+  //   return;
+  // }
 });
