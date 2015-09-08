@@ -13,7 +13,7 @@ Template.trending.created = function () {
   // Not sure how to do it at this point.
 
   this.subscribe('otherUserInfo');
-  this.subscribe('userNetwork');
+  // this.subscribe('userNetwork');
 
   this.autorun(function () {
     this.postsSub = TrendingPostsSub.subscribe("trendingPostsAndComments");

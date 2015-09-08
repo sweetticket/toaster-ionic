@@ -4,8 +4,7 @@ Meteor.publish('userNetwork', function() {
   }
 
   var user = Meteor.users.findOne({_id: this.userId});
-  var networkId = (user) ? user.networkId : "";
-  return Networks.find({_id: networkId});
+  return Networks.find({_id: user.networkId});
 });
 
 //FIXME: we need infinite scrolling for notifications too

@@ -12,8 +12,9 @@ Template.recent.created = function () {
   this.loaded = new ReactiveVar(0);
   this.numPostsFetched = new ReactiveVar(NUM_POSTS_IN_BATCH);
 
+  //TODO: do we really need info of all users in this network here??
   this.subscribe('otherUserInfo');
-  this.subscribe('userNetwork');
+  // this.subscribe('userNetwork');
 
   this.autorun(function () {
     var limit = this.numPostsFetched.get();
