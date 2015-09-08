@@ -110,7 +110,6 @@ Meteor.publishComposite('recentPostsAndComments', function () {
       }
 
       return Posts.find({
-        userId: user._id,
         networkId: user.networkId
       }, {
         sort: {createdAt: -1},
@@ -129,6 +128,7 @@ Meteor.publishComposite('recentPostsAndComments', function () {
 
 Meteor.publishComposite('trendingPostsAndComments', function () {
   var user = Meteor.users.findOne({_id: this.userId});
+
   return {
     find: function() {
       if (!this.userId) {
@@ -136,7 +136,6 @@ Meteor.publishComposite('trendingPostsAndComments', function () {
       }
 
       return Posts.find({
-        userId: user._id,
         networkId: user.networkId
       }, {
         sort: {createdAt: -1},
