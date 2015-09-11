@@ -21,6 +21,14 @@ Meteor.startup(function() {
 
     // Set MomentJS English or Korean
     moment.locale('en');
+
+    // var pusher = new Pusher('3f8ba7f168a24152f488');
+    // var userId = Meteor.userId();
+    // var channelId = "private-"+userId;
+    // var channel = pusher.subscribe(channelId);
+    // channel.bind('Toaster', function(data) {
+    //   alert('An event was triggered with message: ' + data.message);
+    // });
   }
 
 

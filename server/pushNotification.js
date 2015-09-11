@@ -29,9 +29,34 @@ Router.route('/pusher/auth', { where: 'server'})
     var socketId = req.body.socket_id;
     var channel = req.body.channel_name;
     var auth = PUSHER_LIB.authenticate( socketId, channel );
+    console.log("Authorizing Pusher. Channel:", channel);
+    console.log("Authorizing Pusher. SocketId:", socketId);
     console.log(JSON.stringify(auth));
     res.write(JSON.stringify(auth));
-    // res.send(JSON.stringify(auth));
   });
+ 
 
-PushUtils.sendPusherNoti = Async.wrap(PUSHER_LIB, 'trigger');
+// PushUtils.sendPusherNoti = Async.wrap(PUSHER_LIB, 'trigger');
+
+// PushUtils.sendPusherNoti = Async.wrap(function () {
+//   var channel = "private-"+Meteor.userId();
+//   console.log("triggering PUSH:", channel);
+//   PUSHER_LIB.trigger(channel, 'Toaster', {"message": "hello world"});
+// })
+
+
+// function () {
+//   var channel = "private-"+Meteor.userId();
+//   console.log("triggering PUSH:", channel);
+//   PUSHER_LIB.trigger(channel, 'Toaster', {"message": "hello world"});
+// }
+
+PushUtils.sendPusherNoti = function (channel, eventName, msg) {
+  console.log("triggering PUSH:", channel);
+  PUSHER_LIB.trigger(channel, eventName, {"message": msg});
+}
+
+// PushUtils.sendPusherNoti = Async.wrap(function (channel, eventName, msg) {
+//   console.log("triggering PUSH:", channel);
+//   PUSHER_LIB.trigger(channel, eventName, {"message": msg});
+// });

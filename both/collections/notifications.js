@@ -33,21 +33,26 @@ if (Meteor.isServer) {
         countUnread: countUnread,
         createdAt: new Date()
       }), function (err, notificationId) {
-        console.log("noti added", notificationId);
+        // console.log("noti added", notificationId);
         if (err) {
           console.log("NOTIFICATION INSERT ERR", err);
         } else {
-          
-          PushUtils.sendPusherNoti("private-" + noti.toUserId, 'Toaster', {
-            message: noti.body
-          }, null, function (err) {
-            if (err) {
-              console.log(err);
-              return;
-            }
+          // private-RCi5nFGCcX45N4HH9
+          // PushUtils.sendPusherNoti("private-" + noti.toUserId, 'Toaster', {
+          //   message: noti.body
+          // }, null, function (err) {
+          //   if (err) {
+          //     console.log(err);
+          //     return;
+          //   }
             
-            console.log("Push noti sent!");
-          }); 
+          //   console.log("Pushed to", "private-" + noti.toUserId);
+          //   // console.log("Push noti sent!");
+          // }); 
+          var channel = "private-" + noti.toUserId;
+          var eventName = "Toaster";
+          var messageBody = noti.body;
+          PushUtils.sendPusherNoti(channel, eventName, messageBody); 
         }
       });
     },
