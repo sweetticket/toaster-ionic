@@ -60,26 +60,28 @@ Template.appLayout.onRendered(function() {
       var ready = Session.get("ready");
       var network = Networks.findOne();
       var currentUserId = Session.get("currentUserId");
-      var firstOpened = Session.get("firstOpened");
-        if (Meteor.user() && network && ready && firstOpened){
-          if ($('.resume-network').length === 0){
 
-            var popup = "<div class='popup resume-network'>"
-                      + "<p>You are signed into</p>"
-                      + "<p class='resume-domain'>@" + network.domain +"</p>"
-                      + "</div>";
+      // FIXME: temporarily disabled
+      // var firstOpened = Session.get("firstOpened");
+      // if (Meteor.user() && network && ready && firstOpened){
+      //   if ($('.resume-network').length === 0){
 
-            $('body').append(popup);
+      //     var popup = "<div class='popup resume-network'>"
+      //               + "<p>You are signed into</p>"
+      //               + "<p class='resume-domain'>@" + network.domain +"</p>"
+      //               + "</div>";
 
-              setTimeout(function () {
-                $('.resume-network').fadeOut("slow", function() {
-                    Session.set("firstOpened", false);
-                    $(this).remove();
-                });
-              }, 2000);
-            }
-          }
-        });
+      //     $('body').append(popup);
+
+      //       setTimeout(function () {
+      //         $('.resume-network').fadeOut("slow", function() {
+      //             Session.set("firstOpened", false);
+      //             $(this).remove();
+      //         });
+      //       }, 2000);
+      //     }
+      //   }
+    });
 
 });
 

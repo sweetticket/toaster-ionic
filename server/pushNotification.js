@@ -1,5 +1,6 @@
 PushUtils = {};
 
+// var Pusher = Meteor.require('pusher');
 var Pusher = Meteor.npmRequire('pusher');
 var PUSHER_LIB = new Pusher({
   appId: '138896',
