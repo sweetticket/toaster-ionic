@@ -9,4 +9,28 @@ var PUSHER_LIB = new Pusher({
 });
 PUSHER_LIB.port = 443;
 
+// auth endpoint for private channels
+// Router.route('/pusher/auth','POST', function() {
+//   console.log("authenticating!");
+//     var req = this.request;
+//     var res = this.response;
+//     var socketId = req.body.socket_id;
+//     var channel = req.body.channel_name;
+//     var auth = PUSHER_LIB.auth( socketId, channel );
+//     res.write(JSON.stringify(auth));
+//   }, {where: 'server'});
+
+Router.route('/pusher/auth', { where: 'server'})
+  .post(function() {
+    // console.log("authenticating!");
+    var req = this.request;
+    var res = this.response;
+    var socketId = req.body.socket_id;
+    var channel = req.body.channel_name;
+    var auth = PUSHER_LIB.authenticate( socketId, channel );
+    console.log(JSON.stringify(auth));
+    res.write(JSON.stringify(auth));
+    // res.send(JSON.stringify(auth));
+  });
+
 PushUtils.sendPusherNoti = Async.wrap(PUSHER_LIB, 'trigger');

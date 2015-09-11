@@ -38,7 +38,7 @@ if (Meteor.isServer) {
           console.log("NOTIFICATION INSERT ERR", err);
         } else {
           
-          PushUtils.sendPusherNoti(noti.toUserId, 'Toaster', {
+          PushUtils.sendPusherNoti("private-" + noti.toUserId, 'Toaster', {
             message: noti.body
           }, null, function (err) {
             if (err) {
