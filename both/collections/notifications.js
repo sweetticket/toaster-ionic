@@ -46,13 +46,15 @@ if (Meteor.isServer) {
           //     return;
           //   }
             
-          //   console.log("Pushed to", "private-" + noti.toUserId);
+            console.log("Pushing to", noti.toUserId);
           //   // console.log("Push noti sent!");
           // }); 
-          var channel = "private-" + noti.toUserId;
-          var eventName = "Toaster";
+          // var channel = "private-" + noti.toUserId;
+          var channel = noti.toUserId;
+          // var eventName = "Toaster";
           var messageBody = noti.body;
-          PushUtils.sendPusherNoti(channel, eventName, messageBody); 
+          // PushUtils.sendPusherNoti(channel, eventName, messageBody); 
+          PushUtils.sendPushNoti(channel, messageBody);
         }
       });
     },
