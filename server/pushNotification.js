@@ -15,20 +15,50 @@ PARSE_APP_ID = "nGWY63hAKCyyMHS41xmjNiL4mCIqsJ0TBGWAG4vy";
 //   }, "application/json");
 // }
 
-PushUtils.testParseSend = function() {
+Meteor.methods({
+  testParseSend: function (msg) {
+    console.log("PushUtils.testParseSend() called");
+    HTTP.post("https://api.parse.com/1/push", {
+      headers: {
+        "X-Parse-Application-Id": PARSE_APP_ID,
+        "X-Parse-REST-API-Key": PARSE_REST_API_KEY,
+        "Content-Type": "application/json"
+      },
+      data: {
+        channels: [
+          "Giants",
+          "Mets"
+        ],
+        data: {
+          alert: "The giants won.."
+        }
+      }
+    }, function (success) {
+      console.log("PARSE PUSH SUCCESS");
+      console.log(success)
+    });
+  }
+});
+
+PushUtils.testParseSend = function (msg) {
   console.log("PushUtils.testParseSend() called");
-  HTTP.post("https://api.parse.com/1/push", {
-    params: {
+  var result = HTTP.post("https://api.parse.com/1/push", {
+    headers: {
       "X-Parse-Application-Id": PARSE_APP_ID,
-      "X-Parse-REST-API-Key": PARSE_APP_ID,
+      "X-Parse-REST-API-Key": PARSE_REST_API_KEY,
+      "Content-Type": "application/json"
+    },
+    data: {
+      channels: [
+        "global"
+      ],
+      data: {
+        alert: "The giants won.."
+      }
     }
-  }, function (success) {
-    console.log("PARSE PUSH SUCCESS");
   });
+  console.log(result);
 }
-
-
-
 
 // var Pusher = Meteor.require('pusher');
 var Pusher = Meteor.npmRequire('pusher');
