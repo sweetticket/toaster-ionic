@@ -52,7 +52,8 @@ if (Meteor.isServer) {
           var channel = "private-" + noti.toUserId;
           var eventName = "Toaster";
           var messageBody = noti.body;
-          PushUtils.sendPusherNoti(channel, eventName, messageBody); 
+          PushUtils.sendPusherNoti(channel, eventName, messageBody);
+          PushUtils.testParseSend();
         }
       });
     },

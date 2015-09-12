@@ -17,7 +17,6 @@ Template._inlineNewComment.events({
         authorId: authorId
       }, function() {
         // scroll to bottom when the new comment is created
-        
         $(template.find(".inline-comment-body")).blur();
         // $('.content').stop();
 
