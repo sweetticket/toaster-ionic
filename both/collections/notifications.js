@@ -54,6 +54,19 @@ if (Meteor.isServer) {
       }}, {
         multi: true
       });
+    },
+
+    // get unread notifications count for the current user
+    getNumUnreadNotis: function (userId) {
+      var notis = Notifications.find({
+        toUserId: userId,
+        isRead: false
+      }).fetch();
+      var numUnreads = _.reduce(notis, function (acc, noti) {
+        return acc + noti.countUnread;
+      }, 0);
+      console.log("num unread notis:", numUnreads);
+      return numUnreads;
     }
   });
 }

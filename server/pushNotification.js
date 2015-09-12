@@ -26,6 +26,9 @@ Meteor.methods({
   // through Parse server
   sendPushNotiToParse: function (userId, msg) {
     console.log("sendPushNotiToParse() called with", userId, msg);
+
+    var numUnreadNotis = Meteor.call("getNumUnreadNotis", userId);
+
     var result = HTTP.post("https://api.parse.com/1/push", {
       headers: {
         "X-Parse-Application-Id": PARSE_APP_ID,
@@ -38,7 +41,8 @@ Meteor.methods({
         },
         data: {
           alert: msg,
-          sounds: "default"
+          sounds: "default",
+          numUnreadNotis: numUnreadNotis
         }
       }
     });
