@@ -99,8 +99,6 @@ Meteor.publishComposite('post', function(_id) {
   };
 });
 
-
-
 Meteor.publishComposite('recentPostsAndComments', function () {
   var user = Meteor.users.findOne({_id: this.userId});
   return {
@@ -211,15 +209,13 @@ Meteor.publishComposite('userPostsComments', function() {
   };
 });
 
-
 Meteor.publish('notifications', function() {
   if (!this.userId) {
     return [];
   }
-    
+
   return Notifications.find({
     toUserId: this.userId,
-    // isRead: false
   });
 });
 

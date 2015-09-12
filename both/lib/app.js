@@ -29,12 +29,12 @@ Meteor.startup(function() {
     // channel.bind('Toaster', function(data) {
     //   alert('An event was triggered with message: ' + data.message);
     // });
-    Tracker.autorun(function() {
-      var DDPConnectionStatus = Meteor.status();
-      console.log(DDPConnectionStatus);
-      if (DDPConnectionStatus.connected) {
-        window.location = "toasterapp://DDPconnected";
-      }
-    });
+    // Tracker.autorun(function() {
+    //   var DDPConnectionStatus = Meteor.status();
+    //   console.log(DDPConnectionStatus);
+    //   if (DDPConnectionStatus.connected) {
+    //     Utils.getBadgeCount();
+    //   }
+    // });
   }
 });
