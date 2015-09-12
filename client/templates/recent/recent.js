@@ -50,8 +50,13 @@ Template.recent.onRendered(function() {
       Utils.tellAndroidLoadingEnded();
       this.$('.posts-container').fadeIn();
 
-      //HOWON: TEMPORARILY DSIABLING LOADING WHEEL
-      // Utils.hideLoading();
+      // Since Recent is the first view that users will see,
+      // initialize the unread count here.
+      Meteor.call("getNumUnreadNotis", function (err, numUnread) {
+        Utils.tellIOSToUpdateBadgeCount(numUnread);
+        Utils.tellAndroidToUpdateBadgeCount(numUnread);
+      });
+
       Session.set("ready", true);
     }
   }.bind(this));

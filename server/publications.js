@@ -247,11 +247,3 @@ Meteor.publish('otherUserInfo', function() {
     {fields: {'_id': 1, 'networkId': 1, 'color': 1, 'icon': 1, 'rep': 1}});
 
 });
-
-Meteor.publish('countPublication', function() {
-  Counts.publish(this, 'unreadNotiCount', Notifications.find({
-    toUserId: this.userId,
-    isRead: false
-  }));
-});
-

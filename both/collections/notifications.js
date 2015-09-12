@@ -73,24 +73,19 @@ if (Meteor.isServer) {
   });
 }
 
-if (Meteor.isClient) {
-  Meteor.startup(function() {
-    //subscribe to notification counts
-    //and update it reactively
-    var unreadBadgeCount = 0;
-    Tracker.autorun(function() {
-      Meteor.subscribe("countPublication");
-      unreadBadgeCount = Counts.get('unreadNotiCount');
-    });
-    
-    Tracker.autorun(function() {
-      var userId = Meteor.userId();
-      if (userId) {
-        // Push.addListener("message", function (notification) {
-        //   console.log("Push notification received");
-        //   Push.setBadge(unreadBadgeCount+1);
-        // });
-      }
-    })
-  });
-}
+// if (Meteor.isClient) {
+//   Meteor.startup(function() {
+//     //subscribe to notification counts
+//     //and update it reactively
+//     var unreadBadgeCount = 0;
+//     var sub = Meteor.subscribe("countPublication");
+
+//     Tracker.autorun(function() {
+//       if (sub.ready()) {
+//         unreadBadgeCount = Counts.get('unreadNotiCount');
+//         window.location = "toasterapp://badgeCount="+unreadBadgeCount;
+//         console.log("UNREADNOTIS:", unreadBadgeCount);
+//       }
+//     });
+//   });
+// }
