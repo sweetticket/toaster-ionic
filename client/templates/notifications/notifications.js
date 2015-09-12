@@ -14,6 +14,7 @@ Template.notifications.onRendered(function() {
   this.autorun(function() {
     if (this.subscriptionsReady()) {
       Utils.tellIOSLoadingEnded();
+      Utils.tellAndroidLoadingEnded();
       
       Utils.hideLoading();
     }

@@ -25,6 +25,7 @@ Template.newPost.onCreated(function() {
 
 Template.newPost.onRendered(function() {
   $('textarea').focus();
+  Utils.tellAndroidLoadingEnded();
 });
 
 Template.newPost.events({

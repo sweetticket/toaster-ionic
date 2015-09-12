@@ -13,6 +13,7 @@ Template.profile.created = function () {
       // Utils.showLoading();
     } else {
       Utils.tellIOSLoadingEnded();
+      Utils.tellAndroidLoadingEnded();
       
       // Utils.hideLoading();
 
