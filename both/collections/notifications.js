@@ -37,23 +37,9 @@ if (Meteor.isServer) {
         if (err) {
           console.log("NOTIFICATION INSERT ERR", err);
         } else {
-          // private-RCi5nFGCcX45N4HH9
-          // PushUtils.sendPusherNoti("private-" + noti.toUserId, 'Toaster', {
-          //   message: noti.body
-          // }, null, function (err) {
-          //   if (err) {
-          //     console.log(err);
-          //     return;
-          //   }
-            
-          //   console.log("Pushed to", "private-" + noti.toUserId);
-          //   // console.log("Push noti sent!");
-          // }); 
-          var channel = "private-" + noti.toUserId;
-          var eventName = "Toaster";
-          var messageBody = noti.body;
-          PushUtils.sendPusherNoti(channel, eventName, messageBody);
-          PushUtils.testParseSend();
+
+          // send a push notification to the recipient
+          Meteor.call("sendPushNotiToParse", noti.toUserId, noti.body);
         }
       });
     },
@@ -68,7 +54,6 @@ if (Meteor.isServer) {
       }}, {
         multi: true
       });
-      console.log("all notifications are read!");
     }
   });
 }

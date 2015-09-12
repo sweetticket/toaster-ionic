@@ -50,6 +50,9 @@ Template.signIn.events({
         $('.tabs a:first-child').addClass('active');
 
         console.log("let iOS know we logged in");
+
+        // Meteor.call("registerUserIdToParse", );
+
         Utils.tellIOSILoggedIn();
 
         if (Utils.isNativeApp() && Utils.getMobileOperatingSystem() === 'Android') {
