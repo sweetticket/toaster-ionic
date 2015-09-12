@@ -18,11 +18,10 @@ var _notifyCommentAuthors = function (postId, postAuthorId, user) {
   var comments = Comments.find({postId: postId}).fetch();
   var authorIds = _.uniq(_.pluck(comments, 'userId'));
 
-  // OP's id shouldn't be included here even if he commented on his own post
-  var postAuthorIdIdx = authorIds.indexOf(postAuthorId);
-  if (postAuthorIdIdx > -1) {
-    authorIds.splice(postAuthorIdIdx, 1);
-  }
+  // OP and myself shouldn't be notified
+  authorIds = _.filter(authorIds, function (authorId) {
+    return ((authorId != postAuthorId) && (authorId != user._id)) 
+  });
 
   // notify comment authors
   _.each(authorIds, function (authorId) {
