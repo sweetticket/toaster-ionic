@@ -1,10 +1,6 @@
 TrendingPostsSub = new SubsManager();
 
-var isAtTop = function() {
-  return $('.content').scrollTop() === 0;
-};
-
-Template.trending.created = function () {
+Template.trending.onCreated(function() {
   // Howon's note: we don't do dynamic loading for trending feed for now,
   // because we are only dealing with 100 threads.
   // but we still should.. however, we need a set of sorted
@@ -16,11 +12,10 @@ Template.trending.created = function () {
   this.autorun(function () {
     this.postsSub = TrendingPostsSub.subscribe("trendingPostsAndComments");
   }.bind(this));
-};
+});
 
 Template.trending.onRendered(function() {  
   var numPosts = Posts.find().count();
-
   this.autorun(function () {
 
     if (!this.postsSub.ready()) {  

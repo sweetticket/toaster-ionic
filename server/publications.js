@@ -253,8 +253,6 @@ Meteor.publish('otherUserInfo', function() {
 });
 
 
-// HI JENNY KIM
-
 Meteor.publish('myNotiCount', function() {
   if (!this.userId) {
     return [];

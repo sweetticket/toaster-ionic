@@ -3,13 +3,13 @@ RecentPostsSub = new SubsManager();
 Template.recent.badgeSet = false;
 Template.recent.skipIncrease = true;
 
-Template.recent.created = function () {
+Template.recent.onCreated(function() {
   // flag to show the loading wheel only in the beginning.
   // don't show a loading wheel for subsequent fetch calls
   this.loaded = new ReactiveVar(0);
   this.numPostsToFetch = new ReactiveVar(NUM_POSTS_IN_BATCH);
 
-  //TODO: do we really need info of all users in this network here??
+  //FIXME: do we really need info of all users in this network here??
   this.subscribe('otherUserInfo');
 
   this.autorun(function () {
@@ -20,7 +20,7 @@ Template.recent.created = function () {
       this.loaded.set(limit);
     }
   }.bind(this));
-};
+});
 
 Template.recent.onRendered(function() {
   var instance = this;
