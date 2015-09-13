@@ -5,6 +5,9 @@ var isAtTop = function() {
 RecentPostsSub = new SubsManager();
 // RecentCommentsSub = new SubsManager();
 
+Template.recent.badgeSet = false;
+Template.recent.skipIncrease = true;
+
 Template.recent.created = function () {
   // flag to show the loading wheel only in the beginning.
   // don't show a loading wheel for subsequent fetch calls
@@ -24,12 +27,32 @@ Template.recent.created = function () {
       this.loaded.set(limit);
     }
   }.bind(this));
+
 };
 
 Template.recent.onRendered(function() {
   var limit = this.numPostsFetched.get();
   var instance = this;
   var numPosts = Posts.find().count();
+
+  // Since Recent is the first view that users will see,
+  // initialize the unread count here.
+  // Meteor.call("getNumUnreadNotis", function (err, numUnread) {
+  //   Utils.tellIOSToUpdateBadgeCount(numUnread);
+  //   Utils.tellAndroidToSetBadgeCount(numUnread);
+  // });
+
+  // Android badge count autorun
+  Tracker.autorun(function() {
+    Meteor.subscribe("myNotiCount");
+    var numUnreadNotis = Counts.get("notiCount");
+    console.log("numUnreadNotis:", numUnreadNotis);
+    // Utils.tellAndroidToUpdateBadgeCount();
+    Meteor.call("getNumUnreadNotis", function (err, numUnread) {
+      Utils.tellIOSToUpdateBadgeCount(numUnread);
+      Utils.tellAndroidToSetBadgeCount(numUnread);
+    });
+  });
 
   this.autorun(function () {
     if (!this.postsSub.ready()) {
@@ -49,13 +72,6 @@ Template.recent.onRendered(function() {
 
       Utils.tellAndroidLoadingEnded();
       this.$('.posts-container').fadeIn();
-
-      // Since Recent is the first view that users will see,
-      // initialize the unread count here.
-      Meteor.call("getNumUnreadNotis", function (err, numUnread) {
-        Utils.tellIOSToUpdateBadgeCount(numUnread);
-        Utils.tellAndroidToUpdateBadgeCount(numUnread);
-      });
 
       Session.set("ready", true);
     }
