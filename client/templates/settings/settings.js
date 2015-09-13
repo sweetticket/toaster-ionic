@@ -58,7 +58,6 @@ Template.settings.events({
     if (Utils.isNativeApp() && Utils.getMobileOperatingSystem() === 'Android') {
       // console.log("isNativeApp && android");
         event.preventDefault();
-        alert('share');
     }
   }
 });

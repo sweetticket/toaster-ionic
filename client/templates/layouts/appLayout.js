@@ -113,24 +113,36 @@ Template.appLayout.events({
       buttons: [
         { text: '<i class="icon ion-social-facebook"></i> Post' },
         { text: '<i class="icon ion-social-twitter"></i> Tweet' },
-        { text: '<i class="icon ion-ios-email"></i> Email' },
+        // { text: '<i class="icon ion-ios-email"></i> Email' },
       ],
       cancelText: 'Cancel',
       buttonClicked: function(index) {
         if (index === 0) {
           //CHANGE THIS URL LATER
           var url = "http://www.facebook.com/sharer/sharer.php?u=toasterapp.meteor.com/getToaster&title=Toaster";
-          window.open(url, '_system');
+          if (Utils.isNativeApp() && Utils.getMobileOperatingSystem() === 'Android') {
+            alert("share:" + url);
+          } else {
+            window.open(url, '_system');
+          }
         }
         if (index === 1) {
           //CHANGE THIS URL LATER
           var url = "http://twitter.com/home?status=Join+Toaster!+toasterapp.meteor.com/getToaster";
-          window.open(url, '_system');
+          if (Utils.isNativeApp() && Utils.getMobileOperatingSystem() === 'Android') {
+            alert("share:" + url);
+          } else {
+            window.open(url, '_system');
+          }
         }
-        if (index === 2) {
-          var url = "mailto:?subject=Join Toaster!&amp;body=Join Toaster! Go to toasterapp.meteor.com/getToaster and download the app!"
-          window.open(url, '_system');
-        }
+        // if (index === 2) {
+        //   var url = "mailto:?subject=Join Toaster!&amp;body=Join Toaster! Go to toasterapp.meteor.com/getToaster and download the app!"
+        //   if (Utils.isNativeApp() && Utils.getMobileOperatingSystem() === 'Android') {
+        //     alert("share:" + url);
+        //   } else {
+        //     window.open(url, '_system');
+        //   }
+        // }
         return true;
       }
     });
