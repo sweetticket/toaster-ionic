@@ -28,10 +28,10 @@ Template.recent.onRendered(function() {
 
   // Since Recent is the first view that users will see,
   // initialize the unread count here.
-  Meteor.call("getNumUnreadNotis", function (err, numUnread) {
-    Utils.tellIOSToUpdateBadgeCount(numUnread);
-    Utils.tellAndroidToUpdateBadgeCount(numUnread);
-  });
+  // Meteor.call("getNumUnreadNotis", function (err, numUnread) {
+  //   Utils.tellIOSToUpdateBadgeCount(numUnread);
+  //   Utils.tellAndroidToSetBadgeCount(numUnread);
+  // });
 
   this.autorun(function () {
     if (!this.postsSub.ready()) {
