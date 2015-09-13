@@ -35,10 +35,10 @@ Template.recent.onRendered(function() {
 
   // Since Recent is the first view that users will see,
   // initialize the unread count here.
-  Meteor.call("getNumUnreadNotis", function (err, numUnread) {
-    Utils.tellIOSToUpdateBadgeCount(numUnread);
-    Utils.tellAndroidToUpdateBadgeCount(numUnread);
-  });
+  // Meteor.call("getNumUnreadNotis", function (err, numUnread) {
+  //   Utils.tellIOSToUpdateBadgeCount(numUnread);
+  //   Utils.tellAndroidToSetBadgeCount(numUnread);
+  // });
 
   // Android badge count autorun
   Tracker.autorun(function() {
@@ -55,11 +55,14 @@ Template.recent.onRendered(function() {
   this.autorun(function () {
     if (!this.postsSub.ready()) {
       // iOS: signal the start of Meteor loading
+      console.log("should tell ios loading started")
       Utils.tellIOSLoadingStarted();
 
       this.$('.posts-container').hide();
 
-      // Session.set("ready", false);
+      //HOWON: TEMPORARILY DSIABLING LOADING WHEEL
+      // Utils.showLoading();
+      Session.set("ready", false);
     } else {
       // iOS: signal the end of Meteor loading
       console.log("should tell ios loading ended")
@@ -67,6 +70,8 @@ Template.recent.onRendered(function() {
 
       Utils.tellAndroidLoadingEnded();
       this.$('.posts-container').fadeIn();
+
+      Session.set("ready", true);
     }
   }.bind(this));
 
@@ -83,6 +88,7 @@ Template.recent.onRendered(function() {
     if ($target.length > 0) {
       var distanceY = $('.overflow-scroll').scrollTop();
 
+      // var gapFromTheBottom = 300;
       var gapFromTheBottom = 0;
 
       var threshold = distanceY + $(document).height() + gapFromTheBottom;
