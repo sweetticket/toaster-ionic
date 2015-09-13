@@ -5,10 +5,9 @@ if (Meteor.isServer) {
   Meteor.methods({
     addNotification: function (noti) {
       // don't add notification if I am acting on my own post
-      // FIXME: temporarily disabled checking if this is my post
-      // if (noti.fromUserId === noti.toUserId) {
-      //   return false;
-      // }
+      if (noti.fromUserId === noti.toUserId) {
+        return false;
+      }
 
       // If there's a notification for the same post, let's replace the
       // old notification with a new one
@@ -37,7 +36,6 @@ if (Meteor.isServer) {
         if (err) {
           console.log("NOTIFICATION INSERT ERR", err);
         } else {
-
           // send a push notification to the recipient
           Meteor.call("sendPushNotiToParse", noti.toUserId, noti.body);
         }
@@ -72,20 +70,3 @@ if (Meteor.isServer) {
     }
   });
 }
-
-// if (Meteor.isClient) {
-//   Meteor.startup(function() {
-//     //subscribe to notification counts
-//     //and update it reactively
-//     var unreadBadgeCount = 0;
-//     var sub = Meteor.subscribe("countPublication");
-
-//     Tracker.autorun(function() {
-//       if (sub.ready()) {
-//         unreadBadgeCount = Counts.get('unreadNotiCount');
-//         window.location = "toasterapp://badgeCount="+unreadBadgeCount;
-//         console.log("UNREADNOTIS:", unreadBadgeCount);
-//       }
-//     });
-//   });
-// }

@@ -26,12 +26,19 @@ Template.recent.onRendered(function() {
   var instance = this;
   var limit = this.numPostsToFetch.get();
 
-  // Since Recent is the first view that users will see,
-  // initialize the unread count here.
-  // Meteor.call("getNumUnreadNotis", function (err, numUnread) {
-  //   Utils.tellIOSToUpdateBadgeCount(numUnread);
-  //   Utils.tellAndroidToSetBadgeCount(numUnread);
-  // });
+  // ios badge count update
+  Meteor.call("getNumUnreadNotis", function (err, numUnread) {
+    Utils.tellIOSToUpdateBadgeCount(numUnread);
+  });
+
+  // Android badge count update inside autorun
+  Tracker.autorun(function() {
+    Meteor.subscribe("myNotiCount");
+    Counts.get("notiCount");
+    Meteor.call("getNumUnreadNotis", function (err, numUnread) {
+      Utils.tellAndroidToSetBadgeCount(numUnread);
+    });
+  });
 
   this.autorun(function () {
     if (!this.postsSub.ready()) {
