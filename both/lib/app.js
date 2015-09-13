@@ -11,7 +11,6 @@ Meteor.startup(function() {
   }
 
   if (Meteor.isServer) {
-
     FastRender.route("/", function() {
       this.subscribe("recentPostsAndComments", NUM_POSTS_IN_BATCH);
     });

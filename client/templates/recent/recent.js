@@ -11,7 +11,6 @@ Template.recent.created = function () {
 
   //TODO: do we really need info of all users in this network here??
   this.subscribe('otherUserInfo');
-  // this.subscribe('userNetwork');
 
   this.autorun(function () {
     var limit = this.numPostsToFetch.get();
@@ -34,25 +33,12 @@ Template.recent.onRendered(function() {
     Utils.tellAndroidToUpdateBadgeCount(numUnread);
   });
 
-  // Android badge count autorun
-  // Tracker.autorun(function() {
-  //   Meteor.call("getNumUnreadNotis", function (err, numUnread) {
-  //     Utils.tellIOSToUpdateBadgeCount(numUnread);
-  //     Utils.tellAndroidToSetBadgeCount(numUnread);
-  //   });
-  // });
-
   this.autorun(function () {
     if (!this.postsSub.ready()) {
-      // iOS: signal the start of Meteor loading
       Utils.tellIOSLoadingStarted();
-
       this.$('.posts-container').hide();
     } else {
-      // iOS: signal the end of Meteor loading
-      console.log("should tell ios loading ended")
       Utils.tellIOSLoadingEnded();
-
       Utils.tellAndroidLoadingEnded();
       this.$('.posts-container').fadeIn();
     }
@@ -61,7 +47,8 @@ Template.recent.onRendered(function() {
   var fetchMorePosts = _.throttle(function() {
     limit += NUM_POSTS_IN_BATCH;
     instance.numPostsToFetch.set(limit);
-  }, 200, {
+    console.log("fetchMorePosts:", limit);
+  }, 500, {
     trailing: false
   });
 
@@ -70,10 +57,7 @@ Template.recent.onRendered(function() {
     var $target = $('.post-end-mark');
     if ($target.length > 0) {
       var distanceY = $('.overflow-scroll').scrollTop();
-
-      var gapFromTheBottom = 0;
-
-      var threshold = distanceY + $(document).height() + gapFromTheBottom;
+      var threshold = distanceY + $(document).height();
       if ($target.position().top < threshold) {
         fetchMorePosts();
       }
@@ -93,6 +77,6 @@ Template.recent.helpers({
     var numPublished = Posts.find().count();
     var numLoaded = Template.instance().loaded.get();
     console.log("available: ", numPublished, "loaded:", numLoaded);
-    return numPublished > numLoaded;
+    return numPublished >= numLoaded;
   }
 });

@@ -102,10 +102,6 @@ Meteor.publishComposite('post', function(_id) {
 Meteor.publishComposite('recentPostsAndComments', function (limit) {
   var user = Meteor.users.findOne({_id: this.userId});
 
-  // Publish extra posts so that the client knows that there are more
-  // posts available to fetch
-  limit += NUM_POSTS_IN_BATCH;
-
   if (limit > Posts.find().count()) {
     limit = 0;
   }

@@ -1,5 +1,4 @@
 TrendingPostsSub = new SubsManager();
-TrendingCommentsSub = new SubsManager();
 
 var isAtTop = function() {
   return $('.content').scrollTop() === 0;
@@ -13,7 +12,6 @@ Template.trending.created = function () {
   // Not sure how to do it at this point.
 
   this.subscribe('otherUserInfo');
-  // this.subscribe('userNetwork');
 
   this.autorun(function () {
     this.postsSub = TrendingPostsSub.subscribe("trendingPostsAndComments");
@@ -46,10 +44,4 @@ Template.trending.helpers({
     postsArr.sort(Utils.compareRank);
     return postsArr;
   },
-  // userRep: function() {
-  //   if (Meteor.user()){
-  //     return Meteor.user().rep;
-  //   }
-  //   return;
-  // }
 });
