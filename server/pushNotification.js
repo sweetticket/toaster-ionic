@@ -28,6 +28,8 @@ Meteor.methods({
   // through Parse server
   sendPushNotiToParse: function (userId, msg) {
     console.log("sendPushNotiToParse() called with", userId, msg);
+
+    // FIXME: there is a problem with this!
     var numUnreadNotis = Meteor.call("getNumUnreadNotis", userId);
     var result = HTTP.post("https://api.parse.com/1/push", {
       headers: {
@@ -41,7 +43,8 @@ Meteor.methods({
         },
         data: {
           alert: msg,
-          sounds: "default",
+          sound: "default",
+          badge: "Increment",
           numUnreadNotis: numUnreadNotis
         }
       }

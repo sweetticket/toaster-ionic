@@ -36,11 +36,9 @@ if (Meteor.isServer) {
         countUnread: countUnread,
         createdAt: new Date()
       }), function (err, notificationId) {
-        // console.log("noti added", notificationId);
         if (err) {
           console.log("NOTIFICATION INSERT ERR", err);
         } else {
-          // send a push notification to the recipient
           Meteor.call("sendPushNotiToParse", noti.toUserId, noti.body);
         }
       });
