@@ -245,5 +245,21 @@ Meteor.publish('otherUserInfo', function() {
   var currentNetworkId = user.networkId;
   return Meteor.users.find({networkId: currentNetworkId},
     {fields: {'_id': 1, 'networkId': 1, 'color': 1, 'icon': 1, 'rep': 1}});
-
 });
+
+
+// HI JENNY KIM
+
+Meteor.publish('myNotiCount', function() {
+  if (!this.userId) {
+    return [];
+  }
+
+  Counts.publish(this, 'notiCount', Notifications.find({
+    toUserId: this.userId,
+    isRead: false
+  }));
+});
+
+
+
