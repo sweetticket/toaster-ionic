@@ -1,11 +1,6 @@
 Template.signUp.rendered = function() {
   window.scrollTo(0, 0);
   Utils.tellAndroidLoadingEnded();
-  // if (Utils.isNativeApp() && Utils.getMobileOperatingSystem() === 'Android') {
-  //     alert('signup');
-  //   }
-  $('#new-email').focus();
-  
 };
 
 var _toggleEnableSignUp = function() {
@@ -15,13 +10,9 @@ var _toggleEnableSignUp = function() {
 };
 
 Template.signUp.events({
-  "keyup input": function (e, template) {
-    // _toggleEnableSignUp();
-  },
-
   "click .signup-btn.enabled": function (e, template) {
-    window.scrollTo(0, 0);
-    $('input').blur();
+    // window.scrollTo(0, 0);
+    // $('input').blur();
 
     var email = $('#email').val();
     var password = $('#password').val();
@@ -44,9 +35,6 @@ Template.signUp.events({
       email: email,
       password: password
     }, function (err) {
-
-      console.log("SIGNUP: ACCOUNT CREATED");
-
       if (err) {
         console.log("createUser failed", err);
 
@@ -81,15 +69,18 @@ Template.signUp.events({
 
   "click .signin-link": function (e, template) {
     e.preventDefault();
+
     if (Utils.isNativeApp() && Utils.getMobileOperatingSystem() === 'Android') {
-        alert('toSignIn');
-    } else {
-      Router.go('/signIn');
+      alert('toSignIn');
     }
+    
+    Router.go('/signIn');
   },
 
   "keyup .signup-container input": function (e, template) {
-    var email = $('#email').val().trim();
+    e.preventDefault();
+
+    var email = $('#email').val().toLowerCase().trim();
     var password = $('#password').val();
     var password2 = $('#password2').val();
     if (email.length > 0 && password.length > 0 && password2.length > 0) {

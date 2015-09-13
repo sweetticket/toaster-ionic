@@ -1,29 +1,22 @@
 Template.signIn.rendered = function() {
   Utils.tellAndroidLoadingEnded();
   window.scrollTo(0, 0);
-
 };
 
 Template.signIn.events({
   "click .signup-link": function (e, template) {
+    e.preventDefault();
+
     if (Utils.isNativeApp() && Utils.getMobileOperatingSystem() === 'Android') {
-        alert('toSignUp');
-    } else {
-    Router.go('/signUp');
+      alert('toSignUp');
     }
+    
+    Router.go('/signUp');
   },
 
   "click .signin-btn.enabled": function (e, template) {
-    
-    $('input').blur();
-
     var email = $('#email').val().trim();
     var password = $('#password').val();
-    console.log("login with password");
-    console.log("connected:", Meteor.status().connected);
-    console.log("status:", Meteor.status().status);
-    console.log("reason:", Meteor.status().reason);
-    Meteor.reconnect();
     Meteor.loginWithPassword(email, password, function (err) {
       if (err) {
         console.log(err);
@@ -36,27 +29,16 @@ Template.signIn.events({
           $('.show').removeClass('show');
           $('.not-registered').addClass('show');
         }
-        //fixme do something
       } else {
+
         Session.set("currentUserId", Meteor.userId());
-
-        // for Android
-        // if (Utils.isNativeApp && Utils.getMobileOperatingSystem === 'Android') {
-        //   alert(Meteor.userId());
-        // }
-
         Session.set("firstOpened", true);
         $('.tabs a.active').removeClass('active');
         $('.tabs a:first-child').addClass('active');
-
-        console.log("let iOS know we logged in");
-
-        // Meteor.call("registerUserIdToParse", );
-
         Utils.tellIOSILoggedIn();
-
+        
         if (Utils.isNativeApp() && Utils.getMobileOperatingSystem() === 'Android') {
-            alert('signed-in:'+ Meteor.userId());
+          alert('signed-in:'+ Meteor.userId());
 
         } else {
           Router.go('/');
@@ -66,7 +48,7 @@ Template.signIn.events({
   },
 
   "keyup .signup-container input": function (e, template) {
-    var email = $('#email').val().trim();
+    var email = $('#email').val().toLowerCase().trim();
     var password = $('#password').val();
     if (email.length > 0 && password.length > 0) {
       $('.signin-btn').addClass('enabled');
@@ -74,5 +56,4 @@ Template.signIn.events({
       $('.signin-btn.enabled').removeClass('enabled');
     }
   },
-
 });

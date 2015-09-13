@@ -3,12 +3,10 @@ var isAtTop = function() {
 };
 
 RecentPostsSub = new SubsManager();
-// RecentCommentsSub = new SubsManager();
 
 Template.recent.created = function () {
   // flag to show the loading wheel only in the beginning.
   // don't show a loading wheel for subsequent fetch calls
-  this.initialLoaded = false;
   this.loaded = new ReactiveVar(0);
   this.numPostsFetched = new ReactiveVar(NUM_POSTS_IN_BATCH);
 
