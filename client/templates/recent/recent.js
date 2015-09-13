@@ -32,14 +32,11 @@ Template.recent.onRendered(function() {
   this.autorun(function () {
     if (!this.postsSub.ready()) {
       // iOS: signal the start of Meteor loading
-      console.log("should tell ios loading started")
       Utils.tellIOSLoadingStarted();
 
       this.$('.posts-container').hide();
 
-      //HOWON: TEMPORARILY DSIABLING LOADING WHEEL
-      // Utils.showLoading();
-      Session.set("ready", false);
+      // Session.set("ready", false);
     } else {
       // iOS: signal the end of Meteor loading
       console.log("should tell ios loading ended")
@@ -55,7 +52,7 @@ Template.recent.onRendered(function() {
         Utils.tellAndroidToUpdateBadgeCount(numUnread);
       });
 
-      Session.set("ready", true);
+      // Session.set("ready", true);
     }
   }.bind(this));
 
@@ -72,7 +69,6 @@ Template.recent.onRendered(function() {
     if ($target.length > 0) {
       var distanceY = $('.overflow-scroll').scrollTop();
 
-      // var gapFromTheBottom = 300;
       var gapFromTheBottom = 0;
 
       var threshold = distanceY + $(document).height() + gapFromTheBottom;
