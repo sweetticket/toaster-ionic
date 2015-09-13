@@ -1,7 +1,3 @@
-var isAtTop = function() {
-  return $('.content').scrollTop() === 0;
-};
-
 RecentPostsSub = new SubsManager();
 
 Template.recent.badgeSet = false;
@@ -11,27 +7,25 @@ Template.recent.created = function () {
   // flag to show the loading wheel only in the beginning.
   // don't show a loading wheel for subsequent fetch calls
   this.loaded = new ReactiveVar(0);
-  this.numPostsFetched = new ReactiveVar(NUM_POSTS_IN_BATCH);
+  this.numPostsToFetch = new ReactiveVar(NUM_POSTS_IN_BATCH);
 
   //TODO: do we really need info of all users in this network here??
   this.subscribe('otherUserInfo');
   // this.subscribe('userNetwork');
 
   this.autorun(function () {
-    var limit = this.numPostsFetched.get();
-    this.postsSub = RecentPostsSub.subscribe('recentPostsAndComments');
+    var limit = this.numPostsToFetch.get();
+    this.postsSub = RecentPostsSub.subscribe('recentPostsAndComments', limit);
 
     if (this.postsSub.ready()) {
       this.loaded.set(limit);
     }
   }.bind(this));
-
 };
 
 Template.recent.onRendered(function() {
-  var limit = this.numPostsFetched.get();
   var instance = this;
-  var numPosts = Posts.find().count();
+  var limit = this.numPostsToFetch.get();
 
   // Since Recent is the first view that users will see,
   // initialize the unread count here.
@@ -41,16 +35,12 @@ Template.recent.onRendered(function() {
   });
 
   // Android badge count autorun
-  Tracker.autorun(function() {
-    Meteor.subscribe("myNotiCount");
-    var numUnreadNotis = Counts.get("notiCount");
-    console.log("numUnreadNotis:", numUnreadNotis);
-    // Utils.tellAndroidToUpdateBadgeCount();
-    Meteor.call("getNumUnreadNotis", function (err, numUnread) {
-      Utils.tellIOSToUpdateBadgeCount(numUnread);
-      Utils.tellAndroidToSetBadgeCount(numUnread);
-    });
-  });
+  // Tracker.autorun(function() {
+  //   Meteor.call("getNumUnreadNotis", function (err, numUnread) {
+  //     Utils.tellIOSToUpdateBadgeCount(numUnread);
+  //     Utils.tellAndroidToSetBadgeCount(numUnread);
+  //   });
+  // });
 
   this.autorun(function () {
     if (!this.postsSub.ready()) {
@@ -58,8 +48,6 @@ Template.recent.onRendered(function() {
       Utils.tellIOSLoadingStarted();
 
       this.$('.posts-container').hide();
-
-      // Session.set("ready", false);
     } else {
       // iOS: signal the end of Meteor loading
       console.log("should tell ios loading ended")
@@ -72,7 +60,7 @@ Template.recent.onRendered(function() {
 
   var fetchMorePosts = _.throttle(function() {
     limit += NUM_POSTS_IN_BATCH;
-    instance.numPostsFetched.set(limit);
+    instance.numPostsToFetch.set(limit);
   }, 200, {
     trailing: false
   });
@@ -101,15 +89,10 @@ Template.recent.helpers({
     });
   },
 
-  userRep: function() {
-    if (Meteor.user()) {
-      return Meteor.user().rep;
-    }
-    return;
-  },
-
   morePostsAvailable: function() {
-    console.log("available: ", Posts.find().count(), "loaded:", Template.instance().loaded.get());
-    return Posts.find().count() > Template.instance().loaded.get();
+    var numPublished = Posts.find().count();
+    var numLoaded = Template.instance().loaded.get();
+    console.log("available: ", numPublished, "loaded:", numLoaded);
+    return numPublished > numLoaded;
   }
 });

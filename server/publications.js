@@ -99,8 +99,17 @@ Meteor.publishComposite('post', function(_id) {
   };
 });
 
-Meteor.publishComposite('recentPostsAndComments', function () {
+Meteor.publishComposite('recentPostsAndComments', function (limit) {
   var user = Meteor.users.findOne({_id: this.userId});
+
+  // Publish extra posts so that the client knows that there are more
+  // posts available to fetch
+  limit += NUM_POSTS_IN_BATCH;
+
+  if (limit > Posts.find().count()) {
+    limit = 0;
+  }
+
   return {
     find: function() {
       if (!this.userId) {
@@ -111,7 +120,7 @@ Meteor.publishComposite('recentPostsAndComments', function () {
         networkId: user.networkId
       }, {
         sort: {createdAt: -1},
-        // limit: limit
+        limit: limit
       });
     },
     children: [
@@ -124,7 +133,7 @@ Meteor.publishComposite('recentPostsAndComments', function () {
   }
 });
 
-Meteor.publishComposite('trendingPostsAndComments', function () {
+Meteor.publishComposite('trendingPostsAndComments', function() {
   var user = Meteor.users.findOne({_id: this.userId});
 
   return {
