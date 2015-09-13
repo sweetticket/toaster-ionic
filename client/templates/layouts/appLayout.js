@@ -35,54 +35,6 @@ Template.appLayout.onRendered(function() {
 
   FastClick.attach(document.body);
 
-
-  //FIXME: doesn't work on mobile
-  // $('.content').on("scroll touchmove touchend", function (e) {
-  //   // console.log("scrolling!");
-  //   _onScroll();
-  // });
-
-  // this.autorun(function() {
-  //   var ready = Session.get("ready");
-  //   // var currentUserId = Session.get("currentUserId");
-  //   var network = Networks.findOne();
-  //   if (Meteor.user() && ready && network){
-  //     $('.resume-network').addClass('show');
-  //       setTimeout(function () {
-  //         $('.resume-network').fadeOut("slow", function() {
-  //             $(this).removeClass("show");
-  //         });
-  //       }, 2000);
-  //     }
-  // });
-
-    this.autorun(function() {
-      var ready = Session.get("ready");
-      var network = Networks.findOne();
-      var currentUserId = Session.get("currentUserId");
-
-      // FIXME: temporarily disabled
-      // var firstOpened = Session.get("firstOpened");
-      // if (Meteor.user() && network && ready && firstOpened){
-      //   if ($('.resume-network').length === 0){
-
-      //     var popup = "<div class='popup resume-network'>"
-      //               + "<p>You are signed into</p>"
-      //               + "<p class='resume-domain'>@" + network.domain +"</p>"
-      //               + "</div>";
-
-      //     $('body').append(popup);
-
-      //       setTimeout(function () {
-      //         $('.resume-network').fadeOut("slow", function() {
-      //             Session.set("firstOpened", false);
-      //             $(this).remove();
-      //         });
-      //       }, 2000);
-      //     }
-      //   }
-    });
-
 });
 
 Template.appLayout.events({

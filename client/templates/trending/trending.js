@@ -1,11 +1,6 @@
 TrendingPostsSub = new SubsManager();
-TrendingCommentsSub = new SubsManager();
 
-var isAtTop = function() {
-  return $('.content').scrollTop() === 0;
-};
-
-Template.trending.created = function () {
+Template.trending.onCreated(function() {
   // Howon's note: we don't do dynamic loading for trending feed for now,
   // because we are only dealing with 100 threads.
   // but we still should.. however, we need a set of sorted
@@ -13,16 +8,14 @@ Template.trending.created = function () {
   // Not sure how to do it at this point.
 
   this.subscribe('otherUserInfo');
-  // this.subscribe('userNetwork');
 
   this.autorun(function () {
     this.postsSub = TrendingPostsSub.subscribe("trendingPostsAndComments");
   }.bind(this));
-};
+});
 
 Template.trending.onRendered(function() {  
   var numPosts = Posts.find().count();
-
   this.autorun(function () {
 
     if (!this.postsSub.ready()) {  
@@ -46,10 +39,4 @@ Template.trending.helpers({
     postsArr.sort(Utils.compareRank);
     return postsArr;
   },
-  // userRep: function() {
-  //   if (Meteor.user()){
-  //     return Meteor.user().rep;
-  //   }
-  //   return;
-  // }
 });

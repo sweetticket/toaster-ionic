@@ -31,3 +31,4 @@ npm-container
 meteorhacks:async
 meteorhacks:npm
 http
+meteorhacks:fast-render

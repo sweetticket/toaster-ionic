@@ -99,8 +99,13 @@ Meteor.publishComposite('post', function(_id) {
   };
 });
 
-Meteor.publishComposite('recentPostsAndComments', function () {
+Meteor.publishComposite('recentPostsAndComments', function (limit) {
   var user = Meteor.users.findOne({_id: this.userId});
+
+  if (limit > Posts.find().count()) {
+    limit = 0;
+  }
+
   return {
     find: function() {
       if (!this.userId) {
@@ -111,7 +116,7 @@ Meteor.publishComposite('recentPostsAndComments', function () {
         networkId: user.networkId
       }, {
         sort: {createdAt: -1},
-        // limit: limit
+        limit: limit
       });
     },
     children: [
@@ -124,7 +129,7 @@ Meteor.publishComposite('recentPostsAndComments', function () {
   }
 });
 
-Meteor.publishComposite('trendingPostsAndComments', function () {
+Meteor.publishComposite('trendingPostsAndComments', function() {
   var user = Meteor.users.findOne({_id: this.userId});
 
   return {
@@ -247,8 +252,6 @@ Meteor.publish('otherUserInfo', function() {
     {fields: {'_id': 1, 'networkId': 1, 'color': 1, 'icon': 1, 'rep': 1}});
 });
 
-
-// HI JENNY KIM
 
 Meteor.publish('myNotiCount', function() {
   if (!this.userId) {

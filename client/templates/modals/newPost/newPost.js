@@ -8,7 +8,9 @@ Template.newPost.submitNewPost = function() {
       }
 
       Router.go('/');
-      Session.set("newPost", result);
+      Utils.tellIOSToOpenTab("recent");
+
+      // Session.set("newPost", result);
     });
   }
 };
