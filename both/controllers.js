@@ -133,3 +133,6 @@ PrivacyController = AppController.extend({
 
 GetToasterController = AppController.extend({
 });
+
+BlankController = AppController.extend({
+});

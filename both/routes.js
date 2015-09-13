@@ -8,7 +8,11 @@ Router.route('/trending', {
 
 Router.route('/newPost', {
   name: 'newPost'
-})
+});
+
+Router.route('/blank', {
+  name: 'blank'
+});
 
 Router.route('/posts/:_id', {
   name: 'posts.show'
