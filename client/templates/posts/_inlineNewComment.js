@@ -1,8 +1,4 @@
 Template._inlineNewComment.events({
-  // "blur .inline-comment-body": function (e, template) {
-  //   $('.product-detail-content').removeClass('no-scroll');
-  // },
-
   "click .inline-comment-submit": function (e, template) {
     e.preventDefault();
     var postId = this._id;
@@ -18,15 +14,10 @@ Template._inlineNewComment.events({
       }, function() {
         // scroll to bottom when the new comment is created
         $(template.find(".inline-comment-body")).blur();
-        // $('.content').stop();
-
-        // $lastcomment = $(".comments-list .item:last-child");
-        // var scrollamt = $lastcomment.offset().top + $lastcomment.height();
-        
-        //   $('.content').animate({
-        //       scrollTop: scrollamt
-        //   }, 1000); 
-
+        ga('send', 'event', 'comment', 'submit', {
+          network: Networks.findOne().domain,
+          msg: body
+        });
       });
     }
   }

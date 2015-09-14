@@ -1,7 +1,9 @@
-Template.signIn.rendered = function() {
-  Utils.tellAndroidLoadingEnded();
+Template.signIn.onRendered(function() {
   window.scrollTo(0, 0);
-};
+  Utils.tellAndroidLoadingEnded();
+  Utils.initGA();
+  ga('send', 'pageview');
+});
 
 Template.signIn.events({
   "click .signup-link": function (e, template) {

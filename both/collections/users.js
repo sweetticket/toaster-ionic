@@ -21,9 +21,13 @@ if (Meteor.isClient) {
       }
 
       //FIXME: maybe open a Welcome modal?
-      console.log("now you are verified!");
       _.defer(function() {
         done();
+      });
+
+      Utils.initGA();
+      ga('send', 'event', 'user', 'verifiedEmail', {
+        email: Meteor.user().emails[0].address
       });
 
       Utils.openApp();

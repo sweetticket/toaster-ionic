@@ -1,16 +1,21 @@
 Template.newPost.submitNewPost = function() {
   var body = $('#new-post-body').val().trim();
   if (body.length > 0) {
-    Meteor.call("Posts.new", body, function(err, result) {
+    Meteor.call("Posts.new", body, function (err, result) {
       if (err) {
         console.log(err);
         return false;
       }
 
+      ga('send', 'event', 'post', 'submit', {
+        network: Networks.findOne().domain,
+        msg: body
+      });
+
       Router.go('/');
       Utils.tellIOSToOpenTab("recent");
 
-      // Session.set("newPost", result);
+      Session.set("newPost", result);
     });
   }
 };
@@ -27,6 +32,8 @@ Template.newPost.onCreated(function() {
 
 Template.newPost.onRendered(function() {
   $('textarea').focus();
+
+  Utils.initGA();
   Utils.tellAndroidLoadingEnded();
 });
 

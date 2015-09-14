@@ -9,7 +9,6 @@ var isLoggedIn = function() {
     Router.go('signUp');
     this.next();
   } else {
-    //FIXME: EMAIL VERIFICATION TURNED OFF
     isVerified.call(this);
     // this.next();
   }
