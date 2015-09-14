@@ -52,6 +52,10 @@ Template.recent.onRendered(function() {
       Utils.tellIOSLoadingEnded();
       Utils.tellAndroidLoadingEnded();
       this.$('.posts-container').fadeIn();
+
+      if (Meteor.user() && Utils.isUserVerified(Meteor.userId())) {
+        Utils.tellAndroidSignedInVerified();
+      }
     }
   }.bind(this));
 

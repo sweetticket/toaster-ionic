@@ -1,9 +1,13 @@
 var isLoggedIn = function() {
+  console.log("Meteor.loggingIn() = " + Meteor.loggingIn());
+  console.log("Meteor.user() = " + Meteor.user());
   if (!Meteor.loggingIn() && !Meteor.user()) {
     if (Meteor.isClient) {
       // if (Router.current().route._path === '/trending' && Utils.isNativeApp() && Utils.getMobileOperatingSystem() === 'Android') {
       if (Utils.isNativeApp() && Utils.getMobileOperatingSystem() === 'Android') {
-        alert('start-signup');
+        setTimeout(function() {
+            alert('start-signup');
+        }, 0);
       }
     }
     Router.go('signUp');
