@@ -23,6 +23,11 @@ Template.recent.onCreated(function() {
 });
 
 Template.recent.onRendered(function() {
+  
+  if (Meteor.user() && Utils.isUserVerified(Meteor.user())) {
+        Utils.tellAndroidSignedInVerified();
+      }
+
   var instance = this;
   var limit = this.numPostsToFetch.get();
 
@@ -52,10 +57,6 @@ Template.recent.onRendered(function() {
       Utils.tellIOSLoadingEnded();
       Utils.tellAndroidLoadingEnded();
       this.$('.posts-container').fadeIn();
-
-      if (Meteor.user() && Utils.isUserVerified(Meteor.userId())) {
-        Utils.tellAndroidSignedInVerified();
-      }
     }
   }.bind(this));
 
