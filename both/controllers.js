@@ -25,7 +25,8 @@ var isVerified = function() {
       if (Utils.isNativeApp() && Utils.getMobileOperatingSystem() === 'Android') {
         setTimeout(function() {
             alert('notVerified'); 
-        }, 100);
+        }, 0);
+        Router.go("blank");
       } else {
         Router.go("notVerified");
       }
@@ -112,4 +113,5 @@ GetToasterController = AppController.extend({
 });
 
 BlankController = AppController.extend({
+
 });
