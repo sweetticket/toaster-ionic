@@ -1,7 +1,9 @@
-Template.signUp.rendered = function() {
+Template.signUp.onRendered(function() {
   window.scrollTo(0, 0);
   Utils.tellAndroidLoadingEnded();
-};
+  Utils.initGA();
+  ga('send', 'pageview');
+});
 
 var _toggleEnableSignUp = function() {
   var email = $.trim($('#new-email').val());
@@ -11,8 +13,6 @@ var _toggleEnableSignUp = function() {
 
 Template.signUp.events({
   "click .signup-btn.enabled": function (e, template) {
-    // window.scrollTo(0, 0);
-    // $('input').blur();
 
     var email = $('#email').val();
     var password = $('#password').val();
