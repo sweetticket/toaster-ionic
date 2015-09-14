@@ -17,8 +17,6 @@ Template.notVerified.onCreated(function() {
   // redirect to "recent" page when this app is opened
   // after email verification
 
-  Utils.tellAndroidNotVerified();
-
   document.addEventListener("resume", _redirectToHome);
 
   this.autorun(function() {
@@ -35,8 +33,8 @@ Template.notVerified.onCreated(function() {
 });
 
 Template.notVerified.onRendered(function() {
-  console.log("notVerified onRenderd");
   Utils.tellIOSNotVerified();
+  Utils.tellAndroidLoadingEnded();
 });
 
 Template.notVerified.events({

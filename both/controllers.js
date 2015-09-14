@@ -21,7 +21,15 @@ var isVerified = function() {
     if (user.emails[0].verified) {
       this.next();
     } else {
-      Router.go("notVerified");
+      
+      if (Utils.isNativeApp() && Utils.getMobileOperatingSystem() === 'Android') {
+        setTimeout(function() {
+            alert('notVerified'); 
+        }, 100);
+      } else {
+        Router.go("notVerified");
+      }
+
     }
   } else {
     this.next();
