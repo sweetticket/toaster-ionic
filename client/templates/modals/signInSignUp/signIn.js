@@ -33,8 +33,6 @@ Template.signIn.events({
 
         Session.set("currentUserId", Meteor.userId());
         Session.set("firstOpened", true);
-        // $('.tabs a.active').removeClass('active');
-        // $('.tabs a:first-child').addClass('active');
 
         Utils.tellIOSILoggedIn(Utils.isUserVerified(Meteor.user()));
         
