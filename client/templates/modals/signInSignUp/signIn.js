@@ -37,7 +37,11 @@ Template.signIn.events({
         Utils.tellIOSILoggedIn(Utils.isUserVerified(Meteor.user()));
         
         if (Utils.isNativeApp() && Utils.getMobileOperatingSystem() === 'Android') {
-          alert('signed-in:'+ Meteor.userId());
+          if (Utils.isUserVerified(Meteor.user())) {
+            alert('signed-in:'+ Meteor.userId());
+          } else {
+            alert('notVerified signed-in:'+ Meteor.userId());
+          }
         } else {
           Router.go('/');
         }
