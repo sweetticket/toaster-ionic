@@ -23,30 +23,12 @@ if (Meteor.isClient) {
       //FIXME: maybe open a Welcome modal?
       console.log("now you are verified!");
       _.defer(function() {
-        // console.log("Setting is verified true");
-        // Session.set("shouldRedirect", true);
-        // alert("opening the app2??");
-        // window.location.href = "com.honeyjam.toaster://";
         done();
       });
 
       Utils.openIOSApp();
     });
   });
-
-  // Accounts.onLogin(function() {
-  //   var userId = Meteor.userId();
-
-  //   // for Android
-  //   if (Utils.isNativeApp && Utils.getMobileOperatingSystem === 'Android') {
-  //     alert(userId);
-  //   }
-
-  //   if (Utils.getMobileOperatingSystem === 'iOS') {
-  //     console.log("register in iOS:", userId);
-  //     window.location = "toasterapp://loggedIn";
-  //   }
-  // })
 }
 
 if (Meteor.isServer) {
