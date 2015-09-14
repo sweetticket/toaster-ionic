@@ -18,5 +18,12 @@ Meteor.startup(function() {
     FastRender.route("/trending", function() {
       this.subscribe("trendingPostsAndComments");
     });
+
+    // ONLY ON DEVELOPMENT
+    if (process.env.NODE_ENV === "development") {
+      console.log("---- DEVELOPMENT ENVIRONMENT ----");
+    } else {
+      console.log("---- PRODUCTION ENVIRONMENT ----");
+    }
   }
 });
