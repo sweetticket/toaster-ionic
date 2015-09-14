@@ -27,18 +27,22 @@ Template.recent.onRendered(function() {
   var limit = this.numPostsToFetch.get();
 
   // ios badge count update
-  Meteor.call("getNumUnreadNotis", function (err, numUnread) {
-    Utils.tellIOSToUpdateBadgeCount(numUnread);
-  });
+  if (Utils.getMobileOperatingSystem() === 'iOS') {
+    Meteor.call("getNumUnreadNotis", Meteor.userId(), function (err, numUnread) {
+      Utils.tellIOSToUpdateBadgeCount(numUnread);
+    });
+  }
 
   // Android badge count update inside autorun
-  Tracker.autorun(function() {
-    Meteor.subscribe("myNotiCount");
-    Counts.get("notiCount");
-    Meteor.call("getNumUnreadNotis", function (err, numUnread) {
-      Utils.tellAndroidToSetBadgeCount(numUnread);
+  if (Utils.isNativeApp() && Utils.getMobileOperatingSystem() === "Android") {
+    Tracker.autorun(function() {
+      Meteor.subscribe("myNotiCount");
+      Counts.get("notiCount");
+      Meteor.call("getNumUnreadNotis", Meteor.userId(), function (err, numUnread) {
+        Utils.tellAndroidToSetBadgeCount(numUnread);
+      });
     });
-  });
+  }
 
   this.autorun(function () {
     if (!this.postsSub.ready()) {

@@ -57,13 +57,15 @@ if (Meteor.isServer) {
     },
 
     // get unread notifications count for the current user
-    getNumUnreadNotis: function() {
-      var userId = this.userId;
+    getNumUnreadNotis: function (userId) {
+      console.log("getNumUnread:", userId);
 
       var notis = Notifications.find({
         toUserId: userId,
         isRead: false
       }).fetch();
+
+      console.log(notis);
 
       var numUnreads = _.reduce(notis, function (acc, noti) {
         return acc + noti.countUnread;

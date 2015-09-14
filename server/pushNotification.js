@@ -31,6 +31,9 @@ Meteor.methods({
 
     // FIXME: there is a problem with this!
     var numUnreadNotis = Meteor.call("getNumUnreadNotis", userId);
+
+    console.log("numUnreadNotis:", numUnreadNotis);
+
     var result = HTTP.post("https://api.parse.com/1/push", {
       headers: {
         "X-Parse-Application-Id": PARSE_APP_ID,
@@ -44,8 +47,7 @@ Meteor.methods({
         data: {
           alert: msg,
           sound: "default",
-          badge: "Increment",
-          numUnreadNotis: numUnreadNotis
+          badge: numUnreadNotis
         }
       }
     });
