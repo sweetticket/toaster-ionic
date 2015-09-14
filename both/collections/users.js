@@ -26,7 +26,7 @@ if (Meteor.isClient) {
         done();
       });
 
-      Utils.openIOSApp();
+      Utils.openApp();
     });
   });
 }
