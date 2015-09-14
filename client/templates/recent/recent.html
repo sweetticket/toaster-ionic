@@ -2,13 +2,19 @@
   {{#ionView}}
     {{#ionContent}}
       {{#ionList class="posts-container"}}
-        {{#each posts}}
-          {{> _postItem post=this path="posts.show"}}
-        {{/each}}
-        {{#if morePostsAvailable}}
-          <div class="post-end-mark">
-            Loading...
-            <!-- SHOW LOADING WHEEL AT THE BOTTOM OF THE PAGE -->
+        {{#if doPostsExist}}
+          {{#each posts}}
+            {{> _postItem post=this path="posts.show"}}
+          {{/each}}
+          {{#if morePostsAvailable}}
+            <div class="post-end-mark">
+              Loading...
+              <!-- SHOW LOADING WHEEL AT THE BOTTOM OF THE PAGE -->
+            </div>
+          {{/if}}
+        {{else}}
+          <div class="no-posts-container">
+            There are no posts in this network yet :(
           </div>
         {{/if}}
       {{/ionList}}

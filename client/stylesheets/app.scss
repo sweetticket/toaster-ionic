@@ -593,3 +593,19 @@ textarea {
   top: 50px;
   transition: top 0.5s;
 }
+
+// recent.html
+
+.no-posts-container {
+  position: fixed;
+  text-align: center;
+  top: 45%;
+  right: 15px;
+  bottom: 0;
+  left: 15px;
+  font-size: 18px;
+  line-height: 25px;
+  color: #686868;
+  font-weight: bold;
+}
+

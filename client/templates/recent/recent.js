@@ -89,5 +89,9 @@ Template.recent.helpers({
     var numLoaded = Template.instance().loaded.get();
     console.log("available: ", numPublished, "loaded:", numLoaded);
     return numPublished >= numLoaded;
+  },
+
+  doPostsExist: function() {
+    return Posts.find().count() > 0;
   }
 });
