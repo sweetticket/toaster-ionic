@@ -1,8 +1,8 @@
 <template name="notVerified">
 
-  {{#contentFor "headerTitle"}}
+  <!-- {{#contentFor "headerTitle"}}
     <h1 class="title">Verification</h1>
-  {{/contentFor}}
+  {{/contentFor}} -->
 
   {{#ionView}}
     {{#ionContent}}
@@ -11,9 +11,10 @@
         <div><span class="email-field">{{email}}</span></div>
         <button class="button button-block button-positive send-verification-again">
         Send me an email again!</button>
-
-        <!-- <a class="test-link" href="myapp://">다른 이메일로 로그인</a> -->
-        <p class="go-to-signin"><a href="#" class="signin-link">Log in</a> with a different email</p>
+        
+        {{#if isNotAndroid}}
+          <p class="go-to-signin"><a href="#" class="signin-link">Log in</a> with a different email</p>
+        {{/if}}
       </div>
     {{/ionContent}}
   {{/ionView}}

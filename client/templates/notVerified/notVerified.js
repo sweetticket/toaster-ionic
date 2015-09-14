@@ -17,11 +17,16 @@ Template.notVerified.onCreated(function() {
   // redirect to "recent" page when this app is opened
   // after email verification
 
+  Utils.tellAndroidNotVerified();
+
   document.addEventListener("resume", _redirectToHome);
 
   this.autorun(function() {
     if (Session.get("isVerified")) {
       console.log("verified so good");
+
+      Utils.tellAndroidIsVerified();
+
       $('.tabs a.active').removeClass('active');
       $('.tabs a:first-child').addClass('active');
       Router.go("/");
