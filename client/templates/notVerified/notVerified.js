@@ -1,13 +1,9 @@
 var _redirectToHome = function() {
-  console.log("device ready works!!!");
   //FIXME: this is the last step. Redirect the user
   //to HOME screen, but it seems autorun reactivity is discontinued
   //work when the app is opened
   if (Session.get("isVerified")) {
     Session.set("isVerified", undefined);
-    console.log("Go to recent");
-    $('.tabs a.active').removeClass('active');
-    $('.tabs a:first-child').addClass('active');
     Router.go("/");
   }
 }
@@ -25,8 +21,6 @@ Template.notVerified.onCreated(function() {
 
       Utils.tellAndroidIsVerified();
 
-      $('.tabs a.active').removeClass('active');
-      $('.tabs a:first-child').addClass('active');
       Router.go("/");
     }
   });
