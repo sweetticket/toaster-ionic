@@ -5,12 +5,14 @@ if (Meteor.isServer) {
   Meteor.methods({
     addNotification: function (noti) {
       // don't add notification if I am acting on my own post
-      if (noti.fromUserId === noti.toUserId) {
-        return false;
-      }
+      // if (noti.fromUserId === noti.toUserId) {
+      //   return false;
+      // }
 
       // If there's a notification for the same post, let's replace the
       // old notification with a new one
+      console.log("addNotification called");
+
       var exists = Notifications.findOne({
                     toUserId: noti.toUserId,
                     postId: noti.postId,
@@ -27,16 +29,16 @@ if (Meteor.isServer) {
           Notifications.remove(exists._id);
       }
 
+      console.log("right before adding a notification");
+
       Notifications.insert(_.extend(noti, {
         isRead: false,
         countUnread: countUnread,
         createdAt: new Date()
       }), function (err, notificationId) {
-        // console.log("noti added", notificationId);
         if (err) {
           console.log("NOTIFICATION INSERT ERR", err);
         } else {
-          // send a push notification to the recipient
           Meteor.call("sendPushNotiToParse", noti.toUserId, noti.body);
         }
       });
@@ -55,17 +57,20 @@ if (Meteor.isServer) {
     },
 
     // get unread notifications count for the current user
-    getNumUnreadNotis: function() {
-      var userId = this.userId;
+    getNumUnreadNotis: function (userId) {
+      console.log("getNumUnread:", userId);
 
       var notis = Notifications.find({
         toUserId: userId,
         isRead: false
       }).fetch();
+
+      console.log(notis);
+
       var numUnreads = _.reduce(notis, function (acc, noti) {
         return acc + noti.countUnread;
       }, 0);
-      console.log("num unread notis:", numUnreads);
+
       return numUnreads;
     }
   });

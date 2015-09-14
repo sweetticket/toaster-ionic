@@ -8,6 +8,8 @@ Meteor.methods({
     var userId = this.userId;
     if (!userId) return false;
 
+    console.log("register to Parse. ObjID:", installationId, "userID:", this.userId);
+
     var resp = HTTP.put("https://api.parse.com/1/installations/"+installationId, {
       headers: {
         "X-Parse-Application-Id": PARSE_APP_ID,
@@ -27,7 +29,10 @@ Meteor.methods({
   sendPushNotiToParse: function (userId, msg) {
     console.log("sendPushNotiToParse() called with", userId, msg);
 
+    // FIXME: there is a problem with this!
     var numUnreadNotis = Meteor.call("getNumUnreadNotis", userId);
+
+    console.log("numUnreadNotis:", numUnreadNotis);
 
     var result = HTTP.post("https://api.parse.com/1/push", {
       headers: {
@@ -41,8 +46,8 @@ Meteor.methods({
         },
         data: {
           alert: msg,
-          sounds: "default",
-          numUnreadNotis: numUnreadNotis
+          sound: "default",
+          badge: numUnreadNotis
         }
       }
     });

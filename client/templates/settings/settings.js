@@ -12,14 +12,11 @@ Template.settings.rendered = function() {
 Template.settings.events({
   'click [data-action=sign-out]': function (event, template) {
     Meteor.logout(function () {
-      // Session.set("ready", false);
       Session.set("currentUserId", undefined);
-      // window.scrollTo(0, 0);
 
       Utils.tellIOSILoggedOut();
 
       if (Utils.isNativeApp() && Utils.getMobileOperatingSystem() === 'Android') {
-      // console.log("isNativeApp && android");
         event.preventDefault();
         alert('logout');
       } else {
@@ -28,12 +25,15 @@ Template.settings.events({
     });
   },
   'click .settings-about': function (event, template) {
+    event.preventDefault();
     if (Utils.isNativeApp() && Utils.getMobileOperatingSystem() === 'Android') {
-      // console.log("isNativeApp && android");
         event.preventDefault();
         alert('about');
+    } else if (Utils.getMobileOperatingSystem() === 'iOS') {
+      Utils.tellIOSScheme("about");
+      // Router.go('about');
     } else {
-      Router.go('/settings/about');
+      Router.go('about');
     }
   },
   // 'click .settings-privacy': function (event, template) {
@@ -46,12 +46,16 @@ Template.settings.events({
   //   }
   // },
   'click .settings-terms': function (event, template) {
+    event.preventDefault();
     if (Utils.isNativeApp() && Utils.getMobileOperatingSystem() === 'Android') {
       // console.log("isNativeApp && android");
         event.preventDefault();
         alert('terms');
+    } else if (Utils.getMobileOperatingSystem() === 'iOS') {
+      // Router.go("terms");
+      Utils.tellIOSScheme("termsofservice");
     } else {
-      Router.go('/settings/terms');
+      Router.go('terms');
     }
   },
   'click .settings-share': function (event, template) {
