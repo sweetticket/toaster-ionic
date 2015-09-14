@@ -30,7 +30,7 @@ if (Meteor.isClient) {
         email: Meteor.user().emails[0].address
       });
 
-      Utils.openIOSApp();
+      Utils.openApp();
     });
   });
 }
