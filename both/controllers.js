@@ -11,7 +11,7 @@ var isLoggedIn = function() {
   } else {
     //FIXME: EMAIL VERIFICATION TURNED OFF
     isVerified.call(this);
-    this.next();
+    // this.next();
   }
 }
 
