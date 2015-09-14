@@ -27,14 +27,11 @@ Template.appLayout.onCreated(function() {
 });
 
 Template.appLayout.onRendered(function() {
-  if (Router.current().route.getName() === 'recent') {
-    $('.tabs a:first-child').addClass('active');
-  }
-
   Session.set("firstOpened", true);
-
   FastClick.attach(document.body);
 
+  Utils.initGA();
+  ga('send', 'pageview');
 });
 
 Template.appLayout.events({

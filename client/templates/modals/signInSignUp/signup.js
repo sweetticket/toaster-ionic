@@ -48,7 +48,6 @@ Template.signUp.events({
         }
         return false;
       } else {
-
         Utils.tellIOSILoggedIn(Utils.isUserVerified(Meteor.user()));
 
         if (Utils.isNativeApp() && Utils.getMobileOperatingSystem() === 'Android') {
@@ -57,6 +56,9 @@ Template.signUp.events({
           Router.go('/');
         }
         
+        ga('send', 'event', 'user', 'signup', {
+          email: Meteor.user().emails[0].address
+        });
       }
     });
   },
