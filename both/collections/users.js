@@ -19,16 +19,18 @@ if (Meteor.isClient) {
         console.log("account verification failed");
         return;
       }
+
       //FIXME: maybe open a Welcome modal?
       console.log("now you are verified!");
       _.defer(function() {
         // console.log("Setting is verified true");
         // Session.set("shouldRedirect", true);
+        // alert("opening the app2??");
+        // window.location.href = "com.honeyjam.toaster://";
         done();
       });
 
-      // If the user is on a phone, open the app
-      window.location = "toaster://verified";
+      Utils.openIOSApp();
     });
   });
 
@@ -75,15 +77,6 @@ Meteor.startup(function() {
     Accounts.emailTemplates.verifyEmail.subject = function(user) {
       return 'Welcome to Toaster!';
     };
-
-    // A Function that takes a user object and a url, and returns the body text for the email.
-    // Note: if you need to return HTML instead, use Accounts.emailTemplates.verifyEmail.html
-    // Accounts.emailTemplates.verifyEmail.text = function (user, url) {
-    //   // var newUrl = url
-    //   // FIXME: I want him to go to /verify
-    //   console.log(url);
-    //   return '이메일 인증: ' + url;
-    // };
 
     Accounts.emailTemplates.verifyEmail.html = function (user, url) {
       var template = "<h5>토스터에 오신걸 환영합니다</h5>" +

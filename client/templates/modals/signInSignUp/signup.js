@@ -48,17 +48,11 @@ Template.signUp.events({
         }
         return false;
       } else {
-        // FIXME: CHANGE LATER TO 'NOT VERIFIED'
-        // Session.set('currentTab', 'recent');
-        $('.tabs a.active').removeClass('active');
-        $('.tabs a:first-child').addClass('active');
 
-        console.log("let iOS know we logged in");
-        Utils.tellIOSILoggedIn();
+        Utils.tellIOSILoggedIn(Utils.isUserVerified(Meteor.user()));
 
         if (Utils.isNativeApp() && Utils.getMobileOperatingSystem() === 'Android') {
             alert('notVerified signed-in:'+ Meteor.userId());
-
         } else {
           Router.go('/');
         }

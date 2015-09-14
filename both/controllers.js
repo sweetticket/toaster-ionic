@@ -24,7 +24,7 @@ var isVerified = function() {
       
       if (Utils.isNativeApp() && Utils.getMobileOperatingSystem() === 'Android') {
         setTimeout(function() {
-            alert('notVerified'); 
+            // alert('notVerified'); 
         }, 0);
         Router.go("blank");
       } else {

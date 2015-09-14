@@ -33,13 +33,17 @@ Template.signIn.events({
 
         Session.set("currentUserId", Meteor.userId());
         Session.set("firstOpened", true);
-        $('.tabs a.active').removeClass('active');
-        $('.tabs a:first-child').addClass('active');
-        Utils.tellIOSILoggedIn();
+        // $('.tabs a.active').removeClass('active');
+        // $('.tabs a:first-child').addClass('active');
+
+        Utils.tellIOSILoggedIn(Utils.isUserVerified(Meteor.user()));
         
         if (Utils.isNativeApp() && Utils.getMobileOperatingSystem() === 'Android') {
-          alert('signed-in:'+ Meteor.userId());
-
+          if (Utils.isUserVerified(Meteor.user())) {
+            alert('signed-in:'+ Meteor.userId());
+          } else {
+            alert('notVerified signed-in:'+ Meteor.userId());
+          }
         } else {
           Router.go('/');
         }

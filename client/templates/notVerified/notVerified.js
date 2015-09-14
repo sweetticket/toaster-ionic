@@ -33,6 +33,7 @@ Template.notVerified.onCreated(function() {
 });
 
 Template.notVerified.onRendered(function() {
+  Utils.tellIOSNotVerified();
   Utils.tellAndroidLoadingEnded();
 });
 
@@ -40,7 +41,6 @@ Template.notVerified.events({
   "click .send-verification-again": function (e, template) {
     var email = Meteor.user().emails[0].address;
     Meteor.call("sendVerifyingEmail", Meteor.userId(), email)
-    // Accounts.sendVerificationEmail(userId, email);
   },
 
   "click .signin-link": function (e, template) {
