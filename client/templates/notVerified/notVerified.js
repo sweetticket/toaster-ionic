@@ -17,8 +17,6 @@ Template.notVerified.onCreated(function() {
   // redirect to "recent" page when this app is opened
   // after email verification
 
-  Utils.tellAndroidNotVerified();
-
   document.addEventListener("resume", _redirectToHome);
 
   this.autorun(function() {
@@ -32,6 +30,10 @@ Template.notVerified.onCreated(function() {
       Router.go("/");
     }
   });
+});
+
+Template.notVerified.onRendered(function() {
+  Utils.tellAndroidLoadingEnded();
 });
 
 Template.notVerified.events({
