@@ -27,8 +27,6 @@ tmeasday:publish-counts
 meteorhacks:subs-manager
 meteoric:ionic:forked:howon
 velocityjs:velocityjs
-npm-container
 meteorhacks:async
-meteorhacks:npm
 http
 meteorhacks:fast-render
