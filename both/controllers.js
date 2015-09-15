@@ -47,6 +47,9 @@ AppController = RouteController.extend({
 TrendingController = AppController.extend({
   onBeforeAction: function() {
     isLoggedIn.call(this);
+    if (!Utils.isNativeApp()) {
+      Router.go("download");
+    }
   }
 });
 
@@ -54,34 +57,54 @@ RecentController = AppController.extend({
   onBeforeAction: function() {
     isLoggedIn.call(this);
     // isVerified.call(this);
+    if (!Utils.isNativeApp()) {
+      Router.go("download");
+    }
   }
 });
 
 PostsShowController = AppController.extend({
   onBeforeAction: function() {
     isLoggedIn.call(this);
+    if (!Utils.isNativeApp()) {
+      Router.go("download");
+    }
   },
 });
 
 UsersShowController = AppController.extend({
   onBeforeAction: function() {
     isLoggedIn.call(this);
+    if (!Utils.isNativeApp()) {
+      Router.go("download");
+    }
   }
 });
 
 NotificationsController = AppController.extend({
   onBeforeAction: function() {
     isLoggedIn.call(this);
+    if (!Utils.isNativeApp()) {
+      Router.go("download");
+    }
   }
 });
 
 ProfileController = AppController.extend({
   onBeforeAction: function() {
     isLoggedIn.call(this);
+    if (!Utils.isNativeApp()) {
+      Router.go("download");
+    }
   }
 });
 
 SignInController = AppController.extend({
+  onBeforeAction: function() {
+    if (!Utils.isNativeApp()) {
+      Router.go("download");
+    }
+  },
   onAfterAction: function() {
     if (Utils.getMobileOperatingSystem() === 'iOS') {
       window.location = "toasterapp://signIn";
@@ -90,6 +113,11 @@ SignInController = AppController.extend({
 });
 
 SignUpController = AppController.extend({
+  onBeforeAction: function() {
+    if (!Utils.isNativeApp()) {
+      Router.go("download");
+    }
+  },
   onAfterAction: function() {
     if (Utils.getMobileOperatingSystem() === 'iOS') {
       window.location = "toasterapp://signUp";
@@ -101,6 +129,19 @@ NotVerifiedController = AppController.extend({
 });
 
 SettingsController = AppController.extend({
+  onBeforeAction: function() {
+    if (!Utils.isNativeApp()) {
+      Router.go("download");
+    }
+  }
+});
+
+NewPostController = AppController.extend({
+  onBeforeAction: function() {
+    if (!Utils.isNativeApp()) {
+      Router.go("download");
+    }
+  }
 });
 
 AboutController = AppController.extend({
@@ -116,5 +157,7 @@ GetToasterController = AppController.extend({
 });
 
 BlankController = AppController.extend({
+});
 
+DownloadController = AppController.extend({
 });

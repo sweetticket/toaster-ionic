@@ -25,8 +25,8 @@ Template.recent.onCreated(function() {
 Template.recent.onRendered(function() {
   
   if (Meteor.user() && Utils.isUserVerified(Meteor.user())) {
-        Utils.tellAndroidSignedInVerified();
-      }
+    Utils.tellAndroidSignedInVerified();
+  }
 
   var instance = this;
   var limit = this.numPostsToFetch.get();

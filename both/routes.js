@@ -63,3 +63,6 @@ Router.route('/getToaster', {
   name: 'getToaster'
 });
 
+Router.route('/download', {
+  name: 'download'
+});
