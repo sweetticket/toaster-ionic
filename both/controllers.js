@@ -113,11 +113,11 @@ SignInController = AppController.extend({
 });
 
 SignUpController = AppController.extend({
-  onBeforeAction: function() {
-    if (!Utils.isNativeApp()) {
-      Router.go("download");
-    }
-  },
+  // onBeforeAction: function() {
+  //   if (!Utils.isNativeApp()) {
+  //     Router.go("download");
+  //   }
+  // },
   onAfterAction: function() {
     if (Utils.getMobileOperatingSystem() === 'iOS') {
       window.location = "toasterapp://signUp";
