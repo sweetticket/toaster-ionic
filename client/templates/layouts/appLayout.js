@@ -115,8 +115,7 @@ Template.appLayout.events({
       cancelText: 'Cancel',
       buttonClicked: function(index) {
         if (index === 0) {
-          //CHANGE THIS URL LATER
-          var url = "http://www.facebook.com/sharer/sharer.php?u=toasterapp.meteor.com/getToaster&title=Toaster";
+          var url = "http://www.facebook.com/sharer/sharer.php?u=gettoaster.com/download&title=Toaster";
           if (Utils.isNativeApp() && Utils.getMobileOperatingSystem() === 'Android') {
             alert("share:" + url);
           } else {
@@ -124,8 +123,7 @@ Template.appLayout.events({
           }
         }
         if (index === 1) {
-          //CHANGE THIS URL LATER
-          var url = "http://twitter.com/home?status=Join+Toaster!+toasterapp.meteor.com/getToaster";
+          var url = "http://twitter.com/home?status=Join+Toaster!+gettoaster.com/download";
           if (Utils.isNativeApp() && Utils.getMobileOperatingSystem() === 'Android') {
             alert("share:" + url);
           } else {
