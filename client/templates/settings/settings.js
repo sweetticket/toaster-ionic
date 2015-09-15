@@ -36,15 +36,18 @@ Template.settings.events({
       Router.go('about');
     }
   },
-  // 'click .settings-privacy': function (event, template) {
-  //   if (Utils.isNativeApp() && Utils.getMobileOperatingSystem() === 'Android') {
-  //     // console.log("isNativeApp && android");
-  //       event.preventDefault();
-  //       alert('privacy');
-  //   } else {
-  //     Router.go('/settings/privacy');
-  //   }
-  // },
+  'click .settings-privacy': function (event, template) {
+    event.preventDefault();
+    if (Utils.isNativeApp() && Utils.getMobileOperatingSystem() === 'Android') {
+        event.preventDefault();
+        alert('privacy');
+    } else if (Utils.getMobileOperatingSystem() === 'iOS') {
+      Utils.tellIOSScheme("privacy");
+      // Router.go('about');
+    } else {
+      Router.go('privacy');
+    }
+  },
   'click .settings-terms': function (event, template) {
     event.preventDefault();
     if (Utils.isNativeApp() && Utils.getMobileOperatingSystem() === 'Android') {

@@ -135,6 +135,10 @@ NotVerifiedController = AppController.extend({
 });
 
 SettingsController = AppController.extend({
+  onBeforeAction: function() {
+    isLoggedIn.call(this);
+  },
+  
   onAfterAction: function() {
     if (!Utils.isNativeApp()) {
       Router.go("download");
@@ -143,6 +147,10 @@ SettingsController = AppController.extend({
 });
 
 NewPostController = AppController.extend({
+  onBeforeAction: function() {
+    isLoggedIn.call(this);
+  },
+
   onAfterAction: function() {
     if (!Utils.isNativeApp()) {
       Router.go("download");
