@@ -17,7 +17,7 @@ Template.signIn.events({
   },
 
   "click .signin-btn.enabled": function (e, template) {
-    var email = $('#email').val().trim();
+    var email = $('#email').val().trim().toLowerCase();
     var password = $('#password').val();
     Meteor.loginWithPassword(email, password, function (err) {
       if (err) {
@@ -52,7 +52,7 @@ Template.signIn.events({
   },
 
   "keyup .signup-container input": function (e, template) {
-    var email = $('#email').val().toLowerCase().trim();
+    var email = $('#email').val().trim().toLowerCase();
     var password = $('#password').val();
     if (email.length > 0 && password.length > 0) {
       $('.signin-btn').addClass('enabled');
