@@ -42,8 +42,7 @@ Template.settings.events({
         event.preventDefault();
         alert('privacy');
     } else if (Utils.getMobileOperatingSystem() === 'iOS') {
-      Utils.tellIOSScheme("privacy");
-      // Router.go('about');
+      Utils.tellIOSScheme("privacypolicy");
     } else {
       Router.go('privacy');
     }
@@ -55,7 +54,6 @@ Template.settings.events({
         event.preventDefault();
         alert('terms');
     } else if (Utils.getMobileOperatingSystem() === 'iOS') {
-      // Router.go("terms");
       Utils.tellIOSScheme("termsofservice");
     } else {
       Router.go('terms');
