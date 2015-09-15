@@ -47,15 +47,15 @@ Router.route('/settings', {
   name: 'settings'
 });
 
-Router.route('/settings/about', {
+Router.route('/about', {
   name: 'about'
 });
 
-Router.route('/settings/terms', {
+Router.route('/terms', {
   name: 'terms'
 });
 
-Router.route('/settings/privacy', {
+Router.route('/privacy', {
   name: 'privacy'
 });
 
