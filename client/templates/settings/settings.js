@@ -61,12 +61,12 @@ Template.settings.events({
       Router.go('terms');
     }
   },
-  'click .settings-share': function (event, template) {
-    if (Utils.isNativeApp() && Utils.getMobileOperatingSystem() === 'Android') {
-      // console.log("isNativeApp && android");
-        event.preventDefault();
-    }
-  }
+  // 'click .settings-share': function (event, template) {
+  //   if (Utils.isNativeApp() && Utils.getMobileOperatingSystem() === 'Android') {
+  //     // console.log("isNativeApp && android");
+  //       event.preventDefault();
+  //   }
+  // }
 });
 
 Template.settings.helpers({

@@ -115,14 +115,18 @@ Template.appLayout.events({
       cancelText: 'Cancel',
       buttonClicked: function(index) {
         if (index === 0) {
-          var url = "http://www.facebook.com/sharer/sharer.php?u=gettoaster.com/download&title=Toaster";
+          var url = "https://www.facebook.com/dialog/share?" +
+            "app_id=com.honeyjam.toaster" +
+            "&display=popup" +
+            "&href=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2F" +
+            "&redirect_uri=gettoaster.com/download";
           if (Utils.isNativeApp() && Utils.getMobileOperatingSystem() === 'Android') {
             alert("share:" + url);
           } else {
             window.open(url, '_system');
           }
         }
-        if (index === 1) {
+        if (index === 1) {sh
           var url = "http://twitter.com/home?status=Join+Toaster!+gettoaster.com/download";
           if (Utils.isNativeApp() && Utils.getMobileOperatingSystem() === 'Android') {
             alert("share:" + url);
