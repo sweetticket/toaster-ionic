@@ -29,7 +29,7 @@
   "app": "../",
 
   "env": {
-    "ROOT_URL": "http://104.131.158.80",
+    "ROOT_URL": "http://gettoaster.com",
     "PORT": 3000,
     "UPSTART_UID" : "meteoruser",
     "METEOR_ENV": "production"

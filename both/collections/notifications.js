@@ -5,9 +5,9 @@ if (Meteor.isServer) {
   Meteor.methods({
     addNotification: function (noti) {
       // don't add notification if I am acting on my own post
-      // if (noti.fromUserId === noti.toUserId) {
-      //   return false;
-      // }
+      if (noti.fromUserId === noti.toUserId) {
+        return false;
+      }
 
       // If there's a notification for the same post, let's replace the
       // old notification with a new one
