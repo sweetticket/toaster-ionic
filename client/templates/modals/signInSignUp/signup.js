@@ -32,7 +32,7 @@ Template.signUp.events({
     }
 
     Accounts.createUser({
-      email: email,
+      email: email.toLowerCase(),
       password: password
     }, function (err) {
       if (err) {
@@ -76,7 +76,7 @@ Template.signUp.events({
   "keyup .signup-container input": function (e, template) {
     e.preventDefault();
 
-    var email = $('#email').val().toLowerCase().trim();
+    var email = $('#email').val().trim().toLowerCase();
     var password = $('#password').val();
     var password2 = $('#password2').val();
     if (email.length > 0 && password.length > 0 && password2.length > 0) {
