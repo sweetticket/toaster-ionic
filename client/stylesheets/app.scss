@@ -9,8 +9,13 @@
 @import '../lib/meteoric-sass/meteoric_ionic-sass/_ionic';
 @import '../lib/meteoric-sass/meteoric_ionicons-sass/_ionicons';
 
+body, html, .content {
+  overflow-x: hidden !important;
+}
+
 .content.overflow-scroll {
   bottom: 0px !important;
+  overflow-x: hidden !important;
 }
 
 .popup {
