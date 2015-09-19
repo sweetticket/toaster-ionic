@@ -1,0 +1,71 @@
+@import 'global';
+
+.notification-list {
+  padding-left: 10px;
+  border-left-width: 0;
+  padding-bottom: 49px;
+}
+
+.notification-item {
+  min-height: 50px;
+  font-size: 14px;
+  border-left-width: 0;
+  padding-left: 0;
+}
+
+.notification-item .body {
+  font-weight: bold;
+  color: @positive;
+  opacity: 0.6;
+  padding-left: 30px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  width: 90%;
+}
+
+.notification-item .created-at {
+  font-size: 12px;
+  color: #999999;
+  padding-top: 15px;
+  padding-left: 5px;
+  margin-bottom: -5px;
+}
+
+.notification-item .icon {
+  font-size: 22px;
+  color: #aaa;
+}
+
+
+.item-icon-left .icon.ion-record {
+  font-size: 14px;
+  height: auto;
+  position: absolute;
+  top: 13px;
+  margin-left: -15px;
+  color: #bbb;
+}
+
+.notification-item .icon.ion-record.is-new {
+  color: @positive;
+}
+
+.notification-item .post-preview {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 70%;
+  padding-left: 27px;
+  font-size: 17px;
+  padding-top: 5px;
+  color: #666;
+}
+
+.notification-item .count-unread {
+  color: @positive;
+  font-size: 12px;
+  position: absolute;
+  right: 45px;
+  bottom: 35px;
+}
