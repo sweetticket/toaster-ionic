@@ -1,8 +1,18 @@
 <template name="trending">
-  <div class="posts-container">
-    {{#each posts}}
-      <!-- {{> _postItem post=this path="posts.show"}} -->
-      {{> _postItem}}
-    {{/each}}
+  <div class="container search-container">
+    <div class="row">
+      Recent Template
+      <div class="col-md-12 col-centered posts-container">
+        {{#if doPostsExist}}
+          {{#each posts}}
+            {{> _postItem post=this}}
+          {{/each}}
+        {{else}}
+          <div class="no-posts-container">
+            There are no posts in this network yet :(
+          </div>
+        {{/if}}
+      </div>
+    </div>
   </div>
 </template>

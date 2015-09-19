@@ -7,6 +7,7 @@ Template.trending.onCreated(function() {
   // threads in place to take a portion of threads at a time.
   // Not sure how to do it at this point.
 
+  //FIXME: do we really need info of all users in this network here??
   this.subscribe('otherUserInfo');
 
   this.autorun(function () {
@@ -39,4 +40,8 @@ Template.trending.helpers({
     postsArr.sort(Utils.compareRank);
     return postsArr;
   },
+
+  doPostsExist: function() {
+    return Posts.find().count() > 0;
+  }
 });

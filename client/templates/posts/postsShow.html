@@ -1,53 +1,38 @@
 <template name="postsShow">
-  {{#ionView}}
-    {{#ionContent class="product-detail-content"}}
+  <div class="product-detail-content">
 
-      <div class="product-detail">
-        {{#with post}}
-          {{#ionItem iconLeft=true iconRight=true class="item-text-wrap product-detail-item"}}
-            <div class="post-item">
-              {{> _voteButton}}
-              <!-- <div class="author-avatar" style="background-color: {{author.color}}">
-                <i class="author-icon {{author.icon}}"></i>
-              </div>
-              <div class="rep">
-                <span class="author-rep">{{author.rep}}</span>
-              </div> -->
-              <p>
-                {{body}}
-              </p>
+    <div class="product-detail">
+      {{#with post}}
+        <div class="item-text-wrap product-detail-item">
+          <div class="post-item">
+            {{> _voteButton}}
+            <p>
+              {{body}}
+            </p>
 
-              <div class="post-item-bottom">
-                <span class="comments-count">
-                  {{numberOfComments}} Comments
-                  <!-- {{> ionIcon icon="ios-chatbubble" }} -->
-                </span>
-                <span class="post-date">
-                  {{fromNow createdAt}}
-                  <!-- {{> ionIcon icon="ios-clock" }} -->
-                </span>
-              </div>
+            <div class="post-item-bottom">
+              <span class="comments-count">
+                {{numberOfComments}} Comments
+              </span>
+              <span class="post-date">
+                {{fromNow createdAt}}
+              </span>
             </div>
-          {{/ionItem}}
-        {{/with}}
-
-        <div class="list comments-list" id="comments-list">
-          {{#each comments}}
-            {{> _comment}}
-          {{/each}}
+          </div>
         </div>
+      {{/with}}
+
+      <div class="list comments-list" id="comments-list">
+        {{#each comments}}
+          {{> _comment}}
+        {{/each}}
       </div>
-    {{/ionContent}}
-  {{/ionView}}
+    </div>
+  </div>
 
   <div class="bar bar-footer bar-light inline-comment-footer" data-keyboard-attach>
-    <!-- <form class="item-input-wrapper"> -->
     {{#with post}}
       {{> _inlineNewComment}}
     {{/with}}
-    <!-- </form> -->
   </div>
-
-
-
 </template>
