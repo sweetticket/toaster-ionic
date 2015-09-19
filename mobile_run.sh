@@ -1,1 +1,0 @@
-meteor run ios-device --mobile-server http://toaster2.meteor.com
