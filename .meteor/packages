@@ -6,15 +6,11 @@
 meteor-platform
 service-configuration
 momentjs:moment
-iron:router@1.0.0
 zimme:iron-router-active
 reywood:publish-composite
 matb33:collection-hooks
 mrt:underscore-string-latest
 dburles:collection-helpers
-meteoric:ionic-sass
-meteoric:ionicons-sass
-meteoric:autoform-ionic
 reactive-var
 accounts-password
 email
@@ -25,9 +21,10 @@ fastclick
 raix:handlebar-helpers
 tmeasday:publish-counts
 meteorhacks:subs-manager
-meteoric:ionic:forked:howon
 velocityjs:velocityjs
 meteorhacks:async
 http
 meteorhacks:fast-render
 less
+kadira:flow-router
+kadira:blaze-layout

@@ -1,68 +1,92 @@
-Router.route('/', {
-  name: 'recent'
+// Router.route('/', function () {
+//   this.render('Main', {
+//     to: 'content'
+//   }); // Yield Main template to where {{> yield "content"}} is in layout.html
+
+// });
+
+FlowRouter.route('/recent', {
+  action: function (params) {
+    console.log("yay it works.");
+    BlazeLayout.render("appLayout", {content: "recent"});
+  },
+
+  name: "recent"
 });
 
-Router.route('/trending', {
-  name: 'trending'
+FlowRouter.route('/', {
+  action: function (params) {
+    console.log("yay it works.");
+    BlazeLayout.render("appLayout", {content: "recent"});
+  },
 });
 
-Router.route('/newPost', {
-  name: 'newPost'
-});
 
-Router.route('/blank', {
-  name: 'blank'
-});
+// Router.route('/', {
+//   name: 'recent'
+// });
 
-Router.route('/posts/:_id', {
-  name: 'posts.show'
-});
+// Router.route('/trending', {
+//   name: 'trending'
+// });
 
-Router.route('/users/:_id', {
-  name: 'users.show'
-});
+// Router.route('/newPost', {
+//   name: 'newPost'
+// });
 
-Router.route('/notifications', {
-  name: 'notifications'
-});
+// Router.route('/blank', {
+//   name: 'blank'
+// });
 
-Router.route('/profile', {
-  name: 'profile'
-});
+// Router.route('/posts/:_id', {
+//   name: 'posts.show'
+// });
 
-// These can be treated as modals as well
-Router.route('/signIn', {
-  name: 'signIn'
-});
+// Router.route('/users/:_id', {
+//   name: 'users.show'
+// });
 
-Router.route('/signUp', {
-  name: 'signUp'
-});
+// Router.route('/notifications', {
+//   name: 'notifications'
+// });
 
-Router.route('/notVerified', {
-  name: 'notVerified'
-});
+// Router.route('/profile', {
+//   name: 'profile'
+// });
 
-Router.route('/settings', {
-  name: 'settings'
-});
+// // These can be treated as modals as well
+// Router.route('/signIn', {
+//   name: 'signIn'
+// });
 
-Router.route('/about', {
-  name: 'about'
-});
+// Router.route('/signUp', {
+//   name: 'signUp'
+// });
 
-Router.route('/terms', {
-  name: 'terms'
-});
+// Router.route('/notVerified', {
+//   name: 'notVerified'
+// });
 
-Router.route('/privacy', {
-  name: 'privacy'
-});
+// Router.route('/settings', {
+//   name: 'settings'
+// });
 
-Router.route('/getToaster', {
-  name: 'getToaster'
-});
+// Router.route('/about', {
+//   name: 'about'
+// });
 
-Router.route('/download', {
-  name: 'download'
-});
+// Router.route('/terms', {
+//   name: 'terms'
+// });
+
+// Router.route('/privacy', {
+//   name: 'privacy'
+// });
+
+// Router.route('/getToaster', {
+//   name: 'getToaster'
+// });
+
+// Router.route('/download', {
+//   name: 'download'
+// });
