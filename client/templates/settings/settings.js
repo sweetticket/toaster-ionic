@@ -20,7 +20,7 @@ Template.settings.events({
         event.preventDefault();
         alert('logout');
       } else {
-        Router.go('/');
+        FlowRouter.go('/');
       }
     });
   },
@@ -31,9 +31,9 @@ Template.settings.events({
         alert('about');
     } else if (Utils.getMobileOperatingSystem() === 'iOS') {
       Utils.tellIOSScheme("about");
-      // Router.go('about');
+      // FlowRouter.go('about');
     } else {
-      Router.go('about');
+      FlowRouter.go('about');
     }
   },
   'click .settings-privacy': function (event, template) {
@@ -44,7 +44,7 @@ Template.settings.events({
     } else if (Utils.getMobileOperatingSystem() === 'iOS') {
       Utils.tellIOSScheme("privacypolicy");
     } else {
-      Router.go('privacy');
+      FlowRouter.go('privacy');
     }
   },
   'click .settings-terms': function (event, template) {
@@ -56,7 +56,7 @@ Template.settings.events({
     } else if (Utils.getMobileOperatingSystem() === 'iOS') {
       Utils.tellIOSScheme("termsofservice");
     } else {
-      Router.go('terms');
+      FlowRouter.go('terms');
     }
   },
   // 'click .settings-share': function (event, template) {

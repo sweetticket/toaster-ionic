@@ -7,7 +7,7 @@
 //         }, 0);
 //       }
 //     }
-//     Router.go('signUp');
+//     FlowRouter.go('signUp');
 //     this.next();
 //   } else {
 //     isVerified.call(this);
@@ -21,9 +21,9 @@
 //       this.next();
 //     } else {
 //       if (Utils.isNativeApp() && Utils.getMobileOperatingSystem() === 'Android') {
-//         Router.go("blank");
+//         FlowRouter.go("blank");
 //       } else {
-//         Router.go("notVerified");
+//         FlowRouter.go("notVerified");
 //       }
 //     }
 //   } else {
@@ -42,7 +42,7 @@
 
 //   onAfterAction: function() {
 //     if (!Utils.isNativeApp()) {
-//       Router.go("download");
+//       FlowRouter.go("download");
 //     }
 //   }
 // });
@@ -54,7 +54,7 @@
 
 //   onAfterAction: function() {
 //     if (!Utils.isNativeApp()) {
-//       Router.go("download");
+//       FlowRouter.go("download");
 //     }
 //   }
 // });
@@ -66,7 +66,7 @@
 
 //   onAfterAction: function() {
 //     if (!Utils.isNativeApp()) {
-//       Router.go("download");
+//       FlowRouter.go("download");
 //     }
 //   }
 // });
@@ -78,7 +78,7 @@
 
 //   onAfterAction: function() {
 //     if (!Utils.isNativeApp()) {
-//       Router.go("download");
+//       FlowRouter.go("download");
 //     }
 //   }
 // });
@@ -90,7 +90,7 @@
 
 //   onAfterAction: function() {
 //     if (!Utils.isNativeApp()) {
-//       Router.go("download");
+//       FlowRouter.go("download");
 //     }
 //   }
 // });
@@ -102,7 +102,7 @@
 
 //   onAfterAction: function() {
 //     if (!Utils.isNativeApp()) {
-//       Router.go("download");
+//       FlowRouter.go("download");
 //     }
 //   }
 // });
@@ -114,7 +114,7 @@
 //     }
 
 //     if (!Utils.isNativeApp()) {
-//       Router.go("download");
+//       FlowRouter.go("download");
 //     }
 //   },
 // });
@@ -126,7 +126,7 @@
 //     }
 
 //     if (!Utils.isNativeApp()) {
-//       Router.go("download");
+//       FlowRouter.go("download");
 //     }
 //   }
 // });
@@ -141,7 +141,7 @@
   
 //   onAfterAction: function() {
 //     if (!Utils.isNativeApp()) {
-//       Router.go("download");
+//       FlowRouter.go("download");
 //     }
 //   }
 // });
@@ -153,7 +153,7 @@
 
 //   onAfterAction: function() {
 //     if (!Utils.isNativeApp()) {
-//       Router.go("download");
+//       FlowRouter.go("download");
 //     }
 //   }
 // });

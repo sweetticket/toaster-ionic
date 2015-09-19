@@ -53,7 +53,7 @@ Template.signUp.events({
         if (Utils.isNativeApp() && Utils.getMobileOperatingSystem() === 'Android') {
             alert('notVerified signed-in:'+ Meteor.userId());
         } else {
-          Router.go('/');
+          FlowRouter.go('/');
         }
         
         ga('send', 'event', 'user', 'signup', {
@@ -70,7 +70,7 @@ Template.signUp.events({
       alert('toSignIn');
     }
     
-    Router.go('/signIn');
+    FlowRouter.go('/signIn');
   },
 
   "keyup .signup-container input": function (e, template) {

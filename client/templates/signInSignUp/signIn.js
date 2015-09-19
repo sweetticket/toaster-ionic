@@ -13,7 +13,7 @@ Template.signIn.events({
       alert('toSignUp');
     }
     
-    Router.go('/signUp');
+    FlowRouter.go('/signUp');
   },
 
   "click .signin-btn.enabled": function (e, template) {
@@ -45,7 +45,7 @@ Template.signIn.events({
             alert('notVerified signed-in:'+ Meteor.userId());
           }
         } else {
-          Router.go('/');
+          FlowRouter.go('/');
         }
       }
     });

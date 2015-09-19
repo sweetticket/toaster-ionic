@@ -4,7 +4,7 @@ var _redirectToHome = function() {
   //work when the app is opened
   if (Session.get("isVerified")) {
     Session.set("isVerified", undefined);
-    Router.go("/");
+    FlowRouter.go("/");
   }
 }
 
@@ -21,7 +21,7 @@ Template.notVerified.onCreated(function() {
 
       Utils.tellAndroidIsVerified();
 
-      Router.go("/");
+      FlowRouter.go("/");
     }
   });
 });
@@ -40,7 +40,7 @@ Template.notVerified.events({
   "click .signin-link": function (e, template) {
     e.preventDefault();
     Meteor.logout();
-    Router.go('signIn');
+    FlowRouter.go('signIn');
   },
 });
 

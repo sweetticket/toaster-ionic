@@ -12,7 +12,7 @@ Template.newPost.submitNewPost = function() {
         msg: body
       });
 
-      Router.go('/');
+      FlowRouter.go('/');
       Utils.tellIOSToOpenTab("recent");
 
       Session.set("newPost", result);
@@ -52,7 +52,7 @@ Template.newPost.events({
   "click .new-post-cancel-btn": function (e, template) {
     IonModal.close();
     var originalPath = window.location.pathname.split("#")[0];
-    Router.go(originalPath);
+    FlowRouter.go(originalPath);
   }
 
 });

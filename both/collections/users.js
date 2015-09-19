@@ -5,7 +5,7 @@ handleOpenURL = function (url) {
     console.log("received url:", url);
     if (url.indexOf("toaster://verified") >= 0) {
       console.log("verified. Now redirecting!!");
-      Router.go('/');
+      FlowRouter.go('/');
     }
   }, 0)
 }

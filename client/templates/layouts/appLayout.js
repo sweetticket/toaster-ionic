@@ -78,12 +78,12 @@ Template.appLayout.events({
       }
 
       //Should have feedback modal ("Your post has been deleted")
-      // Router.go('/');
+      // FlowRouter.go('/');
       $('[data-nav-container]').addClass('nav-view-direction-back');
       $('[data-navbar-container]').addClass('nav-bar-direction-back');
       // backUrl = template.getBackUrl()
       // if (backUrl) {
-      //   Router.go(backUrl);
+      //   FlowRouter.go(backUrl);
       // } else {
       //   window.history.back();
       // }
