@@ -6,7 +6,6 @@
 meteor-platform
 service-configuration
 momentjs:moment
-zimme:iron-router-active
 reywood:publish-composite
 matb33:collection-hooks
 mrt:underscore-string-latest
