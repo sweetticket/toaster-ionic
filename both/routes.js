@@ -1,92 +1,103 @@
-// Router.route('/', function () {
-//   this.render('Main', {
-//     to: 'content'
-//   }); // Yield Main template to where {{> yield "content"}} is in layout.html
-
-// });
+FlowRouter.route('/', {
+  triggersEnter: [function (context, redirect) {
+    redirect('recent');
+  }]
+});
 
 FlowRouter.route('/recent', {
   action: function (params) {
-    console.log("yay it works.");
     BlazeLayout.render("appLayout", {content: "recent"});
   },
-
   name: "recent"
 });
 
-FlowRouter.route('/', {
+FlowRouter.route('/trending', {
   action: function (params) {
-    console.log("yay it works.");
-    BlazeLayout.render("appLayout", {content: "recent"});
+    BlazeLayout.render("appLayout", {content: "trending"});
   },
+  name: "trending"
 });
 
+FlowRouter.route('/posts/new', {
+  action: function (params) {
+    BlazeLayout.render("appLayout", {content: "newPost"});
+  },
+  name: "posts.new"
+});
 
-// Router.route('/', {
-//   name: 'recent'
-// });
+FlowRouter.route('/posts/:postId', {
+  action: function (params) {
+    BlazeLayout.render("appLayout", {content: "postsShow"});
+  },
+  name: "posts.show"
+});
 
-// Router.route('/trending', {
-//   name: 'trending'
-// });
+FlowRouter.route('/notifications', {
+  action: function (params) {
+    BlazeLayout.render("appLayout", {content: "notifications"});
+  },
+  name: "notifications"
+});
 
-// Router.route('/newPost', {
-//   name: 'newPost'
-// });
+FlowRouter.route('/profile', {
+  action: function (params) {
+    BlazeLayout.render("appLayout", {content: "profile"});
+  },
+  name: "profile"
+});
 
-// Router.route('/blank', {
-//   name: 'blank'
-// });
+FlowRouter.route('/signIn', {
+  action: function (params) {
+    BlazeLayout.render("appLayout", {content: "signIn"});
+  },
+  name: "signIn"
+});
 
-// Router.route('/posts/:_id', {
-//   name: 'posts.show'
-// });
+FlowRouter.route('/signUp', {
+  action: function (params) {
+    BlazeLayout.render("appLayout", {content: "signUp"});
+  },
+  name: "signUp"
+});
 
-// Router.route('/users/:_id', {
-//   name: 'users.show'
-// });
+FlowRouter.route('/notVerified', {
+  action: function (params) {
+    BlazeLayout.render("appLayout", {content: "notVerified"});
+  },
+  name: "notVerified"
+});
 
-// Router.route('/notifications', {
-//   name: 'notifications'
-// });
+FlowRouter.route('/settings', {
+  action: function (params) {
+    BlazeLayout.render("appLayout", {content: "settings"});
+  },
+  name: "settings"
+});
 
-// Router.route('/profile', {
-//   name: 'profile'
-// });
+FlowRouter.route('/about', {
+  action: function (params) {
+    BlazeLayout.render("appLayout", {content: "about"});
+  },
+  name: "about"
+});
 
-// // These can be treated as modals as well
-// Router.route('/signIn', {
-//   name: 'signIn'
-// });
+FlowRouter.route('/terms', {
+  action: function (params) {
+    BlazeLayout.render("appLayout", {content: "terms"});
+  },
+  name: "terms"
+});
 
-// Router.route('/signUp', {
-//   name: 'signUp'
-// });
+FlowRouter.route('/privacy', {
+  action: function (params) {
+    BlazeLayout.render("appLayout", {content: "privacy"});
+  },
+  name: "privacy"
+});
 
-// Router.route('/notVerified', {
-//   name: 'notVerified'
-// });
-
-// Router.route('/settings', {
-//   name: 'settings'
-// });
-
-// Router.route('/about', {
-//   name: 'about'
-// });
-
-// Router.route('/terms', {
-//   name: 'terms'
-// });
-
-// Router.route('/privacy', {
-//   name: 'privacy'
-// });
-
-// Router.route('/getToaster', {
-//   name: 'getToaster'
-// });
-
-// Router.route('/download', {
-//   name: 'download'
-// });
+FlowRouter.route('/users/:userId', {
+  action: function (params) {
+    BlazeLayout.render("appLayout", {content: "usersShow"});
+  },
+  name: "users.show"
+});

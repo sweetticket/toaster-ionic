@@ -1,83 +1,69 @@
 <template name="settings">
-  <!-- {{#contentFor "headerButtonLeft"}}
-    {{#if isNotAndroid}}
-      {{>ionNavBackButton class="button-positive" text=false}}
-    {{/if}}
-  {{/contentFor}}
 
-  {{#contentFor "headerTitle"}}
-    <h1 class="title">Settings</h1>
-  {{/contentFor}} -->
+  <div class="list settings-list">
 
-  {{#ionView}}
-    {{#ionContent}}
-
-    <div class="list settings-list">
-
-      <div class="item network-container">
-        <span class="network">My Network <span class="network-domain">@{{networkDomain}}</span></span>
-      </div>
-
-      <div class="item item-divider">
-        <span class="divider-text">Account</span>
-      </div>
-      
-      <a class="item item-icon-left item-icon-right" href="#" data-action="sign-out">
-        {{> ionIcon icon="ios-locked"}}
-        <span class="item-text">Log out</span>
-        {{> ionIcon icon="ios-arrow-right"}}
-      </a>
-      
-      <!-- <div class="item item-divider">
-        <span class="divider-text">Toaster Love</span>
-      </div>
-      <a class="item item-icon-left item-icon-right settings-share" data-action="share-app" href="#">
-        {{> ionIcon icon="ios-upload-outline"}}
-        <span class="item-text">Share Toaster</span>
-        {{> ionIcon icon="ios-arrow-right"}}
-      </a> -->
-
-
-
-
-      <!-- HOWON: we can turn it on after we've published -->
-      <!-- http://devdactic.com/rate-my-app-ionic/ -->
-   <!--    <a class="item item-icon-left item-icon-right settings-rate" href="#">
-        {{> ionIcon icon="ios-star"}}
-        <span class="item-text">Rate Us</span>
-        {{> ionIcon icon="ios-arrow-right"}}
-      </a> -->
-<!--       <a class="item item-icon-left item-icon-right settings-facebook" href="http://facebook.com/toasterapp">
-        {{> ionIcon icon="social-facebook"}}
-        <span class="item-text">Like us on Facebook</span>
-        {{> ionIcon icon="ios-arrow-right"}}
-      </a>
-      <a class="item item-icon-left item-icon-right settings-twitter" href="http://twitter.com">
-        {{> ionIcon icon="social-twitter"}}
-        <span class="item-text">Follow us on Twitter</span>
-        {{> ionIcon icon="ios-arrow-right"}}
-      </a> -->
-
-      
-
-      <div class="item item-divider">
-        <span class="divider-text">App Info</span>
-      </div>
-
-      <a class="item item-icon-right settings-about" href="#">
-        About
-        {{> ionIcon icon="ios-arrow-right"}}
-      </a>
-      <a class="item item-icon-right settings-terms" href="#">
-        Terms of Service
-        {{> ionIcon icon="ios-arrow-right"}}
-      </a>
-      <a class="item item-icon-right settings-privacy" href="#">
-        Privacy Policy
-        {{> ionIcon icon="ios-arrow-right"}}
-      </a>
+    <div class="item network-container">
+      <span class="network">My Network <span class="network-domain">@{{networkDomain}}</span></span>
     </div>
 
-    {{/ionContent}}
-  {{/ionView}}
+    <div class="item item-divider">
+      <span class="divider-text">Account</span>
+    </div>
+    
+    <a class="item item-icon-left item-icon-right" href="#" data-action="sign-out">
+      {{> ionIcon icon="ios-locked"}}
+      <span class="item-text">Log out</span>
+      {{> ionIcon icon="ios-arrow-right"}}
+    </a>
+    
+    <!-- <div class="item item-divider">
+      <span class="divider-text">Toaster Love</span>
+    </div>
+    <a class="item item-icon-left item-icon-right settings-share" data-action="share-app" href="#">
+      {{> ionIcon icon="ios-upload-outline"}}
+      <span class="item-text">Share Toaster</span>
+      {{> ionIcon icon="ios-arrow-right"}}
+    </a> -->
+
+
+
+
+    <!-- HOWON: we can turn it on after we've published -->
+    <!-- http://devdactic.com/rate-my-app-ionic/ -->
+ <!--    <a class="item item-icon-left item-icon-right settings-rate" href="#">
+      {{> ionIcon icon="ios-star"}}
+      <span class="item-text">Rate Us</span>
+      {{> ionIcon icon="ios-arrow-right"}}
+    </a> -->
+<!--       <a class="item item-icon-left item-icon-right settings-facebook" href="http://facebook.com/toasterapp">
+      {{> ionIcon icon="social-facebook"}}
+      <span class="item-text">Like us on Facebook</span>
+      {{> ionIcon icon="ios-arrow-right"}}
+    </a>
+    <a class="item item-icon-left item-icon-right settings-twitter" href="http://twitter.com">
+      {{> ionIcon icon="social-twitter"}}
+      <span class="item-text">Follow us on Twitter</span>
+      {{> ionIcon icon="ios-arrow-right"}}
+    </a> -->
+
+    
+
+    <div class="item item-divider">
+      <span class="divider-text">App Info</span>
+    </div>
+
+    <a class="item item-icon-right settings-about" href="#">
+      About
+      {{> ionIcon icon="ios-arrow-right"}}
+    </a>
+    <a class="item item-icon-right settings-terms" href="#">
+      Terms of Service
+      {{> ionIcon icon="ios-arrow-right"}}
+    </a>
+    <a class="item item-icon-right settings-privacy" href="#">
+      Privacy Policy
+      {{> ionIcon icon="ios-arrow-right"}}
+    </a>
+  </div>
+
 </template>
