@@ -1,12 +1,8 @@
 <template name="trending">
-  {{#ionView}}
-    {{#ionContent}}
-      {{#ionList class="posts-container"}}
-        {{#each posts}}
-          {{> _postItem post=this path="posts.show"}}
-        {{/each}}
-        <!-- <div class="post-end-mark">NOT USING THIS FOR NOW</div> -->
-      {{/ionList}}
-    {{/ionContent}}
-  {{/ionView}}
+  <div class="posts-container">
+    {{#each posts}}
+      <!-- {{> _postItem post=this path="posts.show"}} -->
+      {{> _postItem}}
+    {{/each}}
+  </div>
 </template>

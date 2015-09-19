@@ -1,0 +1,30 @@
+<template name="signIn">
+  {{#contentFor "headerTitle"}}
+    <h1 class="title">Log in</h1>
+  {{/contentFor}}
+
+  <div class="signup-container">
+    <div class="list signup-list">
+      <label class="item item-input">
+        <input id="email" type="text" placeholder="Company Email">
+      </label>
+      <label class="item item-input">
+        <input id="password" type="password" placeholder="Password">
+      </label>
+
+      <div class="bottom-row padding">
+
+        <span class="not-registered error-msg">That email is not registered</span>
+        <span class="incorrect-pw error-msg">Wrong email or password</span>
+
+        <button class="button button-block button-positive signin-btn">
+          SIGN IN
+        </button>
+        {{#unless isAndroidNative}}
+          <p class="go-to-signup">Don't have an account yet? <a href="#" class="signup-link">Sign up</a></p>
+        {{/unless}}
+
+      </div>
+    </div>
+  </div>
+</template>

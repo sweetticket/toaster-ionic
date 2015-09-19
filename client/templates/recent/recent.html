@@ -1,4 +1,33 @@
 <template name="recent">
+
+  <div class="container search-container">
+    <div class="row">
+      Recent Template
+      <div class="col-md-12 col-centered posts-container">
+        {{#if doPostsExist}}
+          {{#each posts}}
+            {{> _postItem post=this}}
+          {{/each}}
+          {{#if morePostsAvailable}}
+            <div class="post-end-mark">
+              Loading...
+            </div>
+          {{/if}}
+        {{else}}
+          <div class="no-posts-container">
+            There are no posts in this network yet :(
+          </div>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+
+</template>
+
+
+
+<!-- <template name="recent">
+
   {{#ionView}}
     {{#ionContent}}
       {{#ionList class="posts-container"}}
@@ -9,7 +38,6 @@
           {{#if morePostsAvailable}}
             <div class="post-end-mark">
               Loading...
-              <!-- SHOW LOADING WHEEL AT THE BOTTOM OF THE PAGE -->
             </div>
           {{/if}}
         {{else}}
@@ -21,3 +49,4 @@
     {{/ionContent}}
   {{/ionView}}
 </template>
+ -->

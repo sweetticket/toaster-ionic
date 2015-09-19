@@ -1,13 +1,8 @@
 <template name="appLayout">
-
-  {{#ionBody}}
-    <!-- {{> ionNavBar}} -->
-
-    {{#ionNavView}}
-      {{> yield}}
-    {{/ionNavView}}
-
-    {{> myLoadingContainer}}
-  {{/ionBody}}
-
+  <body>
+    <div class="content-block">
+      <!-- {{> yield "content"}} -->
+      {{>Template.dynamic template=content}}
+    </div>
+  </body>
 </template>

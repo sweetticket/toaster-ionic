@@ -3,20 +3,16 @@
     <h1 class="title">Notifications</h1>
   {{/contentFor}} -->
 
-  {{#ionView}}
-    {{#ionContent}}
-      {{#if isNotificationEmpty}}
-        <div class="empty-view">
-          {{> ionIcon icon="ios-bell"}}
-          There are notifications yet :(
-        </div>
-      {{else}}
-        {{#ionList class="notification-list"}}
-          {{#each notifications}}
-            {{> _notificationItem}}
-          {{/each}}
-        {{/ionList}}
-      {{/if}}
-    {{/ionContent}}
-  {{/ionView}}
+  {{#if isNotificationEmpty}}
+    <div class="empty-view">
+      {{> ionIcon icon="ios-bell"}}
+      There are notifications yet :(
+    </div>
+  {{else}}
+    {{#ionList class="notification-list"}}
+      {{#each notifications}}
+        {{> _notificationItem}}
+      {{/each}}
+    {{/ionList}}
+  {{/if}}
 </template>

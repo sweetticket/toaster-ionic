@@ -155,9 +155,6 @@ Template.appLayout.events({
     }
   },
 
-  // 'click .submit-new-post-btn': function (event, template) {
-  //   document.title += "New Post";
-  // }
 });
 
 Template.appLayout.helpers({
@@ -171,9 +168,7 @@ Template.appLayout.helpers({
     }
     return "";
   },
-  // "resumedUser": function(e, template) {
 
-  // },
   "networkDomain": function(e, template) {
     var network = Networks.findOne();
     if (network) {

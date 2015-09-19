@@ -1,63 +1,30 @@
 <template name="profile">
-  <!-- {{#if currentUser}}
-    {{#contentFor "headerButtonLeft"}} -->
-      <!-- <button class="button button-clear pull-left button-positive header-rep" data-ion-modal="rep">
-        {{user.rep}}
-      </button> -->
-    <!-- {{/contentFor}} -->
 
-    <!-- {{#contentFor "headerButtonRight"}}
-      <a class="button button-clear pull-right button-positive" href="/settings">
-        {{> ionIcon icon='ios-gear-outline'}}
-      </a>
-    {{/contentFor}}
-  {{/if}}
+    <div class="profile-container">
+    {{#with user}}
 
-  {{#contentFor "headerTitle"}}
-    <h1 class="title">Profile</h1>
-  {{/contentFor}} -->
-
-  {{#ionView}}
-    {{#ionContent}}
-      <div class="profile-container">
-      {{#with user}}
-          <!-- <div class="network-container">
-            <h5 class="padding">내 네트워크 <span class="network-domain">@{{networkDomain}}</span></h5>
-          </div> -->
-
-          <div class="profile-filters">
-            <h5 class="padding filter filter-toasts active">My Toasts</h5>
-            <h5 class="padding filter filter-comments">My Comments</h5>
-          </div>
-
-          {{#if showToasts}}
-            <div class="posts-container"><!-- 
-              <h5 class="padding my-toasts">내 토스트</h5> -->
-              {{#ionList}}
-                {{#each postsByUser}}
-                  {{> _postItem post=this path="posts.show"}}
-                {{/each}}
-              {{/ionList}}
-            </div>
-          {{/if}}
-          {{#if showComments}}
-            <div class="posts-container">
-              <!-- <h5 class="padding">내가 답한 토스트</h5> -->
-              {{#ionList}}
-                {{#each commentsByUser}}
-                  {{> _postItem post=postFromComment path="posts.show"}}
-                {{/each}}
-              {{/ionList}}
-            </div>
-          {{/if}}
-
-        {{else}}
-          <div class="empty-view">
-            {{> ionIcon icon="ios-person"}}
-            No profile yet!
-          </div>
-      {{/with}}
+      <div class="profile-filters">
+        <h5 class="padding filter filter-toasts active">My Toasts</h5>
+        <h5 class="padding filter filter-comments">My Comments</h5>
       </div>
-    {{/ionContent}}
-  {{/ionView}}
+
+      {{#if showToasts}}
+        <div class="posts-container">
+          {{#each postsByUser}}
+            <!-- {{> _postItem post=this path="posts.show"}} -->
+            {{> _postItem}}
+          {{/each}}
+        </div>
+      {{/if}}
+
+      {{#if showComments}}
+        <div class="posts-container">
+          {{#each commentsByUser}}
+            <!-- {{> _postItem post=postFromComment path="posts.show"}} -->
+            {{> _postItem}}
+          {{/each}}
+        </div>
+      {{/if}}
+    {{/with}}
+  </div>
 </template>
