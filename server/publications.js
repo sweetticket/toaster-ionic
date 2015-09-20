@@ -102,6 +102,8 @@ Meteor.publishComposite('post', function(_id) {
 Meteor.publishComposite('recentPostsAndComments', function (limit) {
   var user = Meteor.users.findOne({_id: this.userId});
 
+  console.log("user??", "userEmpty?");
+
   if (limit > Posts.find().count()) {
     limit = 0;
   }
