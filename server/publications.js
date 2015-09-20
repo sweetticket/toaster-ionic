@@ -56,6 +56,25 @@ Meteor.publish('comments', function() {
   });
 });
 
+Meteor.publish('commentsForPost', function (postId) {
+  console.log("commentsForPost Called")
+
+  if (!this.userId) {
+    return [];
+  }
+
+  console.log("commentsForPost", postId);
+
+  var user = Meteor.users.findOne({_id: this.userId});
+  return Comments.find({
+    postId: postId,
+    // networkId: user.networkId // just to doublecheck
+  });
+}, {
+  url: "get-comments-for-post/:0",
+  httpMethod: "get"
+});
+
 Meteor.publishComposite('post', function(_id) {
   var user = Meteor.users.findOne({_id: this.userId});
 
@@ -102,7 +121,9 @@ Meteor.publishComposite('post', function(_id) {
 Meteor.publishComposite('recentPostsAndComments', function (limit) {
   var user = Meteor.users.findOne({_id: this.userId});
 
-  console.log("user??", "userEmpty?");
+  if (user) {
+    console.log("recentPostsAndComments", user._id);
+  }
 
   if (limit > Posts.find().count()) {
     limit = 0;
