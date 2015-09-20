@@ -10,6 +10,9 @@ Template._postItem.events({
     // console.log("isNativeApp", Utils.isNativeApp);
     // console.log("getMobileOperatingSystem", Utils.getMobileOperatingSystem);
 
+    var postId = template.data.post._id;
+    FlowRouter.go("/posts/"+postId);
+
     // event.preventPropagation();
     if (Utils.isNativeApp() && Utils.getMobileOperatingSystem() === 'Android') {
       // console.log("isNativeApp && android");

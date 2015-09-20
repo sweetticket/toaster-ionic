@@ -7,7 +7,7 @@ function notInView(element){
 
 Template.postsShow.created = function () {
   this.autorun(function () {
-    var postId = Router.current().params._id;
+    var postId = FlowRouter.current().params.postId;
     this.postSub = PostsShowSub.subscribe('post', postId);
   }.bind(this));
 };
@@ -37,11 +37,11 @@ Template.postsShow.onDestroyed(function() {
 
 Template.postsShow.helpers({
   post: function() {
-    return Posts.findOne({_id: Router.current().params._id});
+    return Posts.findOne({_id: FlowRouter.current().params.postId});
   },
 
   comments: function() {
-    return Comments.find({postId: Router.current().params._id}, {sort: {createdAt: 1}});
+    return Comments.find({postId: FlowRouter.current().params.postId}, {sort: {createdAt: 1}});
   },
 
   isPlural: function() {
