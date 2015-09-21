@@ -1,3 +1,11 @@
+/* 
+  API call to make a new post.
+  Make a POST request to "/api/posts/new"
+  Required:
+    Header: {Authorization: Bearer <token>}
+    Params: {postBody: <postBody>}
+*/
+
 Meteor.method("api.posts.new", function (postBody) {
   console.log(postBody);
   if (postBody.length > 0) {
@@ -8,11 +16,10 @@ Meteor.method("api.posts.new", function (postBody) {
     } catch (e) {
       return e;
     }
-    console.log("gonna return", newPostId);
+
+    console.log("Post created:", newPostId);
 
     return {postId: newPostId};
-
-    // return newPostId;
   }
 }, {
   url: "api/posts/new",
