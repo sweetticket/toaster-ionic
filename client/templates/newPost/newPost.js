@@ -13,9 +13,6 @@ Template.newPost.submitNewPost = function() {
       });
 
       FlowRouter.go('/');
-      Utils.tellIOSToOpenTab("recent");
-
-      // Session.set("newPost", result);
     });
   }
 };

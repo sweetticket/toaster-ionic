@@ -1,10 +1,10 @@
 Posts = new Mongo.Collection('posts');
 
-Posts.before.insert(function (userId, doc) {
-  var authorRep = Meteor.users.findOne({_id: userId}).rep;
-  Meteor.call("Users.setRep", userId, authorRep+1);
-  doc.createdAt = new Date();
-});
+// Posts.before.insert(function (userId, doc) {
+//   var authorRep = Meteor.users.findOne({_id: userId}).rep;
+//   Meteor.call("Users.setRep", userId, authorRep+1);
+//   doc.createdAt = new Date();
+// });
 
 Posts.helpers({
   datePosted: function() {
@@ -127,17 +127,18 @@ Meteor.methods({
   //   Meteor.users.update({_id: this.userId}, {$addToSet: {'profile.votedProductIds': _id}});
   // },
 
-  'Posts.new': function (body) {
+  'Posts.new': function (body, userId) {
+    var user = (userId ? Meteor.users.findOne({_id: userId}) : Meteor.user());
+
     return Posts.insert({
       body: body,
-      userId: Meteor.userId(),
+      userId: user._id,
       upvoterIds: [],
       downvoterIds: [],
       numLikes: 0,
-      networkId: Meteor.user().networkId,
+      networkId: user.networkId,
       createdAt: new Date(),
     });
-
   },
 
   //DELETE COMMENTS, UPVOTERS, AND DOWNVOTERS

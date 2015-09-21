@@ -155,6 +155,10 @@ Meteor.publishComposite('recentPostsAndComments', function (limit) {
 Meteor.publishComposite('trendingPostsAndComments', function() {
   var user = Meteor.users.findOne({_id: this.userId});
 
+  if (user) {
+    console.log("trendingPostsAndComments", user._id);
+  }
+
   return {
     find: function() {
       if (!this.userId) {
