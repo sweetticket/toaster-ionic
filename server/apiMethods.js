@@ -29,4 +29,3 @@ Meteor.method("api.posts.new", function (postBody) {
     return [postBody];
   }
 });
-

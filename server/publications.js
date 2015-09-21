@@ -145,7 +145,10 @@ Meteor.publishComposite('recentPostsAndComments', function (limit) {
     children: [
       {
         find: function (post) {
-          return Comments.find({postId: post._id});
+          return Comments.find(
+            {postId: post._id},
+            {fields: {postId: 1, _id: 1}}
+          );
         }
       }
     ]
