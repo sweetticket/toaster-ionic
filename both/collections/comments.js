@@ -38,17 +38,25 @@ var _notifyCommentAuthors = function (postId, postAuthorId, user) {
 }
 
 Meteor.methods({
-  "Comments.new": function (info) {
-    var authorId = info.authorId;
-    var user = Meteor.users.findOne({_id: this.userId});
-    var nameTag = "";
-    var postId = info.postId;
+  "Comments.new": function (postId, commentBody, userId) {
+    var user;
+
+    if (userId) {
+      user = Meteor.users.findOne({_id: userId});
+    } else {
+      Meteor.users.findOne({_id: this.userId});
+    }
+
     var post = Posts.findOne({_id: postId});
-    var isOP = post.userId === this.userId;
-    var prevComment = Comments.findOne({userId: this.userId, postId: postId});
+    var postAuthorId = post.userId;
+    var isOP = post.userId === user._id;
+    var nameTag = "";
+    var myExistingComment = Comments.findOne({userId: user._id, postId: postId});
+
+    // Determine my anonymous nametag
     if (isOP) {
       nameTag = "OP";
-    } else if (prevComment) {
+    } else if (myExistingComment) {
       nameTag = prevComment.nameTag;
     } else {
       nameTag = Utils.getNameTag();
@@ -56,8 +64,8 @@ Meteor.methods({
 
     Comments.insert({
       postId: postId,
-      body: info.body,
-      userId: this.userId,
+      body: commentBody,
+      userId: user._id,
       networkId: user.networkId,
       nameTag: nameTag,
       upvoterIds: [],
@@ -66,31 +74,79 @@ Meteor.methods({
       createdAt: new Date(),
     }, function () {
 
-      var author = Meteor.users.findOne({_id: authorId});
-      var incAuthor = Math.floor(Math.random() * (7 - 2)) + 2; // random int between 2 and 6
-      var incCommenter = Math.floor(Math.random() * (7 - 2)) + 2;
-      // console.log("incAuthor", incAuthor);
-      // console.log("incCommenter", incCommenter);
-      Meteor.call("Users.setRep", authorId, author.rep+incAuthor);
-      Meteor.call("Users.setRep", user._id, user.rep+incCommenter);
-
-      // Notify people who also commented on this post
-      _notifyCommentAuthors(postId, post.userId, user);
-
       // send this noti to the author of original post
       // if I am not the OP
       Meteor.call("addNotification", {
         fromUserId: user._id,
-        toUserId: authorId,
-        postId: info.postId,
-        // commentId: info._id,
-        commentId: null, // making this null for now
+        toUserId: postAuthorId,
+        postId: postId,
         body: "Someone commented on your toast!",
         icon: "ios-chatbubble",
         type: "comment"
       });
     });
   },
+
+  // "Comments.new": function (info, userId) {
+  //   var user;
+
+  //   if (userId) {
+  //     user = Meteor.users.findOne({_id: userId});
+  //   } else {
+  //     Meteor.users.findOne({_id: this.userId});
+  //   }
+
+  //   var authorId = info.authorId; // owner of the post that I am commenting on
+  //   var nameTag = "";
+  //   var postId = info.postId;
+  //   var post = Posts.findOne({_id: postId});
+  //   var isOP = post.userId === this.userId;
+  //   var prevComment = Comments.findOne({userId: this.userId, postId: postId});
+  //   if (isOP) {
+  //     nameTag = "OP";
+  //   } else if (prevComment) {
+  //     nameTag = prevComment.nameTag;
+  //   } else {
+  //     nameTag = Utils.getNameTag();
+  //   }
+
+  //   Comments.insert({
+  //     postId: postId,
+  //     body: info.body,
+  //     userId: this.userId,
+  //     networkId: user.networkId,
+  //     nameTag: nameTag,
+  //     upvoterIds: [],
+  //     downvoterIds: [],
+  //     numLikes: 0,
+  //     createdAt: new Date(),
+  //   }, function () {
+
+  //     // var author = Meteor.users.findOne({_id: authorId});
+  //     // var incAuthor = Math.floor(Math.random() * (7 - 2)) + 2; // random int between 2 and 6
+  //     // var incCommenter = Math.floor(Math.random() * (7 - 2)) + 2;
+  //     // // console.log("incAuthor", incAuthor);
+  //     // // console.log("incCommenter", incCommenter);
+  //     // Meteor.call("Users.setRep", authorId, author.rep+incAuthor);
+  //     // Meteor.call("Users.setRep", user._id, user.rep+incCommenter);
+
+  //     // // Notify people who also commented on this post
+  //     // _notifyCommentAuthors(postId, post.userId, user);
+
+  //     // send this noti to the author of original post
+  //     // if I am not the OP
+  //     Meteor.call("addNotification", {
+  //       fromUserId: user._id,
+  //       toUserId: authorId,
+  //       postId: info.postId,
+  //       // commentId: info._id,
+  //       commentId: null, // making this null for now
+  //       body: "Someone commented on your toast!",
+  //       icon: "ios-chatbubble",
+  //       type: "comment"
+  //     });
+  //   });
+  // },
 
   'Comments.delete': function (commentId) {
     Comments.remove({
