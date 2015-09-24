@@ -224,7 +224,7 @@ Meteor.methods({
       //do not push a notification
       Meteor.call("Posts.setNumLikes", postId, numLikes-1);
 
-      Meteor.call("Users.setRep", author._id, author.rep-1);
+      // Meteor.call("Users.setRep", author._id, author.rep-1);
 
     } else if (didIDownvote >= 0) {
 
@@ -240,7 +240,7 @@ Meteor.methods({
       });
 
       Meteor.call("Posts.setNumLikes", postId, numLikes+2);
-      Meteor.call("Users.setRep", author._id, author.rep+1);
+      // Meteor.call("Users.setRep", author._id, author.rep+1);
 
       Meteor.call("addNotification", {
         fromUserId: Meteor.userId(),
@@ -260,8 +260,8 @@ Meteor.methods({
       });
 
       Meteor.call("Posts.setNumLikes", postId, numLikes+1);
-      Meteor.call("Users.setRep", author._id, author.rep+1);
-      Meteor.call("Users.setRep", voter._id, voter.rep+1);
+      // Meteor.call("Users.setRep", author._id, author.rep+1);
+      // Meteor.call("Users.setRep", voter._id, voter.rep+1);
 
       Meteor.call("addNotification", {
         fromUserId: Meteor.userId(),
@@ -306,7 +306,7 @@ Meteor.methods({
       //cancelling my previous downvote: do not push
       //a notification
       Meteor.call("Posts.setNumLikes", postId, numLikes+1);  
-      Meteor.call("Users.setRep", author._id, author.rep+1);  
+      // Meteor.call("Users.setRep", author._id, author.rep+1);  
 
     } else if (didIUpvote >= 0) {
 
@@ -322,7 +322,7 @@ Meteor.methods({
       });
 
       Meteor.call("Posts.setNumLikes", postId, numLikes-2);
-      Meteor.call("Users.setRep", author._id, author.rep-1);
+      // Meteor.call("Users.setRep", author._id, author.rep-1);
 
       Meteor.call("addNotification", {
         fromUserId: Meteor.userId(),
@@ -344,8 +344,8 @@ Meteor.methods({
 
       Meteor.call("Posts.setNumLikes", postId, numLikes-1);
 
-      Meteor.call("Users.setRep", author._id, author.rep-1);
-      Meteor.call("Users.setRep", voter._id, voter.rep+1);
+      // Meteor.call("Users.setRep", author._id, author.rep-1);
+      // Meteor.call("Users.setRep", voter._id, voter.rep+1);
 
       Meteor.call("addNotification", {
         fromUserId: Meteor.userId(),

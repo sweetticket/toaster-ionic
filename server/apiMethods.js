@@ -65,3 +65,59 @@ Meteor.method("api.comments.new", function (postId, commentBody) {
     return [postId, commentBody];
   }
 });
+
+/* 
+  API call to upvote a post.
+  Make a POST request to "/api/posts/upvote"
+  Required:
+    Header: {Authorization: Bearer <token>}
+    Params: {
+      postId: <postId>
+      userId: <userId>
+    }
+*/
+Meteor.method("api.posts.upvote", function (postId, userId) {
+  try {
+    Meteor.call("Posts.upvote", postId, userId);
+  } catch (e) {
+    return e;
+  }
+}, {
+  url: "api/posts/upvote",
+  getArgsFromRequest: function (request) {
+    var content = request.body;
+    var postId = content.postId;
+    var userId = content.userId;
+    return [postId, userId];
+  }
+});
+
+/* 
+  API call to downvote a post.
+  Make a POST request to "/api/posts/downvote"
+  Required:
+    Header: {Authorization: Bearer <token>}
+    Params: {
+      postId: <postId>
+      userId: <userId>
+    }
+*/
+Meteor.method("api.posts.downvote", function (postId, userId) {
+  try {
+    Meteor.call("Posts.downvote", postId, userId);
+  } catch (e) {
+    return e;
+  }
+}, {
+  url: "api/posts/downvote",
+  getArgsFromRequest: function (request) {
+    var content = request.body;
+    var postId = content.postId;
+    var userId = content.userId;
+    return [postId, userId];
+  }
+});
+
+
+
+
