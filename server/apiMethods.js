@@ -140,7 +140,7 @@ Meteor.method("api.posts.downvote", function (postId) {
 });
 
 /* API call to upvote a comment */
-Meteor.method("api.comments.upvote", function (postId) {
+Meteor.method("api.comments.upvote", function (commentId) {
   var userId = this.userId;
   console.log(userId)
   if (!userId) {
