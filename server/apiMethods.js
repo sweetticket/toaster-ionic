@@ -76,7 +76,15 @@ Meteor.method("api.comments.new", function (postId, commentBody) {
       userId: <userId>
     }
 */
-Meteor.method("api.posts.upvote", function (postId, userId) {
+Meteor.method("api.posts.upvote", function (postId) {
+  var userId = this.userId;
+  console.log(userId)
+  if (!userId) {
+    console.log("no userid");
+    return "no userId"
+  }
+
+
   try {
     Meteor.call("Posts.upvote", postId, userId);
   } catch (e) {
@@ -99,10 +107,16 @@ Meteor.method("api.posts.upvote", function (postId, userId) {
     Header: {Authorization: Bearer <token>}
     Params: {
       postId: <postId>
-      userId: <userId>
     }
 */
-Meteor.method("api.posts.downvote", function (postId, userId) {
+Meteor.method("api.posts.downvote", function (postId) {
+  var userId = this.userId;
+  console.log(userId)
+  if (!userId) {
+    console.log("no userid");
+    return "no userId"
+  }
+
   try {
     Meteor.call("Posts.downvote", postId, userId);
   } catch (e) {
