@@ -75,6 +75,24 @@ Meteor.publish('commentsForPost', function (postId) {
   httpMethod: "get"
 });
 
+Meteor.publish('postInfo', function (postId) {
+  console.log("commentsForPost Called")
+
+  if (!this.userId) {
+    return [];
+  }
+
+  console.log("post info api", postId);
+
+  var user = Meteor.users.findOne({_id: this.userId});
+  return Posts.find({
+    _id: postId,
+  });
+}, {
+  url: "get-post/:0",
+  httpMethod: "get"
+});
+
 Meteor.publishComposite('post', function(_id) {
   var user = Meteor.users.findOne({_id: this.userId});
 
