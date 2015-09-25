@@ -224,6 +224,8 @@ Meteor.methods({
       //do not push a notification
       Meteor.call("Posts.setNumLikes", postId, numLikes-1);
 
+      return -1;
+
       // Meteor.call("Users.setRep", author._id, author.rep-1);
 
     } else if (didIDownvote >= 0) {
@@ -251,6 +253,9 @@ Meteor.methods({
         icon: "thumbsup",
         type: "upvote"
       });
+
+      return 2;
+
     } else {
 
       upvoters.push(userId);
@@ -272,6 +277,8 @@ Meteor.methods({
         icon: "thumbsup",
         type: "upvote"
       });
+
+      return 1;
     }
   },
 
@@ -306,7 +313,9 @@ Meteor.methods({
       //cancelling my previous downvote: do not push
       //a notification
       Meteor.call("Posts.setNumLikes", postId, numLikes+1);  
-      // Meteor.call("Users.setRep", author._id, author.rep+1);  
+      // Meteor.call("Users.setRep", author._id, author.rep+1);
+
+      return 1;
 
     } else if (didIUpvote >= 0) {
 
@@ -334,6 +343,8 @@ Meteor.methods({
         type: "downvote"
       });
 
+      return -2;
+
     } else {
 
       downvoters.push(userId);
@@ -356,6 +367,8 @@ Meteor.methods({
         icon: "thumbsdown",
         type: "downvote"
       });
+
+      return -1;
     }
   }
 });

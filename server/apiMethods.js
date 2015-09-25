@@ -75,6 +75,7 @@ Meteor.method("api.comments.new", function (postId, commentBody) {
       postId: <postId>
       userId: <userId>
     }
+    Returns: +1, -1, -2
 */
 Meteor.method("api.posts.upvote", function (postId) {
   var userId = this.userId;
@@ -84,9 +85,11 @@ Meteor.method("api.posts.upvote", function (postId) {
     return "no userId"
   }
 
-
   try {
-    Meteor.call("Posts.upvote", postId, userId);
+    var diff = Meteor.call("Posts.upvote", postId, userId);
+    return {
+      diffVotes: diff 
+    };
   } catch (e) {
     return e;
   }
@@ -108,6 +111,7 @@ Meteor.method("api.posts.upvote", function (postId) {
     Params: {
       postId: <postId>
     }
+    Returns: +1, -1, -2
 */
 Meteor.method("api.posts.downvote", function (postId) {
   var userId = this.userId;
@@ -118,7 +122,10 @@ Meteor.method("api.posts.downvote", function (postId) {
   }
 
   try {
-    Meteor.call("Posts.downvote", postId, userId);
+    var diff = Meteor.call("Posts.downvote", postId, userId);
+    return {
+      diffVotes: diff 
+    };
   } catch (e) {
     return e;
   }
