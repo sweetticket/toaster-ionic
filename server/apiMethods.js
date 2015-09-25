@@ -139,6 +139,60 @@ Meteor.method("api.posts.downvote", function (postId) {
   }
 });
 
+/* API call to upvote a comment */
+Meteor.method("api.comments.upvote", function (postId) {
+  var userId = this.userId;
+  console.log(userId)
+  if (!userId) {
+    console.log("no userid");
+    return "no userId"
+  }
+
+  try {
+    var diff = Meteor.call("Comments.upvote", commentId, userId);
+    return {
+      diffVotes: diff 
+    };
+  } catch (e) {
+    return e;
+  }
+}, {
+  url: "api/comments/upvote",
+  getArgsFromRequest: function (request) {
+    var content = request.body;
+    var commentId = content.commentId;
+    var userId = content.userId;
+    return [commentId, userId];
+  }
+});
+
+/* API call to downvote a comment */
+Meteor.method("api.comments.downvote", function (commentId) {
+  var userId = this.userId;
+  console.log(userId)
+  if (!userId) {
+    console.log("no userid");
+    return "no userId"
+  }
+
+  try {
+    var diff = Meteor.call("Comments.downvote", commentId, userId);
+    return {
+      diffVotes: diff 
+    };
+  } catch (e) {
+    return e;
+  }
+}, {
+  url: "api/comments/downvote",
+  getArgsFromRequest: function (request) {
+    var content = request.body;
+    var commentId = content.commentId;
+    var userId = content.userId;
+    return [commentId, userId];
+  }
+});
+
 
 
 
