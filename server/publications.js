@@ -313,13 +313,20 @@ Meteor.publish('myNotiCount', function() {
 });
 
 Meteor.publish("PostsThatICommentedOn", function() {
+  var userId = this.userId;
+  if (!userId) {
+    return [];
+  }
+
   var myComments = Comments.find({
-    userId: this.userId
+    userId: userId
   }).fetch();
 
   var postIds = _.uniq(_.map(myComments, function (comment) {
     return comment.postId;
   }));
+
+  console.log("myPostsIds: ", postIds);
 
   return Posts.find({
     _id: {$in: postIds}
