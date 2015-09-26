@@ -192,6 +192,63 @@ Meteor.method("api.comments.downvote", function (commentId) {
   }
 });
 
+/* API call to get number of unread notifications */
+Meteor.method("api.notifications.getnumunread", function () {
+  var userId = this.userId;
+  console.log(userId)
+  if (!userId) {
+    console.log("no userid");
+    return "no userId"
+  }
+
+  try {
+    var numUnread = Meteor.call("getNumUnreadNotis", userId);
+    return {
+      numUnread: numUnread 
+    };
+  } catch (e) {
+    return e;
+  }
+}, {
+  url: "api/notifications/getnumunread",
+  getArgsFromRequest: function (request) {
+    var content = request.body;
+    var userId = content.userId;
+    return [userId];
+  }
+});
+
+/* API call to read all notifications */
+Meteor.method("api.notifications.readall", function () {
+  var userId = this.userId;
+  console.log(userId)
+  if (!userId) {
+    console.log("no userid");
+    return "no userId"
+  }
+
+  try {
+    // Meteor.call("readAllNotifications", function() {
+    //   return {
+    //     success: true 
+    //   };
+    // });
+    Meteor.call("readAllNotifications");
+    return {
+      success: true 
+    };
+  } catch (e) {
+    return e;
+  }
+}, {
+  url: "api/notifications/readall",
+  getArgsFromRequest: function (request) {
+    var content = request.body;
+    var userId = content.userId;
+    return [userId];
+  }
+});
+
 
 
 

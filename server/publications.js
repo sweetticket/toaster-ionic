@@ -203,6 +203,58 @@ Meteor.publishComposite('trendingPostsAndComments', function() {
   }
 });
 
+// publish only posts by the user, 
+Meteor.publishComposite('profilePosts', function() {
+  return {
+    find: function() {
+      if (!this.userId) {
+        return;
+      }
+
+      return Meteor.users.find({_id: this.userId}, {fields: {
+        '_id': true,
+        'emails': true,
+        'networkId': true,
+        'color': true,
+        'icon': true,
+        'rep': true,
+      }});
+    },
+    children: [
+      {
+        find: function (user) {
+          return Posts.find({
+            userId: this.userId
+          }, {sort: {
+            createdAt: -1
+          }});
+        }
+      },
+      {
+        children: [
+          {
+            find: function (comment) {
+              return Posts.find({
+                _id: comment.postId
+              }, {sort: {
+                createdAt: -1
+                }}
+              )
+            }
+          }
+        ]
+      },
+      {
+        find: function (user) {
+          return Networks.find({
+            _id: user.networkId
+          });
+        }
+      }
+    ]
+  };
+});
+
 // publish all posts and comments written by the user
 Meteor.publishComposite('userPostsComments', function() {
   return {
