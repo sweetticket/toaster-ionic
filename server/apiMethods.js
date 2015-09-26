@@ -10,9 +10,9 @@ Meteor.method("api.posts.new", function (postBody) {
   console.log("POSTING:", postBody);
   if (postBody.length > 0) {
     var userId = this.userId;
-    var newPostId;
     try {
-      newPostId = Meteor.call("Posts.new", postBody, userId);
+      var newPostId = Meteor.call("Posts.new", postBody, userId);
+      return Posts.findOne({_id: newPostId});
     } catch (e) {
       return e;
     }
@@ -45,10 +45,13 @@ Meteor.method("api.comments.new", function (postId, commentBody) {
 
   if (commentBody.length > 0) {
     var userId = this.userId;
-    var newCommentId;
+    
 
     try {
-      newCommentId = Meteor.call("Comments.new", postId, commentBody, userId);
+      var newCommentId = Meteor.call("Comments.new", postId, commentBody, userId);
+      var comment = Comments.findOne({_id: newCommentId});
+      return comment;
+
     } catch (e) {
       return e;
     }
@@ -98,8 +101,7 @@ Meteor.method("api.posts.upvote", function (postId) {
   getArgsFromRequest: function (request) {
     var content = request.body;
     var postId = content.postId;
-    var userId = content.userId;
-    return [postId, userId];
+    return [postId];
   }
 });
 
@@ -134,15 +136,14 @@ Meteor.method("api.posts.downvote", function (postId) {
   getArgsFromRequest: function (request) {
     var content = request.body;
     var postId = content.postId;
-    var userId = content.userId;
-    return [postId, userId];
+    return [postId];
   }
 });
 
 /* API call to upvote a comment */
 Meteor.method("api.comments.upvote", function (commentId) {
   var userId = this.userId;
-  console.log(userId)
+
   if (!userId) {
     console.log("no userid");
     return "no userId"
@@ -161,8 +162,7 @@ Meteor.method("api.comments.upvote", function (commentId) {
   getArgsFromRequest: function (request) {
     var content = request.body;
     var commentId = content.commentId;
-    var userId = content.userId;
-    return [commentId, userId];
+    return [commentId];
   }
 });
 
@@ -188,8 +188,7 @@ Meteor.method("api.comments.downvote", function (commentId) {
   getArgsFromRequest: function (request) {
     var content = request.body;
     var commentId = content.commentId;
-    var userId = content.userId;
-    return [commentId, userId];
+    return [commentId];
   }
 });
 

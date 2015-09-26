@@ -312,5 +312,19 @@ Meteor.publish('myNotiCount', function() {
   }));
 });
 
+Meteor.publish("PostsThatICommentedOn", function() {
+  var myComments = Comments.find({
+    userId: this.userId
+  }).fetch();
 
+  var postIds = _.uniq(_.map(myComments, function (comment) {
+    return comment.postId;
+  }));
+
+  return Posts.find({
+    _id: {$in: postIds}
+  }, {
+    sort: {createdAt: -1}
+  });
+});
 

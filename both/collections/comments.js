@@ -62,7 +62,7 @@ Meteor.methods({
       nameTag = Utils.getNameTag();
     }
 
-    Comments.insert({
+    return Comments.insert({
       postId: postId,
       body: commentBody,
       userId: user._id,
