@@ -136,41 +136,115 @@ Meteor.publishComposite('post', function(_id) {
   };
 });
 
-Meteor.publishComposite('recentPostsAndComments', function (limit) {
+// Meteor.publishComposite('recentPostsAndComments', function (limit, skip) {
+//   var user = Meteor.users.findOne({_id: this.userId});
+
+//   if (user) {
+//     console.log("recentPostsAndComments", user._id);
+//   }
+
+//   if (limit > Posts.find().count()) {
+//     limit = 0;
+//   }
+
+//   return {
+//     find: function() {
+//       if (!this.userId) {
+//         return;
+//       }
+
+//       return Posts.find({
+//         networkId: user.networkId
+//       }, {
+//         sort: {createdAt: -1},
+//         limit: limit,
+//         skip: skip
+//       });
+//     },
+//     children: [
+//       {
+//         find: function (post) {
+//           return Comments.find(
+//             {postId: post._id},
+//             {fields: {postId: 1, _id: 1}}
+//           );
+//         }
+//       }
+//     ]
+//   }
+// });
+
+Meteor.publish('recentPostsAndComments', function (limit, skip) {
+
   var user = Meteor.users.findOne({_id: this.userId});
 
-  if (user) {
-    console.log("recentPostsAndComments", user._id);
-  }
+  console.log("limit:", limit);
+
+  limit = parseInt(limit) || 0;
+  skip = parseInt(skip) || 0;
+
+  console.log("recent. limit:", limit, "skip:", skip);
 
   if (limit > Posts.find().count()) {
     limit = 0;
   }
 
-  return {
-    find: function() {
-      if (!this.userId) {
-        return;
-      }
+  var postsCursor = Posts.find({
+    networkId: user.networkId
+  }, {
+    sort: {createdAt: -1},
+    limit: limit,
+    skip: skip
+  });
 
-      return Posts.find({
-        networkId: user.networkId
-      }, {
-        sort: {createdAt: -1},
-        limit: limit
-      });
-    },
-    children: [
-      {
-        find: function (post) {
-          return Comments.find(
-            {postId: post._id},
-            {fields: {postId: 1, _id: 1}}
-          );
-        }
-      }
-    ]
+  var postIds = postsCursor.map(function (p) { return p._id });
+
+  var commentsCursor = Comments.find({
+    postId: {$in: postIds}
+  });
+
+  return [postsCursor, commentsCursor];
+}, {
+  // FIXME: the REST package doesnt support GET params defined regularly
+  // url: "/api/recentPostsComments?limit=:0&skip=:1"
+  url: "/api/recentPostsComments/:0/:1"
+});
+
+Meteor.publish('hotPostsAndComments', function (limit, skip) {
+
+  var user = Meteor.users.findOne({_id: this.userId});
+
+  console.log("limit:", limit);
+
+  limit = parseInt(limit) || 0;
+  skip = parseInt(skip) || 0;
+
+  console.log("recent. limit:", limit, "skip:", skip);
+
+  if (limit > Posts.find().count()) {
+    limit = 0;
   }
+
+  var postsCursor = Posts.find({
+    networkId: user.networkId
+  }, {
+    sort: {
+      createdAt: -1,
+      numVotes: -1
+    },
+    limit: limit,
+    skip: skip
+  });
+
+  var postIds = postsCursor.map(function (p) { return p._id });
+
+  var commentsCursor = Comments.find({
+    postId: {$in: postIds}
+  });
+
+  return [postsCursor, commentsCursor];
+}, {
+  url: "/api/hotPostsComments/:0/:1"
 });
 
 Meteor.publishComposite('trendingPostsAndComments', function() {
@@ -381,9 +455,10 @@ Meteor.publish("PostsThatICommentedOn", function() {
   console.log("myPostsIds: ", postIds);
 
   return Posts.find({
-    _id: {$in: postIds}
+    _id: {"$in": postIds}
   }, {
     sort: {createdAt: -1}
   });
 });
+
 
