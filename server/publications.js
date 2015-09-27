@@ -201,6 +201,8 @@ Meteor.publish('recentPostsAndComments', function (limit, skip) {
 
   var commentsCursor = Comments.find({
     postId: {$in: postIds}
+  }, {
+    fields: {postId: 1}
   });
 
   return [postsCursor, commentsCursor];
@@ -285,30 +287,6 @@ Meteor.publish('notifications', function (limit, skip) {
   url: "/api/notifications/:0/:1"
 });
 
-// Meteor.publish('notiPosts', function (limit) {
-//   if (!this.userId) {
-//     return [];
-//   }
-
-//   var user = Meteor.users.findOne({_id: this.userId});
-//   return Posts.find({networkId: user.networkId}, {
-//     sort: {createdAt: -1}
-//   });
-// });
-
-// Meteor.publish('notiComments', function (limit) {
-//   if (!this.userId) {
-//     return [];
-//   }
-
-//   var user = Meteor.users.findOne({_id: this.userId});
-
-//   return Comments.find({networkId: user.networkId, userId: this.userId}, {
-//     sort: {createdAt: -1}
-//   });
-// });
-
-
 Meteor.publishComposite('trendingPostsAndComments', function() {
   var user = Meteor.users.findOne({_id: this.userId});
 
@@ -337,6 +315,84 @@ Meteor.publishComposite('trendingPostsAndComments', function() {
       }
     ]
   }
+});
+
+// My posts and comments
+Meteor.publish('postsIWrote', function (limit, skip) {
+
+  var user = Meteor.users.findOne({_id: this.userId});
+
+  console.log("limit:", limit);
+
+  limit = parseInt(limit) || 0;
+  skip = parseInt(skip) || 0;
+
+  console.log("recent. limit:", limit, "skip:", skip);
+
+  if (limit > Posts.find().count()) {
+    limit = 0;
+  }
+
+  var postsCursor = Posts.find({
+    userId: user._id,
+  }, {
+    sort: {createdAt: -1},
+    limit: limit,
+    skip: skip
+  });
+
+  var commentsCursor = Comments.find({
+    userId: user._id,
+  }, {
+    sort: {createdAt: -1},
+    limit: limit,
+    skip: skip,
+    fields: {postId: 1}
+  });
+
+  return [postsCursor, commentsCursor];
+}, {
+  url: "/api/postsIWrote/:0/:1"
+});
+
+// My posts and comments
+Meteor.publish('postsICommentedOn', function (limit, skip) {
+
+  var user = Meteor.users.findOne({_id: this.userId});
+
+  console.log("limit:", limit);
+
+  limit = parseInt(limit) || 0;
+  skip = parseInt(skip) || 0;
+
+  console.log("recent. limit:", limit, "skip:", skip);
+
+  if (limit > Comments.find().count()) {
+    limit = 0;
+  }
+
+  var commentsCursor = Comments.find({
+    userId: user._id,
+  }, {
+    sort: {createdAt: -1},
+    limit: limit,
+    skip: skip,
+    fields: {postId: 1}
+  });
+
+  var postIds = commentsCursor.map(function (c) { return c.postId });
+
+  var postsCursor = Posts.find({
+    _id: {$in: postIds}
+  }, {
+    sort: {createdAt: -1},
+    limit: limit,
+    skip: skip
+  });
+
+  return [postsCursor, commentsCursor];
+}, {
+  url: "/api/postsICommentedOn/:0/:1"
 });
 
 // publish only posts by the user, 
