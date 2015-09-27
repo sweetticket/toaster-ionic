@@ -11,25 +11,21 @@ if (Meteor.isServer) {
 
       // If there's a notification for the same post, let's replace the
       // old notification with a new one
-      console.log("addNotification called");
-
-      var exists = Notifications.findOne({
-                    toUserId: noti.toUserId,
-                    postId: noti.postId,
-                    commentId: noti.commentId,
-                    body: noti.body
-                  });
-      var countUnread = 1;
-      if (exists) {
-        if (exists.fromUserId !== noti.fromUserId ||
-            (exists.fromUserId === noti.fromUserId &&
-            (noti.type !== exists.type || noti.type === "comment"))) {
-              countUnread += exists.countUnread;
-            }
-          Notifications.remove(exists._id);
-      }
-
-      console.log("right before adding a notification");
+      // var exists = Notifications.findOne({
+      //               toUserId: noti.toUserId,
+      //               postId: noti.postId,
+      //               commentId: noti.commentId,
+      //               body: noti.body
+      //             });
+      // var countUnread = 1;
+      // if (exists) {
+      //   if (exists.fromUserId !== noti.fromUserId ||
+      //       (exists.fromUserId === noti.fromUserId &&
+      //       (noti.type !== exists.type || noti.type === "comment"))) {
+      //         countUnread += exists.countUnread;
+      //       }
+      //     Notifications.remove(exists._id);
+      // }
 
       Notifications.insert(_.extend(noti, {
         isRead: false,

@@ -249,7 +249,7 @@ Meteor.methods({
         toUserId: authorId,
         postId: postId,
         commentId: null,
-        body: "You got an upvote :)",
+        body: "Someone upvoted your post",
         icon: "thumbsup",
         type: "upvote"
       });
@@ -273,7 +273,7 @@ Meteor.methods({
         toUserId: authorId,
         postId: postId,
         commentId: null,
-        body: "You got an upvote :)",
+        body: "Someone upvoted your post",
         icon: "thumbsup",
         type: "upvote"
       });
@@ -338,7 +338,7 @@ Meteor.methods({
         toUserId: authorId,
         postId: postId,
         commentId: null,
-        body: "You got a downvote :(",
+        body: "Someone downvoted your post",
         icon: "thumbsdown",
         type: "downvote"
       });
@@ -363,7 +363,7 @@ Meteor.methods({
         toUserId: authorId,
         postId: postId,
         commentId: null,
-        body: "You got a downvote :(",
+        body: "Someone downvoted your post",
         icon: "thumbsdown",
         type: "downvote"
       });

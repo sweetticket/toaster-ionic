@@ -247,6 +247,68 @@ Meteor.publish('hotPostsAndComments', function (limit, skip) {
   url: "/api/hotPostsComments/:0/:1"
 });
 
+Meteor.publish('notifications', function (limit, skip) {
+  if (!this.userId) {
+    return [];
+  }
+
+  limit = parseInt(limit) || 0;
+  skip = parseInt(skip) || 0;
+
+  var notificationsCursor = Notifications.find({
+    toUserId: this.userId,
+  }, {
+    sort: {
+      createdAt: -1
+    },
+    limit: limit,
+    skip: skip
+  });
+
+  var notiPostIds = notificationsCursor.map(function (n) { return n.postId });
+  var notiCommentIds = notificationsCursor.map(function (n) { return n.commentId });
+
+  notiPostIds = _.uniq(_.filter(notiPostIds, function (n) { return n != null}));
+  notiCommentIds = _.uniq(_.filter(notiCommentIds, function (n) { return n != null}));
+
+  var postsCursor = Posts.find({
+    _id: {$in: notiPostIds}
+  });
+
+  var commentsCursor = Comments.find({
+    _id: {$in: notiCommentIds}
+  });
+
+  return [notificationsCursor, postsCursor, commentsCursor];
+
+}, {
+  url: "/api/notifications/:0/:1"
+});
+
+// Meteor.publish('notiPosts', function (limit) {
+//   if (!this.userId) {
+//     return [];
+//   }
+
+//   var user = Meteor.users.findOne({_id: this.userId});
+//   return Posts.find({networkId: user.networkId}, {
+//     sort: {createdAt: -1}
+//   });
+// });
+
+// Meteor.publish('notiComments', function (limit) {
+//   if (!this.userId) {
+//     return [];
+//   }
+
+//   var user = Meteor.users.findOne({_id: this.userId});
+
+//   return Comments.find({networkId: user.networkId, userId: this.userId}, {
+//     sort: {createdAt: -1}
+//   });
+// });
+
+
 Meteor.publishComposite('trendingPostsAndComments', function() {
   var user = Meteor.users.findOne({_id: this.userId});
 
@@ -388,15 +450,17 @@ Meteor.publishComposite('userPostsComments', function() {
   };
 });
 
-Meteor.publish('notifications', function() {
-  if (!this.userId) {
-    return [];
-  }
+// Meteor.publish('notifications', function (limit, skip) {
+//   if (!this.userId) {
+//     return [];
+//   }
 
-  return Notifications.find({
-    toUserId: this.userId,
-  });
-});
+//   return Notifications.find({
+//     toUserId: this.userId,
+//   });
+// });
+
+
 
 // FIXME: these are not subscribed yet.
 Meteor.publish('userInfo', function() {
