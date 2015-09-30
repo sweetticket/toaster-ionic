@@ -30,7 +30,7 @@ var _notifyCommentAuthors = function (postId, postAuthorId, user) {
       toUserId: authorId,
       postId: postId,
       commentId: null,
-      body: "Someone also commented on the toast!",
+      body: "Someone also commented on the post",
       icon: "ios-chatbubble",
       type: "comment"
     });
@@ -80,7 +80,7 @@ Meteor.methods({
         fromUserId: user._id,
         toUserId: postAuthorId,
         postId: postId,
-        body: "Someone commented on your toast!",
+        body: "Someone commented on your post",
         icon: "ios-chatbubble",
         type: "comment"
       });
@@ -141,7 +141,7 @@ Meteor.methods({
   //       postId: info.postId,
   //       // commentId: info._id,
   //       commentId: null, // making this null for now
-  //       body: "Someone commented on your toast!",
+  //       body: "Someone commented on your post!",
   //       icon: "ios-chatbubble",
   //       type: "comment"
   //     });
@@ -250,7 +250,7 @@ Meteor.methods({
         toUserId: authorId,
         postId: comment.postId,
         commentId: comment._id,
-        body: "Your comment got an upvote :)",
+        body: "Someone upvoted your comment",
         icon: "thumbsup",
         type: "upvote"
       });
@@ -271,7 +271,7 @@ Meteor.methods({
         toUserId: authorId,
         postId: comment.postId,
         commentId: comment._id,
-        body: "Your comment got an upvote :)",
+        body: "Someone upvoted your comment",
         icon: "thumbsup",
         type: "upvote"
       });
@@ -315,7 +315,7 @@ Meteor.methods({
       //cancelling my previous downvote: do not push
       //a notification
       Meteor.call("Comments.setNumLikes", commentId, numLikes+1);  
-      Meteor.call("Users.setRep", author._id, author.rep+1);  
+      // Meteor.call("Users.setRep", author._id, author.rep+1);  
 
     } else if (didIUpvote >= 0) {
 
@@ -338,7 +338,7 @@ Meteor.methods({
         toUserId: authorId,
         postId: comment.postId,
         commentId: comment._id,
-        body: "Your comment got a downvote :(",
+        body: "Someone downvoted your comment",
         icon: "thumbsdown",
         type: "downvote"
       });
@@ -361,7 +361,7 @@ Meteor.methods({
         toUserId: authorId,
         postId: comment.postId,
         commentId: comment._id,
-        body: "Your comment got a downvote :(",
+        body: "Someone downvoted your comment",
         icon: "thumbsdown",
         type: "downvote"
       });
