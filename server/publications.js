@@ -136,44 +136,6 @@ Meteor.publishComposite('post', function(_id) {
   };
 });
 
-// Meteor.publishComposite('recentPostsAndComments', function (limit, skip) {
-//   var user = Meteor.users.findOne({_id: this.userId});
-
-//   if (user) {
-//     console.log("recentPostsAndComments", user._id);
-//   }
-
-//   if (limit > Posts.find().count()) {
-//     limit = 0;
-//   }
-
-//   return {
-//     find: function() {
-//       if (!this.userId) {
-//         return;
-//       }
-
-//       return Posts.find({
-//         networkId: user.networkId
-//       }, {
-//         sort: {createdAt: -1},
-//         limit: limit,
-//         skip: skip
-//       });
-//     },
-//     children: [
-//       {
-//         find: function (post) {
-//           return Comments.find(
-//             {postId: post._id},
-//             {fields: {postId: 1, _id: 1}}
-//           );
-//         }
-//       }
-//     ]
-//   }
-// });
-
 Meteor.publish('recentPostsAndComments', function (limit, skip) {
 
   var user = Meteor.users.findOne({_id: this.userId});
@@ -231,8 +193,7 @@ Meteor.publish('hotPostsAndComments', function (limit, skip) {
     networkId: user.networkId
   }, {
     sort: {
-      createdAt: -1,
-      numVotes: -1
+      createdAt: -1, // this should be sorted by our algorithm on the client side
     },
     limit: limit,
     skip: skip
