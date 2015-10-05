@@ -2,7 +2,7 @@
   // Server authentication info
   "servers": [
     {
-      "host": "104.131.158.80",
+      "host": "104.236.234.5",
       "username": "root",
       "password": "13201320"
       // or pem file (ssh based authentication)
@@ -11,25 +11,25 @@
   ],
 
   // Install MongoDB in the server, does not destroy local MongoDB on future setup
-  "setupMongo": false,
+  "setupMongo": true,
 
   // WARNING: Node.js is required! Only skip if you already have Node.js installed on server.
-  "setupNode": false,
+  "setupNode": true,
 
   // WARNING: If nodeVersion omitted will setup 0.10.36 by default. Do not use v, only version number.
   "nodeVersion": "0.10.36",
 
   // Install PhantomJS in the server
-  "setupPhantom": false,
+  "setupPhantom": true,
 
   // Application name (No spaces)
-  "appName": "toaster",
+  "appName": "yolk",
 
   // Location of app (local directory)
   "app": "../",
 
   "env": {
-    "ROOT_URL": "http://gettoaster.com",
+    "ROOT_URL": "http://yolknow.com",
     "PORT": 3000,
     "UPSTART_UID" : "meteoruser",
     "METEOR_ENV": "production"

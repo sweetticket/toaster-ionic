@@ -30,6 +30,7 @@ if (Meteor.isClient) {
         email: Meteor.user().emails[0].address
       });
 
+      console.log("Going to open the app because we verified");
       Utils.openApp();
     });
   });
@@ -61,17 +62,17 @@ Meteor.startup(function() {
 
     // A Function that takes a user object and returns a String for the subject line of the email.
     Accounts.emailTemplates.verifyEmail.subject = function(user) {
-      return 'Welcome to Toaster!';
+      return 'Welcome to Yolk!';
     };
 
     Accounts.emailTemplates.verifyEmail.html = function (user, url) {
-      var template = "<p style=\"font-weight:bold;\">WELCOME TO TOASTER!</p>" +
-        "<p> Please click the link: " + url + " to start using Toaster right away." +
-        "You can now freely share the thoughts you've always been keeping to yourself." +
-        "Your identity is kept secret; you'll know your audience, but your audience will not know you."
-        "We only used your email for verifying your account and it will never be published.</p>" +
-        "<p>Happy toasting!</p>" +
-        "<br><br><p>Honeyjam Studio Team</p>";
+      var template = "<p style=\"font-weight:bold;\">WELCOME TO YOLK!</p>" +
+        "<p> Please click the link: " + url + " to start using Yolk right away." +
+        " You can now freely share the thoughts you've always been keeping to yourself." +
+        " Your identity is kept secret; you'll know your audience, but your audience will not know you." +
+        " We only use your email to your account and it will never be published.</p>" +
+        "<p>Go ahead and click the link to start using Yolk!</p>" +
+        "<br><br><p>Honeyjam Studios Inc.</p>";
       return template;
     }
 
@@ -83,9 +84,7 @@ Meteor.startup(function() {
         domain: domain
       });
 
-      user.color = Utils.getRandomColor();
       user.icon = Utils.getRandomIcon();
-      user.rep = 0;
 
       if (network) {
         user.networkId = network._id;
@@ -100,7 +99,12 @@ Meteor.startup(function() {
 
       // we wait for Meteor to create the user before sending an email
       Meteor.setTimeout(function() {
-        Accounts.sendVerificationEmail(userId, email);
+        try {
+          console.log("Try to send a verification email");
+          Accounts.sendVerificationEmail(userId, email);
+        } catch (err) {
+          console.log(err);
+        }
       }, 2 * 1000);
       
       return user;

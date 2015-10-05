@@ -16,9 +16,7 @@ Meteor.method("api.posts.new", function (postBody) {
     } catch (e) {
       return e;
     }
-
     console.log("Post created:", newPostId);
-
     return {postId: newPostId};
   }
 }, {
@@ -221,19 +219,15 @@ Meteor.method("api.notifications.getnumunread", function () {
 /* API call to read all notifications */
 Meteor.method("api.notifications.readall", function () {
   var userId = this.userId;
-  console.log(userId)
+  console.log("read all Notis for:", userId);
+
   if (!userId) {
     console.log("no userid");
-    return "no userId"
+    return false;
   }
 
   try {
-    // Meteor.call("readAllNotifications", function() {
-    //   return {
-    //     success: true 
-    //   };
-    // });
-    Meteor.call("readAllNotifications");
+    Meteor.call("readAllNotifications", userId);
     return {
       success: true 
     };
@@ -241,7 +235,37 @@ Meteor.method("api.notifications.readall", function () {
     return e;
   }
 }, {
-  url: "api/notifications/readall",
+  url: "api/notifications/readall"
+});
+
+
+/* 
+  API call to check user verification.
+  Returns true if he's verified, false otherwise.
+  Make a POST request to "/api/users/verification"
+  Required:
+    Header: {Authorization: Bearer <token>}
+    Params: {
+      userId: <userId>
+    }
+    Returns: True, False
+*/
+Meteor.method("api.users.verification", function (userId) {
+  var user = Meteor.users.findOne({_id: userId});
+
+  console.log("user is verified?", userId);
+
+  if (!user) {
+    console.log("Verification no user found");
+    return false;
+  }
+
+  var isVerified = user.emails[0].verified;
+  return {
+    isVerified: isVerified
+  };
+}, {
+  url: "/api/users/verification",
   getArgsFromRequest: function (request) {
     var content = request.body;
     var userId = content.userId;
@@ -249,6 +273,54 @@ Meteor.method("api.notifications.readall", function () {
   }
 });
 
+/* 
+  API call to send a verification email
+  Returns true if he's verified, false otherwise.
+  Make a POST request to "/api/users/verification"
+  Required:
+    Header: {Authorization: Bearer <token>}
+    Params: {
+      email: <emailAddress>
+    }
+    Returns: nothing
+*/
+Meteor.method("api.users.sendemail", function (userId) {
+  if (!userId) {
+    console.log("no userID to send email to");
+    return false;
+  }
+
+  var user = Meteor.users.findOne({_id: userId});
+  var email = user.emails[0].address;
+  console.log("Send email to:", email);
+
+  Accounts.sendVerificationEmail(userId, email);
+}, {
+  url: "/api/users/sendemail",
+  getArgsFromRequest: function (request) {
+    var content = request.body;
+    var userId = content.userId;
+    return [userId];
+  }
+});
+
+/* 
+  API call to get network name
+  Required:
+    Header: {Authorization: Bearer <token>}
+    Returns: networkName
+*/
+Meteor.method("api.users.getnetwork", function() {
+  var user = Meteor.users.findOne({_id: this.userId});
+  var email = user.emails[0].address;
+  var networkName = Utils.getDomain(email);
+  return {
+    network: networkName
+  };
+}, {
+  url: "/api/users/getnetwork",
+});
 
 
-
+// Verification
+// /methods/sendVerifyingEmail

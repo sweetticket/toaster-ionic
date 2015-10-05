@@ -5,9 +5,9 @@ if (Meteor.isServer) {
   Meteor.methods({
     addNotification: function (noti) {
       // don't add notification if I am acting on my own post
-      if (noti.fromUserId === noti.toUserId) {
-        return false;
-      }
+      // if (noti.fromUserId === noti.toUserId) {
+      //   return false;
+      // }
 
       // If there's a notification for the same post, let's replace the
       // old notification with a new one
@@ -27,9 +27,11 @@ if (Meteor.isServer) {
       //     Notifications.remove(exists._id);
       // }
 
+      // FIXME: countUnread
+
       Notifications.insert(_.extend(noti, {
         isRead: false,
-        countUnread: countUnread,
+        countUnread: 0,
         createdAt: new Date()
       }), function (err, notificationId) {
         if (err) {
@@ -40,33 +42,25 @@ if (Meteor.isServer) {
       });
     },
 
-    readAllNotifications: function() {
-      var userId = this.userId;
+    readAllNotifications: function (userId) {
+      var userId = userId || this.userId;
+
       Notifications.update({
         toUserId: userId
-      }, {$set: {
-        isRead: true,
-        countUnread: 0,
-      }}, {
+      }, {$set: { isRead: true }}, {
         multi: true
       });
     },
 
     // get unread notifications count for the current user
     getNumUnreadNotis: function (userId) {
-      console.log("getNumUnread:", userId);
+      var userId = userId || this.userId;
 
-      var notis = Notifications.find({
+      var numUnreads = Notifications.find({
         toUserId: userId,
         isRead: false
-      }).fetch();
-
-      console.log(notis);
-
-      var numUnreads = _.reduce(notis, function (acc, noti) {
-        return acc + noti.countUnread;
-      }, 0);
-
+      }).count();
+      console.log("numNotifications:", numUnreads);
       return numUnreads;
     }
   });
