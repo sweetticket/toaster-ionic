@@ -10,7 +10,7 @@ Networks = new Mongo.Collection("networks");
 // see if domain is one of the blacklisted domains
 
 var BLACKLISTED_EMAILS = [
-  // "gmail.com", FIXME
+  "gmail.com",
   "naver.com",
   "hotmail.com",
   "daum.net",
@@ -30,7 +30,7 @@ Meteor.methods({
   addNetwork: function (domain) {
     if (_.contains(BLACKLISTED_EMAILS, domain)) {
       throw {
-        reason: "BLACKLIST_DOMAIN",
+        reason: "You cannot use " + domain + ". Please use your organization email.",
         details: "You cannot use " + domain + ". Please use your organization email."
       };
     }

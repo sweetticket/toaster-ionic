@@ -4,30 +4,12 @@ Notifications = new Mongo.Collection("notifications");
 if (Meteor.isServer) {
   Meteor.methods({
     addNotification: function (noti) {
+      console.log(noti);
+
       // don't add notification if I am acting on my own post
-      // if (noti.fromUserId === noti.toUserId) {
-      //   return false;
-      // }
-
-      // If there's a notification for the same post, let's replace the
-      // old notification with a new one
-      // var exists = Notifications.findOne({
-      //               toUserId: noti.toUserId,
-      //               postId: noti.postId,
-      //               commentId: noti.commentId,
-      //               body: noti.body
-      //             });
-      // var countUnread = 1;
-      // if (exists) {
-      //   if (exists.fromUserId !== noti.fromUserId ||
-      //       (exists.fromUserId === noti.fromUserId &&
-      //       (noti.type !== exists.type || noti.type === "comment"))) {
-      //         countUnread += exists.countUnread;
-      //       }
-      //     Notifications.remove(exists._id);
-      // }
-
-      // FIXME: countUnread
+      if (noti.fromUserId === noti.toUserId) {
+        return false;
+      }
 
       Notifications.insert(_.extend(noti, {
         isRead: false,

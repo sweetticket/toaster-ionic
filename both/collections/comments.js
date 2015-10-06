@@ -87,67 +87,6 @@ Meteor.methods({
     });
   },
 
-  // "Comments.new": function (info, userId) {
-  //   var user;
-
-  //   if (userId) {
-  //     user = Meteor.users.findOne({_id: userId});
-  //   } else {
-  //     Meteor.users.findOne({_id: this.userId});
-  //   }
-
-  //   var authorId = info.authorId; // owner of the post that I am commenting on
-  //   var nameTag = "";
-  //   var postId = info.postId;
-  //   var post = Posts.findOne({_id: postId});
-  //   var isOP = post.userId === this.userId;
-  //   var prevComment = Comments.findOne({userId: this.userId, postId: postId});
-  //   if (isOP) {
-  //     nameTag = "OP";
-  //   } else if (prevComment) {
-  //     nameTag = prevComment.nameTag;
-  //   } else {
-  //     nameTag = Utils.getNameTag();
-  //   }
-
-  //   Comments.insert({
-  //     postId: postId,
-  //     body: info.body,
-  //     userId: this.userId,
-  //     networkId: user.networkId,
-  //     nameTag: nameTag,
-  //     upvoterIds: [],
-  //     downvoterIds: [],
-  //     numLikes: 0,
-  //     createdAt: new Date(),
-  //   }, function () {
-
-  //     // var author = Meteor.users.findOne({_id: authorId});
-  //     // var incAuthor = Math.floor(Math.random() * (7 - 2)) + 2; // random int between 2 and 6
-  //     // var incCommenter = Math.floor(Math.random() * (7 - 2)) + 2;
-  //     // // console.log("incAuthor", incAuthor);
-  //     // // console.log("incCommenter", incCommenter);
-  //     // Meteor.call("Users.setRep", authorId, author.rep+incAuthor);
-  //     // Meteor.call("Users.setRep", user._id, user.rep+incCommenter);
-
-  //     // // Notify people who also commented on this post
-  //     // _notifyCommentAuthors(postId, post.userId, user);
-
-  //     // send this noti to the author of original post
-  //     // if I am not the OP
-  //     Meteor.call("addNotification", {
-  //       fromUserId: user._id,
-  //       toUserId: authorId,
-  //       postId: info.postId,
-  //       // commentId: info._id,
-  //       commentId: null, // making this null for now
-  //       body: "Someone commented on your post!",
-  //       icon: "ios-chatbubble",
-  //       type: "comment"
-  //     });
-  //   });
-  // },
-
   'Comments.delete': function (commentId) {
     Comments.remove({
       _id: commentId
@@ -227,8 +166,6 @@ Meteor.methods({
       //do not push a notification
       Meteor.call("Comments.setNumLikes", commentId, numLikes-1);
 
-      Meteor.call("Users.setRep", author._id, author.rep-1);
-
     } else if (didIDownvote >= 0) {
 
       downvoters.splice(didIDownvote, 1);
@@ -243,7 +180,6 @@ Meteor.methods({
       });
 
       Meteor.call("Comments.setNumLikes", commentId, numLikes+2);
-      Meteor.call("Users.setRep", author._id, author.rep+1);
 
       Meteor.call("addNotification", {
         fromUserId: Meteor.userId(),
