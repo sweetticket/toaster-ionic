@@ -1,5 +1,5 @@
-PARSE_REST_API_KEY = "RkDy0HP4MTzezVx9EGAurlSfsEUcMNNZb1RXkNPh";
-PARSE_APP_ID = "nGWY63hAKCyyMHS41xmjNiL4mCIqsJ0TBGWAG4vy";
+PARSE_REST_API_KEY = "9Wix0yAIVK3fALX5fGV5FyWZCMfT7yHBmZU86zv4";
+PARSE_APP_ID = "b3yOuKbcnPoKl8AOMqAl2NHDfgZ3RnelIvvThPrU";
 
 Meteor.methods({
   // When the user logs in, he needs to update his userId to Parse
