@@ -24,108 +24,7 @@ Posts.helpers({
   },
 });
 
-// RegExp.escape = function(s) {
-//   return s.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
-// };
-
-// posts.search = function(query) {
-//   if (!query) {
-//     return;
-//   }
-//   return posts.find({
-//     name: { $regex: RegExp.escape(query), $options: 'i' }
-//   }, {
-//     limit: 20
-//   });
-// };
-
-// Posts.attachSchema(new SimpleSchema({
-//   // url: {
-//   //   type: String,
-//   //   autoform: {
-//   //     'label-type': 'placeholder',
-//   //     placeholder: 'Product URL'
-//   //   },
-//   //   max: 200
-//   // },
-//   // name: {
-//   //   type: String,
-//   //   autoform: {
-//   //     'label-type': 'placeholder',
-//   //     placeholder: 'Product Name'
-//   //   },
-//   //   max: 200
-//   // },
-//   body: {
-//     type: String,
-//     autoform: {
-//       'label-type': 'placeholder',
-//       placeholder: 'You are anonymous...',
-//       rows: 10
-//     },
-//     max: 140
-//   },
-//   userId: {
-//     type: String,
-//     autoValue: function () {
-//       if (this.isSet) {
-//         return;
-//       }
-//       if (this.isInsert) {
-//         return Meteor.userId();
-//       } else {
-//         this.unset();
-//       }
-//     }
-//   },
-//   upvoterIds: {
-//     type: [String],
-//     optional: true,
-//     defaultValue: []
-//   },
-//   downvoterIds: {
-//     type: [String],
-//     optional: true,
-//     defaultValue: []
-//   },
-//   numLikes: {
-//     type: Number,
-//     optional: true,
-//     defaultValue: 0
-//   },
-//   networkId: {
-//     type: String,
-//     optional: false,
-//     autoValue: function () {
-//       if (this.isSet) {
-//         return;
-//       }
-//       if (this.isInsert) {
-//         return Meteor.user().networkId;
-//       } else {
-//         this.unset();
-//       }
-//     }
-//   },
-//   createdAt: {
-//     type: Date
-//   }
-// }));
-
-
 Meteor.methods({
-  // 'Posts.upvote': function (_id) {
-  //   if (!Meteor.user()) {
-  //     return;
-  //   }
-
-  //   if (_(Meteor.user().profile.votedProductIds).include(_id)) {
-  //     return;
-  //   }
-
-  //   Products.update({_id: _id}, {$inc: {numberOfVotes: 1}, $addToSet: {voterIds: this.userId}});
-  //   Meteor.users.update({_id: this.userId}, {$addToSet: {'profile.votedProductIds': _id}});
-  // },
 
   'Posts.new': function (body, userId) {
     var user = (userId ? Meteor.users.findOne({_id: userId}) : Meteor.user());
@@ -190,11 +89,6 @@ Meteor.methods({
       return false;
     }
 
-    // if (post.userId == userId) {
-    //   console.log("Can't upvote your own post");
-    //   return false;
-    // }
-
     var voter = Meteor.users.findOne({_id: userId});
     var author = Meteor.users.findOne({_id: post.userId});
 
@@ -245,7 +139,7 @@ Meteor.methods({
       // Meteor.call("Users.setRep", author._id, author.rep+1);
 
       Meteor.call("addNotification", {
-        fromUserId: Meteor.userId(),
+        fromUserId: userId,
         toUserId: authorId,
         postId: postId,
         commentId: null,
@@ -269,7 +163,7 @@ Meteor.methods({
       // Meteor.call("Users.setRep", voter._id, voter.rep+1);
 
       Meteor.call("addNotification", {
-        fromUserId: Meteor.userId(),
+        fromUserId: userId,
         toUserId: authorId,
         postId: postId,
         commentId: null,
@@ -334,7 +228,7 @@ Meteor.methods({
       // Meteor.call("Users.setRep", author._id, author.rep-1);
 
       Meteor.call("addNotification", {
-        fromUserId: Meteor.userId(),
+        fromUserId: userId(),
         toUserId: authorId,
         postId: postId,
         commentId: null,
@@ -359,7 +253,7 @@ Meteor.methods({
       // Meteor.call("Users.setRep", voter._id, voter.rep+1);
 
       Meteor.call("addNotification", {
-        fromUserId: Meteor.userId(),
+        fromUserId: userId(),
         toUserId: authorId,
         postId: postId,
         commentId: null,

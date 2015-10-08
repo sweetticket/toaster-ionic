@@ -80,7 +80,6 @@ Meteor.method("api.comments.new", function (postId, commentBody) {
 */
 Meteor.method("api.posts.upvote", function (postId) {
   var userId = this.userId;
-  console.log(userId)
   if (!userId) {
     console.log("no userid");
     return "no userId"

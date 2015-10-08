@@ -1,1 +1,1 @@
-ROOT_URL=http://192.168.0.102:3000/ meteor --port 3000
+ROOT_URL=http://10.148.12.241:3000/ meteor --port 3000

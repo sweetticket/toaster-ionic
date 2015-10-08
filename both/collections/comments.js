@@ -182,7 +182,7 @@ Meteor.methods({
       Meteor.call("Comments.setNumLikes", commentId, numLikes+2);
 
       Meteor.call("addNotification", {
-        fromUserId: Meteor.userId(),
+        fromUserId: userId,
         toUserId: authorId,
         postId: comment.postId,
         commentId: comment._id,
@@ -203,7 +203,7 @@ Meteor.methods({
       Meteor.call("Users.setRep", voter._id, voter.rep+1);
 
       Meteor.call("addNotification", {
-        fromUserId: Meteor.userId(),
+        fromUserId: userId,
         toUserId: authorId,
         postId: comment.postId,
         commentId: comment._id,
@@ -267,10 +267,10 @@ Meteor.methods({
       });
 
       Meteor.call("Comments.setNumLikes", commentId, numLikes-2);
-      Meteor.call("Users.setRep", author._id, author.rep-1);
+      // Meteor.call("Users.setRep", author._id, author.rep-1);
 
       Meteor.call("addNotification", {
-        fromUserId: Meteor.userId(),
+        fromUserId: userId,
         toUserId: authorId,
         postId: comment.postId,
         commentId: comment._id,
@@ -293,7 +293,7 @@ Meteor.methods({
       Meteor.call("Users.setRep", voter._id, voter.rep+1);
 
       Meteor.call("addNotification", {
-        fromUserId: Meteor.userId(),
+        fromUserId: userId,
         toUserId: authorId,
         postId: comment.postId,
         commentId: comment._id,
