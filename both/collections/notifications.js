@@ -7,9 +7,9 @@ if (Meteor.isServer) {
       console.log(noti);
 
       // don't add notification if I am acting on my own post
-      if (noti.fromUserId === noti.toUserId) {
-        return false;
-      }
+      // if (noti.fromUserId === noti.toUserId) {
+      //   return false;
+      // }
 
       Notifications.insert(_.extend(noti, {
         isRead: false,

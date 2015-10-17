@@ -4,6 +4,7 @@ Template.recent.badgeSet = false;
 Template.recent.skipIncrease = true;
 
 Template.recent.onCreated(function() {
+
   // flag to show the loading wheel only in the beginning.
   // don't show a loading wheel for subsequent fetch calls
   this.loaded = new ReactiveVar(0);
@@ -23,10 +24,6 @@ Template.recent.onCreated(function() {
 });
 
 Template.recent.onRendered(function() {
-  
-  if (Meteor.user() && Utils.isUserVerified(Meteor.user())) {
-    Utils.tellAndroidSignedInVerified();
-  }
 
   var instance = this;
   var limit = this.numPostsToFetch.get();
@@ -55,7 +52,6 @@ Template.recent.onRendered(function() {
       this.$('.posts-container').hide();
     } else {
       Utils.tellIOSLoadingEnded();
-      Utils.tellAndroidLoadingEnded();
       this.$('.posts-container').fadeIn();
     }
   }.bind(this));
